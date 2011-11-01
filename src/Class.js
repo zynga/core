@@ -331,7 +331,7 @@ if(!base.Env.isSet("es5"))
 					}
 
 					try {
-						Interface.assert(construct, iface);
+						base.Interface.assert(construct, iface);
 					} catch(ex) {
 						throw new Error("Class " + name + " fails to implement given interface: " + iface + ": " + ex);
 					}
@@ -342,15 +342,15 @@ if(!base.Env.isSet("es5"))
 			if (propertyFeatures) 
 			{
 				if (propertyFeatures.fire) {
-					Interface.assert(construct, base.property.IEvent);
+					base.Interface.assert(construct, base.property.IEvent);
 				}
 
 				if (propertyFeatures.themeable) {
-					Interface.assert(construct, base.property.IThemeable);
+					base.Interface.assert(construct, base.property.IThemeable);
 				}
 
 				if (propertyFeatures.inheritable) {
-					Interface.assert(construct, base.property.IInheritable);
+					base.Interface.assert(construct, base.property.IInheritable);
 				}
 			}
 		}

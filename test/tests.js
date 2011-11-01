@@ -242,7 +242,7 @@ $(function() {
 	test("Array.prototype.flatten", function() 
 	{
 		equals([[1], 2, [3]].flatten().toString(), [1,2,3].toString());
-		equals([['a'],[],'b','c'].flatten().toString(), ['a','b','c'].toString());
+		equals([["a"],[],"b","c"].flatten().toString(), ["a","b","c"].toString());
 	});
 	
 	asyncTest("Function.prototype.debounce - END", 1, function() 
@@ -338,12 +338,12 @@ $(function() {
 	});
 	
 	test("Creating global", function() {
-		Module.declareName('foo', 3);
+		base.Module.declareName("foo", 3);
 		equals(global.foo, 3);
 	});
 
 	test("Creating namespace", function() {
-		Module.declareName('abc.def', 5);
+		base.Module.declareName("abc.def", 5);
 		equals(global.abc.def, 5);
 	});
 
@@ -428,9 +428,9 @@ $(function() {
 	
 	module("ClassesCore", {
 		teardown : function() {
-			Module.clearName("abc.Class1");
-			Module.clearName("abc.Class2");
-			Module.clearName("abc.Class3");
+			base.Module.clearName("abc.Class1");
+			base.Module.clearName("abc.Class2");
+			base.Module.clearName("abc.Class3");
 		}
 	});
 
@@ -472,9 +472,9 @@ $(function() {
 	
 	module("ClassesMembers", {
 		teardown : function() {
-			Module.clearName("members.Class1");
-			Module.clearName("members.Include1");
-			Module.clearName("members.Include2");
+			base.Module.clearName("members.Class1");
+			base.Module.clearName("members.Include1");
+			base.Module.clearName("members.Include2");
 		}
 	});
 	
@@ -638,10 +638,10 @@ $(function() {
 	
 	module("ClassesEvents", {
 		teardown : function() {
-			Module.clearName("events.Keyboard");
-			Module.clearName("events.Mouse");
-			Module.clearName("events.Widget");
-			Module.clearName("events.Widget2");
+			base.Module.clearName("events.Keyboard");
+			base.Module.clearName("events.Mouse");
+			base.Module.clearName("events.Widget");
+			base.Module.clearName("events.Widget2");
 		}
 	});
 	
@@ -667,8 +667,8 @@ $(function() {
 			}
 		});
 		
-		var eventMap = Class.getEvents(events.Mouse);
-		ok(Assert.isMap(eventMap), "Events should be a returned as a map");
+		var eventMap = base.Class.getEvents(events.Mouse);
+		ok(base.Test.isMap(eventMap), "Events should be a returned as a map");
 		equals(eventMap.click, MouseEvent, "No click event found");
 		
 		base.Class("events.Keyboard", {
@@ -682,7 +682,7 @@ $(function() {
 			include : [events.Mouse, events.Keyboard]
 		});
 		
-		var full = Object.keys(Class.getEvents(events.Widget)).join(",");
+		var full = Object.keys(base.Class.getEvents(events.Widget)).join(",");
 		equals(full, "click,mousedown,mouseup,keydown,keyup", "Merge of events failed");
 
 		base.Class("events.Widget2", {
@@ -692,7 +692,7 @@ $(function() {
 			}
 		});
 
-		var full = Object.keys(Class.getEvents(events.Widget2)).join(",");
+		var full = Object.keys(base.Class.getEvents(events.Widget2)).join(",");
 		equals(full, "custom,click,mousedown,mouseup,keydown,keyup", "Merge of events with own events failed");
 	});
 	
@@ -730,7 +730,7 @@ $(function() {
 			}
 		});		
 		
-		var full = Object.keys(Class.getEvents(events.Widget)).join(",");
+		var full = Object.keys(base.Class.getEvents(events.Widget)).join(",");
 		equals(full, "click,mousedown,mouseup,keydown,keyup", "Merge of events failed");
 		
 		raises(function() {
@@ -782,17 +782,17 @@ $(function() {
 	
 	module("ClassesProperties", {
 		teardown : function() {
-			Module.clearName("properties.Text");
-			Module.clearName("properties.Dimension");
-			Module.clearName("properties.Label");
-			Module.clearName("properties.Simple");
-			Module.clearName("properties.IColor");
-			Module.clearName("properties.IFontSize");
-			Module.clearName("properties.ColorImplementer");
-			Module.clearName("properties.ColorWrongImplementer");
-			Module.clearName("properties.FontSizeImplementer");
-			Module.clearName("properties.FontSizeMissing");
-			Module.clearName("properties.FontSizeWrongImplementer");
+			base.Module.clearName("properties.Text");
+			base.Module.clearName("properties.Dimension");
+			base.Module.clearName("properties.Label");
+			base.Module.clearName("properties.Simple");
+			base.Module.clearName("properties.IColor");
+			base.Module.clearName("properties.IFontSize");
+			base.Module.clearName("properties.ColorImplementer");
+			base.Module.clearName("properties.ColorWrongImplementer");
+			base.Module.clearName("properties.FontSizeImplementer");
+			base.Module.clearName("properties.FontSizeMissing");
+			base.Module.clearName("properties.FontSizeWrongImplementer");
 		}
 	});	
 	
@@ -829,16 +829,16 @@ $(function() {
 			}
 		});
 		
-		ok(Assert.isClass(properties.Simple));
-		equals(Object.keys(Class.getProperties(properties.Simple)).join(","), "color,backgroundColor");
+		ok(base.Test.isClass(properties.Simple));
+		equals(Object.keys(base.Class.getProperties(properties.Simple)).join(","), "color,backgroundColor");
 
-		equals(Class.getProperties(properties.Simple).color.type, "String");
-		equals(typeof Class.getProperties(properties.Simple).color.apply, "function");
+		equals(base.Class.getProperties(properties.Simple).color.type, "String");
+		equals(typeof base.Class.getProperties(properties.Simple).color.apply, "function");
 
-		ok(Assert.isFunction(properties.Simple.prototype.getColor));
-		ok(Assert.isFunction(properties.Simple.prototype.getBackgroundColor));
-		ok(Assert.isFunction(properties.Simple.prototype.setColor));
-		ok(Assert.isFunction(properties.Simple.prototype.setBackgroundColor));
+		ok(base.Test.isFunction(properties.Simple.prototype.getColor));
+		ok(base.Test.isFunction(properties.Simple.prototype.getBackgroundColor));
+		ok(base.Test.isFunction(properties.Simple.prototype.setColor));
+		ok(base.Test.isFunction(properties.Simple.prototype.setBackgroundColor));
 
 		equals(properties.Simple.prototype.getColor.displayName, "properties.Simple.getColor");
 		equals(properties.Simple.prototype.getBackgroundColor.displayName, "properties.Simple.getBackgroundColor");
@@ -1064,8 +1064,8 @@ $(function() {
 			}
 		});
 		
-		ok(Assert.isClass(properties.Text));
-		equals(Object.keys(Class.getProperties(properties.Text)).join(","), "wrap,color,fontFamily,lineHeight");
+		ok(base.Test.isClass(properties.Text));
+		equals(Object.keys(base.Class.getProperties(properties.Text)).join(","), "wrap,color,fontFamily,lineHeight");
 
 
 
@@ -1083,8 +1083,8 @@ $(function() {
 			}
 		});
 
-		ok(Assert.isClass(properties.Dimension));
-		equals(Object.keys(Class.getProperties(properties.Dimension)).join(","), "width,height");
+		ok(base.Test.isClass(properties.Dimension));
+		equals(Object.keys(base.Class.getProperties(properties.Dimension)).join(","), "width,height");
 		
 		
 
@@ -1112,8 +1112,8 @@ $(function() {
 			}
 		});
 		
-		ok(Assert.isClass(properties.Label));
-		equals(Object.keys(Class.getProperties(properties.Label)).join(","), "wrap,color,fontFamily,lineHeight,width,height");
+		ok(base.Test.isClass(properties.Label));
+		equals(Object.keys(base.Class.getProperties(properties.Label)).join(","), "wrap,color,fontFamily,lineHeight,width,height");
 		
 		
 		

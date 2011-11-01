@@ -52,10 +52,10 @@ base.Module("base.property.Debug",
 				{
 					if (type instanceof Array) {
 						base.Test.assertInList(value, type);
-					} else if (Class.isClass(type)) {
+					} else if (base.Class.isClass(type)) {
 						base.Test.assertInstanceOf(value, type);
-					} else if (Interface.isInterface(type)) {
-						Interface.assert(value, type);
+					} else if (base.Interface.isInterface(type)) {
+						base.Interface.assert(value, type);
 					}
 					else
 					{
