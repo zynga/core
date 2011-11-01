@@ -364,22 +364,22 @@ $(function() {
 	
 	test("Creating empty module", function() {
 		base.Module("abc.Module1", {});
-		equals(Module.isModule(abc.Module1), true);
+		equals(base.Module.isModule(abc.Module1), true);
 		equals(abc.Module1.moduleName, "abc.Module1");
 		equals(abc.Module1.toString(), "[module abc.Module1]");
 	});
 	
 	test("Creating module with short namespace", function() {
 		base.Module("x.Module1", {});
-		equals(Module.isModule(x.Module1), true);
+		equals(base.Module.isModule(x.Module1), true);
 		equals(x.Module1.moduleName, "x.Module1");
 		equals(x.Module1.toString(), "[module x.Module1]");
 	});
 
 	test("Module false validation", function() {
-		ok(!Module.isModule({}));
-		ok(!Module.isModule(3));
-		ok(!Module.isModule(null));
+		ok(!base.Module.isModule({}));
+		ok(!base.Module.isModule(3));
+		ok(!base.Module.isModule(null));
 	});
 	
 	test("Creating method module", function() {
@@ -388,7 +388,7 @@ $(function() {
 			method2 : function() {},
 			method3 : function() {}
 		});
-		equals(Module.isModule(abc.Module2), true);
+		equals(base.Module.isModule(abc.Module2), true);
 		ok(abc.Module2.method1 instanceof Function);
 		ok(abc.Module2.method2 instanceof Function);
 		ok(abc.Module2.method3 instanceof Function);
@@ -450,15 +450,15 @@ $(function() {
 
 	test("Creating empty class", function() {
 		base.Class("abc.Class1", {});
-		equals(Class.isClass(abc.Class1), true);
+		equals(base.Class.isClass(abc.Class1), true);
 		equals(abc.Class1.className, "abc.Class1");
 		equals(abc.Class1.toString(), "[class abc.Class1]");
 	});
 	
 	test("Class false validation", function() {
-		ok(!Class.isClass({}));
-		ok(!Class.isClass(3));
-		ok(!Class.isClass(null));
+		ok(!base.Class.isClass({}));
+		ok(!base.Class.isClass(3));
+		ok(!base.Class.isClass(null));
 	});
 	
 		

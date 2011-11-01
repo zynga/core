@@ -18,7 +18,7 @@
 	 * @param name {String} Name of Interface
 	 * @param config {Map} Data structure containing the keys 'events', 'properties' and 'members'.
 	 */
-	Module.declareName("Interface", function(name, config) 
+	base.Module.declareName("base.Interface", function(name, config) 
 	{
 		if (base.Env.isSet("debug")) 
 		{
@@ -63,8 +63,12 @@
 		};
 		
 		// Attach to namespace
-		Module.declareName(name, iface, true);
+		base.Module.declareName(name, iface, true);
 	});
+	
+	
+	// Shorthand
+	var Interface = base.Interface;
 	
 	
 	/**
@@ -79,7 +83,7 @@
 			base.Test.assertString(interfaceName);
 		}
 		
-		var obj = Module.resolveName(interfaceName);
+		var obj = base.Module.resolveName(interfaceName);
 		return isInterface(obj) ? obj : null;
 	};
 
@@ -102,7 +106,7 @@
 		}
 		
 		var cls = typeof objOrClass == "object" ? objOrClass.constructor : objOrClass;
-		if (!Class.isClass(cls)) {
+		if (!base.Class.isClass(cls)) {
 			throw new Error("Invalid class or object to verify interface with: " + objOrClass);
 		}
 		
@@ -164,7 +168,7 @@
 		
 		if (ifaceProperties)
 		{
-			var cProperties = Class.getProperties(cls);
+			var cProperties = base.Class.getProperties(cls);
 			for (var name in ifaceProperties) 
 			{
 				if (!(name in cProperties)) {
@@ -207,7 +211,7 @@
 
 		if (ifaceEvents)
 		{
-			var cEvents = Class.getEvents(cls);
+			var cEvents = base.Class.getEvents(cls);
 			for (var name in ifaceEvents) 
 			{
 				if (!(name in cEvents)) {

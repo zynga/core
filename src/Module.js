@@ -57,7 +57,7 @@
 	 * @param name {String} Name of Module
 	 * @param members {Map} Data structure containing the members
 	 */
-	var Module = global.Module = function(name, members) 
+	var Module = base.Module = function(name, members) 
 	{
 		if (base.Env.isSet("debug")) 
 		{

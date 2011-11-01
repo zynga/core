@@ -148,7 +148,7 @@ if(!base.Env.isSet("es5"))
 	
 	
 	
-	Module.declareName("Class", function(name, config) 
+	base.Module.declareName("base.Class", function(name, config) 
 	{
 		if (base.Env.isSet("debug")) 
 		{
@@ -361,8 +361,12 @@ if(!base.Env.isSet("es5"))
 		// ------------------------------------
 		
 		// Attach to namespace
-		Module.declareName(name, construct, true);
+		base.Module.declareName(name, construct, true);
 	});
+
+	
+	// Shorthand
+	var Class = base.Class;
 
 
 	/**
@@ -377,7 +381,7 @@ if(!base.Env.isSet("es5"))
 			base.Test.assertString(className);
 		}
 		
-		var obj = Module.resolveName(className);
+		var obj = base.Module.resolveName(className);
 		return isClass(obj) ? obj : null;
 	};
 
