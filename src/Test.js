@@ -7,8 +7,8 @@
 
 (function(global, toString, undef) 
 {
-	if (!global.jasy) {
-		global.jasy = {};
+	if (!global.base) {
+		global.base = {};
 	}
 	
 	/**

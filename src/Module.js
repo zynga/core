@@ -17,8 +17,8 @@
 	};
 	
 	// Small hack to correctly bootstrap system
-	if (!global.jasy) {
-		global.jasy = {};
+	if (!global.base) {
+		global.base = {};
 	}
 	
 	if (!base.Env) 
