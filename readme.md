@@ -17,24 +17,10 @@ Features
   * Object.keys
   * setTimeout/setIntervals with additional arguments
 * EcmaScript 5 Support (for all not fixed/added before)
-  * Array
-    * isArray
-  * Array.prototype
-    * forEach
-    * map
-    * filter
-    * every
-    * some
-    * reduce
-    * reduceRight
-    * lastIndexOf
-  * Date.prototype
-    * toISOString
-    * toJSON
-  * JSON
-    * stringify
-    * parse
-  * String.prototype
-    * trim
+  * Array: `isArray`
+  * Array.prototype: `forEach`, `map`, `filter`, `every`, `some`, `reduce`, `reduceRight`, `lastIndexOf`
+  * Date.prototype: `toISOString`, `toJSON`
+  * JSON: `stringify`, `parse`
+  * String.prototype: `trim`
 * Synthetic sugar for better comfort during JavaScript development (base.ext.*)
 * Extendable type test and assertion module (base.Test)
