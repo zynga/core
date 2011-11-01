@@ -6,7 +6,7 @@
 	/** 
 	 * Image loader with support for load callback.
 	 */
-	Module("jasy.io.Image",
+	Module("base.io.Image",
 	{
 		/** {Boolean} Whether the loader supports parallel requests. Always true for images. */
 		SUPPORTS_PARALLEL : true,
@@ -21,20 +21,20 @@
 		 */
 		load : function(uri, callback, context, nocache) 
 		{
-			if (jasy.Env.isSet("debug")) 
+			if (base.Env.isSet("debug")) 
 			{
-				jasy.Test.assertString(uri);
+				base.Test.assertString(uri);
 
 				if (callback != null) {
-					jasy.Test.assertFunction(callback, "Invalid callback method!");
+					base.Test.assertFunction(callback, "Invalid callback method!");
 				}
 
 				if (context != null) {
-					jasy.Test.assertObject(context, "Invalid callback context!");
+					base.Test.assertObject(context, "Invalid callback context!");
 				}
 
 				if (nocache != null) {
-					jasy.Test.assertBoolean(nocache);
+					base.Test.assertBoolean(nocache);
 				}
 			}
 			
@@ -45,7 +45,7 @@
 				img.onload = img.onerror = null;
 
 				var errornous = (e||global.event).type === "error";
-				if (jasy.Env.isSet("debug") && errornous) {
+				if (base.Env.isSet("debug") && errornous) {
 					console.warn("Could not load image: " + uri);
 				}
 

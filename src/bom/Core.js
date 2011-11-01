@@ -6,6 +6,6 @@
 */
 
 /**
- * @require {jasy.bom.IEDOM}
- * @require {jasy.bom.Assert}
+ * @require {base.bom.IEDOM}
+ * @require {base.bom.Assert}
  */

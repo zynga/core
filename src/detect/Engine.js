@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-Module("jasy.detect.Engine", 
+Module("base.detect.Engine", 
 {
 	VALUE : (function(global) 
 	{

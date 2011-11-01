@@ -24,7 +24,7 @@
 	 * <li><strong>apply</strong>: Link to function to call after a new value has been stored. The signature of the method is
 	 *	 <code>function(newValue, oldValue)</code>.</li>
 	 * <li><strong>event</strong>: Event to fire after a new value has been stored (and apply has been called). The event
-	 *	 type is a {@link jasy.property.Event} which contains both, the old and new value.</li>
+	 *	 type is a {@link base.property.Event} which contains both, the old and new value.</li>
 	 * <li><strong>init</strong>: Init value for the property. If no value is set or the property gets reset, the getter
 	 *	 will return the <code>init</code> value.</li>
 	 * <li><strong>nullable</strong>: Whether the property is able to store null values. This also allows the system to
@@ -32,7 +32,7 @@
 	 *	 available.</li>
 	 * </ul>
 	 */
-	Module("jasy.property.Simple",
+	Module("base.property.Simple",
 	{
 		/**
 		 * Creates a new set of member methods for the given property configuration.
@@ -59,15 +59,15 @@
 			var propertyApply = config.apply;
 
 			// Validation
-			if (jasy.Env.isSet("debug"))
+			if (base.Env.isSet("debug"))
 			{
-				jasy.Test.assertHasAllowedKeysOnly(config, ["name","nullable","init","type","fire","apply"],
+				base.Test.assertHasAllowedKeysOnly(config, ["name","nullable","init","type","fire","apply"],
 					"Invalid simple property configuration of '" + propertyName + "'! Unallowed key(s) found!");
 
-				jasy.Test.assertString(propertyName);
+				base.Test.assertString(propertyName);
 
 				if (propertyNullable !== undef) {
-					jasy.Test.assertBoolean(propertyNullable);
+					base.Test.assertBoolean(propertyNullable);
 				}
 
 				if (propertyType) {
@@ -75,11 +75,11 @@
 				}
 
 				if (propertyFire) {
-					jasy.Test.assertString(propertyFire);
+					base.Test.assertString(propertyFire);
 				}
 
 				if (propertyApply) {
-					jasy.Test.assertFunction(propertyApply);
+					base.Test.assertFunction(propertyApply);
 				}
 			}
 
@@ -88,7 +88,7 @@
 			// as in this case this is typicall on different classes.
 			var propertyId = propertyNameToId[propertyName];
 			if (!propertyId) {
-				propertyId = propertyNameToId[propertyName] = (jasy.property.Core.ID++);
+				propertyId = propertyNameToId[propertyName] = (base.property.Core.ID++);
 			}
 
 			// Prepare return value
@@ -107,8 +107,8 @@
 				var context, data, value;
 				context = this;
 
-				if (jasy.Env.isSet("debug")) {
-					jasy.property.Debug.checkGetter(context, config, arguments);
+				if (base.Env.isSet("debug")) {
+					base.property.Debug.checkGetter(context, config, arguments);
 				}
 
 				data = context[store];
@@ -122,7 +122,7 @@
 						return propertyInit;
 					}
 
-					if (jasy.Env.isSet("debug"))
+					if (base.Env.isSet("debug"))
 					{
 						if (!propertyNullable) {
 							context.error("Missing value for: " + propertyName + " (during get())");
@@ -177,8 +177,8 @@
 			{
 				var context=this, data, old;
 
-				if (jasy.Env.isSet("debug")) {
-					jasy.property.Debug.checkSetter(context, config, arguments);
+				if (base.Env.isSet("debug")) {
+					base.property.Debug.checkSetter(context, config, arguments);
 				}
 
 				data = context[store];
@@ -221,8 +221,8 @@
 				var context, data, old, value;
 				context = this;
 
-				if (jasy.Env.isSet("debug")) {
-					jasy.property.Debug.checkResetter(context, config, arguments);
+				if (base.Env.isSet("debug")) {
+					base.property.Debug.checkResetter(context, config, arguments);
 				}
 
 				data = context[store];
@@ -240,7 +240,7 @@
 					if (propertyInit !== undef) {
 						value = propertyInit;
 					}
-					else if (jasy.Env.isSet("debug"))
+					else if (base.Env.isSet("debug"))
 					{
 						// Still no value. We warn about that the property is not nullable.
 						if (!propertyNullable) {

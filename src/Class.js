@@ -6,7 +6,7 @@
 */
 
 // Include ES5 support if not natively supported
-if(!jasy.Env.isSet("es5")) 
+if(!base.Env.isSet("es5")) 
 {
 	// These classes don't really exist, so we need to protect the access.
 	try{
@@ -51,7 +51,7 @@ if(!jasy.Env.isSet("es5"))
 	};
 	
 	
-	if (jasy.Env.isSet("debug"))
+	if (base.Env.isSet("debug"))
 	{
 		var checkMixinMemberConflicts = function(include, members, name) 
 		{
@@ -150,35 +150,35 @@ if(!jasy.Env.isSet("es5"))
 	
 	Module.declareName("Class", function(name, config) 
 	{
-		if (jasy.Env.isSet("debug")) 
+		if (base.Env.isSet("debug")) 
 		{
-			jasy.Test.assertModuleName(name, "Invalid class name " + name + "!");
-			jasy.Test.assertMap(config, "Invalid class configuration in " + name);
-			jasy.Test.assertHasAllowedKeysOnly(config, ["construct","events","members","properties","include","implement"], 
+			base.Test.assertModuleName(name, "Invalid class name " + name + "!");
+			base.Test.assertMap(config, "Invalid class configuration in " + name);
+			base.Test.assertHasAllowedKeysOnly(config, ["construct","events","members","properties","include","implement"], 
 				"Invalid configuration in class " + name + "! Unallowed key(s) found!");
 			
 			if ("construct" in config) {
-				jasy.Test.assertFunction(config.construct, "Invalid constructor in class " + name + "!");
+				base.Test.assertFunction(config.construct, "Invalid constructor in class " + name + "!");
 			}
 			
 			if ("events" in config) {
-				jasy.Test.assertMap(config.events, "Invalid event data in class " + name + "!");
+				base.Test.assertMap(config.events, "Invalid event data in class " + name + "!");
 			}
 			
 			if ("members" in config) {
-				jasy.Test.assertMap(config.members, "Invalid member section in class " + name);
+				base.Test.assertMap(config.members, "Invalid member section in class " + name);
 			}
 
 			if ("properties" in config) {
-				jasy.Test.assertMap(config.properties, "Invalid properties section in class " + name);
+				base.Test.assertMap(config.properties, "Invalid properties section in class " + name);
 			}
 			
 			if ("include" in config) {
-				jasy.Test.assertArray(config.include, "Invalid include list in class " + name);
+				base.Test.assertArray(config.include, "Invalid include list in class " + name);
 			}
 
 			if ("implement" in config) {
-				jasy.Test.assertArray(config.implement, "Invalid implement list in class " + name);
+				base.Test.assertArray(config.implement, "Invalid implement list in class " + name);
 			}
 		}
 		
@@ -216,10 +216,10 @@ if(!jasy.Env.isSet("es5"))
 		var include = config.include;
 		if (include) 
 		{
-			if (jasy.Env.isSet("debug")) 
+			if (base.Env.isSet("debug")) 
 			{
 				for (var i=0, l=include.length; i<l; i++) {
-					jasy.Test.assertClass(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
+					base.Test.assertClass(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
 				}
 				
 				checkMixinMemberConflicts(include, config.members, name);
@@ -271,11 +271,11 @@ if(!jasy.Env.isSet("es5"))
 
 			// Create members via specific property implementation 
 			if (propertyConfig.group) {
-				var propertyMembers = jasy.property.Group.create(propertyConfig);
+				var propertyMembers = base.property.Group.create(propertyConfig);
 			} else if (propertyConfig.themeable || propertyConfig.inheritable) {	
-				var propertyMembers = jasy.property.Multi.create(propertyConfig);
+				var propertyMembers = base.property.Multi.create(propertyConfig);
 			} else {
-				var propertyMembers = jasy.property.Simple.create(propertyConfig);
+				var propertyMembers = base.property.Simple.create(propertyConfig);
 			}
 			
 			// Prepare function names
@@ -317,7 +317,7 @@ if(!jasy.Env.isSet("es5"))
 		//	 INTERFACES
 		// ------------------------------------
 	
-		if (jasy.Env.isSet("debug")) 
+		if (base.Env.isSet("debug")) 
 		{
 			var implement = config.implement;
 			if (implement) 
@@ -342,15 +342,15 @@ if(!jasy.Env.isSet("es5"))
 			if (propertyFeatures) 
 			{
 				if (propertyFeatures.fire) {
-					Interface.assert(construct, jasy.property.IEvent);
+					Interface.assert(construct, base.property.IEvent);
 				}
 
 				if (propertyFeatures.themeable) {
-					Interface.assert(construct, jasy.property.IThemeable);
+					Interface.assert(construct, base.property.IThemeable);
 				}
 
 				if (propertyFeatures.inheritable) {
-					Interface.assert(construct, jasy.property.IInheritable);
+					Interface.assert(construct, base.property.IInheritable);
 				}
 			}
 		}
@@ -373,8 +373,8 @@ if(!jasy.Env.isSet("es5"))
 	 */
 	Class.getByName = function(className) 
 	{
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertString(className);
+		if (base.Env.isSet("debug")) {
+			base.Test.assertString(className);
 		}
 		
 		var obj = Module.resolveName(className);
@@ -390,8 +390,8 @@ if(!jasy.Env.isSet("es5"))
 	 */
 	Class.getEvents = function(cls) 
 	{
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertClass(cls);
+		if (base.Env.isSet("debug")) {
+			base.Test.assertClass(cls);
 		}
 		
 		return cls.__events;
@@ -406,8 +406,8 @@ if(!jasy.Env.isSet("es5"))
 	 */
 	Class.getProperties = function(cls) 
 	{
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertClass(cls);
+		if (base.Env.isSet("debug")) {
+			base.Test.assertClass(cls);
 		}
 		
 		return cls.__properties;
@@ -454,9 +454,9 @@ if(!jasy.Env.isSet("es5"))
 	 */
 	var includesClass = Class.includesClass = function(cls, incCls) 
 	{
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertClass(cls, "Class to check for including class is itself not a class!");
-			jasy.Test.assertClass(incCls, "Class to check for being included is not a class!");
+		if (base.Env.isSet("debug")) {
+			base.Test.assertClass(cls, "Class to check for including class is itself not a class!");
+			base.Test.assertClass(incCls, "Class to check for being included is not a class!");
 		}
 		
 		return cls.__includes.indexOf(incCls) != -1;
@@ -464,7 +464,7 @@ if(!jasy.Env.isSet("es5"))
 	
 	
 	// Add assertions
-	jasy.Test.add(isClass, "isClass", "Invalid class!");
-	jasy.Test.add(includesClass, "includesClass", "Does not include class %1!");
+	base.Test.add(isClass, "isClass", "Invalid class!");
+	base.Test.add(includesClass, "includesClass", "Does not include class %1!");
 	
 })(this);

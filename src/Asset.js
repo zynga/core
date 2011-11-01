@@ -16,8 +16,8 @@
 	
 	var getEntry = function(id) 
 	{
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertString(id, "Invalid asset identifier: " + id);
+		if (base.Env.isSet("debug")) {
+			base.Test.assertString(id, "Invalid asset identifier: " + id);
 		}
 		
 		var entry = entryCache[id];
@@ -48,7 +48,7 @@
 	};
 	
 	// TODO: Implement using permutation injection
-	// jasy.Env.getValue("assets");
+	// base.Env.getValue("assets");
 	var assets = global.$$assets;
 	if (!assets) 
 	{
@@ -57,7 +57,7 @@
 	}
 	
 	
-	Module("jasy.Asset",
+	Module("base.Asset",
 	{
 		/**
 		 * Whether the registry has information about the given asset.
@@ -76,7 +76,7 @@
 		getImageSize : function(id) 
 		{
 			var entry = entryCache[id] || getEntry(id);
-			if (jasy.Env.isSet("debug") && (!entry || entry.length < 3)) {
+			if (base.Env.isSet("debug") && (!entry || entry.length < 3)) {
 				throw new Error("Unknown image: " + id);
 			}
 			
@@ -101,7 +101,7 @@
 			if (!result) 
 			{
 				var entry = entryCache[id] || getEntry(id);
-				if (jasy.Env.isSet("debug") && (!entry || entry.length < 5)) {
+				if (base.Env.isSet("debug") && (!entry || entry.length < 5)) {
 					throw new Error("Unknown image sprite: " + id);
 				}
 				
@@ -138,7 +138,7 @@
 			}
 
 			var entry = entryCache[id] || getEntry(id);
-			if (jasy.Env.isSet("debug") && !entry) {
+			if (base.Env.isSet("debug") && !entry) {
 				throw new Error("Could not figure out URL for asset: " + id);
 			}
 			

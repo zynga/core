@@ -8,7 +8,7 @@
 /**
  * Detects browser language settings
  */
-Module("jasy.detect.Locale", 
+Module("base.detect.Locale", 
 {
 	VALUE : (function()
 	{

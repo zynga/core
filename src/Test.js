@@ -26,7 +26,7 @@
 	 * @require {fix.ObjectKeys}
 	 * @require {fix.SetTimeoutArgs}
 	 */
-	var Test = jasy.Test = 
+	var Test = base.Test = 
 	{
 		/**
 		 * Adds a new assertion check
@@ -45,7 +45,7 @@
 			// Attach given method as is to assertion
 			this[methodName] = func;
 			if(func.displayName == null) {
-				func.displayName = "jasy.Test." + methodName;
+				func.displayName = "base.Test." + methodName;
 			}
 
 			// Build assert method name
@@ -78,7 +78,7 @@
 				};
 			}
 			
-			this[assertName].displayName = "jasy.Test." + assertName;
+			this[assertName].displayName = "base.Test." + assertName;
 		}
 	};
 	

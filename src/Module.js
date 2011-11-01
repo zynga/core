@@ -6,7 +6,7 @@
 */
 
 /**
- * @break {jasy.Env}
+ * @break {base.Env}
  */
 (function(global, undef)
 {
@@ -21,10 +21,10 @@
 		global.jasy = {};
 	}
 	
-	if (!jasy.Env) 
+	if (!base.Env) 
 	{
 		var selected = {};
-		jasy.Env = 
+		base.Env = 
 		{
 			define : function(name, value) {
 				selected[name] = value;
@@ -59,10 +59,10 @@
 	 */
 	var Module = global.Module = function(name, members) 
 	{
-		if (jasy.Env.isSet("debug")) 
+		if (base.Env.isSet("debug")) 
 		{
-			jasy.Test.assertModuleName(name, "Invalid module name " + name + "!");
-			jasy.Test.assertMap(members, "Invalid map as module configuration in " + name + "!");
+			base.Test.assertModuleName(name, "Invalid module name " + name + "!");
+			base.Test.assertMap(members, "Invalid map as module configuration in " + name + "!");
 		}
 
 		var prefix = name + ".";
@@ -215,8 +215,8 @@
 	 */
 	Module.getByName = function(moduleName) 
 	{
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertString(moduleName);
+		if (base.Env.isSet("debug")) {
+			base.Test.assertString(moduleName);
 		}
 		
 		var obj = Module.resolveName(moduleName);
@@ -246,9 +246,9 @@
 	
 	
 	// Add assertion for module name
-	jasy.Test.add(isModuleName, "isModuleName", "Invalid module name!");
+	base.Test.add(isModuleName, "isModuleName", "Invalid module name!");
 
 	// Add assertion for module type
-	jasy.Test.add(isModule, "isModule", "Invalid module!");	
+	base.Test.add(isModule, "isModule", "Invalid module!");	
 
 })(this);

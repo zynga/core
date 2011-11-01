@@ -19,7 +19,7 @@
 	/** 
 	 * Stylesheet loader with support for load callback.
 	 */
-	Module("jasy.io.StyleSheet",
+	Module("base.io.StyleSheet",
 	{
 		/** {Boolean} Whether the loader supports parallel requests. Always true for stylesheets (order should, hopefully, not be important). */
 		SUPPORTS_PARALLEL : true,
@@ -38,25 +38,25 @@
 		 */
 		load: function(uri, callback, context, nocache) 
 		{
-			if (jasy.Env.isSet("debug")) 
+			if (base.Env.isSet("debug")) 
 			{
-				jasy.Test.assertString(uri);
+				base.Test.assertString(uri);
 
 				if (callback != null) {
-					jasy.Test.assertFunction(callback, "Invalid callback method!");
+					base.Test.assertFunction(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					jasy.Test.assertObject(context, "Invalid callback context!");
+					base.Test.assertObject(context, "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					jasy.Test.assertBoolean(nocache);
+					base.Test.assertBoolean(nocache);
 				}
 			}
 			
 			// Default nocache to true when debugging is enabled
-			if (jasy.Env.isSet("debug") && nocache == null) {
+			if (base.Env.isSet("debug") && nocache == null) {
 				nocache = true;
 			}
 
@@ -67,7 +67,7 @@
 			}
 
 			// Use listener to stylesheet list and compare elements
-			if (jasy.Env.isSet("engine", "webkit")) 
+			if (base.Env.isSet("engine", "webkit")) 
 			{
 				var link = doc.createElement('link');
 				var sheets = doc.styleSheets;
@@ -96,7 +96,7 @@
 			}
 
 			// Use style import fallback for buggy GECKO 
-			else if (jasy.Env.isSet("engine", "gecko")) 
+			else if (base.Env.isSet("engine", "gecko")) 
 			{
 				var style = doc.createElement("style");
 				style.textContent = "@import '" + uri + (nocache ? dynamicExtension : "") + "'";

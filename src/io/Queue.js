@@ -9,13 +9,13 @@
 	/** {Map} Maps extensions to loader classes */
 	var typeLoader = 
 	{
-		js : jasy.io.Script,
-		css : jasy.io.StyleSheet,
-		jsonp : jasy.io.Jsonp,
-		png : jasy.io.Image,
-		jpeg : jasy.io.Image,
-		jpg : jasy.io.Image,
-		gif : jasy.io.Image
+		js : base.io.Script,
+		css : base.io.StyleSheet,
+		jsonp : base.io.Jsonp,
+		png : base.io.Image,
+		jpeg : base.io.Image,
+		jpg : base.io.Image,
+		gif : base.io.Image
 	};
 
 
@@ -77,8 +77,8 @@
 	 */
 	var onLoad = function(uri, errornous, data) 
 	{
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertString(uri, "Invalid URI from loader backend!");
+		if (base.Env.isSet("debug")) {
+			base.Test.assertString(uri, "Invalid URI from loader backend!");
 		}
 		
 		delete loading[uri];
@@ -104,7 +104,7 @@
 	 * * method load(uri, callback, context, nocache) which calls the callback with the URI
 	 * * constant `SUPPORTS_PARALLEL` with a boolean value whether the loader supports parallel loading
 	 */
-	Module("jasy.io.Queue",
+	Module("base.io.Queue",
 	{
 		/**
 		 * Whether the given URI or URIs are loaded through the queue
@@ -118,8 +118,8 @@
 				return !!completed[uris];
 			}
 			
-			if (jasy.Env.isSet("debug")) {
-				jasy.Test.assertArray(uris, "Invalid list of URIs!");
+			if (base.Env.isSet("debug")) {
+				base.Test.assertArray(uris, "Invalid list of URIs!");
 			}
 
 			for (var i=0, l=uris.length; i<l; i++) 
@@ -144,24 +144,24 @@
 		 */
 		load : function(uris, callback, context, nocache, type) 
 		{
-			if (jasy.Env.isSet("debug")) 
+			if (base.Env.isSet("debug")) 
 			{
-				jasy.Test.assertArray(uris);
+				base.Test.assertArray(uris);
 
 				if (callback != null) {
-					jasy.Test.assertFunction(callback, "Invalid callback method!");
+					base.Test.assertFunction(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					jasy.Test.assertObject(context, "Invalid callback context!");
+					base.Test.assertObject(context, "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					jasy.Test.assertBoolean(nocache);
+					base.Test.assertBoolean(nocache);
 				}
 
 				if (type != null) {
-					jasy.Test.assertString(type);
+					base.Test.assertString(type);
 				}
 			}
 			
@@ -181,7 +181,7 @@
 					if (autoType) {
 						type = extractExtension(currentUri);
 						
-						if (jasy.Env.isSet("debug") && (!type || !typeLoader[type])) {
+						if (base.Env.isSet("debug") && (!type || !typeLoader[type])) {
 							throw new Error("Could not figure out loader to use for URI: " + currentUri);
 						}
 					}
@@ -262,7 +262,7 @@
 			
 			// Return internal loading list for debug proposes only.
 			// Be super careful with the object
-			if (jasy.Env.isSet("debug")) {
+			if (base.Env.isSet("debug")) {
 				return loading;
 			}
 		}

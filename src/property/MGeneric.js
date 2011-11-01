@@ -21,7 +21,7 @@
 	 * Include this if your class uses properties and want to be able to generically 
 	 * set/get them based on the property names
 	 */
-	Class("jasy.property.MGeneric",
+	Class("base.property.MGeneric",
 	{
 		members : 
 		{
@@ -44,8 +44,8 @@
 			{
 				if (arguments.length == 2) 
 				{
-					if (jasy.Env.isSet("debug")) {
-						jasy.Test.assertString(property);
+					if (base.Env.isSet("debug")) {
+						base.Test.assertString(property);
 					}
 
 					var method = setters[property];
@@ -53,16 +53,16 @@
 						method = setters[property] = "set" + up(property);
 					}
 					
-					if (jasy.Env.isSet("debug")) {
-						jasy.Test.assertFunction(this[method], "Invalid property to set(): " + property);
+					if (base.Env.isSet("debug")) {
+						base.Test.assertFunction(this[method], "Invalid property to set(): " + property);
 					}
 					
 					return this[method](value);
 				} 
 				else
 				{
-					if (jasy.Env.isSet("debug")) {
-						jasy.Test.assertMap(property);
+					if (base.Env.isSet("debug")) {
+						base.Test.assertMap(property);
 					}
 					
 					for (var name in property) 
@@ -72,8 +72,8 @@
 							method = setters[name] = "set" + up(name);
 						}
 						
-						if (jasy.Env.isSet("debug")) {
-							jasy.Test.assertFunction(this[method], "Invalid property to set(): " + name);
+						if (base.Env.isSet("debug")) {
+							base.Test.assertFunction(this[method], "Invalid property to set(): " + name);
 						}
 
 						this[method](property[name]);
@@ -98,8 +98,8 @@
 			{
 				if (typeof property == "string") 
 				{
-					if (jasy.Env.isSet("debug")) {
-						jasy.Test.assertString(property);
+					if (base.Env.isSet("debug")) {
+						base.Test.assertString(property);
 					}
 
 					var method = getters[property];
@@ -107,16 +107,16 @@
 						method = getters[property] = "get" + up(property);
 					}
 					
-					if (jasy.Env.isSet("debug")) {
-						jasy.Test.assertFunction(this[method], "Invalid property to get(): " + property);
+					if (base.Env.isSet("debug")) {
+						base.Test.assertFunction(this[method], "Invalid property to get(): " + property);
 					}
 					
 					return this[method]();
 				} 
 				else 
 				{
-					if (jasy.Env.isSet("debug")) {
-						jasy.Test.assertArray(property);
+					if (base.Env.isSet("debug")) {
+						base.Test.assertArray(property);
 					}
 					
 					var ret = {};
@@ -129,8 +129,8 @@
 							method = getters[name] = "get" + up(name);
 						}
 
-						if (jasy.Env.isSet("debug")) {
-							jasy.Test.assertFunction(this[method], "Invalid property to get(): " + name);
+						if (base.Env.isSet("debug")) {
+							base.Test.assertFunction(this[method], "Invalid property to get(): " + name);
 						}
 
 						ret[name] = this[method]();

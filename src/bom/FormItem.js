@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-Module("jasy.bom.FormItem",
+Module("base.bom.FormItem",
 {
 	isSuccessful: function(item) 
 	{

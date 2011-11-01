@@ -12,7 +12,7 @@
 	// Dynamic URI can be shared because we do not support reloading files
 	var dynamicExtension = "?r=" + Date.now();
 	
-	Module("jasy.io.Text", 
+	Module("base.io.Text", 
 	{
 		/** {Boolean} Whether the loader supports parallel requests */
 		SUPPORTS_PARALLEL : true,
@@ -67,7 +67,7 @@
 			};
 			
 			// Fixes for IE memory leaks
-			if (jasy.Env.isSet("engine", "trident") && global.attachEvent) 
+			if (base.Env.isSet("engine", "trident") && global.attachEvent) 
 			{
 				var onUnload = function() 
 				{

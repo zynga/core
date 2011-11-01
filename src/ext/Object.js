@@ -25,16 +25,16 @@
 	var addObjectMethods = function(globalName, members) 
 	{
 		var prefix = globalName + ".";
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertHasKey(global, globalName)
+		if (base.Env.isSet("debug")) {
+			base.Test.assertHasKey(global, globalName)
 		}
 
 		var construct = global[globalName];
 		for (var name in members) 
 		{
 			var func = members[name];
-			if (jasy.Env.isSet("debug")) {
-				jasy.Test.assertFunction(func);
+			if (base.Env.isSet("debug")) {
+				base.Test.assertFunction(func);
 			}
 			func.displayName = prefix + name;
 
@@ -45,20 +45,20 @@
 	var addPrototypeMethods = function(globalName, members) 
 	{
 		var prefix = globalName + ".prototype.";
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertHasKey(global, globalName);
+		if (base.Env.isSet("debug")) {
+			base.Test.assertHasKey(global, globalName);
 		}
 
 		var proto = global[globalName].prototype;
-		if (jasy.Env.isSet("debug")) {
-			jasy.Test.assertNotNull(proto);
+		if (base.Env.isSet("debug")) {
+			base.Test.assertNotNull(proto);
 		}
 
 		for (var name in members) 
 		{
 			var func = members[name];
-			if (jasy.Env.isSet("debug")) {
-				jasy.Test.assertFunction(func);
+			if (base.Env.isSet("debug")) {
+				base.Test.assertFunction(func);
 			}
 			func.displayName = prefix + name;
 

@@ -9,11 +9,11 @@
  * This helper class is only included into debug builds and do the 
  * generic property checks defined using the property configuration.
  *
- * It's used by both standard property system: jasy.property.Simple and jasy.property.Multi.
+ * It's used by both standard property system: base.property.Simple and base.property.Multi.
  *
  * @require {fix.Console}
  */
-Module("jasy.property.Debug",
+Module("base.property.Debug",
 {
 	/**
 	 * Validates the incoming parameters of a setter method
@@ -51,17 +51,17 @@ Module("jasy.property.Debug",
 				try 
 				{
 					if (type instanceof Array) {
-						jasy.Test.assertInList(value, type);
+						base.Test.assertInList(value, type);
 					} else if (Class.isClass(type)) {
-						jasy.Test.assertInstanceOf(value, type);
+						base.Test.assertInstanceOf(value, type);
 					} else if (Interface.isInterface(type)) {
 						Interface.assert(value, type);
 					}
 					else
 					{
 						var assertName = "assert" + type;
-						if (jasy.Test[assertName]) {
-							jasy.Test[assertName](value);
+						if (base.Test[assertName]) {
+							base.Test[assertName](value);
 						} else {
 							console.warn("Unsupported check: " + type + "!");
 						}

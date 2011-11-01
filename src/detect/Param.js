@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-Module("jasy.detect.Param",
+Module("base.detect.Param",
 {
 	/**
 	 * Returns the value of the given parameter

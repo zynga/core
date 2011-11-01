@@ -8,7 +8,7 @@
 	
 
 
-	Module("jasy.bom.ClassName",
+	Module("base.bom.ClassName",
 	{
 		add : function(elem, className) 
 		{

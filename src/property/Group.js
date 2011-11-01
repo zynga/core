@@ -58,7 +58,7 @@
 	 *   </td></tr>
 	 * </table>
 	 */
-	Module("jasy.property.Group",
+	Module("base.property.Group",
 	{
 		/**
 		 * Creates a new property group and returns the corresponding methods.

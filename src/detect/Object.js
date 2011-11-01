@@ -9,7 +9,7 @@
  * Checks for existance of global API objects.
  *
  */
-Module("jasy.detect.Object", 
+Module("base.detect.Object", 
 {
 	get : (function(global)
 	{

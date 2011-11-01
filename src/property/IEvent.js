@@ -8,7 +8,7 @@
 /**
  * For classes which use event firing properties.
  */
-Interface("jasy.property.IEvent",
+Interface("base.property.IEvent",
 {
 	members : 
 	{

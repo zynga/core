@@ -30,10 +30,10 @@
 	 *
 	 * (though limited feature set and file registration not useful for data transaction)
 	 */
-	Module("jasy.io.Script",
+	Module("base.io.Script",
 	{
 		/** {Boolean} Whether the loader supports parallel requests */
-		SUPPORTS_PARALLEL : supportsScriptAsync || jasy.Env.isSet("engine", "gecko") || jasy.Env.isSet("engine", "opera"),
+		SUPPORTS_PARALLEL : supportsScriptAsync || base.Env.isSet("engine", "gecko") || base.Env.isSet("engine", "opera"),
 		
 		
 		/**
@@ -48,24 +48,24 @@
 		 */
 		load : function(uri, callback, context, nocache) 
 		{
-			if (jasy.Env.isSet("debug")) 
+			if (base.Env.isSet("debug")) 
 			{
-				jasy.Test.assertString(uri);
+				base.Test.assertString(uri);
 
 				if (callback != null) {
-					jasy.Test.assertFunction(callback, "Invalid callback method!");
+					base.Test.assertFunction(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					jasy.Test.assertObject(context, "Invalid callback context!");
+					base.Test.assertObject(context, "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					jasy.Test.assertBoolean(nocache);
+					base.Test.assertBoolean(nocache);
 				}
 			}
 			
-			if (jasy.Env.isSet("debug") && nocache == null) {
+			if (base.Env.isSet("debug") && nocache == null) {
 				nocache = true;
 			}
 
