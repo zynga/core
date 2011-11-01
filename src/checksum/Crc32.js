@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-Module("base.Crc32",
+base.Module("base.Crc32",
 {
 	/**
 	 * Compute CRC-32, the 32-bit checksum of an ASCII string.

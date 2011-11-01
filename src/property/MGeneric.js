@@ -21,7 +21,7 @@
 	 * Include this if your class uses properties and want to be able to generically 
 	 * set/get them based on the property names
 	 */
-	Class("base.property.MGeneric",
+	base.Class("base.property.MGeneric",
 	{
 		members : 
 		{

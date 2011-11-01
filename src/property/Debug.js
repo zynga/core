@@ -13,7 +13,7 @@
  *
  * @require {fix.Console}
  */
-Module("base.property.Debug",
+base.Module("base.property.Debug",
 {
 	/**
 	 * Validates the incoming parameters of a setter method

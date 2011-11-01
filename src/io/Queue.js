@@ -104,7 +104,7 @@
 	 * * method load(uri, callback, context, nocache) which calls the callback with the URI
 	 * * constant `SUPPORTS_PARALLEL` with a boolean value whether the loader supports parallel loading
 	 */
-	Module("base.io.Queue",
+	base.Module("base.io.Queue",
 	{
 		/**
 		 * Whether the given URI or URIs are loaded through the queue

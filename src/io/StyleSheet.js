@@ -19,7 +19,7 @@
 	/** 
 	 * Stylesheet loader with support for load callback.
 	 */
-	Module("base.io.StyleSheet",
+	base.Module("base.io.StyleSheet",
 	{
 		/** {Boolean} Whether the loader supports parallel requests. Always true for stylesheets (order should, hopefully, not be important). */
 		SUPPORTS_PARALLEL : true,

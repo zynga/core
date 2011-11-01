@@ -12,7 +12,7 @@
 	// Dynamic URI can be shared because we do not support reloading files
 	var dynamicExtension = "?r=" + Date.now();
 	
-	Module("base.io.Text", 
+	base.Module("base.io.Text", 
 	{
 		/** {Boolean} Whether the loader supports parallel requests */
 		SUPPORTS_PARALLEL : true,

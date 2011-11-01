@@ -6,7 +6,7 @@
 	/** 
 	 * Image loader with support for load callback.
 	 */
-	Module("base.io.Image",
+	base.Module("base.io.Image",
 	{
 		/** {Boolean} Whether the loader supports parallel requests. Always true for images. */
 		SUPPORTS_PARALLEL : true,

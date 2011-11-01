@@ -57,7 +57,7 @@
 	}
 	
 	
-	Module("base.Asset",
+	base.Module("base.Asset",
 	{
 		/**
 		 * Whether the registry has information about the given asset.

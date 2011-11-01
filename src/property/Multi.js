@@ -211,7 +211,7 @@
 	 *
 	 * @break {qx.core.ValidationError}
 	 */
-	Module("base.property.Multi",
+	base.Module("base.property.Multi",
 	{
 		/*
 		---------------------------------------------------------------------------

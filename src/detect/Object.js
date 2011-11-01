@@ -9,7 +9,7 @@
  * Checks for existance of global API objects.
  *
  */
-Module("base.detect.Object", 
+base.Module("base.detect.Object", 
 {
 	get : (function(global)
 	{

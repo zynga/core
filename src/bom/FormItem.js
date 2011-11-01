@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-Module("base.bom.FormItem",
+base.Module("base.bom.FormItem",
 {
 	isSuccessful: function(item) 
 	{

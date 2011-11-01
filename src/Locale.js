@@ -7,7 +7,7 @@
 
 (function(translations)
 {
-	Module("Locale", 
+	base.Module("Locale", 
 	{
 		/**
 		 * Quick and easy string templating using %1, %2, etc. as placeholders 

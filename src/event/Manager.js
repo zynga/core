@@ -6,7 +6,7 @@
 */
 
 (function() {
-	Module("base.event.Manager", 
+	base.Module("base.event.Manager", 
 	{
 		addListener : function(target, type, callback, context, capture) {
 

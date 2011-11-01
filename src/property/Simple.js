@@ -32,7 +32,7 @@
 	 *	 available.</li>
 	 * </ul>
 	 */
-	Module("base.property.Simple",
+	base.Module("base.property.Simple",
 	{
 		/**
 		 * Creates a new set of member methods for the given property configuration.

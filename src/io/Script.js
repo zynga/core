@@ -30,7 +30,7 @@
 	 *
 	 * (though limited feature set and file registration not useful for data transaction)
 	 */
-	Module("base.io.Script",
+	base.Module("base.io.Script",
 	{
 		/** {Boolean} Whether the loader supports parallel requests */
 		SUPPORTS_PARALLEL : supportsScriptAsync || base.Env.isSet("engine", "gecko") || base.Env.isSet("engine", "opera"),

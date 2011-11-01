@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-Module("base.detect.Param",
+base.Module("base.detect.Param",
 {
 	/**
 	 * Returns the value of the given parameter

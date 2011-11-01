@@ -100,7 +100,7 @@
 	}
 	
 	
-	Module("base.Env",
+	base.Module("base.Env",
 	{
 		/** {Map} Currently selected fields from Env data */
 		SELECTED : selected,

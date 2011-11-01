@@ -9,7 +9,7 @@
 {
 	var FormItem = base.bom.FormItem;
 	
-	Module("base.bom.Form",
+	base.Module("base.bom.Form",
 	{
 		serialize: function(form) {
 			return filter(form.elements, FormItem.isSuccessful).map(FormItem.serialize).join("&");

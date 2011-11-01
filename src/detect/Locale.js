@@ -8,7 +8,7 @@
 /**
  * Detects browser language settings
  */
-Module("base.detect.Locale", 
+base.Module("base.detect.Locale", 
 {
 	VALUE : (function()
 	{

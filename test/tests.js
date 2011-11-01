@@ -363,14 +363,14 @@ $(function() {
 	});
 	
 	test("Creating empty module", function() {
-		Module("abc.Module1", {});
+		base.Module("abc.Module1", {});
 		equals(Module.isModule(abc.Module1), true);
 		equals(abc.Module1.moduleName, "abc.Module1");
 		equals(abc.Module1.toString(), "[module abc.Module1]");
 	});
 	
 	test("Creating module with short namespace", function() {
-		Module("x.Module1", {});
+		base.Module("x.Module1", {});
 		equals(Module.isModule(x.Module1), true);
 		equals(x.Module1.moduleName, "x.Module1");
 		equals(x.Module1.toString(), "[module x.Module1]");
@@ -383,7 +383,7 @@ $(function() {
 	});
 	
 	test("Creating method module", function() {
-		Module("abc.Module2", {
+		base.Module("abc.Module2", {
 			method1 : function() {},
 			method2 : function() {},
 			method3 : function() {}
@@ -399,22 +399,22 @@ $(function() {
 	
 	test("Checking module name", function() {
 		raises(function() {
-			Module("", {});
+			base.Module("", {});
 		});
 		raises(function() {
 			Module(true, {});
 		});
 		raises(function() {
-			Module(" SpaceVoodoo ", {});
+			base.Module(" SpaceVoodoo ", {});
 		});
 		raises(function() {
-			Module("has space", {});
+			base.Module("has space", {});
 		});
 		raises(function() {
-			Module("firstLow", {});
+			base.Module("firstLow", {});
 		});
 		raises(function() {
-			Module("two..Dots", {});
+			base.Module("two..Dots", {});
 		});
 	});
 	
@@ -436,20 +436,20 @@ $(function() {
 
 	test("Invalid config", function() {
 		raises(function() {
-			Class("abc.Class1");
+			base.Class("abc.Class1");
 		});
 		raises(function() {
-			Class("abc.Class2", 42);
+			base.Class("abc.Class2", 42);
 		})
 		raises(function() {
-			Class("abc.Class3", {
+			base.Class("abc.Class3", {
 				unallowedKey : "foo"
 			});
 		});
 	});
 
 	test("Creating empty class", function() {
-		Class("abc.Class1", {});
+		base.Class("abc.Class1", {});
 		equals(Class.isClass(abc.Class1), true);
 		equals(abc.Class1.className, "abc.Class1");
 		equals(abc.Class1.toString(), "[class abc.Class1]");
@@ -484,19 +484,19 @@ $(function() {
 	 * A conflict arises, as both could not be merged into the target class.
 	 */
 	test("Conflicting member functions", function() {
-		Class("members.Include1", {
+		base.Class("members.Include1", {
 			members : {
 				foo : function() {}
 			}
 		});
-		Class("members.Include2", {
+		base.Class("members.Include2", {
 			members : {
 				foo : function() {}
 			}
 		});
 
 		raises(function() {
-			Class("members.Join", {
+			base.Class("members.Join", {
 				include : [members.Include1, members.Include2]
 			});
 		});
@@ -508,19 +508,19 @@ $(function() {
 	 * A conflict arises, as both could not be merged into the target class.
 	 */
 	test("Conflicting member data", function() {
-		Class("members.Include1", {
+		base.Class("members.Include1", {
 			members : {
 				foo : 1
 			}
 		});
-		Class("members.Include2", {
+		base.Class("members.Include2", {
 			members : {
 				foo : 2
 			}
 		});
 
 		raises(function() {
-			Class("members.Join", {
+			base.Class("members.Join", {
 				include : [members.Include1, members.Include2]
 			});
 		});
@@ -534,18 +534,18 @@ $(function() {
 	 * original methods if that makes sense.
 	 */
 	test("Conflicting member functions, correctly merged", function() {
-		Class("members.Include1", {
+		base.Class("members.Include1", {
 			members : {
 				foo : function() {}
 			}
 		});
-		Class("members.Include2", {
+		base.Class("members.Include2", {
 			members : {
 				foo : function() {}
 			}
 		});
 
-		Class("members.Join", {
+		base.Class("members.Join", {
 			include : [members.Include1, members.Include2],
 			
 			members : {
@@ -570,19 +570,19 @@ $(function() {
 	 * require that this member is a function!
 	 */
 	test("Conflicting member functions, not merged correctly", function() {
-		Class("members.Include1", {
+		base.Class("members.Include1", {
 			members : {
 				foo : function() {}
 			}
 		});
-		Class("members.Include2", {
+		base.Class("members.Include2", {
 			members : {
 				foo : function() {}
 			}
 		});
 
 		raises(function() {
-			Class("members.Join", {
+			base.Class("members.Join", {
 				include : [members.Include1, members.Include2],
 			
 				members : {
@@ -600,19 +600,19 @@ $(function() {
 	 * But this is not allowed for private members.
 	 */
 	test("Conflicting member functions with failed private merge", function() {
-		Class("members.Include1", {
+		base.Class("members.Include1", {
 			members : {
 				__foo : function() {}
 			}
 		});
-		Class("members.Include2", {
+		base.Class("members.Include2", {
 			members : {
 				__foo : function() {}
 			}
 		});
 
 		raises(function() {
-			Class("members.Join", {
+			base.Class("members.Join", {
 				include : [members.Include1, members.Include2],
 			
 				members : {
@@ -651,15 +651,15 @@ $(function() {
 	 */
 	
 	// Prepare event classes
-	Class("MouseEvent", {});
-	Class("KeyEvent", {});
-	Class("TouchEvent", {});
-	Class("DataEvent", {});
-	Class("FocusEvent", {});
+	base.Class("MouseEvent", {});
+	base.Class("KeyEvent", {});
+	base.Class("TouchEvent", {});
+	base.Class("DataEvent", {});
+	base.Class("FocusEvent", {});
 
 	
 	test("Events", function() {
-		Class("events.Mouse", {
+		base.Class("events.Mouse", {
 			events : {
 				click : MouseEvent,
 				mousedown : MouseEvent,
@@ -671,21 +671,21 @@ $(function() {
 		ok(Assert.isMap(eventMap), "Events should be a returned as a map");
 		equals(eventMap.click, MouseEvent, "No click event found");
 		
-		Class("events.Keyboard", {
+		base.Class("events.Keyboard", {
 			events : {
 				keydown : KeyEvent,
 				keyup : KeyEvent,
 			}
 		});
 		
-		Class("events.Widget", {
+		base.Class("events.Widget", {
 			include : [events.Mouse, events.Keyboard]
 		});
 		
 		var full = Object.keys(Class.getEvents(events.Widget)).join(",");
 		equals(full, "click,mousedown,mouseup,keydown,keyup", "Merge of events failed");
 
-		Class("events.Widget2", {
+		base.Class("events.Widget2", {
 			include : [events.Mouse, events.Keyboard],
 			events : {
 				custom : DataEvent
@@ -699,7 +699,7 @@ $(function() {
 	
 	
 	test("Event Conflicts", function() {
-		Class("events.Mouse", {
+		base.Class("events.Mouse", {
 			events : {
 				click : MouseEvent,
 				mousedown : MouseEvent,
@@ -707,14 +707,14 @@ $(function() {
 			}
 		});
 		
-		Class("events.Keyboard", {
+		base.Class("events.Keyboard", {
 			events : {
 				keydown : KeyEvent,
 				keyup : KeyEvent,
 			}
 		});
 		
-		Class("events.Widget", {
+		base.Class("events.Widget", {
 			include : [events.Mouse, events.Keyboard],
 			
 			events : {
@@ -723,7 +723,7 @@ $(function() {
 			}
 		});
 		
-		Class("events.Touch", {
+		base.Class("events.Touch", {
 			events : {
 				click : TouchEvent,
 				tap : TouchEvent
@@ -734,7 +734,7 @@ $(function() {
 		equals(full, "click,mousedown,mouseup,keydown,keyup", "Merge of events failed");
 		
 		raises(function() {
-			Class("events.Widget2", {
+			base.Class("events.Widget2", {
 				// This should fail, two click events in include list
 				include : [events.Mouse, events.Keyboard, events.Touch]
 			});		
@@ -743,7 +743,7 @@ $(function() {
 	
 	test("Event Interfaces", function() 
 	{
-		Interface("events.UserActions", 
+		base.Interface("events.UserActions", 
 		{
 			events : 
 			{
@@ -760,7 +760,7 @@ $(function() {
 		raises(function() 
 		{
 			var MouseEvent = true;
-			Class("events.Mouse", 
+			base.Class("events.Mouse", 
 			{
 				implement : [events.UserActions],
 				events : {
@@ -798,7 +798,7 @@ $(function() {
 	
 	test("Creating Properties", function() 
 	{
-		Class("properties.Simple", 
+		base.Class("properties.Simple", 
 		{
 			properties : 
 			{
@@ -860,7 +860,7 @@ $(function() {
 	
 	test("Property Interfaces", function()
 	{
-		Interface("properties.IColor", 
+		base.Interface("properties.IColor", 
 		{
 			properties : 
 			{
@@ -871,7 +871,7 @@ $(function() {
 			}
 		});
 		
-		Class("properties.ColorImplementer", 
+		base.Class("properties.ColorImplementer", 
 		{
 			implement : [properties.IColor],
 			properties : 
@@ -893,7 +893,7 @@ $(function() {
 		});
 		
 		raises(function() {
-			Class("properties.ColorImplementer",
+			base.Class("properties.ColorImplementer",
 			{
 				implement : [properties.IColor],
 				properties : 
@@ -906,7 +906,7 @@ $(function() {
 			});
 		});
 	
-		Interface("properties.IFontSize", 
+		base.Interface("properties.IFontSize", 
 		{
 			properties : 
 			{
@@ -917,7 +917,7 @@ $(function() {
 			}
 		});
 		
-		Class("properties.FontSizeImplementer", 
+		base.Class("properties.FontSizeImplementer", 
 		{
 			implement : [properties.IFontSize],
 			properties : 
@@ -940,14 +940,14 @@ $(function() {
 		
 		raises(function() 
 		{
-			Class("properties.FontSizeMissing", {
+			base.Class("properties.FontSizeMissing", {
 				implement : [properties.IFontSize]
 			});
 		})
 		
 		raises(function() 
 		{
-			Class("properties.FontSizeWrongImplementer", 
+			base.Class("properties.FontSizeWrongImplementer", 
 			{
 				implement : [properties.IFontSize],
 				properties : 
@@ -974,7 +974,7 @@ $(function() {
 	{
 		raises(function() 
 		{
-			Class("properties.NoFireEvent", 
+			base.Class("properties.NoFireEvent", 
 			{
 				properties : 
 				{
@@ -987,7 +987,7 @@ $(function() {
 		
 		raises(function() 
 		{
-			Class("properties.NoGetThemed", 
+			base.Class("properties.NoGetThemed", 
 			{
 				properties : 
 				{
@@ -1000,7 +1000,7 @@ $(function() {
 		
 		raises(function() 
 		{
-			Class("properties.NoGetInherited", 
+			base.Class("properties.NoGetInherited", 
 			{
 				properties : 
 				{
@@ -1015,7 +1015,7 @@ $(function() {
 	
 	test("Inheriting Properties", function() 
 	{
-		Class("properties.Text", 
+		base.Class("properties.Text", 
 		{
 			construct : function(element) {
 				this.__textElement = element;
@@ -1069,7 +1069,7 @@ $(function() {
 
 
 
-		Class("properties.Dimension", 
+		base.Class("properties.Dimension", 
 		{
 			properties : 
 			{
@@ -1089,7 +1089,7 @@ $(function() {
 		
 
 
-		Class("properties.Label", 
+		base.Class("properties.Label", 
 		{
 			include : [properties.Text, properties.Dimension],
 			

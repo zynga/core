@@ -8,7 +8,7 @@
 /**
  * For classes which use inheritable properties.
  */
-Interface("base.property.IThemeable",
+base.Interface("base.property.IThemeable",
 {
 	members : 
 	{

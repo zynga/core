@@ -73,7 +73,7 @@
 	 * Generic network monitor and inspection
 	 *
 	 */
-	Module("base.io.Network", 
+	base.Module("base.io.Network", 
 	{
 		/**
 		 * Returns whether the client is online based on the last check
