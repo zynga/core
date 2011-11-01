@@ -1,12 +1,9 @@
 Base - A Fine Foundation for JavaScript Projects
 ================================================
 
-Features
---------
+## Core
 
-* A full blown class system with support for composition and interfaces.
-* Basic feature detection framework to use in conjunction with [Jasy](https://github.com/wpbasti/jasy)
-* Fixes for issues or missing features in specific JavaScript implementations
+* Fixes for issues or missing features in specific JavaScript implementations (base.fix.*)
   * Array.prototype.indexOf
   * console
   * Date.now
@@ -16,11 +13,31 @@ Features
   * HTML5 markup support
   * Object.keys
   * setTimeout/setIntervals with additional arguments
-* EcmaScript 5 Support (for all not fixed/added before)
+* EcmaScript 5 Support (for all not fixed/added before) (base.es5.*)
   * Array: `isArray`
   * Array.prototype: `forEach`, `map`, `filter`, `every`, `some`, `reduce`, `reduceRight`, `lastIndexOf`
   * Date.prototype: `toISOString`, `toJSON`
   * JSON: `stringify`, `parse`
   * String.prototype: `trim`
 * Synthetic sugar for better comfort during JavaScript development (base.ext.*)
+
+
+## Object Orientation
+
+* A full blown class system with support for composition and interfaces.
+
+
+## Tooling
+
+* Basic feature detection framework to use in conjunction with [Jasy](https://github.com/wpbasti/jasy)
+
+
+## Professionalism
+
 * Extendable type test and assertion module (base.Test)
+
+
+## Performance
+
+* Asynchronous load system for JavaScript, Stylesheets and Images
+
