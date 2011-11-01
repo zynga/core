@@ -1,0 +1,33 @@
+{
+	"name" : "base",
+
+	"fields" :
+	{
+		"debug" : 
+		{
+			"check" : "Boolean",
+			"default" : false,
+			"detect" : "base.detect.Param"
+		},
+
+		"es5" : 
+		{
+			"check" : "Boolean",
+			"default" : false,
+			"detect" : "base.detect.ES5"
+		},
+
+		"engine" : 
+		{
+			"check" : ["webkit", "gecko", "trident", "presto"],
+			"detect" : "base.detect.Engine"
+		},
+
+		"locale" : 
+		{
+			"check" : "String",
+			"default" : "en",
+			"detect" : "base.detect.Locale"
+		}
+	}
+}
