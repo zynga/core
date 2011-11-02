@@ -13,11 +13,12 @@ def clear():
 def simple():
     # Setup session
     session = Session()
+    session.addProject(Project("../../"))
     session.addProject(Project("."))
 
     # Collecting projects
     resolver = Resolver(session.getProjects())
-    resolver.addClassName("ootest.Test")
+    resolver.addClassName("oo.Test")
     
     # Resolving classes
     classes = Sorter(resolver).getSortedClasses()
@@ -34,7 +35,10 @@ def simple():
 def build():
     # Setup session
     session = Session()
+
+    session.addProject(Project("../../"))
     session.addProject(Project("."))
+    
     session.permutateField("debug")
     session.permutateField("es5")
     session.permutateField("engine")
@@ -56,11 +60,11 @@ def build():
         logging.info("Permutation %s/%s" % (pos+1, len(permutations)))
 
         # Get projects
-        projects = session.getProjects(permutation)
+        projects = session.getProjects()
 
         # Resolving dependencies
         resolver = Resolver(projects, permutation)
-        resolver.addClassName("ootest.Test")
+        resolver.addClassName("oo.Test")
         resolver.excludeClasses(loaderIncluded)
         classes = resolver.getIncludedClasses()
 

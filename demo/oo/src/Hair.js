@@ -1,7 +1,7 @@
 /**
  * Adds hair to any object
  */
-Class("ootest.Hair", {
+Class("oo.Hair", {
 	construct : function(color) {
 		this.__color = color;
 	},

@@ -1,15 +1,15 @@
 /**
  * This is an hairy animal which is a good friend for a lot of humans.
  */
-Class("ootest.Dog", {
-	include : [ootest.Hair, ootest.Feets],
-	implement : [ootest.Feed],
+Class("oo.Dog", {
+	include : [oo.Hair, oo.Feets],
+	implement : [oo.Feed],
 
 	// Constructor to initialize fields and mixins
 	construct : function(ill) {
 		// Initialize mixins with parameters
-		ootest.Hair.call(this, "black");
-		ootest.Feets.call(this, ill ? 3 : 4);
+		oo.Hair.call(this, "black");
+		oo.Feets.call(this, ill ? 3 : 4);
 		
 		// file private field
 		this.__weight = 3;
