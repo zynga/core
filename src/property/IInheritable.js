@@ -8,7 +8,7 @@
 /**
  * For classes which use inheritable properties.
  */
-base.Interface("base.property.IInheritable",
+core.Interface("core.property.IInheritable",
 {
 	members : 
 	{

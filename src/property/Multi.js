@@ -30,12 +30,12 @@
 		// User (aka Instance-specific value)
 		3: {},
 
-		// Theme, see {@link base.property.IThemeable}
+		// Theme, see {@link core.property.IThemeable}
 		2: {
 			get : "getThemedValue"
 		},
 
-		// Inheritance, see {@link base.property.IInheritable}
+		// Inheritance, see {@link core.property.IInheritable}
 		1 : {
 			get : "getInheritedValue"
 		}
@@ -59,7 +59,7 @@
 
 	// Improve compressibility
 	var Undefined;
-	var PropertyUtil = base.property.Util;
+	var PropertyUtil = core.property.Util;
 
 
 	/*
@@ -95,7 +95,7 @@
 		var propertyInitKey = initKeyPrefix + propertyName;
 
 		var child, childData, childOldPriority, childOldValue, childOldGetter, childNewValue;
-		var Util = base.property.Util;
+		var Util = core.property.Util;
 
 		for (var i=0, l=children.length; i<l; i++)
 		{
@@ -211,7 +211,7 @@
 	 *
 	 * @break {qx.core.ValidationError}
 	 */
-	base.Module("base.property.Multi",
+	core.Module("core.property.Multi",
 	{
 		/*
 		---------------------------------------------------------------------------
@@ -246,10 +246,10 @@
 			var propertyId = propertyNameToId[name];
 			if (!propertyId)
 			{
-				propertyId = propertyNameToId[name] = base.property.Core.ID;
+				propertyId = propertyNameToId[name] = core.property.Core.ID;
 
 				// Number of fields + meta field to store where we store the data
-				base.property.Core.ID += 5;
+				core.property.Core.ID += 5;
 			}
 
 			var name = config.name;
@@ -277,8 +277,8 @@
 				{
 					var context = this;
 
-					if (base.Env.isSet("debug")) {
-						base.property.Debug.checkSetter(context, config, arguments);
+					if (core.Env.isSet("debug")) {
+						core.property.Debug.checkSetter(context, config, arguments);
 					}
 
 					var data = context[store];
@@ -359,8 +359,8 @@
 				{
 					var context = this;
 
-					if (base.Env.isSet("debug")) {
-						base.property.Debug.checkResetter(context, config, arguments);
+					if (core.Env.isSet("debug")) {
+						core.property.Debug.checkResetter(context, config, arguments);
 					}
 
 					var data = context[store];
@@ -399,7 +399,7 @@
 							if (propertyInit !== Undefined) {
 								newValue = propertyInit;
 							}
-							else if (base.Env.isSet("debug"))
+							else if (core.Env.isSet("debug"))
 							{
 								// Still no value. We warn about that the property is not nullable.
 								if (!propertyNullable) {
@@ -451,8 +451,8 @@
 			{
 				var context = this;
 
-				if (base.Env.isSet("debug")) {
-					base.property.Debug.checkGetter(context, config, arguments);
+				if (core.Env.isSet("debug")) {
+					core.property.Debug.checkGetter(context, config, arguments);
 				}
 
 				var data = context[store];
@@ -472,7 +472,7 @@
 						return null;
 					}
 
-					if (base.Env.isSet("debug"))
+					if (core.Env.isSet("debug"))
 					{
 						context.error("Missing value for: " + name +
 							" (during get()). Either define an init value, make the property nullable or define a fallback value.");
@@ -485,7 +485,7 @@
 				var currentGetter = priorityToFieldConfig[currentPriority].get;
 				if (currentGetter)
 				{
-					if (base.Env.isSet("debug"))
+					if (core.Env.isSet("debug"))
 					{
 						var value = context[currentGetter](name);
 						if (value === Undefined) {
@@ -566,7 +566,7 @@
 		getSingleValue : function(obj, propertyName, field)
 		{
 			var key = propertyNameToId[propertyName] + fieldToPriority[field];
-			if (base.Env.isSet("debug"))
+			if (core.Env.isSet("debug"))
 			{
 				if (typeof key != "number" || isNaN(key)) {
 					throw new Error("Invalid property or field: " + propertyName + ", " + field);
@@ -605,7 +605,7 @@
 			{
 				propertyId = propertyNameToId[propertyName];
 
-				if (base.Env.isSet("debug"))
+				if (core.Env.isSet("debug"))
 				{
 					if (propertyId === undefined) {
 						throw new Error(obj + ": Invalid property to import: " + propertyName);
@@ -683,7 +683,7 @@
 						{
 							newValue = propertyInit;
 						}
-						else if (base.Env.isSet("debug"))
+						else if (core.Env.isSet("debug"))
 						{
 							// Still no value. We warn about that the property is not nullable.
 							var config = PropertyUtil.getPropertyDefinition(obj.constructor, propertyName);
@@ -740,7 +740,7 @@
 		 * Returns a list of all inheritable properties supported by the given class.
 		 *
 		 * You may choose to access inheritable properties via:
-		 * obj.__inheritables || base.property.Multi.getInheritableProperties(obj)
+		 * obj.__inheritables || core.property.Multi.getInheritableProperties(obj)
 		 * for better performance.
 		 *
 		 * @param clazz {Class} Class to query

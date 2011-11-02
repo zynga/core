@@ -18,12 +18,12 @@
 	 * @param name {String} Name of Interface
 	 * @param config {Map} Data structure containing the keys 'events', 'properties' and 'members'.
 	 */
-	base.Module.declareName("base.Interface", function(name, config) 
+	core.Module.declareName("core.Interface", function(name, config) 
 	{
-		if (base.Env.isSet("debug")) 
+		if (core.Env.isSet("debug")) 
 		{
-			base.Test.assertModuleName(name, "Invalid interface name " + name + "!");
-			base.Test.assertMap(config, "Invalid interface configuration in " + name);
+			core.Test.assertModuleName(name, "Invalid interface name " + name + "!");
+			core.Test.assertMap(config, "Invalid interface configuration in " + name);
 		}
 		
 		var iface = 
@@ -63,12 +63,12 @@
 		};
 		
 		// Attach to namespace
-		base.Module.declareName(name, iface, true);
+		core.Module.declareName(name, iface, true);
 	});
 	
 	
 	// Shorthand
-	var Interface = base.Interface;
+	var Interface = core.Interface;
 	
 	
 	/**
@@ -79,11 +79,11 @@
 	 */	
 	Interface.getByName = function(interfaceName) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertString(interfaceName);
+		if (core.Env.isSet("debug")) {
+			core.Test.assertString(interfaceName);
 		}
 		
-		var obj = base.Module.resolveName(interfaceName);
+		var obj = core.Module.resolveName(interfaceName);
 		return isInterface(obj) ? obj : null;
 	};
 
@@ -106,7 +106,7 @@
 		}
 		
 		var cls = typeof objOrClass == "object" ? objOrClass.constructor : objOrClass;
-		if (!base.Class.isClass(cls)) {
+		if (!core.Class.isClass(cls)) {
 			throw new Error("Invalid class or object to verify interface with: " + objOrClass);
 		}
 		
@@ -168,7 +168,7 @@
 		
 		if (ifaceProperties)
 		{
-			var cProperties = base.Class.getProperties(cls);
+			var cProperties = core.Class.getProperties(cls);
 			for (var name in ifaceProperties) 
 			{
 				if (!(name in cProperties)) {
@@ -211,7 +211,7 @@
 
 		if (ifaceEvents)
 		{
-			var cEvents = base.Class.getEvents(cls);
+			var cEvents = core.Class.getEvents(cls);
 			for (var name in ifaceEvents) 
 			{
 				if (!(name in cEvents)) {
@@ -233,6 +233,6 @@
 	
 	
 	// Add assertion for interface type
-	base.Test.add(isInterface, "isInterface", "Invalid interface!");
+	core.Test.add(isInterface, "isInterface", "Invalid interface!");
 	
 })();

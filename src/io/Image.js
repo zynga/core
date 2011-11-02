@@ -6,7 +6,7 @@
 	/** 
 	 * Image loader with support for load callback.
 	 */
-	base.Module("base.io.Image",
+	core.Module("core.io.Image",
 	{
 		/** {Boolean} Whether the loader supports parallel requests. Always true for images. */
 		SUPPORTS_PARALLEL : true,
@@ -21,20 +21,20 @@
 		 */
 		load : function(uri, callback, context, nocache) 
 		{
-			if (base.Env.isSet("debug")) 
+			if (core.Env.isSet("debug")) 
 			{
-				base.Test.assertString(uri);
+				core.Test.assertString(uri);
 
 				if (callback != null) {
-					base.Test.assertFunction(callback, "Invalid callback method!");
+					core.Test.assertFunction(callback, "Invalid callback method!");
 				}
 
 				if (context != null) {
-					base.Test.assertObject(context, "Invalid callback context!");
+					core.Test.assertObject(context, "Invalid callback context!");
 				}
 
 				if (nocache != null) {
-					base.Test.assertBoolean(nocache);
+					core.Test.assertBoolean(nocache);
 				}
 			}
 			
@@ -45,7 +45,7 @@
 				img.onload = img.onerror = null;
 
 				var errornous = (e||global.event).type === "error";
-				if (base.Env.isSet("debug") && errornous) {
+				if (core.Env.isSet("debug") && errornous) {
 					console.warn("Could not load image: " + uri);
 				}
 

@@ -1,9 +1,9 @@
 Base - A Fine Foundation for JavaScript Projects
 ================================================
 
-## Core
+## Base
 
-* Fixes for issues or missing features in specific JavaScript implementations (base.fix.*)
+* Fixes for issues or missing features in specific JavaScript implementations (core.fix.*)
   * Array.prototype.indexOf
   * console
   * Date.now
@@ -13,13 +13,13 @@ Base - A Fine Foundation for JavaScript Projects
   * HTML5 markup support
   * Object.keys
   * setTimeout/setIntervals with additional arguments
-* EcmaScript 5 Support (for all not fixed/added before) (base.es5.*)
+* EcmaScript 5 Support (for all not fixed/added before) (core.es5.*)
   * Array: `isArray`
   * Array.prototype: `forEach`, `map`, `filter`, `every`, `some`, `reduce`, `reduceRight`, `lastIndexOf`
   * Date.prototype: `toISOString`, `toJSON`
   * JSON: `stringify`, `parse`
   * String.prototype: `trim`
-* Synthetic sugar for better comfort during JavaScript development (base.ext.*)
+* Synthetic sugar for better comfort during JavaScript development (core.ext.*)
 
 
 ## Object Orientation
@@ -34,7 +34,7 @@ Base - A Fine Foundation for JavaScript Projects
 
 ## Professionalism
 
-* Extendable type test and assertion module (base.Test)
+* Extendable type test and assertion module (core.Test)
 
 
 ## Performance

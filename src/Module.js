@@ -6,7 +6,7 @@
 */
 
 /**
- * @break {base.Env}
+ * @break {core.Env}
  */
 (function(global, undef)
 {
@@ -17,14 +17,14 @@
 	};
 	
 	// Small hack to correctly bootstrap system
-	if (!global.base) {
-		global.base = {};
+	if (!global.core) {
+		global.core = {};
 	}
 	
-	if (!base.Env) 
+	if (!core.Env) 
 	{
 		var selected = {};
-		base.Env = 
+		core.Env = 
 		{
 			define : function(name, value) {
 				selected[name] = value;
@@ -57,12 +57,12 @@
 	 * @param name {String} Name of Module
 	 * @param members {Map} Data structure containing the members
 	 */
-	var Module = base.Module = function(name, members) 
+	var Module = core.Module = function(name, members) 
 	{
-		if (base.Env.isSet("debug")) 
+		if (core.Env.isSet("debug")) 
 		{
-			base.Test.assertModuleName(name, "Invalid module name " + name + "!");
-			base.Test.assertMap(members, "Invalid map as module configuration in " + name + "!");
+			core.Test.assertModuleName(name, "Invalid module name " + name + "!");
+			core.Test.assertMap(members, "Invalid map as module configuration in " + name + "!");
 		}
 
 		var prefix = name + ".";
@@ -215,8 +215,8 @@
 	 */
 	Module.getByName = function(moduleName) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertString(moduleName);
+		if (core.Env.isSet("debug")) {
+			core.Test.assertString(moduleName);
 		}
 		
 		var obj = Module.resolveName(moduleName);
@@ -246,9 +246,9 @@
 	
 	
 	// Add assertion for module name
-	base.Test.add(isModuleName, "isModuleName", "Invalid module name!");
+	core.Test.add(isModuleName, "isModuleName", "Invalid module name!");
 
 	// Add assertion for module type
-	base.Test.add(isModule, "isModule", "Invalid module!");	
+	core.Test.add(isModule, "isModule", "Invalid module!");	
 
 })(this);

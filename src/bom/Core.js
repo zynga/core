@@ -6,6 +6,6 @@
 */
 
 /**
- * @require {base.bom.IEDOM}
- * @require {base.bom.Assert}
+ * @require {core.bom.IEDOM}
+ * @require {core.bom.Assert}
  */

@@ -30,10 +30,10 @@
 	 *
 	 * (though limited feature set and file registration not useful for data transaction)
 	 */
-	base.Module("base.io.Script",
+	core.Module("core.io.Script",
 	{
 		/** {Boolean} Whether the loader supports parallel requests */
-		SUPPORTS_PARALLEL : supportsScriptAsync || base.Env.isSet("engine", "gecko") || base.Env.isSet("engine", "opera"),
+		SUPPORTS_PARALLEL : supportsScriptAsync || core.Env.isSet("engine", "gecko") || core.Env.isSet("engine", "opera"),
 		
 		
 		/**
@@ -48,24 +48,24 @@
 		 */
 		load : function(uri, callback, context, nocache) 
 		{
-			if (base.Env.isSet("debug")) 
+			if (core.Env.isSet("debug")) 
 			{
-				base.Test.assertString(uri);
+				core.Test.assertString(uri);
 
 				if (callback != null) {
-					base.Test.assertFunction(callback, "Invalid callback method!");
+					core.Test.assertFunction(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					base.Test.assertObject(context, "Invalid callback context!");
+					core.Test.assertObject(context, "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					base.Test.assertBoolean(nocache);
+					core.Test.assertBoolean(nocache);
 				}
 			}
 			
-			if (base.Env.isSet("debug") && nocache == null) {
+			if (core.Env.isSet("debug") && nocache == null) {
 				nocache = true;
 			}
 

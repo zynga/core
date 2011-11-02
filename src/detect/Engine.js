@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-base.Module("base.detect.Engine", 
+core.Module("core.detect.Engine", 
 {
 	VALUE : (function(global) 
 	{

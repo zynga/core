@@ -12,7 +12,7 @@
 	// Dynamic URI can be shared because we do not support reloading files
 	var dynamicExtension = "?r=" + Date.now();
 	
-	base.Module("base.io.Text", 
+	core.Module("core.io.Text", 
 	{
 		/** {Boolean} Whether the loader supports parallel requests */
 		SUPPORTS_PARALLEL : true,
@@ -67,7 +67,7 @@
 			};
 			
 			// Fixes for IE memory leaks
-			if (base.Env.isSet("engine", "trident") && global.attachEvent) 
+			if (core.Env.isSet("engine", "trident") && global.attachEvent) 
 			{
 				var onUnload = function() 
 				{

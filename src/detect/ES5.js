@@ -32,7 +32,7 @@
 // - Object.keys
 // - Function.prototype.bind
 
-base.Module("base.detect.ES5", {
+core.Module("core.detect.ES5", {
 	// If this results in false, we should load the ES5 package to fix missing features.
 	// Don't include Function.bind() as this is natively not supported widely and would mean to include a lot of code just for it.
 	VALUE : !!(Array.isArray && Array.prototype.map && Date.prototype.toISOString && String.prototype.trim && this.JSON)

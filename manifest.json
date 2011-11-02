@@ -7,27 +7,27 @@
 		{
 			"check" : "Boolean",
 			"default" : false,
-			"detect" : "base.detect.Param"
+			"detect" : "core.detect.Param"
 		},
 
 		"es5" : 
 		{
 			"check" : "Boolean",
 			"default" : false,
-			"detect" : "base.detect.ES5"
+			"detect" : "core.detect.ES5"
 		},
 
 		"engine" : 
 		{
 			"check" : ["webkit", "gecko", "trident", "presto"],
-			"detect" : "base.detect.Engine"
+			"detect" : "core.detect.Engine"
 		},
 
 		"locale" : 
 		{
 			"check" : "String",
 			"default" : "en",
-			"detect" : "base.detect.Locale"
+			"detect" : "core.detect.Locale"
 		}
 	}
 }

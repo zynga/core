@@ -12,7 +12,7 @@
 (function(global, undef)
 {
 	// The build system is replacing this call via the loader permutation
-	var fields = base.Env.getValue("fields");
+	var fields = core.Env.getValue("fields");
 	
 	if (fields) 
 	{
@@ -63,7 +63,7 @@
 			}
 			
 			if (selected.debug) {
-				console.info("base.Env: " + key.join(", "));
+				console.info("core.Env: " + key.join(", "));
 			}
 
 			var adler32 = (function(data)
@@ -100,7 +100,7 @@
 	}
 	
 	
-	base.Module("base.Env",
+	core.Module("core.Env",
 	{
 		/** {Map} Currently selected fields from Env data */
 		SELECTED : selected,

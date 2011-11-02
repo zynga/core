@@ -7,8 +7,8 @@
 
 (function(global, toString, undef) 
 {
-	if (!global.base) {
-		global.base = {};
+	if (!global.core) {
+		global.core = {};
 	}
 	
 	/**
@@ -26,7 +26,7 @@
 	 * @require {fix.ObjectKeys}
 	 * @require {fix.SetTimeoutArgs}
 	 */
-	var Test = base.Test = 
+	var Test = core.Test = 
 	{
 		/**
 		 * Adds a new assertion check
@@ -45,7 +45,7 @@
 			// Attach given method as is to assertion
 			this[methodName] = func;
 			if(func.displayName == null) {
-				func.displayName = "base.Test." + methodName;
+				func.displayName = "core.Test." + methodName;
 			}
 
 			// Build assert method name
@@ -78,7 +78,7 @@
 				};
 			}
 			
-			this[assertName].displayName = "base.Test." + assertName;
+			this[assertName].displayName = "core.Test." + assertName;
 		}
 	};
 	

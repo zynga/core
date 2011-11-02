@@ -24,7 +24,7 @@
 	 * Async JSON-P loader
 	 *
 	 */
-	base.Module("base.io.Jsonp", 
+	core.Module("core.io.Jsonp", 
 	{
 		/** {Boolean} Whether the loader supports parallel requests. Always true for images. */
 		SUPPORTS_PARALLEL : true,

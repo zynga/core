@@ -9,13 +9,13 @@
 	/** {Map} Maps extensions to loader classes */
 	var typeLoader = 
 	{
-		js : base.io.Script,
-		css : base.io.StyleSheet,
-		jsonp : base.io.Jsonp,
-		png : base.io.Image,
-		jpeg : base.io.Image,
-		jpg : base.io.Image,
-		gif : base.io.Image
+		js : core.io.Script,
+		css : core.io.StyleSheet,
+		jsonp : core.io.Jsonp,
+		png : core.io.Image,
+		jpeg : core.io.Image,
+		jpg : core.io.Image,
+		gif : core.io.Image
 	};
 
 
@@ -77,8 +77,8 @@
 	 */
 	var onLoad = function(uri, errornous, data) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertString(uri, "Invalid URI from loader backend!");
+		if (core.Env.isSet("debug")) {
+			core.Test.assertString(uri, "Invalid URI from loader backend!");
 		}
 		
 		delete loading[uri];
@@ -104,7 +104,7 @@
 	 * * method load(uri, callback, context, nocache) which calls the callback with the URI
 	 * * constant `SUPPORTS_PARALLEL` with a boolean value whether the loader supports parallel loading
 	 */
-	base.Module("base.io.Queue",
+	core.Module("core.io.Queue",
 	{
 		/**
 		 * Whether the given URI or URIs are loaded through the queue
@@ -118,8 +118,8 @@
 				return !!completed[uris];
 			}
 			
-			if (base.Env.isSet("debug")) {
-				base.Test.assertArray(uris, "Invalid list of URIs!");
+			if (core.Env.isSet("debug")) {
+				core.Test.assertArray(uris, "Invalid list of URIs!");
 			}
 
 			for (var i=0, l=uris.length; i<l; i++) 
@@ -144,24 +144,24 @@
 		 */
 		load : function(uris, callback, context, nocache, type) 
 		{
-			if (base.Env.isSet("debug")) 
+			if (core.Env.isSet("debug")) 
 			{
-				base.Test.assertArray(uris);
+				core.Test.assertArray(uris);
 
 				if (callback != null) {
-					base.Test.assertFunction(callback, "Invalid callback method!");
+					core.Test.assertFunction(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					base.Test.assertObject(context, "Invalid callback context!");
+					core.Test.assertObject(context, "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					base.Test.assertBoolean(nocache);
+					core.Test.assertBoolean(nocache);
 				}
 
 				if (type != null) {
-					base.Test.assertString(type);
+					core.Test.assertString(type);
 				}
 			}
 			
@@ -181,7 +181,7 @@
 					if (autoType) {
 						type = extractExtension(currentUri);
 						
-						if (base.Env.isSet("debug") && (!type || !typeLoader[type])) {
+						if (core.Env.isSet("debug") && (!type || !typeLoader[type])) {
 							throw new Error("Could not figure out loader to use for URI: " + currentUri);
 						}
 					}
@@ -262,7 +262,7 @@
 			
 			// Return internal loading list for debug proposes only.
 			// Be super careful with the object
-			if (base.Env.isSet("debug")) {
+			if (core.Env.isSet("debug")) {
 				return loading;
 			}
 		}

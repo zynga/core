@@ -9,11 +9,11 @@
  * This helper class is only included into debug builds and do the 
  * generic property checks defined using the property configuration.
  *
- * It's used by both standard property system: base.property.Simple and base.property.Multi.
+ * It's used by both standard property system: core.property.Simple and core.property.Multi.
  *
  * @require {fix.Console}
  */
-base.Module("base.property.Debug",
+core.Module("core.property.Debug",
 {
 	/**
 	 * Validates the incoming parameters of a setter method
@@ -51,17 +51,17 @@ base.Module("base.property.Debug",
 				try 
 				{
 					if (type instanceof Array) {
-						base.Test.assertInList(value, type);
-					} else if (base.Class.isClass(type)) {
-						base.Test.assertInstanceOf(value, type);
-					} else if (base.Interface.isInterface(type)) {
-						base.Interface.assert(value, type);
+						core.Test.assertInList(value, type);
+					} else if (core.Class.isClass(type)) {
+						core.Test.assertInstanceOf(value, type);
+					} else if (core.Interface.isInterface(type)) {
+						core.Interface.assert(value, type);
 					}
 					else
 					{
 						var assertName = "assert" + type;
-						if (base.Test[assertName]) {
-							base.Test[assertName](value);
+						if (core.Test[assertName]) {
+							core.Test[assertName](value);
 						} else {
 							console.warn("Unsupported check: " + type + "!");
 						}

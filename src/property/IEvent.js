@@ -8,7 +8,7 @@
 /**
  * For classes which use event firing properties.
  */
-base.Interface("base.property.IEvent",
+core.Interface("core.property.IEvent",
 {
 	members : 
 	{

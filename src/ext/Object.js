@@ -25,16 +25,16 @@
 	var addObjectMethods = function(globalName, members) 
 	{
 		var prefix = globalName + ".";
-		if (base.Env.isSet("debug")) {
-			base.Test.assertHasKey(global, globalName)
+		if (core.Env.isSet("debug")) {
+			core.Test.assertHasKey(global, globalName)
 		}
 
 		var construct = global[globalName];
 		for (var name in members) 
 		{
 			var func = members[name];
-			if (base.Env.isSet("debug")) {
-				base.Test.assertFunction(func);
+			if (core.Env.isSet("debug")) {
+				core.Test.assertFunction(func);
 			}
 			func.displayName = prefix + name;
 
@@ -45,20 +45,20 @@
 	var addPrototypeMethods = function(globalName, members) 
 	{
 		var prefix = globalName + ".prototype.";
-		if (base.Env.isSet("debug")) {
-			base.Test.assertHasKey(global, globalName);
+		if (core.Env.isSet("debug")) {
+			core.Test.assertHasKey(global, globalName);
 		}
 
 		var proto = global[globalName].prototype;
-		if (base.Env.isSet("debug")) {
-			base.Test.assertNotNull(proto);
+		if (core.Env.isSet("debug")) {
+			core.Test.assertNotNull(proto);
 		}
 
 		for (var name in members) 
 		{
 			var func = members[name];
-			if (base.Env.isSet("debug")) {
-				base.Test.assertFunction(func);
+			if (core.Env.isSet("debug")) {
+				core.Test.assertFunction(func);
 			}
 			func.displayName = prefix + name;
 

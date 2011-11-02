@@ -121,7 +121,7 @@ Object.addPrototypeMethods("Array",
 		
 		this.forEach(function(value) 
 		{
-			if(base.Test.isArray(value)) {
+			if(core.Test.isArray(value)) {
 				result.push.apply(result, value.flatten());
 			} else {
 				result.push(value);
@@ -209,8 +209,8 @@ Object.addPrototypeMethods("Array",
 	 */
 	at : function(index) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertInteger(index, "Param 'index' must be be an integer!");
+		if (core.Env.isSet("debug")) {
+			core.Test.assertInteger(index, "Param 'index' must be be an integer!");
 		}
 
 		return this[index < 0 ? this.length + index : index];
@@ -225,8 +225,8 @@ Object.addPrototypeMethods("Array",
 	 */
 	removeAt : function(index) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertInteger(index, "Param 'index' must be be an integer!");
+		if (core.Env.isSet("debug")) {
+			core.Test.assertInteger(index, "Param 'index' must be be an integer!");
 		}
 		
 		var ret = this.splice(index<0?this.length+index:index, 1);
@@ -248,9 +248,9 @@ Object.addPrototypeMethods("Array",
 	 */
 	removeRange : function(from, to) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertInteger(from, "Param 'from' must be be an integer!");
-			base.Test.assertInteger(to, "Param 'to' must be be an integer!");
+		if (core.Env.isSet("debug")) {
+			core.Test.assertInteger(from, "Param 'from' must be be an integer!");
+			core.Test.assertInteger(to, "Param 'to' must be be an integer!");
 		}
 
 		var rest = this.slice((to || from) + 1 || this.length);

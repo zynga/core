@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-base.Module("base.Adler32",
+core.Module("core.Adler32",
 {
 	/**
 	 * Compute Adler-32, the 32-bit checksum of an ASCII string.

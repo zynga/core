@@ -6,7 +6,7 @@
 */
 
 // Include ES5 support if not natively supported
-if(!base.Env.isSet("es5")) 
+if(!core.Env.isSet("es5")) 
 {
 	// These classes don't really exist, so we need to protect the access.
 	try{
@@ -51,7 +51,7 @@ if(!base.Env.isSet("es5"))
 	};
 	
 	
-	if (base.Env.isSet("debug"))
+	if (core.Env.isSet("debug"))
 	{
 		var checkMixinMemberConflicts = function(include, members, name) 
 		{
@@ -148,37 +148,37 @@ if(!base.Env.isSet("es5"))
 	
 	
 	
-	base.Module.declareName("base.Class", function(name, config) 
+	core.Module.declareName("core.Class", function(name, config) 
 	{
-		if (base.Env.isSet("debug")) 
+		if (core.Env.isSet("debug")) 
 		{
-			base.Test.assertModuleName(name, "Invalid class name " + name + "!");
-			base.Test.assertMap(config, "Invalid class configuration in " + name);
-			base.Test.assertHasAllowedKeysOnly(config, ["construct","events","members","properties","include","implement"], 
+			core.Test.assertModuleName(name, "Invalid class name " + name + "!");
+			core.Test.assertMap(config, "Invalid class configuration in " + name);
+			core.Test.assertHasAllowedKeysOnly(config, ["construct","events","members","properties","include","implement"], 
 				"Invalid configuration in class " + name + "! Unallowed key(s) found!");
 			
 			if ("construct" in config) {
-				base.Test.assertFunction(config.construct, "Invalid constructor in class " + name + "!");
+				core.Test.assertFunction(config.construct, "Invalid constructor in class " + name + "!");
 			}
 			
 			if ("events" in config) {
-				base.Test.assertMap(config.events, "Invalid event data in class " + name + "!");
+				core.Test.assertMap(config.events, "Invalid event data in class " + name + "!");
 			}
 			
 			if ("members" in config) {
-				base.Test.assertMap(config.members, "Invalid member section in class " + name);
+				core.Test.assertMap(config.members, "Invalid member section in class " + name);
 			}
 
 			if ("properties" in config) {
-				base.Test.assertMap(config.properties, "Invalid properties section in class " + name);
+				core.Test.assertMap(config.properties, "Invalid properties section in class " + name);
 			}
 			
 			if ("include" in config) {
-				base.Test.assertArray(config.include, "Invalid include list in class " + name);
+				core.Test.assertArray(config.include, "Invalid include list in class " + name);
 			}
 
 			if ("implement" in config) {
-				base.Test.assertArray(config.implement, "Invalid implement list in class " + name);
+				core.Test.assertArray(config.implement, "Invalid implement list in class " + name);
 			}
 		}
 		
@@ -216,10 +216,10 @@ if(!base.Env.isSet("es5"))
 		var include = config.include;
 		if (include) 
 		{
-			if (base.Env.isSet("debug")) 
+			if (core.Env.isSet("debug")) 
 			{
 				for (var i=0, l=include.length; i<l; i++) {
-					base.Test.assertClass(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
+					core.Test.assertClass(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
 				}
 				
 				checkMixinMemberConflicts(include, config.members, name);
@@ -271,11 +271,11 @@ if(!base.Env.isSet("es5"))
 
 			// Create members via specific property implementation 
 			if (propertyConfig.group) {
-				var propertyMembers = base.property.Group.create(propertyConfig);
+				var propertyMembers = core.property.Group.create(propertyConfig);
 			} else if (propertyConfig.themeable || propertyConfig.inheritable) {	
-				var propertyMembers = base.property.Multi.create(propertyConfig);
+				var propertyMembers = core.property.Multi.create(propertyConfig);
 			} else {
-				var propertyMembers = base.property.Simple.create(propertyConfig);
+				var propertyMembers = core.property.Simple.create(propertyConfig);
 			}
 			
 			// Prepare function names
@@ -317,7 +317,7 @@ if(!base.Env.isSet("es5"))
 		//	 INTERFACES
 		// ------------------------------------
 	
-		if (base.Env.isSet("debug")) 
+		if (core.Env.isSet("debug")) 
 		{
 			var implement = config.implement;
 			if (implement) 
@@ -331,7 +331,7 @@ if(!base.Env.isSet("es5"))
 					}
 
 					try {
-						base.Interface.assert(construct, iface);
+						core.Interface.assert(construct, iface);
 					} catch(ex) {
 						throw new Error("Class " + name + " fails to implement given interface: " + iface + ": " + ex);
 					}
@@ -342,15 +342,15 @@ if(!base.Env.isSet("es5"))
 			if (propertyFeatures) 
 			{
 				if (propertyFeatures.fire) {
-					base.Interface.assert(construct, base.property.IEvent);
+					core.Interface.assert(construct, core.property.IEvent);
 				}
 
 				if (propertyFeatures.themeable) {
-					base.Interface.assert(construct, base.property.IThemeable);
+					core.Interface.assert(construct, core.property.IThemeable);
 				}
 
 				if (propertyFeatures.inheritable) {
-					base.Interface.assert(construct, base.property.IInheritable);
+					core.Interface.assert(construct, core.property.IInheritable);
 				}
 			}
 		}
@@ -361,12 +361,12 @@ if(!base.Env.isSet("es5"))
 		// ------------------------------------
 		
 		// Attach to namespace
-		base.Module.declareName(name, construct, true);
+		core.Module.declareName(name, construct, true);
 	});
 
 	
 	// Shorthand
-	var Class = base.Class;
+	var Class = core.Class;
 
 
 	/**
@@ -377,11 +377,11 @@ if(!base.Env.isSet("es5"))
 	 */
 	Class.getByName = function(className) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertString(className);
+		if (core.Env.isSet("debug")) {
+			core.Test.assertString(className);
 		}
 		
-		var obj = base.Module.resolveName(className);
+		var obj = core.Module.resolveName(className);
 		return isClass(obj) ? obj : null;
 	};
 
@@ -394,8 +394,8 @@ if(!base.Env.isSet("es5"))
 	 */
 	Class.getEvents = function(cls) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertClass(cls);
+		if (core.Env.isSet("debug")) {
+			core.Test.assertClass(cls);
 		}
 		
 		return cls.__events;
@@ -410,8 +410,8 @@ if(!base.Env.isSet("es5"))
 	 */
 	Class.getProperties = function(cls) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertClass(cls);
+		if (core.Env.isSet("debug")) {
+			core.Test.assertClass(cls);
 		}
 		
 		return cls.__properties;
@@ -458,9 +458,9 @@ if(!base.Env.isSet("es5"))
 	 */
 	var includesClass = Class.includesClass = function(cls, incCls) 
 	{
-		if (base.Env.isSet("debug")) {
-			base.Test.assertClass(cls, "Class to check for including class is itself not a class!");
-			base.Test.assertClass(incCls, "Class to check for being included is not a class!");
+		if (core.Env.isSet("debug")) {
+			core.Test.assertClass(cls, "Class to check for including class is itself not a class!");
+			core.Test.assertClass(incCls, "Class to check for being included is not a class!");
 		}
 		
 		return cls.__includes.indexOf(incCls) != -1;
@@ -468,7 +468,7 @@ if(!base.Env.isSet("es5"))
 	
 	
 	// Add assertions
-	base.Test.add(isClass, "isClass", "Invalid class!");
-	base.Test.add(includesClass, "includesClass", "Does not include class %1!");
+	core.Test.add(isClass, "isClass", "Invalid class!");
+	core.Test.add(includesClass, "includesClass", "Does not include class %1!");
 	
 })(this);

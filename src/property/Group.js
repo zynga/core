@@ -58,7 +58,7 @@
 	 *   </td></tr>
 	 * </table>
 	 */
-	base.Module("base.property.Group",
+	core.Module("core.property.Group",
 	{
 		/**
 		 * Creates a new property group and returns the corresponding methods.

@@ -1,1 +1,1 @@
-Contains spec conformant polyfills for missing ES5 features. These should be loaded based on feature test {@see base.detect.ES5}
+Contains spec conformant polyfills for missing ES5 features. These should be loaded based on feature test {@see core.detect.ES5}
