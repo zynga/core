@@ -1,3 +1,5 @@
+#!/usr/bin/env jasy
+
 @task
 def clear():
     # Setup session
