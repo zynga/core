@@ -23,9 +23,9 @@ Fixes for issues or missing features in specific JavaScript implementations (cor
 * `document.head`
 * `execScript`
 * `Function.prototype.bind`
-* `HTML5 markup support for IE`
+* HTML5 markup support for IE
 * `Object.keys`
-* `setTimeout/setIntervals with additional arguments`
+* `setTimeout`/`setIntervals` with additional arguments
 
 ### ES5 Support
 
@@ -35,7 +35,7 @@ Fixes for issues or missing features in specific JavaScript implementations (cor
 * *JSON*: `stringify`, `parse`
 * *String.prototype*: `trim`
 
-### Language Extensions (core.ext)
+### Language Extensions
 
 * Synthetic sugar for better comfort during JavaScript development
 
@@ -98,7 +98,3 @@ Most of these features are especially useful to use in conjunction with [Jasy](h
 * Adler32 checksum algorithm
 * CRC32 checksum algorithm
 
-
-### Event Manager
-
-* TODO
