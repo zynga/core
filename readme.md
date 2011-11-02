@@ -1,4 +1,4 @@
-Base - A Fine Foundation for JavaScript Projects
+Core - A Fine Foundation for JavaScript Projects
 ================================================
 
 ## Base
