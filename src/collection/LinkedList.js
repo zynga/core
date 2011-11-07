@@ -1,6 +1,6 @@
 (function() {
 	
-	var id = 0;
+	var unique = 0;
 	var undef;
 	
 	/**
@@ -20,14 +20,12 @@
 			
 			// Field to store data in each object
 			// Keeps an array with [prev, next]
-			this.__id = "$ll" + id++;
+			var id = this.__id = "$ll" + unique++;
 			
 			// Import array
 			if (array) {
 				
-				var id = this.__id;
 				var length = array.length;
-				
 				if (length > 0) {
 					
 					var current = array[0];
