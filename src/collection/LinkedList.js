@@ -11,9 +11,11 @@
 	 * Through the nature of having fast contains checks and position storage it can be used when both 
 	 * positions and fast containsment checks are required (a mix of array/hashmap)
 	 */
-	Class("core.collection.LinkedList", {
+	Class("core.collection.LinkedList", 
+	{
 
-		construct: function(array) {
+		construct: function(array) 
+		{
 			
 			// Field to store data in each object
 			// Keeps an array with [prev, next]
@@ -36,7 +38,7 @@
 					for (var i=0; i<length; i++) {
 
 						if (current[id]) {
-							throw new Error("Duplication detected during import: " + obj);
+							throw new Error("Duplicated object during import: " + obj);
 						}
 						
 						next = array[i+1];
@@ -51,7 +53,8 @@
 			}
 		},
 
-		members: {
+		members: 
+		{
 			
 			__first: null,
 			__last: null,
@@ -71,7 +74,7 @@
 				var self = this;
 				
 				if (obj[self.__id]) {
-					throw new Error("Could not add object. It is already in the list: " + obj);
+					throw new Error("Object is already in the list: " + obj);
 				}
 
 				var id = self.__id;
@@ -110,7 +113,7 @@
 				var self = this;
 				
 				if (!obj[self.__id]) {
-					throw new Error("Could not remove object. It is not in the list: " + obj);
+					throw new Error("Object is not in the list: " + obj);
 				}
 
 				var id = self.__id;
