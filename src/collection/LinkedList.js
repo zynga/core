@@ -1,6 +1,7 @@
 (function() {
 	
 	var id = 0;
+	var undef;
 	
 	/**
 	 * A LinkedList implemented in pure JavaScript. 
@@ -43,7 +44,7 @@
 						
 						next = array[i+1];
 
-						current[id] = [prev,next];
+						current[id] = [prev, next];
 						
 						prev = current;
 						current = next;
@@ -56,8 +57,8 @@
 		members: 
 		{
 			
-			__first: null,
-			__last: null,
+			__first: undef,
+			__last: undef,
 			__length: 0,
 			
 
@@ -82,11 +83,13 @@
 				var prev = self.__last;
 				if (prev) {
 					
+					// append after previous last one
 					obj[id] = [prev];
 					prev[id][1] = obj;
 					
 				} else {
 					
+					// insert as the first object
 					obj[id] = [];
 					self.__first = obj;
 					
@@ -131,24 +134,24 @@
 				} else if (prev) {
 					
 					// Free previous child from reference to this object
-					prev[1] = null;
+					prev[1] = undef;
 					self.__last = prev;
 					
 				} else if (next) {
 					
 					// We seem to be the first
 					// Make following child the first
-					next[0] = null;
+					next[0] = undef;
 					self.__first = next;
 					
 				} else {
 					
-					self.__first = null;
-					self.__last = null;
+					self.__first = undef;
+					self.__last = undef;
 					
 				}
 				
-				obj[id] = null;
+				obj[id] = undef;
 				self.__length--;
 				
 				return self;
@@ -238,16 +241,11 @@
 				var self = this;
 				var length = self.__length;
 				var array = [];
-
-				if (length > 0) {
 					
-					var current = self.__first;
-					for (var i=0; i<length; i++) {
-
-						array.push(current);
-						current = current[id][1];
-
-					}
+				var current = self.__first;
+				for (var i=0; i<length; i++) {
+					array.push(current);
+					current = current[id][1];
 				}
 				
 				return array;
