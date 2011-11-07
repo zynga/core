@@ -54,6 +54,7 @@
 		members: {
 			
 			__first: null,
+			__last: null,
 			__length: 0,
 			
 
@@ -89,6 +90,7 @@
 				}
 				
 				self.__length++;
+				self.__last = obj;
 				
 				return self;
 				
