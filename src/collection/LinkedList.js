@@ -129,6 +129,7 @@
 					
 					// Free previous child from reference to this object
 					prev[1] = null;
+					self.__last = prev;
 					
 				} else if (next) {
 					
@@ -140,6 +141,7 @@
 				} else {
 					
 					self.__first = null;
+					self.__last = null;
 					
 				}
 				
