@@ -154,7 +154,7 @@
 				}
 
 				// Execute callback
-				callback.call(context, cache);
+				context ? callback.call(context, cache) : callback(cache);
 			};
 			
 			var executeDirectly = !!callback;
@@ -212,7 +212,7 @@
 			if (executeDirectly) 
 			{
 				// Nothing to load, execute callback directly
-				callback.call(context, cache);
+				context ? callback.call(context, cache) : callback(cache);
 			} 
 			else
 			{
