@@ -71,10 +71,10 @@
 			{
 				var link = doc.createElement('link');
 				var sheets = doc.styleSheets;
-
+				
 				handle = setInterval(function() 
 				{
-					for (var i = 0, l = sheets.length; i < l; i++)  
+					for (var i=0, l=sheets.length; i<l; i++)  
 					{
 						// In Webkit browsers the sheets array is populated as soon
 						// as the stylesheet was loaded.
@@ -82,7 +82,7 @@
 						{
 							clearInterval(handle);
 							if (callback) {
-								callback.call(context, uri);
+								callback.call(context, uri, false);
 							}
 						}
 					}
@@ -110,7 +110,7 @@
 						
 						clearInterval(handle);
 						if (callback) {
-							callback.call(context, uri);
+							callback.call(context, uri, false);
 						}
 					} catch(e) {}
 				}, 50);

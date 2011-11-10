@@ -52,6 +52,7 @@
 				if (callback) 
 				{
 					callback.call(context || global, uri, errornous, {
+						node: img,
 						width : img.naturalWidth || img.width || 0,
 						height : img.naturalHeight || img.height || 0
 					});

@@ -47,7 +47,7 @@
 				// As we don't send any data it's okay to start the timeout at this state.
 				if (request.readyState == 2 && timeout !== 0 && !timeoutHandle)
 				{
-					timeoutHandle = window.setTimeout(function() {
+					timeoutHandle = setTimeout(function() {
 						request.onreadystatechange = empty;
 						request.abort();
 						callback.call(context, uri, true);
@@ -57,11 +57,12 @@
 				if (request.readyState == 4) 
 				{
 					request.onreadystatechange = empty;
+					clearTimeout(timeoutHandle);
 					
 					// Finally call the user defined callback (succeed with data)
 					var status = request.status;
-					callback.call(context, uri, status >= 200 && status < 300 || status == 304 || status == 1223, { 
-						data : request.responseText || ""
+					callback.call(context, uri, !(status >= 200 && status < 300 || status == 304 || status == 1223), { 
+						text : request.responseText || ""
 					});
 				}
 			};
@@ -73,6 +74,7 @@
 				{
 					global.detachEvent("onunload", onUnload);
 					request.onreadystatechange = empty;
+					clearTimeout(timeoutHandle);
 					
 					// Internet Explorer will keep connections alive if we don't abort on unload
 					request.abort();
