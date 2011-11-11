@@ -68,6 +68,45 @@
 		has : function(id) {
 			return entryCache[id] || getEntry(id) != null;
 		},
+		
+		
+		/**
+		 * Loads the given assets and optionally executes the given callback after all are completed
+		 *
+		 * @param ids {Array} List of assets to load
+		 * @param callback {Function ? null} Callback method to execute
+		 * @param context {Object ? null} Context in which the callback function should be executed
+		 * @param nocache {Boolean ? false} Whether a cache prevention logic should be applied (to force a fresh copy)
+		 * @param type {String ? auto} Whether the automatic type detection should be disabled and the given type should be used.
+		 */
+		load: function(ids, callback, context, nocache, type) {
+			
+			var id, uri;
+			
+			var uris = [];
+			var uriToId = {};
+			
+			for (var i=0, l=ids.length; i<l; i++) {
+				id = ids[i];
+				uri = this.toUri(id);
+				
+				uris.push(uri);
+				uriToId[uri] = id;
+			}
+			
+			var localCallback = function(uriData) 
+			{
+				var idData = {};
+				for (var uri in uriData) {
+					idData[uriToId[uri]] = uriData[uri];
+				}
+				
+				context ? callback.call(context, idData) : callback(idData);
+			}
+			
+			return core.io.Queue.load(uris, localCallback, null, nocache, type);
+			
+		},
 
 
 		/**

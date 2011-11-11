@@ -1,10 +1,8 @@
 (function() 
 {
-	/** {Map} Keys are all URIs which are currently loading */
-	var loading = {};
-
 	/** {Map} Keys are all URIs which are completely loaded */
 	var completed = {};
+
 	
 	/** {Map} Maps extensions to loader classes */
 	var typeLoader = 
@@ -12,6 +10,10 @@
 		js : core.io.Script,
 		css : core.io.StyleSheet,
 		jsonp : core.io.Jsonp,
+		json : core.io.Text,
+		txt : core.io.Text,
+		md : core.io.Text,
+		html : core.io.Text,
 		png : core.io.Image,
 		jpeg : core.io.Image,
 		jpg : core.io.Image,
@@ -44,54 +46,6 @@
 	};
 	
 
-	/** {Array} List of function, context where each entry consumes two array fields */
-	var cachedCallbacks = [];
-
-
-	/**
-	 * Flushes the cached callbacks as soon as no more active scripts are detected.
-	 * This methods is called by the different complete scenarios from the loader functions.
-	 */
-	var flushCallbacks = function()
-	{
-		// Check whether all known scripts are loaded
-		for (var uri in loading) {
-			return;
-		}
-		
-		// Then execute all callbacks (copy to protect loop from follow-up changes)
-		var todo = cachedCallbacks.concat();
-		cachedCallbacks.length = 0;
-		for (var i=0, l=todo.length; i<l; i+=2) {
-			todo[i].call(todo[i+1]);
-		}
-	};
-
-
-	/**
-	 * Registers the given URI as being loaded. 
-	 * 
-	 * @param uri {String} URI to mark as being loaded
-	 * @param errornous {Boolean?false} Whether request was not successful
-	 * @param data {Map} Additional data to exchange
-	 */
-	var onLoad = function(uri, errornous, data) 
-	{
-		if (core.Env.isSet("debug")) {
-			core.Test.assertString(uri, "Invalid URI from loader backend!");
-		}
-		
-		delete loading[uri];
-		completed[uri] = true;
-
-		for (var queued in loading) {
-			return;
-		}
-
-		flushCallbacks();
-	};
-	
-	
 	/**
 	 * Generic URLs loader queue with support for different type "backend" modules.
 	 *
@@ -101,16 +55,16 @@
 	 *
 	 * Loader module need to implement the following interface:
 	 *
-	 * * method load(uri, callback, context, nocache) which calls the callback with the URI
+	 * * method load(uri, callback, context, nocache) which calls the callback like callback.call(context, uri, errornous, data)
 	 * * constant `SUPPORTS_PARALLEL` with a boolean value whether the loader supports parallel loading
 	 */
 	core.Module("core.io.Queue",
 	{
 		/**
-		 * Whether the given URI or URIs are loaded through the queue
+		 * Whether the given URIs were loaded before
 		 *
-		 * @param uris {String|Array} One or multiple URIs to verify
-		 * @return {Boolean} Whether all given URIs have been loaded
+		 * @param uris {Array} One or multiple URIs to verify.
+		 * @return {Boolean} Whether all given URIs have been loaded. Returns `false` with the first new one.
 		 */
 		isLoaded : function(uris) 
 		{
@@ -165,6 +119,44 @@
 				}
 			}
 			
+			// Keys are all URIs which are currently loading
+			var loading = {};
+
+			// Data cache for callback return
+			var cache = {};
+			
+			
+			/**
+			 * Registers the given URI as being loaded. 
+			 * 
+			 * @param uri {String} URI to mark as being loaded
+			 * @param errornous {Boolean?false} Whether request was not successful
+			 * @param data {Map} Additional data to exchange
+			 */
+			var onLoad = function(uri, errornous, data) 
+			{
+				if (core.Env.isSet("debug")) {
+					core.Test.assertString(uri, "Got invalid URI from loader!");
+					core.Test.assertBoolean(errornous, "Got invalid errornous flag from loader for uri: " + uri);
+				}
+
+				delete loading[uri];
+				completed[uri] = true;
+				
+				// Make data available for callback
+				if (data != null) {
+					cache[uri] = data;
+				}
+
+				// Check whether there is more to load
+				for (var queued in loading) {
+					return;
+				}
+
+				// Execute callback
+				context ? callback.call(context, cache) : callback(cache);
+			};
+			
 			var executeDirectly = !!callback;
 			var autoType = !type;
 			
@@ -188,15 +180,8 @@
 					
 					var loader = typeLoader[type];
 
-					// Only queue callback once
-					if (executeDirectly)
-					{
-						// As we are waiting for things to load, we can't execute the callback directly anymore
-						executeDirectly = false;
-						
-						// Directly push to global callback list
-						cachedCallbacks.push(callback, context);
-					}
+					// As we are waiting for things to load, we can't execute the callback directly anymore
+					executeDirectly = false;
 
 					// When script is not being loaded already, then start with it here
 					// (Otherwise we just added the callback to the queue and wait for it to be executed)
@@ -227,7 +212,7 @@
 			if (executeDirectly) 
 			{
 				// Nothing to load, execute callback directly
-				callback.call(context);
+				context ? callback.call(context, cache) : callback(cache);
 			} 
 			else
 			{
@@ -241,29 +226,19 @@
 					var uri = sequential[type].shift();
 					if (uri) 
 					{
-						typeLoader[type].load(uri, function(uri) 
+						typeLoader[type].load(uri, function(uri, errornous, data) 
 						{
-							onLoad(uri);
+							onLoad(uri, errornous, data);
 							loadNext(type);
 						}, 
 						null, nocache);
 					} 
-					else
-					{
-						flushCallbacks();
-					}
 				};
 				
 				// Load and execute first item in each queue
 				for (var type in sequential) {
 					loadNext(type);
 				}
-			}
-			
-			// Return internal loading list for debug proposes only.
-			// Be super careful with the object
-			if (core.Env.isSet("debug")) {
-				return loading;
 			}
 		}
 	});
