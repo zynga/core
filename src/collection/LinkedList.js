@@ -12,9 +12,11 @@
 	 * Through the nature of having fast contains checks and position storage it can be used when both 
 	 * positions and fast containsment checks are required (a mix of array/hashmap)
 	 */
-	Class("core.collection.LinkedList", 
+	core.Class("core.collection.LinkedList", 
 	{
-
+		/**
+		 * @param array {Array} Native array like object to import
+		 */
 		construct: function(array) 
 		{
 			
@@ -24,6 +26,10 @@
 			
 			// Import array
 			if (array) {
+				
+				if (core.Env.isSet("debug")) {
+					core.Test.assertArray(array);
+				}
 				
 				var length = array.length;
 				if (length > 0) {
@@ -228,6 +234,34 @@
 			
 			
 			/**
+			 * Clears the full list
+			 *
+			 * Performance behavior: O(n)
+			 *
+			 * @return {LinkedList} Returns this object for further operations
+			 */
+			clear: function() {
+				
+				var self = this;
+
+				var length = self.__length;
+				var id = self.__id;
+				
+				var current = self.__first;
+				var next;
+
+				for (var i=0; i<length; i++) {
+					next = current[id][1];
+					current[id] = null;
+					current = next;
+				}
+				
+				return this;
+
+			},
+			
+			
+			/**
 			 * Returns an array copy of the list
 			 *
 			 * Performance behavior: O(n)
@@ -237,9 +271,11 @@
 			toArray: function() {
 				
 				var self = this;
-				var length = self.__length;
 				var array = [];
-					
+				
+				var length = self.__length;
+				var id = self.__id;
+				
 				var current = self.__first;
 				for (var i=0; i<length; i++) {
 					array.push(current);
