@@ -1,7 +1,7 @@
 /**
  * Interface to verify support for getting feed and adding weight 
  */
-Interface("oo.Feed", {
+core.Interface("oo.Feed", {
 	members : {
 		/**
 		 * Feed the object and increase its weight.

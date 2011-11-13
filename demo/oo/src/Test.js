@@ -11,5 +11,5 @@ if (dog.getPosition() > cat.getPosition()) {
 	console.debug("Cat wins");
 }
 
-Interface.assert(dog, oo.Feed);
-Interface.assert(cat, oo.Feed);
+core.Interface.assert(dog, oo.Feed);
+core.Interface.assert(cat, oo.Feed);

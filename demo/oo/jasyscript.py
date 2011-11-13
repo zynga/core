@@ -1,6 +1,6 @@
 #!/usr/bin/env jasy
 
-@task
+@task("Clear Cache")
 def clear():
     # Setup session
     session = Session()
@@ -11,29 +11,7 @@ def clear():
 
 
 
-@task("Simple Test")
-def simple():
-    # Setup session
-    session = Session()
-    session.addProject(Project("../../"))
-    session.addProject(Project("."))
-
-    # Collecting projects
-    resolver = Resolver(session.getProjects())
-    resolver.addClassName("oo.Test")
-    
-    # Resolving classes
-    classes = Sorter(resolver).getSortedClasses()
-    
-    # Compressing classes
-    compressedCode = Combiner(classes).getCompressedCode()
-    
-    # Writing files
-    writefile("build/simple.js", compressedCode)
-
-
-
-@task("Full Test")
+@task("Build")
 def build():
     # Setup session
     session = Session()

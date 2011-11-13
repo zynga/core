@@ -1,7 +1,7 @@
 /**
  * This is an hairy animal. Don't care a lot about humans.
  */
-Class("oo.Cat", {
+core.Class("oo.Cat", {
 	include : [oo.Hair, oo.Feets],
 	implement : [oo.Feed],
 	

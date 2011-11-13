@@ -1,7 +1,7 @@
 /**
  * Adds feets to any object 
  */
-Class("oo.Feets", {
+core.Class("oo.Feets", {
 	construct : function(feets, speed) {
 		this.__feets = feets;
 		this.__speed = speed || 10;
