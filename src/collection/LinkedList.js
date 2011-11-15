@@ -10,7 +10,26 @@
 	 * LinkedLists beat native array performance especially on checking for containment and removing of objects.
 	 * It adds somewhat of a memory overhead though as every object refers the previous/next objects.
 	 * Through the nature of having fast contains checks and position storage it can be used when both 
-	 * positions and fast containsment checks are required (a mix of array/hashmap)
+	 * positions and fast containsment checks are required (a mix of array/hashmap).
+	 *
+	 * The implementation is a doubly linked list which stores references on the objects which are stored. So
+	 * these objects are modified. Iterating through this objects will show the keys added by the LinkedList!
+	 *
+	 * Wikipedia on LinkedList:
+	 *
+	 * The principal benefit of a linked list over a conventional array is that the list elements can easily 
+	 * be inserted or removed without reallocation or reorganization of the entire structure because the data 
+	 * items need not be stored contiguously in memory or on disk. Linked lists allow insertion and removal 
+	 * of nodes at any point in the list, and can do so with a constant number of operations if the link 
+	 * previous to the link being added or removed is maintained during list traversal.
+	 *
+	 * On the other hand, simple linked lists by themselves do not allow random access to the data, or any form 
+	 * of efficient indexing. Thus, many basic operations — such as obtaining the last node of the list 
+	 * (assuming that the last node is not maintained as separate node reference in the list structure), or 
+	 * finding a node that contains a given datum, or locating the place where a new node should be inserted — 
+	 * may require scanning most or all of the list elements.
+	 *
+	 * For more info: http://en.wikipedia.org/wiki/Linked_list
 	 */
 	core.Class("core.collection.LinkedList", 
 	{
@@ -271,14 +290,14 @@
 			toArray: function() {
 				
 				var self = this;
-				var array = [];
+				var array = new Array(this.__length);
 				
 				var length = self.__length;
 				var id = self.__id;
 				
 				var current = self.__first;
 				for (var i=0; i<length; i++) {
-					array.push(current);
+					array[i] = current;
 					current = current[id][1];
 				}
 				
