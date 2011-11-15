@@ -17,7 +17,7 @@
 	 * Utility class for dealing with style properties (setting/getting). Automatically figures out the
 	 * correct name when the property name is vendor prefixed etc.
 	 */
-	core.Module("z.core.dom.Style", {
+	core.Module("core.bom.Style", {
 
 		/** {Map} Caches CSS property names to browser specific names. Can be used as a fast lookup alternative to property(name). */
 		names: nameCache,
