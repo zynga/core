@@ -17,7 +17,7 @@
 	var running = {};
 	var counter = 1;
 
-	core.Module("z.core.Animate", {
+	core.Module("core.effect.Animate", {
 
 		/**
 		 * Stops the given animation.

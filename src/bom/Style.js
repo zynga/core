@@ -9,8 +9,7 @@
 		gecko: 'Moz',
 		webkit: 'Webkit',
 		presto: 'O'
-
-	}[z.core.Profile.ENGINE];
+	}[core.detect.Engine.VALUE];
 
 
 	/**

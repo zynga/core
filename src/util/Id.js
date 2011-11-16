@@ -18,7 +18,7 @@
 		 * Returns a unique ID of the given object.
 		 *
 		 * To improve performance one could also use:
-		 * `var uniqueId = obj.$$id || z.core.Id.get(obj);`
+		 * `var uniqueId = obj.$$id || core.util.Id.get(obj);`
 		 */
 		get: function(obj) {
 			
