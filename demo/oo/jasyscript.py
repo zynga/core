@@ -26,35 +26,28 @@ def build():
     
     # Permutation independend config
     optimization = Optimization("unused", "privates", "variables", "declarations", "blocks")
-    formatting = Format("semicolon", "comma")
+    formatting = Formatting()
 
     # Store loader script
-    loaderIncluded = session.writeLoader("build/loader.js", optimization, formatting)
+    includedByKernel = storeKernel("build/loader.js", session)
     
     # Copy HTML file from source
-    updatefile("index.html", "build/index.html")
+    updateFile("index.html", "build/index.html")
 
     # Process every possible permutation
-    permutations = session.getPermutations()
-    for pos, permutation in enumerate(permutations):
-        logging.info("Permutation %s/%s" % (pos+1, len(permutations)))
-
+    for permutation in session.getPermutations():
         # Get projects
         projects = session.getProjects()
 
         # Resolving dependencies
         resolver = Resolver(projects, permutation)
         resolver.addClassName("oo.Test")
-        resolver.excludeClasses(loaderIncluded)
+        resolver.excludeClasses(includedByKernel)
         classes = resolver.getIncludedClasses()
 
         # Compressing classes
         translation = session.getTranslation(permutation.get("locale"))
         classes = Sorter(resolver, permutation).getSortedClasses()
-        compressedCode = Combiner(classes).getCompressedCode(permutation, translation, optimization, formatting)
+        compressedCode = storeCompressed("build/oo-%s.js" % permutation.getChecksum(), classes, 
+            permutation=permutation, translation=translation, optimization=optimization, formatting=formatting)
         
-        # Boot logic
-        bootCode = ""
-
-        # Write file
-        writefile("build/oo-%s.js" % permutation.getChecksum(), compressedCode + bootCode)
