@@ -8,6 +8,8 @@ def clear():
     # Clearing cache
     logging.info("Clearing cache...")
     session.clearCache()
+    
+    session.close()
 
 
 
@@ -50,4 +52,6 @@ def build():
         classes = Sorter(resolver, permutation).getSortedClasses()
         compressedCode = storeCompressed("build/oo-%s.js" % permutation.getChecksum(), classes, 
             permutation=permutation, translation=translation, optimization=optimization, formatting=formatting)
+        
+    session.close()
         
