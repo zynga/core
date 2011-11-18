@@ -5,10 +5,18 @@
 ==================================================================================================
 */
 
-(function()
+(function(global)
 {
 	// Jasy is replacing this call via the kernel permutation
 	var translation = core.Env.getValue("translation");
+	
+	// Fill missing locale namespace
+	if (!global.locale) 
+	{
+		locale = {
+			Plural : {}
+		};
+	}
 
 	/**
 	 *
@@ -121,4 +129,4 @@
 			return arguments.length <= 3 ? result : i18n.template(result, arguments, 3);
 		}
 	});
-})();
+})(this);
