@@ -1,12 +1,12 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
 (function() {
-	core.Module("core.event.Manager", 
+	core.Module("core.event.Manager",
 	{
 		addListener : function(target, type, callback, context, capture) {
 
@@ -22,9 +22,8 @@
 
 		fireEvent : function(eventObj) {
 			var target = eventObj.getTarget();
-			
-			
+
+
 		}
 	});
 })();
- 

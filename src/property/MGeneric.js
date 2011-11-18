@@ -1,29 +1,29 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-(function() 
+(function()
 {
 	var setters = {};
 	var getters = {};
-	
+
 	var up = function(name) {
 		return name.charAt(0).toUpperCase() + name.slice(1);
 	};
-	
-	
+
+
 	/**
 	 * Generic setter/getter support for property API.
 	 *
-	 * Include this if your class uses properties and want to be able to generically 
+	 * Include this if your class uses properties and want to be able to generically
 	 * set/get them based on the property names
 	 */
 	core.Class("core.property.MGeneric",
 	{
-		members : 
+		members :
 		{
 			/**
 			 * Generic setter. Supports two possible use cases:
@@ -40,9 +40,9 @@
 			 * @param value {var} Any value
 			 * @return {var} Returns the value from the setter (if single property is used)
 			 */
-			set : function(property, value) 
+			set : function(property, value)
 			{
-				if (arguments.length == 2) 
+				if (arguments.length == 2)
 				{
 					if (core.Env.isSet("debug")) {
 						core.Test.assertString(property);
@@ -52,26 +52,26 @@
 					if (!method) {
 						method = setters[property] = "set" + up(property);
 					}
-					
+
 					if (core.Env.isSet("debug")) {
 						core.Test.assertFunction(this[method], "Invalid property to set(): " + property);
 					}
-					
+
 					return this[method](value);
-				} 
+				}
 				else
 				{
 					if (core.Env.isSet("debug")) {
 						core.Test.assertMap(property);
 					}
-					
-					for (var name in property) 
+
+					for (var name in property)
 					{
 						var method = setters[name];
 						if (!method) {
 							method = setters[name] = "set" + up(name);
 						}
-						
+
 						if (core.Env.isSet("debug")) {
 							core.Test.assertFunction(this[method], "Invalid property to set(): " + name);
 						}
@@ -94,9 +94,9 @@
 			 * @param value {var} Any value
 			 * @return {var} Returns the value from the setter (if single property is used)
 			 */
-			get : function(property) 
+			get : function(property)
 			{
-				if (typeof property == "string") 
+				if (typeof property == "string")
 				{
 					if (core.Env.isSet("debug")) {
 						core.Test.assertString(property);
@@ -106,22 +106,22 @@
 					if (!method) {
 						method = getters[property] = "get" + up(property);
 					}
-					
+
 					if (core.Env.isSet("debug")) {
 						core.Test.assertFunction(this[method], "Invalid property to get(): " + property);
 					}
-					
+
 					return this[method]();
-				} 
-				else 
+				}
+				else
 				{
 					if (core.Env.isSet("debug")) {
 						core.Test.assertArray(property);
 					}
-					
+
 					var ret = {};
-					
-					for (var i=0, l=property.length; i<l; i++) 
+
+					for (var i=0, l=property.length; i<l; i++)
 					{
 						var name = property[i];
 						var method = getters[name];
@@ -135,7 +135,7 @@
 
 						ret[name] = this[method]();
 					}
-					
+
 					return ret;
 				}
 			}

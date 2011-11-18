@@ -1,13 +1,13 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-core.Module("core.detect.Engine", 
+core.Module("core.detect.Engine",
 {
-	VALUE : (function(global) 
+	VALUE : (function(global)
 	{
 		var engine;
 		var doc = global.document;

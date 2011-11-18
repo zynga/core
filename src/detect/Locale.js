@@ -1,6 +1,6 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
@@ -8,14 +8,14 @@
 /**
  * Detects browser language settings
  */
-core.Module("core.detect.Locale", 
+core.Module("core.detect.Locale",
 {
 	VALUE : (function()
 	{
 		var nav = navigator;
 		var input = (nav.userLanguage || nav.language).toLowerCase();
 		var split = input.indexOf("-");
-		
+
 		return split > 0 ? input.substring(0, split) : input;
-	})()	
+	})()
 });

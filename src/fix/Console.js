@@ -1,6 +1,6 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
@@ -13,8 +13,8 @@
 	var methods = "log,clear,assert,debug,error,warn,info,trace".split(",");
 	var console = global.console || (global.console = {});
 	var log = console.log || new Function;
-	
-	for (var i=0, l=methods.length; i<l; i++) 
+
+	for (var i=0, l=methods.length; i<l; i++)
 	{
 		var name = methods[i];
 		if (!console[name]) {

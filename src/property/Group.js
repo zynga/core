@@ -1,11 +1,11 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-(function(slice) 
+(function(slice)
 {
 	/**
 	 * Expand shorthand definition to a four element list.
@@ -34,13 +34,13 @@
 		// Return list with 4 items
 		return data;
 	};
-	
+
 	/**
 	 * Internal class for handling of dynamic property groups. Should only be used
 	 * through the methods provided by {@link qx.Class}.
 	 *
 	 * For a complete documentation of properties take a
-	 * look at http://qooxdoo.org/documentation/developer_manual/properties. 
+	 * look at http://qooxdoo.org/documentation/developer_manual/properties.
 	 *
 	 * Property groups are defined in a similar way but support a different set of keys:
 	 *
@@ -53,7 +53,7 @@
 	 *     Whether this property can be set using themes.
 	 *   </td></tr>
 	 *   <tr><th>shorthand</th><td>Boolean</td><td>
-	 *     If enabled, the properties can be set using a CSS like shorthand mode e.g. 
+	 *     If enabled, the properties can be set using a CSS like shorthand mode e.g.
 	 *     expanding two given values into 4 applied values.
 	 *   </td></tr>
 	 * </table>
@@ -62,7 +62,7 @@
 	{
 		/**
 		 * Creates a new property group and returns the corresponding methods.
-		 * 
+		 *
 		 * @param config {Map} Property configuration map
 		 */
 		create : function(config)
@@ -71,7 +71,7 @@
 			var group = config.group;
 			var length = group.length;
 			var self = this;
-			
+
 			return {
 				set : function(first, second, third, fourth)
 				{
@@ -87,7 +87,7 @@
 
 					this.set(map);
 				},
-				
+
 				get : function()
 				{
 					for (var i=0; i<length; i++) {

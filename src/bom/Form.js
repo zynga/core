@@ -1,14 +1,14 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-(function() 
+(function()
 {
 	var FormItem = core.bom.FormItem;
-	
+
 	core.Module("core.bom.Form",
 	{
 		serialize: function(form) {

@@ -1,11 +1,11 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-Object.addPrototypeMethods("Number", 
+Object.addPrototypeMethods("Number",
 {
 	/**
 	 * Pads the number to reach the given length
@@ -16,8 +16,8 @@ Object.addPrototypeMethods("Number",
 	pad : function(length) {
 		return ("0".repeat(length) + this).slice(-length);
 	},
-	
-	
+
+
 	/**
 	 * Executes the given function x-times.
 	 *
@@ -29,8 +29,8 @@ Object.addPrototypeMethods("Number",
 			context ? func.call(context) : func();
 		}
 	},
-	
-	
+
+
 	/**
 	 * Converts the number to a hex string.
 	 *

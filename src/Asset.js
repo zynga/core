@@ -1,62 +1,56 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-/**
- * Contains information about images (size, format, clipping, ...) and
- * other assets like CSS files, local data, ...
- */
-(function(global) 
+(function(global)
 {
+	// Jasy is replacing this call via the kernel permutation
+	var asset = core.Env.getValue("asset");
+
 	var entryCache = {};
 	var spriteCache = {};
-	
-	var getEntry = function(id) 
+
+	var getEntry = function(id)
 	{
 		if (core.Env.isSet("debug")) {
 			core.Test.assertString(id, "Invalid asset identifier: " + id);
 		}
-		
+
 		var entry = entryCache[id];
 		if (entry != null) {
 			return entry;
 		}
-		
+
 		var lastSlash = id.lastIndexOf("/");
 		var dirName = id.slice(0, lastSlash);
 		var fileName = id.slice(lastSlash+1);
 
-		var images = assets.images;
+		var images = asset.images;
 		if (images && images[dirName]) {
 			var entry = images[dirName][fileName];
 		}
 
 		if (!entry)
 		{
-			var files = assets.files;
+			var files = asset.files;
 			if (files && files[dirName]) {
 				var entry = files[dirName][fileName];
 			}
 		}
-		
+
 		if (entry) {
 			return entryCache[id] = entry;
 		}
 	};
-	
-	// TODO: Implement using permutation injection
-	// core.Env.getValue("assets");
-	var assets = global.$$assets;
-	if (!assets) 
-	{
-		// override getter to always return undefined
-		getEntry = new Function;
-	}
-	
-	
+
+
+	/**
+	 * Contains information about images (size, format, clipping, ...) and
+	 * other assets like CSS files, local data, ...
+	 */
 	core.Module("core.Asset",
 	{
 		/**
@@ -68,10 +62,10 @@
 		has : function(id) {
 			return entryCache[id] || getEntry(id) != null;
 		},
-		
-		
+
+
 		/**
-		 * Loads the given assets and optionally executes the given callback after all are completed
+		 * Loads the given asset and optionally executes the given callback after all are completed
 		 *
 		 * @param ids {Array} List of assets to load
 		 * @param callback {Function ? null} Callback method to execute
@@ -80,48 +74,48 @@
 		 * @param type {String ? auto} Whether the automatic type detection should be disabled and the given type should be used.
 		 */
 		load: function(ids, callback, context, nocache, type) {
-			
+
 			var id, uri;
-			
+
 			var uris = [];
 			var uriToId = {};
-			
+
 			for (var i=0, l=ids.length; i<l; i++) {
 				id = ids[i];
 				uri = this.toUri(id);
-				
+
 				uris.push(uri);
 				uriToId[uri] = id;
 			}
-			
-			var localCallback = function(uriData) 
+
+			var localCallback = function(uriData)
 			{
 				var idData = {};
 				for (var uri in uriData) {
 					idData[uriToId[uri]] = uriData[uri];
 				}
-				
+
 				context ? callback.call(context, idData) : callback(idData);
 			}
-			
+
 			return core.io.Queue.load(uris, localCallback, null, nocache, type);
-			
+
 		},
 
 
 		/**
 		 * Returns the dimensions of the given image ID
 		 */
-		getImageSize : function(id) 
+		getImageSize : function(id)
 		{
 			var entry = entryCache[id] || getEntry(id);
 			if (core.Env.isSet("debug") && (!entry || entry.length < 3)) {
 				throw new Error("Unknown image: " + id);
 			}
-			
-			return { 
-				width: entry[1], 
-				height: entry[2] 
+
+			return {
+				width: entry[1],
+				height: entry[2]
 			};
 		},
 
@@ -132,26 +126,26 @@
 		 * Nothing is returned when the given ID is not available as part of an image sprite.
 		 *
 		 * @param id {String} Asset identifier
-		 * @return {Map} 
+		 * @return {Map}
 		 */
 		getImageSprite : function(id)
 		{
 			var result = spriteCache[id];
-			if (!result) 
+			if (!result)
 			{
 				var entry = entryCache[id] || getEntry(id);
 				if (core.Env.isSet("debug") && (!entry || entry.length < 5)) {
 					throw new Error("Unknown image sprite: " + id);
 				}
-				
+
 				var lastSlash = id.lastIndexOf("/");
 				var dirName = id.substring(0, lastSlash);
-				var spriteData = assets.sprites[dirName][entry[3]];
+				var spriteData = asset.sprites[dirName][entry[3]];
 				var needsPosX = spriteData[4] == 1;
 				var needsPosY = spriteData[5] == 1;
 
 				spriteCache[id] = result = {
-					uri : assets.roots[spriteData[1]] + "/" + dirName + "/" + spriteData[0],
+					uri : asset.roots[spriteData[1]] + "/" + dirName + "/" + spriteData[0],
 					left : needsPosX ? entry[4] : 0,
 					top : needsPosY ? needsPosX ? entry[5] : entry[4] : 0,
 					width : spriteData[2],
@@ -180,12 +174,12 @@
 			if (core.Env.isSet("debug") && !entry) {
 				throw new Error("Could not figure out URL for asset: " + id);
 			}
-			
+
 			// Differ between files (first case) and images (second case)
-			var root = assets.roots[typeof entry == "number" ? entry : entry[0]];
-			
+			var root = asset.roots[typeof entry == "number" ? entry : entry[0]];
+
 			// Merge to full qualified URI
 			return root + id.slice(id.indexOf("/"));
 		}
-	});	
+	});
 })(this);

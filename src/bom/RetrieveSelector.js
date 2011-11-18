@@ -1,6 +1,6 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
@@ -28,15 +28,15 @@ document.retrieveSelector = (function (filter) {
 			case first:
 				first = !first;
 				nodeName += ":nth-child(" + (1 + filter.call(parentNode.childNodes, elementsOnly).indexOf(element)) + ")";
-				
+
 			case element != documentElement:
 				createSelector(parentNode, documentElement, path);
-			
+
 			default:
 				path.push(nodeName);
 				break;
 		}
-		
+
 		return path;
 	}
 

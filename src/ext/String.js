@@ -1,11 +1,11 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-Object.addPrototypeMethods("String", 
+Object.addPrototypeMethods("String",
 {
 	/**
 	 * Whether the string contains the given substring
@@ -26,9 +26,9 @@ Object.addPrototypeMethods("String",
 	isBlank : function() {
 		return this.trim().length == 0;
 	},
-	
-	
-	/** 
+
+
+	/**
 	 * Reverses the string
 	 *
 	 * @return {String} Reversed string
@@ -40,13 +40,13 @@ Object.addPrototypeMethods("String",
 
 	/**
 	 * Removes double spaces and line breaks.
-	 * 
+	 *
 	 * @return {String} Returns a compacted string
 	 */
 	compact : function() {
 		return this.replace(/[\r\n]/g, " ").trim().replace(/([\s　])+/g, '$1');
 	},
-	
+
 
 	/**
 	 * Returns a hyphenated copy of the original string e.g.
@@ -61,14 +61,14 @@ Object.addPrototypeMethods("String",
 	hyphenate : function() {
 		return this.replace(/[A-Z]/g,'-$&').toLowerCase();
 	},
-	
+
 
 	/**
 	 * Camelizes this string.
-	 * 
+	 *
 	 * @return {String} Camelized string
 	 */
-	camelize: function () 
+	camelize: function ()
 	{
 		return this.replace(/\-+(\S)?/g, function(match, chr) {
 			return chr ? chr.toUpperCase() : '';
@@ -76,20 +76,20 @@ Object.addPrototypeMethods("String",
 	},
 
 
-	/** 
+	/**
 	 * Returns a new string which is a repeated copy of the original one.
-	 * 
+	 *
 	 * @param nr {Integer} Number of times to repeat
 	 * @return {String} Repeated string
 	 */
-	repeat : function(nr) 
+	repeat : function(nr)
 	{
 		// empty array magic
 		return Array(nr+1).join(this);
 	},
-	
-	
-	/** 
+
+
+	/**
 	 * Encodes the string into base 64 encoding.
 	 *
 	 * @return {String} Encoded string
@@ -97,9 +97,9 @@ Object.addPrototypeMethods("String",
 	encodeBase64 : function() {
 		return btoa(this);
 	},
-	
 
-	/** 
+
+	/**
 	 * Decodes the string from base 64 encoding.
 	 *
 	 * @return {String} Decoded string
@@ -107,21 +107,21 @@ Object.addPrototypeMethods("String",
 	decodeBase64 : function() {
 		return atob(this);
 	},
-	
-	
+
+
 	/**
 	 * Returns true if this string starts with the given substring
-	 * 
+	 *
 	 * @return {Boolean} Whether this string starts with the given substring
 	 */
 	startsWith : function(begin) {
 		return begin == this.slice(0, begin.length);
 	},
-	
-	
+
+
 	/**
 	 * Returns true if this string ends with the given substring
-	 * 
+	 *
 	 * @return {Boolean} Whether this string ends with the given substring
 	 */
 	endsWith : function(end) {

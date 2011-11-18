@@ -1,6 +1,6 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
@@ -11,30 +11,30 @@
 (function(global, undef)
 {
 	var cache = {};
-	
+
 	var genericToString = function() {
 		return "[module " + this.moduleName + "]";
 	};
-	
+
 	// Small hack to correctly bootstrap system
 	if (!global.core) {
 		global.core = {};
 	}
-	
-	if (!core.Env) 
+
+	if (!core.Env)
 	{
 		var selected = {};
-		core.Env = 
+		core.Env =
 		{
 			define : function(name, value) {
 				selected[name] = value;
 			},
-			
+
 			getValue : function() {
 				return selected[name];
-			}, 
-			
-			isSet : function(name, value) 
+			},
+
+			isSet : function(name, value)
 			{
 				if (value === undefined) {
 					value = true;
@@ -44,22 +44,22 @@
 			}
 		};
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Define a module with static methods/fields.
-	 * 
+	 *
 	 * As there are new fields added to the member data structure and the module
 	 * itself this is not feasible to being used as a structure for looping through
 	 * via for-in loops.
-	 * 
+	 *
 	 * @param name {String} Name of Module
 	 * @param members {Map} Data structure containing the members
 	 */
-	var Module = core.Module = function(name, members) 
+	var Module = core.Module = function(name, members)
 	{
-		if (core.Env.isSet("debug")) 
+		if (core.Env.isSet("debug"))
 		{
 			core.Test.assertModuleName(name, "Invalid module name " + name + "!");
 			core.Test.assertMap(members, "Invalid map as module configuration in " + name + "!");
@@ -68,7 +68,7 @@
 		var prefix = name + ".";
 		var value;
 
-		for (var key in members) 
+		for (var key in members)
 		{
 			value = members[key];
 
@@ -97,8 +97,8 @@
 		// Attach to name
 		Module.declareName(name, members, true);
 	};
-	
-	
+
+
 	/**
 	 * Declares the given name and stores the given object onto it.
 	 *
@@ -119,7 +119,7 @@
 		var segment;
 		var i = 0;
 
-		while(i<length) 
+		while(i<length)
 		{
 			segment = splits[i++];
 			if (current[segment] == null) {
@@ -128,7 +128,7 @@
 				current = current[segment];
 			}
 		}
-		
+
 		// Store Object
 		return cache[name] = current[splits[i]] = object;
 	};
@@ -142,36 +142,36 @@
 	Module.getAllNames = function() {
 		return Object.keys(cache);
 	};
-	
-	
+
+
 	/**
 	 * Clears the object under the given name (incl cache)
 	 *
 	 * @param name {String} Clears the given name (Only works with stuff attached via {@see #declare})
 	 * @return {Boolean} Whether clearing was successful
 	 */
-	Module.clearName = function(name) 
+	Module.clearName = function(name)
 	{
-		if (name in cache) 
+		if (name in cache)
 		{
 			delete cache[name];
-			
+
 			var current = global;
 			var splitted = name.split(".");
 			for (var i=0, l=splitted.length-1; i<l; i++) {
 				current = current[splitted[i]];
 			}
-			
+
 			// Delete might not work when global object is affected
 			try{
 				delete current[splitted[i]];
 			} catch(ex) {
 				current[splitted[i]] = undef;
 			}
-			
+
 			return true;
 		}
-		
+
 		return false;
 	};
 
@@ -191,10 +191,10 @@
 			if (name)
 			{
 				var splitted = name.split(".");
-				for (var i=0, l=splitted.length; i<l; i++) 
+				for (var i=0, l=splitted.length; i<l; i++)
 				{
 					current = current[splitted[i]];
-					if (!current) 
+					if (!current)
 					{
 						current = null;
 						break;
@@ -202,10 +202,10 @@
 				}
 			}
 		}
-	
+
 		return current;
 	};
-	
+
 
 	/**
 	 * Resolves a given Module name
@@ -213,12 +213,12 @@
 	 * @param moduleName {String} Name to resolve
 	 * @return {Object} Returns the Module stored under the given name
 	 */
-	Module.getByName = function(moduleName) 
+	Module.getByName = function(moduleName)
 	{
 		if (core.Env.isSet("debug")) {
 			core.Test.assertString(moduleName);
 		}
-		
+
 		var obj = Module.resolveName(moduleName);
 		return isModule(obj) ? obj : null;
 	};
@@ -230,8 +230,8 @@
 	 * @param value {String} Any string
 	 * @return {Boolean} Whether the given string is a valid module name
 	 */
-	var isModuleName = Module.isModuleName = function(value) { 
-		return /^(([a-z][a-z0-9]*\.)*)([A-Z][a-zA-Z0-9]*)$/.test(value); 
+	var isModuleName = Module.isModuleName = function(value) {
+		return /^(([a-z][a-z0-9]*\.)*)([A-Z][a-zA-Z0-9]*)$/.test(value);
 	};
 
 
@@ -243,12 +243,12 @@
 	var isModule = Module.isModule = function(module) {
 		return !!(module && typeof module == "object" && module.__isModule);
 	};
-	
-	
+
+
 	// Add assertion for module name
 	core.Test.add(isModuleName, "isModuleName", "Invalid module name!");
 
 	// Add assertion for module type
-	core.Test.add(isModule, "isModule", "Invalid module!");	
+	core.Test.add(isModule, "isModule", "Invalid module!");
 
 })(this);

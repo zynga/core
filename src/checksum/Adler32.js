@@ -1,6 +1,6 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
@@ -12,7 +12,7 @@ core.Module("core.Adler32",
 	 *
 	 * @param str {String} ASCII string
 	 * @return {Integer} Checksum
-	 */	 
+	 */
 	compute : function(data)
 	{
 		var MOD_ADLER = 65521;

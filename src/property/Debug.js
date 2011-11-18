@@ -1,12 +1,12 @@
-/* 
+/*
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
 /**
- * This helper class is only included into debug builds and do the 
+ * This helper class is only included into debug builds and do the
  * generic property checks defined using the property configuration.
  *
  * It's used by both standard property system: core.property.Simple and core.property.Multi.
@@ -17,7 +17,7 @@ core.Module("core.property.Debug",
 {
 	/**
 	 * Validates the incoming parameters of a setter method
-	 * 
+	 *
 	 * @param obj {Object} Object which is modified
 	 * @param config {Map} Property configuration
 	 * @param args {arguments} List of all arguments send to the setter
@@ -29,11 +29,11 @@ core.Module("core.property.Debug",
 		if (args.length == 0) {
 			throw new Error("Called set() method of property " + name + " on object " + obj + " with no arguments!");
 		}
-		
+
 		if (args.length > 1) {
 			throw new Error("Called set() method of property " + name + " on object " + obj + " with too many arguments!");
 		}
-		
+
 		var value = args[0];
 		if (value == null)
 		{
@@ -48,7 +48,7 @@ core.Module("core.property.Debug",
 			var type = config.type;
 			if (type)
 			{
-				try 
+				try
 				{
 					if (type instanceof Array) {
 						core.Test.assertInList(value, type);
@@ -66,18 +66,18 @@ core.Module("core.property.Debug",
 							console.warn("Unsupported check: " + type + "!");
 						}
 					}
-				} 
+				}
 				catch(ex) {
 					throw new Error("Could not set() property " + name + " of object " + obj + ": " + ex);
 				}
 			}
 		}
 	},
-	
+
 
 	/**
 	 * Validates the incoming parameters of a resetter method
-	 * 
+	 *
 	 * @param obj {Object} Object which is modified
 	 * @param config {Map} Property configuration
 	 * @param args {arguments} List of all arguments send to the setter
@@ -88,11 +88,11 @@ core.Module("core.property.Debug",
 			throw new Error("Called reset method of property " + config.name + " on " + obj + " with too many arguments!");
 		}
 	},
-	
-	
+
+
 	/**
 	 * Validates the incoming parameters of a getter method
-	 * 
+	 *
 	 * @param obj {Object} Object which is queried
 	 * @param config {Map} Property configuration
 	 * @param args {arguments} List of all arguments send to the setter
