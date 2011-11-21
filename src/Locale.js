@@ -45,7 +45,7 @@
 		 * @param n {Number} Number to test
 		 * @return {String} One of 0, 1, 2, 3, 4, 5 or 6
 		 */
-		plural : (function(fields, Plural)
+		plural : global.locale && (function(fields, Plural)
 		{
 			var code="", pos=0;
 			var field, expr;
@@ -103,7 +103,7 @@
 		 * @param varargs {...} Placeholder values
 		 * @return {String} Translated string
 		 */
-		trn : function(msgSingular, msgPlural, number, varargs)
+		trn : global.locale && function(msgSingular, msgPlural, number, varargs)
 		{
 			// Matching is based on singular "msgid"
 			var replacement = translation[msgSingular];
