@@ -10,14 +10,6 @@
 	// Jasy is replacing this call via the kernel permutation
 	var translation = core.Env.getValue("translation");
 	
-	// Fill missing locale namespace
-	if (!global.locale) 
-	{
-		locale = {
-			Plural : {}
-		};
-	}
-
 	/**
 	 *
 	 *
@@ -53,7 +45,7 @@
 		 * @param n {Number} Number to test
 		 * @return {String} One of 0, 1, 2, 3, 4, 5 or 6
 		 */
-		plural : (function(fields, Plural)
+		plural : (function(fields)
 		{
 			var code="", pos=0;
 			var field, expr;
@@ -61,7 +53,7 @@
 			for (var i=0; i<5; i++)
 			{
 				field = fields[i];
-				if (expr = Plural[field]) {
+				if (expr = locale.Plural[field]) {
 					code += "if(" + expr + ")return " + (pos++) + ";";
 				}
 			}
@@ -69,7 +61,7 @@
 			code += "return " + pos + ";"
 
 			return new Function("n", code);
-		})(["ZERO", "ONE", "TWO", "FEW", "MANY"], locale.Plural),
+		})(["ZERO", "ONE", "TWO", "FEW", "MANY"]),
 
 
 		/**
