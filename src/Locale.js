@@ -14,7 +14,7 @@
 	 *
 	 *
 	 */
-	core.Module("Locale",
+	core.Module("core.Locale",
 	{
 		/**
 		 * Quick and easy string templating using %1, %2, etc. as placeholders
@@ -45,7 +45,7 @@
 		 * @param n {Number} Number to test
 		 * @return {String} One of 0, 1, 2, 3, 4, 5 or 6
 		 */
-		plural : (function(fields)
+		plural : (function(fields, Plural)
 		{
 			var code="", pos=0;
 			var field, expr;
@@ -53,7 +53,7 @@
 			for (var i=0; i<5; i++)
 			{
 				field = fields[i];
-				if (expr = locale.Plural[field]) {
+				if (expr = Plural[field]) {
 					code += "if(" + expr + ")return " + (pos++) + ";";
 				}
 			}
@@ -61,7 +61,7 @@
 			code += "return " + pos + ";"
 
 			return new Function("n", code);
-		})(["ZERO", "ONE", "TWO", "FEW", "MANY"]),
+		})(["ZERO", "ONE", "TWO", "FEW", "MANY"], locale.Plural),
 
 
 		/**
@@ -74,7 +74,7 @@
 		tr : function(msg, varargs)
 		{
 			var replacement = translation[msg] || msg;
-			return arguments.length <= 1 ? replacement : i18n.template(replacement, arguments, 1);
+			return arguments.length <= 1 ? replacement : core.Locale.template(replacement, arguments, 1);
 		},
 
 
@@ -90,7 +90,7 @@
 		trc : function(hint, msg, varargs)
 		{
 			var replacement = translation[msg] || msg;
-			return arguments.length <= 2 ? replacement : i18n.template(replacement, arguments, 2);
+			return arguments.length <= 2 ? replacement : core.Locale.template(replacement, arguments, 2);
 		},
 
 
@@ -110,7 +110,7 @@
 
 			// Do numeric lookup
 			if (typeof replacement == "object") {
-				var result = replacement[i18n.plural(number)];
+				var result = replacement[core.Locale.plural(number)];
 			}
 
 			// Fallback to programmatically defined messages
@@ -118,7 +118,7 @@
 				result = number == 1 ? msgSingular : msgPlural;
 			}
 
-			return arguments.length <= 3 ? result : i18n.template(result, arguments, 3);
+			return arguments.length <= 3 ? result : core.Locale.template(result, arguments, 3);
 		}
 	});
 })(this);
