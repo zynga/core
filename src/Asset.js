@@ -8,7 +8,7 @@
 (function(global)
 {
 	// Jasy is replacing this call via the kernel permutation
-	var asset = core.Env.getValue("asset");
+	var assets = core.Env.getValue("assets");
 
 	var entryCache = {};
 	var spriteCache = {};
@@ -28,14 +28,14 @@
 		var dirName = id.slice(0, lastSlash);
 		var fileName = id.slice(lastSlash+1);
 
-		var images = asset.images;
+		var images = assets.images;
 		if (images && images[dirName]) {
 			var entry = images[dirName][fileName];
 		}
 
 		if (!entry)
 		{
-			var files = asset.files;
+			var files = assets.files;
 			if (files && files[dirName]) {
 				var entry = files[dirName][fileName];
 			}
@@ -140,12 +140,12 @@
 
 				var lastSlash = id.lastIndexOf("/");
 				var dirName = id.substring(0, lastSlash);
-				var spriteData = asset.sprites[dirName][entry[3]];
+				var spriteData = assets.sprites[dirName][entry[3]];
 				var needsPosX = spriteData[4] == 1;
 				var needsPosY = spriteData[5] == 1;
 
 				spriteCache[id] = result = {
-					uri : asset.roots[spriteData[1]] + "/" + dirName + "/" + spriteData[0],
+					uri : assets.roots[spriteData[1]] + "/" + dirName + "/" + spriteData[0],
 					left : needsPosX ? entry[4] : 0,
 					top : needsPosY ? needsPosX ? entry[5] : entry[4] : 0,
 					width : spriteData[2],
@@ -176,7 +176,7 @@
 			}
 
 			// Differ between files (first case) and images (second case)
-			var root = asset.roots[typeof entry == "number" ? entry : entry[0]];
+			var root = assets.roots[typeof entry == "number" ? entry : entry[0]];
 
 			// Merge to full qualified URI
 			return root + id.slice(id.indexOf("/"));

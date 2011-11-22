@@ -8,7 +8,7 @@
 (function(global)
 {
 	// Jasy is replacing this call via the kernel permutation
-	var translation = core.Env.getValue("translation");
+	var translations = core.Env.getValue("translations");
 	
 	/**
 	 *
@@ -73,7 +73,7 @@
 		 */
 		tr : function(msg, varargs)
 		{
-			var replacement = translation[msg] || msg;
+			var replacement = translations[msg] || msg;
 			return arguments.length <= 1 ? replacement : core.Locale.template(replacement, arguments, 1);
 		},
 
@@ -89,7 +89,7 @@
 		 */
 		trc : function(hint, msg, varargs)
 		{
-			var replacement = translation[msg] || msg;
+			var replacement = translations[msg] || msg;
 			return arguments.length <= 2 ? replacement : core.Locale.template(replacement, arguments, 2);
 		},
 
@@ -106,7 +106,7 @@
 		trn : global.locale && function(msgSingular, msgPlural, number, varargs)
 		{
 			// Matching is based on singular "msgid"
-			var replacement = translation[msgSingular];
+			var replacement = translations[msgSingular];
 
 			// Do numeric lookup
 			if (typeof replacement == "object") {

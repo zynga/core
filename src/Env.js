@@ -8,7 +8,7 @@
 (function(global, undef)
 {
 	// Jasy is replacing this call via the kernel permutation
-	var fields = core.Env.getValue("field");
+	var fields = core.Env.getValue("fields");
 
 	if (fields)
 	{
