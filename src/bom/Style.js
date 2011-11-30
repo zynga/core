@@ -1,4 +1,12 @@
-(function() {
+/*
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2011 Sebastian Werner
+==================================================================================================
+*/
+
+(function() 
+{
 	var nameCache = {};
 	var helperElem = document.createElement('div');
 	var helperStyle = helperElem.style;
@@ -16,7 +24,8 @@
 	 * Utility class for dealing with style properties (setting/getting). Automatically figures out the
 	 * correct name when the property name is vendor prefixed etc.
 	 */
-	core.Module("core.bom.Style", {
+	core.Module("core.bom.Style", 
+	{
 
 		/** {Map} Caches CSS property names to browser specific names. Can be used as a fast lookup alternative to property(name). */
 		names: nameCache,
@@ -37,7 +46,8 @@
 		 * @param computed {Boolean?false} Whether the computed value should be returned
 		 * @return {String} Returns the value of the given style property
 		 */
-		get: function(elem, name, computed) {
+		get: function(elem, name, computed) 
+		{
 			// Find real name, use if supported
 			var supported = name in helperStyle && name || nameCache[name] || this.property(name, true);
 
@@ -68,7 +78,9 @@
 		 * @param value {String} Style value
 		 * @return {Class} Returns the class for further modifications
 		 */
-		set: function(elem, name, value) {
+		set: function(elem, name, value) 
+		{
+			
 			var style = elem.style;
 			var supported;
 
@@ -105,8 +117,8 @@
 		 * @param name {String} Standard (or pre standard) name e.g. 'opacity', 'transform', ...
 		 * @return {String} Vendor property name e.g. 'WebkitTransform'
 		 */
-		property: function(name, warn) {
-
+		property: function(name, warn) 
+		{
 			// Fast path, real native property
 			if (name in helperStyle) {
 				return name;
@@ -122,11 +134,6 @@
 			var vendorName = vendorPrefix + name.charAt(0).toUpperCase() + name.slice(1);
 			if (vendorName in helperStyle) {
 				return (nameCache[name] = vendorName);
-			}
-
-			// Warn about unsupported property
-			if (core.Env.isSet("debug") && warn) {
-				console.warn(this + ": Unsupported style property: " + name);
 			}
 		}
 	});
