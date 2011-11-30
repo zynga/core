@@ -19,6 +19,26 @@
 		presto: 'O'
 	}[core.detect.Engine.VALUE];
 
+	var getProperty = function(name) 
+	{
+		// Fast path, real native property
+		if (name in helperStyle) {
+			return name;
+		}
+
+		// Fixed name already cached?
+		var fixedName = nameCache[name];
+		if (fixedName !== undef) {
+			return fixedName;
+		}
+
+		// Find vendor name
+		var vendorName = vendorPrefix + name.charAt(0).toUpperCase() + name.slice(1);
+		if (vendorName in helperStyle) {
+			return (nameCache[name] = vendorName);
+		}
+	};
+
 
 	/**
 	 * Utility class for dealing with style properties (setting/getting). Automatically figures out the
@@ -26,7 +46,6 @@
 	 */
 	core.Module("core.bom.Style", 
 	{
-
 		/** {Map} Caches CSS property names to browser specific names. Can be used as a fast lookup alternative to property(name). */
 		names: nameCache,
 
@@ -49,7 +68,7 @@
 		get: function(elem, name, computed) 
 		{
 			// Find real name, use if supported
-			var supported = name in helperStyle && name || nameCache[name] || this.property(name, true);
+			var supported = name in helperStyle && name || nameCache[name] || getProperty(name);
 
 			// Fast-path: local styles
 			if (!computed) {
@@ -80,30 +99,28 @@
 		 */
 		set: function(elem, name, value) 
 		{
-			
 			var style = elem.style;
 			var supported;
 
-			if (typeof name === 'string') {
-
+			if (typeof name === 'string') 
+			{
 				// Find real name, apply if supported
-				supported = name in helperStyle && name || nameCache[name] || this.property(name, true);
+				supported = name in helperStyle && name || nameCache[name] || getProperty(name);
 				if (supported) {
-					style[supported] = value === null ? '' : value;
+					style[supported] = value == null ? '' : value;
 				}
-
-			} else {
-
-				for (var key in name) {
-
+			}
+			else
+			{
+				for (var key in name) 
+				{
 					// Find real name, apply if supported
 					value = name[key];
-					supported = key in helperStyle && key || nameCache[key] || this.property(key, true);
+					supported = key in helperStyle && key || nameCache[key] || getProperty(key);
 					if (supported) {
-						style[supported] = value === null ? '' : value;
+						style[supported] = value == null ? '' : value;
 					}
 				}
-
 			}
 
 			// Chaining support
@@ -117,26 +134,7 @@
 		 * @param name {String} Standard (or pre standard) name e.g. 'opacity', 'transform', ...
 		 * @return {String} Vendor property name e.g. 'WebkitTransform'
 		 */
-		property: function(name, warn) 
-		{
-			// Fast path, real native property
-			if (name in helperStyle) {
-				return name;
-			}
-
-			// Fixed name already cached?
-			var fixedName = nameCache[name];
-			if (fixedName !== undef) {
-				return fixedName;
-			}
-
-			// Find vendor name
-			var vendorName = vendorPrefix + name.charAt(0).toUpperCase() + name.slice(1);
-			if (vendorName in helperStyle) {
-				return (nameCache[name] = vendorName);
-			}
-		}
+		property: getProperty
 	});
-
 })();
 

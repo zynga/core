@@ -5,8 +5,8 @@
 ==================================================================================================
 */
 
-(function() {
-	
+(function() 
+{
 	var transform = core.bom.Style.property('transform');
 	if (transform) {
 
