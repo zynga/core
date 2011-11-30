@@ -149,6 +149,18 @@
 		 */
 		getValue : function(name) {
 			return selected[name];
+		},
+		
+		
+		/**
+		 * Selects the current value of the given name from the map.
+		 *
+		 * @param name {String} Name of the field to query
+		 * @param map {Map} Map to select a key by the value of the given field
+		 * @return {var} Selected value
+		 */
+		select: function(name, map) {
+			return map[selected[name]];
 		}
 	});
 })(this);

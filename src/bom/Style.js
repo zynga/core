@@ -12,12 +12,12 @@
 	var helperStyle = helperElem.style;
 	var undef;
 
-	var vendorPrefix = {
+	var vendorPrefix = core.Env.select("engine", {
 		trident: 'ms',
 		gecko: 'Moz',
 		webkit: 'Webkit',
 		presto: 'O'
-	}[core.detect.Engine.VALUE];
+	});
 
 	var getProperty = function(name) 
 	{
