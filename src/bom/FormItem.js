@@ -18,6 +18,12 @@ core.Module("core.bom.FormItem",
 	 */
 	isSuccessful: function(item)
 	{
+		if (core.Env.isSet("debug")) 
+		{
+			core.Test.assertEqual(args.length, 1);
+			core.Test.assertElement(item);
+		}
+		
 		if (!item.name || item.disabled) {
 			return false;
 		}
@@ -47,7 +53,15 @@ core.Module("core.bom.FormItem",
 	 * @param item {Element} DOM element
 	 * @return {String} Serialized representation of the form item
 	 */
-	serialize: function(item) {
+	serialize: function(item) 
+	{
+		if (core.Env.isSet("debug")) 
+		{
+			core.Test.assertEqual(args.length, 1);
+			core.Test.assertElement(item);
+			core.Test.assertString(item.name);
+		}
+		
 		return item.name + "=" + encodeURIComponent(item.value);
 	}
 });

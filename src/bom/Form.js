@@ -15,8 +15,16 @@ core.Module("core.bom.Form",
 	 * 
 	 * @param form {Element} DOM element of form to serialize
 	 */
-	serialize: function(form) {
-		return filter(form.elements, core.bom.FormItem.isSuccessful).map(core.bom.FormItem.serialize).join("&");
+	serialize: function(form) 
+	{
+		if (core.Env.isSet("debug")) 
+		{
+			core.Test.assertEqual(args.length, 1);
+			core.Test.assertElement(form);
+			core.Test.assertEqual(form.tagName, "FORM");
+		}
+		
+		return Array.prototype.filter.call(form.elements, core.bom.FormItem.isSuccessful).map(core.bom.FormItem.serialize).join("&");
 	}
 });
 
