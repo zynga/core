@@ -179,4 +179,20 @@
 		return obj != null && key in obj;
 	}, "hasKey", "Missing key %1!");
 	
+	Test.add(function(value) {
+		return value && value.nodeType != null;
+	}, "isNode", "Not a node!");
+
+	Test.add(function(value) {
+		return value && value.nodeType == 1;
+	}, "isElement", "Not an element!");
+
+	Test.add(function(value) {
+		return value && value.nodeType == 3;
+	}, "isTextNode", "Not a text node!");
+
+	Test.add(function(value) {
+		return value && value.nodeType == 9;
+	}, "isDocument", "Not a document!");
+	
 })(this, Object.prototype.toString);

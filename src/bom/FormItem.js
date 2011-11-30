@@ -5,8 +5,17 @@
 ==================================================================================================
 */
 
+/**
+ * Offers methods around serialization tasks of form items.
+ */
 core.Module("core.bom.FormItem",
 {
+	/**
+	 * Whether the form field is successful (should be submitted to the server)
+	 *
+	 * @param item {Element} DOM element
+	 * @return {Boolean} Whether the value of the given form element should be submitted to the server
+	 */
 	isSuccessful: function(item)
 	{
 		if (!item.name || item.disabled) {
@@ -31,6 +40,13 @@ core.Module("core.bom.FormItem",
 		return true;
 	},
 
+
+	/**
+	 * Returns the serialized representation of the given form item.
+	 *
+	 * @param item {Element} DOM element
+	 * @return {String} Serialized representation of the form item
+	 */
 	serialize: function(item) {
 		return item.name + "=" + encodeURIComponent(item.value);
 	}

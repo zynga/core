@@ -5,15 +5,18 @@
 ==================================================================================================
 */
 
-(function()
+/**
+ * Utilities to work with HTML form elements
+ */
+core.Module("core.bom.Form",
 {
-	var FormItem = core.bom.FormItem;
-
-	core.Module("core.bom.Form",
-	{
-		serialize: function(form) {
-			return filter(form.elements, FormItem.isSuccessful).map(FormItem.serialize).join("&");
-		}
-	});
-})
+	/**
+	 * Serializes a HTML form element.
+	 * 
+	 * @param form {Element} DOM element of form to serialize
+	 */
+	serialize: function(form) {
+		return filter(form.elements, core.bom.FormItem.isSuccessful).map(core.bom.FormItem.serialize).join("&");
+	}
+});
 
