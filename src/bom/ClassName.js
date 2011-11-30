@@ -7,25 +7,60 @@
 
 (function() 
 {
+	// Add a new test for class names
+	core.Test.add(function(value) {
+		return typeof value == "string" && value.length != 0 && !(/\s/.test(value));
+	}, "isClassName", "Not a valid class name");
+	
+	// Verify incoming parameters
+	if (core.Env.isSet("debug")) 
+	{
+		var validate = function(args) 
+		{
+			core.Test.assertEqual(args.length, 2);
+			core.Test.assertElement(args[0]);
+			core.Test.assertClassName(args[1]);
+		};
+	}
+	
+	// Support new classList interface
 	if ("classList" in document.createElement("div")) 
 	{
-		
-		var addClass = function(elem, className) {
+		var addClass = function(elem, className) 
+		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+			
 			elem.classList.add(className);
 		};
 
-		var removeClass = function(elem, className) {
+		var removeClass = function(elem, className) 
+		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+
 			elem.classList.remove(className);
 		};
 
-		var containsClass = function(elem, className) {
+		var containsClass = function(elem, className) 
+		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+		
 			return elem.classList.contains(className);
 		};
 
-		var toggleClass = function(elem, className) {
+		var toggleClass = function(elem, className) 
+		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+
 			elem.classList.toggle(className);
 		};
-		
 	}
 	else
 	{
@@ -34,21 +69,39 @@
 		
 		var addClass = function(elem, className) 
 		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+			
 			if (!containsClass(elem, className)) {
 				elem.className += space + className;
 			}
 		};
 
-		var removeClass = function(elem, className) {
+		var removeClass = function(elem, className) 
+		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+
 			elem.className = (space + elem.className + space).replace(className, "")
 		};
 
-		var containsClass = function(elem, className) {
+		var containsClass = function(elem, className) 
+		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+
 		  return elem.className && (elem.className == className || (space + elem.className + space).indexOf(space + className + space) !== -1);
 		};
 
 		var toggleClass = function(elem, className) 
 		{
+			if (core.Env.isSet("debug")) {
+				validate(arguments);
+			}
+			
 			if (containsClass(elem, className)) {
 				removeClass(elem, className);
 			} else {
