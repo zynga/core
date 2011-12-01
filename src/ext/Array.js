@@ -121,7 +121,7 @@ Object.addPrototypeMethods("Array",
 		
 		this.forEach(function(value) 
 		{
-			if(core.Test.isArray(value)) {
+			if (value instanceof Array) {
 				result.push.apply(result, value.flatten());
 			} else {
 				result.push(value);
