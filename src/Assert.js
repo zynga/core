@@ -114,8 +114,8 @@
 
 	add(function(value, keys) 
 	{
-		Assert.assertMap(value);
-		Assert.assertArray(keys);
+		Assert.map(value);
+		Assert.array(keys);
 		
 		var valueKeys = Object.keys(value);
 		for (var i=0, l=valueKeys.length; i<l; i++) 

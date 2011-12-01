@@ -246,9 +246,9 @@
 
 
 	// Add assertion for module name
-	core.Assert.add(isModuleName, "isModuleName", "Invalid module name!");
+	core.Assert.add(isModuleName, "moduleName", "Invalid module name!");
 
 	// Add assertion for module type
-	core.Assert.add(isModule, "isModule", "Invalid module!");
+	core.Assert.add(isModule, "module", "Invalid module!");
 
 })(this);

@@ -219,7 +219,7 @@ if(!core.Env.isSet("es5"))
 			if (core.Env.isSet("debug")) 
 			{
 				for (var i=0, l=include.length; i<l; i++) {
-					core.Assert.classConstructor(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
+					core.Assert.cls(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
 				}
 				
 				checkMixinMemberConflicts(include, config.members, name);
@@ -395,7 +395,7 @@ if(!core.Env.isSet("es5"))
 	Class.getEvents = function(cls) 
 	{
 		if (core.Env.isSet("debug")) {
-			core.Assert.classConstructor(cls);
+			core.Assert.cls(cls);
 		}
 		
 		return cls.__events;
@@ -411,7 +411,7 @@ if(!core.Env.isSet("es5"))
 	Class.getProperties = function(cls) 
 	{
 		if (core.Env.isSet("debug")) {
-			core.Assert.classConstructor(cls);
+			core.Assert.cls(cls);
 		}
 		
 		return cls.__properties;
@@ -459,8 +459,8 @@ if(!core.Env.isSet("es5"))
 	var includesClass = Class.includesClass = function(cls, incCls) 
 	{
 		if (core.Env.isSet("debug")) {
-			core.Assert.classConstructor(cls, "Class to check for including class is itself not a class!");
-			core.Assert.classConstructor(incCls, "Class to check for being included is not a class!");
+			core.Assert.cls(cls, "Class to check for including class is itself not a class!");
+			core.Assert.cls(incCls, "Class to check for being included is not a class!");
 		}
 		
 		return cls.__includes.indexOf(incCls) != -1;
@@ -468,7 +468,7 @@ if(!core.Env.isSet("es5"))
 	
 	
 	// Add assertions
-	core.Assert.add(isClass, "isClass", "Invalid class!");
+	core.Assert.add(isClass, "cls", "Invalid class!");
 	core.Assert.add(includesClass, "includesClass", "Does not include class %1!");
 	
 })(this);
