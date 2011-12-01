@@ -51,7 +51,7 @@
 	 * Contains information about images (size, format, clipping, ...) and
 	 * other assets like CSS files, local data, ...
 	 */
-	core.Module("core.Asset",
+	core.Module("core.io.Asset",
 	{
 		/**
 		 * Whether the registry has information about the given asset.
