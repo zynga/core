@@ -1,115 +1,98 @@
-/* 
+/*
 ==================================================================================================
-	Jasy - JavaScript Tooling Framework
-	Copyright 2010-2011 Sebastian Werner
+  Core - JavaScript Foundation
+  Copyright 2010-2011 Sebastian Werner
 ==================================================================================================
 */
 
-(function(global, toString, undef) 
+/**
+ * @require {fix.ArrayIndexOf}
+ * @require {fix.Console}
+ * @require {fix.DateNow}
+ * @require {fix.DocumentHead}
+ * @require {fix.ExecScript}
+ * @require {fix.FunctionBind}
+ * @require {fix.HTML5Markup}
+ * @require {fix.ObjectKeys}
+ * @require {fix.SetTimeoutArgs}
+ */
+(function(global, toString) 
 {
+	// Module class is not yet ready
 	if (!global.core) {
 		global.core = {};
 	}
 	
+	var add = function(func, name, msg) 
+	{
+		if (!func) {
+			throw new Error("Invalid function during adding assertion for " + name);
+		}
+		
+		// Wrap method throw error for simplified throwing of exceptions in type checks
+		if (func.length == 1) 
+		{
+			Test[name] = function(value, localMsg) {
+				console.assert(func(value), 'Value: "' + value + '": ' + (localMsg || msg));
+			};
+		}
+		else 
+		{
+			Test[name] = function(value, test, localMsg) {
+				console.assert(func(value, test), 'Value: "' + value + '": ' + (localMsg || msg).replace("%1", "" + test));
+			};
+		}
+		
+		Test[name].displayName = "core.Test." + name;
+	};
+	
+	
 	/**
-	 * Test module
-	 *
-	 * It also bundles all fixes under "fix/" before starting with the real code.
-	 *
-	 * @require {fix.ArrayIndexOf}
-	 * @require {fix.Console}
-	 * @require {fix.DateNow}
-	 * @require {fix.DocumentHead}
-	 * @require {fix.ExecScript}
-	 * @require {fix.FunctionBind}
-	 * @require {fix.HTML5Markup}
-	 * @require {fix.ObjectKeys}
-	 * @require {fix.SetTimeoutArgs}
+	 * Test module which contains and manages assertions.
 	 */
 	var Test = core.Test = 
 	{
 		/**
-		 * Adds a new assertion check
+		 * Adds a new assertion check. Wraps the original method
+		 *
+		 * Supports two different function signatures:
+		 *
+		 * * function(expression)
+		 * * function(expression, comparison) (supports replacing %s inside the error message with the comparison value)
 		 *
 		 * @param func {Function} Function for the test. Must return boolean.
-		 * @param methodName {String} Name of the method to attach.
-		 * @param assertMsg {}
+		 * @param name {String} Name of the method to attach.
+		 * @param msg {String} Generic message to print out
 		 *
 		 */
-		add : function(func, methodName, assertMsg) 
-		{
-			if(!func) {
-				throw new Error("Invalid function during adding assertion for " + methodName);
-			}
-			
-			// Attach given method as is to assertion
-			this[methodName] = func;
-			if(func.displayName == null) {
-				func.displayName = "core.Test." + methodName;
-			}
-
-			// Build assert method name
-			var assertName = "assert";
-			if (methodName.substring(0, 2) == "is") {
-				assertName += methodName.slice(2);
-			} else {
-				assertName += methodName.charAt(0).toUpperCase() + methodName.slice(1);
-			}
-			
-			// Wrap method throw error for simplified throwing of exceptions in type checks
-			if (func.length == 1) 
-			{
-				this[assertName] = function(value, customMsg) 
-				{
-					if (!func(value)) {
-						throw new TypeError('Value: "' + value + '": ' + (customMsg||assertMsg));
-					}
-				};
-			}
-			else 
-			{
-				this[assertName] = function(value, test, customMsg) 
-				{
-					if (!func(value, test)) 
-					{
-						var msg = (customMsg||assertMsg).replace("%1", ""+test);
-						throw new TypeError('Value: "' + value + '": ' + msg);
-					}
-				};
-			}
-			
-			this[assertName].displayName = "core.Test." + assertName;
-		}
+		add : add
 	};
-	
-	Test.add(function(value) { return typeof value == "boolean"; }, "isBoolean", "Not boolean!");
-	Test.add(function(value) { return value === true; }, "isTrue", "Not 'true'!");
-	Test.add(function(value) { return value === false; },"isFalse", "Not 'false'!");
-	Test.add(function(value) { return typeof value == "string"; }, "isString", "Not a string!");
-	Test.add(function(value) { return typeof value == "number" && isFinite(value); }, "isNumber", "Not a number!");
-	Test.add(function(value) { return parseInt(value) === value; }, "isInteger", "Not an integer!");
-	Test.add(function(value) { return value != null; }, "isNotNull", "Is null!");
 
-	Test.add(function(value, match) {
-		return value == match;
-	}, "isEqual", "Is not equal!");
+	// The actual basic assertions
+	add(function(value) { return typeof value == "boolean"; }, "boolean", "Not boolean!");
+	add(function(value) { return typeof value == "string"; }, "string", "Not a string!");
+	add(function(value) { return typeof value == "number" && isFinite(value); }, "number", "Not a number!");
+	add(function(value) { return parseInt(value) === value; }, "integer", "Not an integer!");
+	add(function(value) { return value != null; }, "notNull", "Is null!");
 
-	Test.add(function(value) {
+	add(function(value, match) { return value == match; }, "equal", "Is not equal!");
+
+	add(function(value) {
 		var type = typeof value;
 		return value == null || type == "boolean" || type == "number" || type == "string";
-	}, "isPrimitive", "Not a primitive value!");
+	}, "primitive", "Not a primitive value!");
 
-	Test.add(function(value) {
+	add(function(value) {
 		return value != null && typeof value == "object";
-	}, "isObject", "Not an object!");
+	}, "object", "Not an object!");
 	
 	// Via: https://github.com/dperini/nwmatcher/blob/master/src/nwmatcher.js#L182-190
 	var nativeCompare = (document.appendChild + '').replace(/appendChild/g, '');
-	Test.add(function(object, method) {
+	add(function(object, method) {
 		var m = object && object[method] || false;
 		return m && typeof m != 'string' &&
 			nativeCompare == (m + '').replace(new RegExp(method, 'g'), '');
-	}, "isNative", "Not a native method!");
+	}, "native", "Not a native method!");
 
 	// Make not use of instanceof operator as it has a memory leak in IE and also does not work cross frame.
 	// Memory leak: http://ajaxian.com/archives/working-aroung-the-instanceof-memory-leak
@@ -120,32 +103,23 @@
 		toStringMap[cls] = "[object " + cls + "]";
 	});
 
-	Test.add(function(value) {
+	add(function(value) {
 		return value != null && toString.call(value) == toStringMap.Array;
-	}, "isArray", "Not an array!");
+	}, "array", "Not an array!");
 
-	Test.add(function(value) {
+	add(function(value) {
 		return value != null && toString.call(value) == toStringMap.Function;
-	}, "isFunction", "Not a function!");
+	}, "function", "Not a function!");
 	
-	Test.add(function(value) {
+	add(function(value) {
 		return value != null && toString.call(value) == toStringMap.RegExp;
-	}, "isRegExp", "Not a regular expression!");
+	}, "regExp", "Not a regular expression!");
 
-	Test.add(function(value) {
+	add(function(value) {
 		return value != null && toString.call(value) == toStringMap.Object;
-	}, "isMap", "Not a map (plain object)!");
+	}, "map", "Not a map (plain object)!");
 
-	var objectOrFunction = { 
-		"object" : 1, 
-		"function" : 1 
-	};
-	
-	Test.add(function(value) {
-		return value != null && objectOrFunction[typeof value] == 1;
-	}, "isObjectOrFunction", "Not a function or object!");
-	
-	Test.add(function(value, keys) 
+	add(function(value, keys) 
 	{
 		Test.assertMap(value);
 		Test.assertArray(keys);
@@ -162,37 +136,37 @@
 		return true;
 	}, "hasAllowedKeysOnly", "Defines a key %1 which is not allowed being used!");
 
-	Test.add(function(value, regexp) { 
+	add(function(value, regexp) { 
 		return typeof value == "string" && !!value.match(regexp); 
 	}, "matchesRegExp", "Does not match regular expression %1!");
 	
-	Test.add(function(value, list) {
+	add(function(value, list) {
 		return list.indexOf(value) != -1;
-	}, "isInList", "Is not in specified list!");
+	}, "inList", "Is not in specified list!");
 	
-	Test.add(function(value, clazz) {
+	add(function(value, clazz) {
 		// Use instanceof here, but be memory safe in IE
 		return value != null && value.hasOwnProperty && value instanceof clazz;
-	}, "isInstanceOf", "Is not a instance of %1!"); 
+	}, "instanceOf", "Is not a instance of %1!"); 
 
-	Test.add(function(obj, key) {
+	add(function(obj, key) {
 		return obj != null && key in obj;
 	}, "hasKey", "Missing key %1!");
 	
-	Test.add(function(value) {
+	add(function(value) {
 		return value && value.nodeType != null;
-	}, "isNode", "Not a node!");
+	}, "node", "Not a node!");
 
-	Test.add(function(value) {
+	add(function(value) {
 		return value && value.nodeType == 1;
-	}, "isElement", "Not an element!");
+	}, "element", "Not an element!");
 
-	Test.add(function(value) {
+	add(function(value) {
 		return value && value.nodeType == 3;
-	}, "isTextNode", "Not a text node!");
+	}, "textNode", "Not a text node!");
 
-	Test.add(function(value) {
+	add(function(value) {
 		return value && value.nodeType == 9;
-	}, "isDocument", "Not a document!");
+	}, "document", "Not a document!");
 	
 })(this, Object.prototype.toString);
