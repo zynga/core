@@ -73,7 +73,7 @@
 			}
 			
 			if (core.Env.isSet("debug")) {
-				core.Test.assertArray(uris, "Invalid list of URIs!");
+				core.Assert.array(uris, "Invalid list of URIs!");
 			}
 
 			for (var i=0, l=uris.length; i<l; i++) 
@@ -100,22 +100,22 @@
 		{
 			if (core.Env.isSet("debug")) 
 			{
-				core.Test.assertArray(uris);
+				core.Assert.array(uris);
 
 				if (callback != null) {
-					core.Test.assertFunction(callback, "Invalid callback method!");
+					core.Assert.function(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					core.Test.assertObject(context, "Invalid callback context!");
+					core.Assert.object(context, "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					core.Test.assertBoolean(nocache);
+					core.Assert.boolean(nocache);
 				}
 
 				if (type != null) {
-					core.Test.assertString(type);
+					core.Assert.string(type);
 				}
 			}
 			
@@ -136,8 +136,8 @@
 			var onLoad = function(uri, errornous, data) 
 			{
 				if (core.Env.isSet("debug")) {
-					core.Test.assertString(uri, "Got invalid URI from loader!");
-					core.Test.assertBoolean(errornous, "Got invalid errornous flag from loader for uri: " + uri);
+					core.Assert.string(uri, "Got invalid URI from loader!");
+					core.Assert.boolean(errornous, "Got invalid errornous flag from loader for uri: " + uri);
 				}
 
 				delete loading[uri];

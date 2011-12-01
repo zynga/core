@@ -61,8 +61,8 @@
 	{
 		if (core.Env.isSet("debug"))
 		{
-			core.Test.assertModuleName(name, "Invalid module name " + name + "!");
-			core.Test.assertMap(members, "Invalid map as module configuration in " + name + "!");
+			core.Assert.moduleName(name, "Invalid module name " + name + "!");
+			core.Assert.map(members, "Invalid map as module configuration in " + name + "!");
 		}
 
 		var prefix = name + ".";
@@ -216,7 +216,7 @@
 	Module.getByName = function(moduleName)
 	{
 		if (core.Env.isSet("debug")) {
-			core.Test.assertString(moduleName);
+			core.Assert.string(moduleName);
 		}
 
 		var obj = Module.resolveName(moduleName);
@@ -246,9 +246,9 @@
 
 
 	// Add assertion for module name
-	core.Test.add(isModuleName, "isModuleName", "Invalid module name!");
+	core.Assert.add(isModuleName, "isModuleName", "Invalid module name!");
 
 	// Add assertion for module type
-	core.Test.add(isModule, "isModule", "Invalid module!");
+	core.Assert.add(isModule, "isModule", "Invalid module!");
 
 })(this);

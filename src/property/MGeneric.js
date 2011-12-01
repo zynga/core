@@ -45,7 +45,7 @@
 				if (arguments.length == 2)
 				{
 					if (core.Env.isSet("debug")) {
-						core.Test.assertString(property);
+						core.Assert.string(property);
 					}
 
 					var method = setters[property];
@@ -54,7 +54,7 @@
 					}
 
 					if (core.Env.isSet("debug")) {
-						core.Test.assertFunction(this[method], "Invalid property to set(): " + property);
+						core.Assert.function(this[method], "Invalid property to set(): " + property);
 					}
 
 					return this[method](value);
@@ -62,7 +62,7 @@
 				else
 				{
 					if (core.Env.isSet("debug")) {
-						core.Test.assertMap(property);
+						core.Assert.map(property);
 					}
 
 					for (var name in property)
@@ -73,7 +73,7 @@
 						}
 
 						if (core.Env.isSet("debug")) {
-							core.Test.assertFunction(this[method], "Invalid property to set(): " + name);
+							core.Assert.function(this[method], "Invalid property to set(): " + name);
 						}
 
 						this[method](property[name]);
@@ -99,7 +99,7 @@
 				if (typeof property == "string")
 				{
 					if (core.Env.isSet("debug")) {
-						core.Test.assertString(property);
+						core.Assert.string(property);
 					}
 
 					var method = getters[property];
@@ -108,7 +108,7 @@
 					}
 
 					if (core.Env.isSet("debug")) {
-						core.Test.assertFunction(this[method], "Invalid property to get(): " + property);
+						core.Assert.function(this[method], "Invalid property to get(): " + property);
 					}
 
 					return this[method]();
@@ -116,7 +116,7 @@
 				else
 				{
 					if (core.Env.isSet("debug")) {
-						core.Test.assertArray(property);
+						core.Assert.array(property);
 					}
 
 					var ret = {};
@@ -130,7 +130,7 @@
 						}
 
 						if (core.Env.isSet("debug")) {
-							core.Test.assertFunction(this[method], "Invalid property to get(): " + name);
+							core.Assert.function(this[method], "Invalid property to get(): " + name);
 						}
 
 						ret[name] = this[method]();

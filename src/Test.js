@@ -32,25 +32,25 @@
 		// Wrap method throw error for simplified throwing of exceptions in type checks
 		if (func.length == 1) 
 		{
-			Test[name] = function(value, localMsg) {
+			Assert[name] = function(value, localMsg) {
 				console.assert(func(value), 'Value: "' + value + '": ' + (localMsg || msg));
 			};
 		}
 		else 
 		{
-			Test[name] = function(value, test, localMsg) {
+			Assert[name] = function(value, test, localMsg) {
 				console.assert(func(value, test), 'Value: "' + value + '": ' + (localMsg || msg).replace("%1", "" + test));
 			};
 		}
 		
-		Test[name].displayName = "core.Test." + name;
+		Assert[name].displayName = "core.Assert." + name;
 	};
 	
 	
 	/**
-	 * Test module which contains and manages assertions.
+	 * Assert module which contains and manages assertions.
 	 */
-	var Test = core.Test = 
+	var Assert = core.Assert = 
 	{
 		/**
 		 * Adds a new assertion check. Wraps the original method
@@ -121,8 +121,8 @@
 
 	add(function(value, keys) 
 	{
-		Test.assertMap(value);
-		Test.assertArray(keys);
+		Assert.assertMap(value);
+		Assert.assertArray(keys);
 		
 		var valueKeys = Object.keys(value);
 		for (var i=0, l=valueKeys.length; i<l; i++) 

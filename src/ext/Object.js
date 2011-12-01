@@ -26,7 +26,7 @@
 	{
 		var prefix = globalName + ".";
 		if (core.Env.isSet("debug")) {
-			core.Test.assertHasKey(global, globalName)
+			core.Assert.hasKey(global, globalName)
 		}
 
 		var construct = global[globalName];
@@ -34,7 +34,7 @@
 		{
 			var func = members[name];
 			if (core.Env.isSet("debug")) {
-				core.Test.assertFunction(func);
+				core.Assert.function(func);
 			}
 			func.displayName = prefix + name;
 
@@ -46,19 +46,19 @@
 	{
 		var prefix = globalName + ".prototype.";
 		if (core.Env.isSet("debug")) {
-			core.Test.assertHasKey(global, globalName);
+			core.Assert.hasKey(global, globalName);
 		}
 
 		var proto = global[globalName].prototype;
 		if (core.Env.isSet("debug")) {
-			core.Test.assertNotNull(proto);
+			core.Assert.notNull(proto);
 		}
 
 		for (var name in members) 
 		{
 			var func = members[name];
 			if (core.Env.isSet("debug")) {
-				core.Test.assertFunction(func);
+				core.Assert.function(func);
 			}
 			func.displayName = prefix + name;
 

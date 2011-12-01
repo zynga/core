@@ -8,7 +8,7 @@
 (function() 
 {
 	// Add a new test for class names
-	core.Test.add(function(value) {
+	core.Assert.add(function(value) {
 		return typeof value == "string" && value.length != 0 && !(/\s/.test(value));
 	}, "isClassName", "Not a valid class name");
 	
@@ -17,9 +17,9 @@
 	{
 		var validate = function(args) 
 		{
-			core.Test.assertEqual(args.length, 2);
-			core.Test.assertElement(args[0]);
-			core.Test.assertClassName(args[1]);
+			core.Assert.equal(args.length, 2);
+			core.Assert.element(args[0]);
+			core.Assert.className(args[1]);
 		};
 	}
 	

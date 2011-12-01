@@ -51,9 +51,9 @@ core.Module("core.property.Debug",
 				try
 				{
 					if (type instanceof Array) {
-						core.Test.assertInList(value, type);
+						core.Assert.inList(value, type);
 					} else if (core.Class.isClass(type)) {
-						core.Test.assertInstanceOf(value, type);
+						core.Assert.instanceOf(value, type);
 					} else if (core.Interface.isInterface(type)) {
 						core.Interface.assert(value, type);
 					}

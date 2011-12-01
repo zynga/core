@@ -22,8 +22,8 @@
 	{
 		if (core.Env.isSet("debug"))
 		{
-			core.Test.assertModuleName(name, "Invalid interface name " + name + "!");
-			core.Test.assertMap(config, "Invalid interface configuration in " + name);
+			core.Assert.moduleName(name, "Invalid interface name " + name + "!");
+			core.Assert.map(config, "Invalid interface configuration in " + name);
 		}
 
 		var iface =
@@ -80,7 +80,7 @@
 	Interface.getByName = function(interfaceName)
 	{
 		if (core.Env.isSet("debug")) {
-			core.Test.assertString(interfaceName);
+			core.Assert.string(interfaceName);
 		}
 
 		var obj = core.Module.resolveName(interfaceName);
@@ -233,6 +233,6 @@
 
 
 	// Add assertion for interface type
-	core.Test.add(isInterface, "isInterface", "Invalid interface!");
+	core.Assert.add(isInterface, "isInterface", "Invalid interface!");
 
 })();

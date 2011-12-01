@@ -152,33 +152,33 @@ if(!core.Env.isSet("es5"))
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Test.assertModuleName(name, "Invalid class name " + name + "!");
-			core.Test.assertMap(config, "Invalid class configuration in " + name);
-			core.Test.assertHasAllowedKeysOnly(config, ["construct","events","members","properties","include","implement"], 
+			core.Assert.moduleName(name, "Invalid class name " + name + "!");
+			core.Assert.map(config, "Invalid class configuration in " + name);
+			core.Assert.hasAllowedKeysOnly(config, ["construct","events","members","properties","include","implement"], 
 				"Invalid configuration in class " + name + "! Unallowed key(s) found!");
 			
 			if ("construct" in config) {
-				core.Test.assertFunction(config.construct, "Invalid constructor in class " + name + "!");
+				core.Assert.function(config.construct, "Invalid constructor in class " + name + "!");
 			}
 			
 			if ("events" in config) {
-				core.Test.assertMap(config.events, "Invalid event data in class " + name + "!");
+				core.Assert.map(config.events, "Invalid event data in class " + name + "!");
 			}
 			
 			if ("members" in config) {
-				core.Test.assertMap(config.members, "Invalid member section in class " + name);
+				core.Assert.map(config.members, "Invalid member section in class " + name);
 			}
 
 			if ("properties" in config) {
-				core.Test.assertMap(config.properties, "Invalid properties section in class " + name);
+				core.Assert.map(config.properties, "Invalid properties section in class " + name);
 			}
 			
 			if ("include" in config) {
-				core.Test.assertArray(config.include, "Invalid include list in class " + name);
+				core.Assert.array(config.include, "Invalid include list in class " + name);
 			}
 
 			if ("implement" in config) {
-				core.Test.assertArray(config.implement, "Invalid implement list in class " + name);
+				core.Assert.array(config.implement, "Invalid implement list in class " + name);
 			}
 		}
 		
@@ -219,7 +219,7 @@ if(!core.Env.isSet("es5"))
 			if (core.Env.isSet("debug")) 
 			{
 				for (var i=0, l=include.length; i<l; i++) {
-					core.Test.assertClass(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
+					core.Assert.classConstructor(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
 				}
 				
 				checkMixinMemberConflicts(include, config.members, name);
@@ -378,7 +378,7 @@ if(!core.Env.isSet("es5"))
 	Class.getByName = function(className) 
 	{
 		if (core.Env.isSet("debug")) {
-			core.Test.assertString(className);
+			core.Assert.string(className);
 		}
 		
 		var obj = core.Module.resolveName(className);
@@ -395,7 +395,7 @@ if(!core.Env.isSet("es5"))
 	Class.getEvents = function(cls) 
 	{
 		if (core.Env.isSet("debug")) {
-			core.Test.assertClass(cls);
+			core.Assert.classConstructor(cls);
 		}
 		
 		return cls.__events;
@@ -411,7 +411,7 @@ if(!core.Env.isSet("es5"))
 	Class.getProperties = function(cls) 
 	{
 		if (core.Env.isSet("debug")) {
-			core.Test.assertClass(cls);
+			core.Assert.classConstructor(cls);
 		}
 		
 		return cls.__properties;
@@ -459,8 +459,8 @@ if(!core.Env.isSet("es5"))
 	var includesClass = Class.includesClass = function(cls, incCls) 
 	{
 		if (core.Env.isSet("debug")) {
-			core.Test.assertClass(cls, "Class to check for including class is itself not a class!");
-			core.Test.assertClass(incCls, "Class to check for being included is not a class!");
+			core.Assert.classConstructor(cls, "Class to check for including class is itself not a class!");
+			core.Assert.classConstructor(incCls, "Class to check for being included is not a class!");
 		}
 		
 		return cls.__includes.indexOf(incCls) != -1;
@@ -468,7 +468,7 @@ if(!core.Env.isSet("es5"))
 	
 	
 	// Add assertions
-	core.Test.add(isClass, "isClass", "Invalid class!");
-	core.Test.add(includesClass, "includesClass", "Does not include class %1!");
+	core.Assert.add(isClass, "isClass", "Invalid class!");
+	core.Assert.add(includesClass, "includesClass", "Does not include class %1!");
 	
 })(this);

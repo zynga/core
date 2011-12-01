@@ -20,8 +20,8 @@ core.Module("core.bom.FormItem",
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Test.assertEqual(args.length, 1);
-			core.Test.assertElement(item);
+			core.Assert.equal(args.length, 1);
+			core.Assert.element(item);
 		}
 		
 		if (!item.name || item.disabled) {
@@ -57,9 +57,9 @@ core.Module("core.bom.FormItem",
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Test.assertEqual(args.length, 1);
-			core.Test.assertElement(item);
-			core.Test.assertString(item.name);
+			core.Assert.equal(args.length, 1);
+			core.Assert.element(item);
+			core.Assert.string(item.name);
 		}
 		
 		return item.name + "=" + encodeURIComponent(item.value);

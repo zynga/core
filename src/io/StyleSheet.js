@@ -40,18 +40,18 @@
 		{
 			if (core.Env.isSet("debug")) 
 			{
-				core.Test.assertString(uri);
+				core.Assert.string(uri);
 
 				if (callback != null) {
-					core.Test.assertFunction(callback, "Invalid callback method!");
+					core.Assert.function(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					core.Test.assertObject(context, "Invalid callback context!");
+					core.Assert.object(context, "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					core.Test.assertBoolean(nocache);
+					core.Assert.boolean(nocache);
 				}
 			}
 			
