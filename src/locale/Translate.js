@@ -14,7 +14,7 @@
 	 *
 	 *
 	 */
-	core.Module("core.Locale",
+	core.Module("core.locale.Translate",
 	{
 		/**
 		 * Quick and easy string templating using %1, %2, etc. as placeholders
@@ -74,7 +74,7 @@
 		tr : function(msg, varargs)
 		{
 			var replacement = translations[msg] || msg;
-			return arguments.length <= 1 ? replacement : core.Locale.template(replacement, arguments, 1);
+			return arguments.length <= 1 ? replacement : core.locale.Translate.template(replacement, arguments, 1);
 		},
 
 
@@ -90,7 +90,7 @@
 		trc : function(hint, msg, varargs)
 		{
 			var replacement = translations[msg] || msg;
-			return arguments.length <= 2 ? replacement : core.Locale.template(replacement, arguments, 2);
+			return arguments.length <= 2 ? replacement : core.locale.Translate.template(replacement, arguments, 2);
 		},
 
 
@@ -110,7 +110,7 @@
 
 			// Do numeric lookup
 			if (typeof replacement == "object") {
-				var result = replacement[core.Locale.plural(number)];
+				var result = replacement[core.locale.Translate.plural(number)];
 			}
 
 			// Fallback to programmatically defined messages
@@ -118,7 +118,7 @@
 				result = number == 1 ? msgSingular : msgPlural;
 			}
 
-			return arguments.length <= 3 ? result : core.Locale.template(result, arguments, 3);
+			return arguments.length <= 3 ? result : core.locale.Translate.template(result, arguments, 3);
 		}
 	});
 })(this);
