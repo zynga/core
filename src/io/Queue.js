@@ -103,7 +103,7 @@
 				core.Assert.array(uris);
 
 				if (callback != null) {
-					core.Assert.function(callback, "Invalid callback method!");
+					core.Assert.func(callback, "Invalid callback method!");
 				}
 				
 				if (context != null) {

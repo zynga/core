@@ -79,7 +79,7 @@
 				}
 
 				if (propertyApply) {
-					core.Assert.function(propertyApply);
+					core.Assert.func(propertyApply);
 				}
 			}
 

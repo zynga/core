@@ -158,7 +158,7 @@ if(!core.Env.isSet("es5"))
 				"Invalid configuration in class " + name + "! Unallowed key(s) found!");
 			
 			if ("construct" in config) {
-				core.Assert.function(config.construct, "Invalid constructor in class " + name + "!");
+				core.Assert.func(config.construct, "Invalid constructor in class " + name + "!");
 			}
 			
 			if ("events" in config) {

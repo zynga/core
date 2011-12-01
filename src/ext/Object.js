@@ -34,7 +34,7 @@
 		{
 			var func = members[name];
 			if (core.Env.isSet("debug")) {
-				core.Assert.function(func);
+				core.Assert.func(func);
 			}
 			func.displayName = prefix + name;
 
@@ -58,7 +58,7 @@
 		{
 			var func = members[name];
 			if (core.Env.isSet("debug")) {
-				core.Assert.function(func);
+				core.Assert.func(func);
 			}
 			func.displayName = prefix + name;
 

@@ -54,7 +54,7 @@
 					}
 
 					if (core.Env.isSet("debug")) {
-						core.Assert.function(this[method], "Invalid property to set(): " + property);
+						core.Assert.func(this[method], "Invalid property to set(): " + property);
 					}
 
 					return this[method](value);
@@ -73,7 +73,7 @@
 						}
 
 						if (core.Env.isSet("debug")) {
-							core.Assert.function(this[method], "Invalid property to set(): " + name);
+							core.Assert.func(this[method], "Invalid property to set(): " + name);
 						}
 
 						this[method](property[name]);
@@ -108,7 +108,7 @@
 					}
 
 					if (core.Env.isSet("debug")) {
-						core.Assert.function(this[method], "Invalid property to get(): " + property);
+						core.Assert.func(this[method], "Invalid property to get(): " + property);
 					}
 
 					return this[method]();
@@ -130,7 +130,7 @@
 						}
 
 						if (core.Env.isSet("debug")) {
-							core.Assert.function(this[method], "Invalid property to get(): " + name);
+							core.Assert.func(this[method], "Invalid property to get(): " + name);
 						}
 
 						ret[name] = this[method]();

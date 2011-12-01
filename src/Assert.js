@@ -84,14 +84,6 @@
 		return value == null || type == "boolean" || type == "number" || type == "string";
 	}, "primitive", "Not a primitive value!");
 
-	// Via: https://github.com/dperini/nwmatcher/blob/master/src/nwmatcher.js#L182-190
-	var nativeCompare = (document.appendChild + '').replace(/appendChild/g, '');
-	add(function(object, method) {
-		var m = object && object[method] || false;
-		return m && typeof m != 'string' &&
-			nativeCompare == (m + '').replace(new RegExp(method, 'g'), '');
-	}, "native", "Not a native method!");
-
 	// Make not use of instanceof operator as it has a memory leak in IE and also does not work cross frame.
 	// Cross frame: http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
 	var toString = Object.prototype.toString;
@@ -106,7 +98,7 @@
 
 	add(function(value) {
 		return value != null && toString.call(value) == toStringMap.Function;
-	}, "function", "Not a function!");
+	}, "func", "Not a function!");
 	
 	add(function(value) {
 		return value != null && toString.call(value) == toStringMap.RegExp;
