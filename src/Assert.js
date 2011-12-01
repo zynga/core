@@ -75,17 +75,15 @@
 	add(function(value) { return parseInt(value) === value; }, "integer", "Not an integer!");
 	add(function(value) { return value != null; }, "notNull", "Is null!");
 
-	add(function(value, match) { return value == match; }, "equal", "Is not equal!");
+	add(function(value, match) { 
+		return value == match; 
+	}, "equal", "Is not equal!");
 
 	add(function(value) {
 		var type = typeof value;
 		return value == null || type == "boolean" || type == "number" || type == "string";
 	}, "primitive", "Not a primitive value!");
 
-	add(function(value) {
-		return value != null && typeof value == "object";
-	}, "object", "Not an object!");
-	
 	// Via: https://github.com/dperini/nwmatcher/blob/master/src/nwmatcher.js#L182-190
 	var nativeCompare = (document.appendChild + '').replace(/appendChild/g, '');
 	add(function(object, method) {
@@ -95,9 +93,8 @@
 	}, "native", "Not a native method!");
 
 	// Make not use of instanceof operator as it has a memory leak in IE and also does not work cross frame.
-	// Memory leak: http://ajaxian.com/archives/working-aroung-the-instanceof-memory-leak
 	// Cross frame: http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
-
+	var toString = Object.prototype.toString;
 	var toStringMap = {};
 	"Array Function RegExp Object".replace(/\w+/g, function(cls) {
 		toStringMap[cls] = "[object " + cls + "]";
@@ -117,6 +114,10 @@
 
 	add(function(value) {
 		return value != null && toString.call(value) == toStringMap.Object;
+	}, "object", "Not an object!");
+	
+	add(function(value) {
+		return value != null && toString.call(value) == toStringMap.Object && value.constructor === Object;
 	}, "map", "Not a map (plain object)!");
 
 	add(function(value, keys) 
@@ -144,8 +145,9 @@
 		return list.indexOf(value) != -1;
 	}, "inList", "Is not in specified list!");
 	
+	// Use instanceof here, but be memory safe in IE
+	// Memory leak: http://ajaxian.com/archives/working-aroung-the-instanceof-memory-leak
 	add(function(value, clazz) {
-		// Use instanceof here, but be memory safe in IE
 		return value != null && value.hasOwnProperty && value instanceof clazz;
 	}, "instanceOf", "Is not a instance of %1!"); 
 
@@ -169,4 +171,4 @@
 		return value && value.nodeType == 9;
 	}, "document", "Not a document!");
 	
-})(this, Object.prototype.toString);
+})(this);
