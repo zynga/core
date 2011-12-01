@@ -1,6 +1,6 @@
 /* 
 ==================================================================================================
-  Jasy - JavaScript Tooling Framework
+  Core - JavaScript Foundation
   Copyright 2010-2011 Sebastian Werner
 --------------------------------------------------------------------------------------------------
   Via: http://perfectionkills.com/global-eval-what-are-the-options/
