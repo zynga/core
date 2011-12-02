@@ -32,14 +32,20 @@
 		// Wrap method throw error for simplified throwing of exceptions in type checks
 		if (func.length == 1) 
 		{
-			Assert[name] = function(value, localMsg) {
-				console.assert(func(value), 'Value: "' + value + '": ' + (localMsg || msg));
+			Assert[name] = function(value, localMsg) 
+			{
+				if (!func(value)) {
+					throw new Error('Value: "' + value + '": ' + (localMsg || msg));
+				}
 			};
 		}
 		else 
 		{
-			Assert[name] = function(value, test, localMsg) {
-				console.assert(func(value, test), 'Value: "' + value + '": ' + (localMsg || msg).replace("%1", "" + test));
+			Assert[name] = function(value, test, localMsg) 
+			{
+				if (!func(value, test)) {
+					throw new Error('Value: "' + value + '": ' + (localMsg || msg).replace("%1", "" + test));
+				}
 			};
 		}
 		
