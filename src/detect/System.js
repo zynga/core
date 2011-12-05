@@ -87,7 +87,7 @@
 					name = "ios";
 					var match=/OS (\d+\.\d+)(?:(?:\.\d+)+)? like/.exec(agent);
 					if(match){
-						version=parseFloat(match[1],10);
+						version = parseFloat(match[1],10);
 					}
 				} else {
 					// Fallback
