@@ -56,12 +56,11 @@ core.Module("core.property.Debug",
 						core.Assert.instanceOf(value, type);
 					} else if (core.Interface.isInterface(type)) {
 						core.Interface.assert(value, type);
-					}
+					} 
 					else
 					{
-						var assertName = "assert" + type;
-						if (core.Test[assertName]) {
-							core.Test[assertName](value);
+						if (core.Assert[type]) {
+							core.Assert[type](value);
 						} else {
 							console.warn("Unsupported check: " + type + "!");
 						}

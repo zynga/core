@@ -30,9 +30,10 @@
 		}
 		
 		// Wrap method throw error for simplified throwing of exceptions in type checks
+		var wrappedFunc;
 		if (func.length == 1) 
 		{
-			Assert[name] = function(value, localMsg) 
+			wrappedFunc = function(value, localMsg) 
 			{
 				if (!func(value)) {
 					throw new Error('Value: "' + value + '": ' + (localMsg || msg));
@@ -41,7 +42,7 @@
 		}
 		else 
 		{
-			Assert[name] = function(value, test, localMsg) 
+			wrappedFunc = function(value, test, localMsg) 
 			{
 				if (!func(value, test)) {
 					throw new Error('Value: "' + value + '": ' + (localMsg || msg).replace("%1", "" + test));
@@ -49,7 +50,8 @@
 			};
 		}
 		
-		Assert[name].displayName = "core.Assert." + name;
+		wrappedFunc.displayName = "core.Assert." + name;
+		Assert[name] = wrappedFunc;
 	};
 	
 	
