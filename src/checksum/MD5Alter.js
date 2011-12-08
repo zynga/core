@@ -7,7 +7,7 @@
 
 (function() 
 {
-
+	
 	/**
 	 * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.
 	 *
@@ -50,8 +50,7 @@
 	/*
 	 * Calculate the MD5 of a raw string
 	 */
-	function rstr_md5(s)
-	{
+	function rstr_md5(s) {
 		return binl2rstr(binl_md5(rstr2binl(s), s.length * 8));
 	}
 
@@ -230,6 +229,7 @@
 	{
 		var lsw = (x & 0xFFFF) + (y & 0xFFFF);
 		var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+		
 		return (msw << 16) | (lsw & 0xFFFF);
 	}
 
