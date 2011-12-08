@@ -17,11 +17,6 @@
 	 */
 	core.Module("core.checksum.SHA1", 
 	{
-
-		/*
-		 * These are the functions you'll usually want to call
-		 * They take string arguments and return either hex or base-64 encoded strings
-		 */
 		hex_sha1 : function(s) { 
 			return core.checksum.Common.rstr2hex(rstr_sha1(core.checksum.Common.str2rstr_utf8(s))); 
 		},
@@ -45,14 +40,13 @@
 		any_hmac_sha1 : function(k, d, e) { 
 			return core.checksum.Common.rstr2any(rstr_hmac_sha1(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d)), e); 
 		}
-
 	});
 
 	/*
 	 * Calculate the SHA1 of a raw string
 	 */
 	function rstr_sha1(s) {
-		return binb2rstr(binb_sha1(rstr2binb(s), s.length * 8));
+		return core.checksum.Common.binb2rstr(binb_sha1(core.checksum.Common.rstr2binb(s), s.length * 8));
 	}
 
 	/*
@@ -60,7 +54,7 @@
 	 */
 	function rstr_hmac_sha1(key, data)
 	{
-		var bkey = rstr2binb(key);
+		var bkey = core.checksum.Common.rstr2binb(key);
 		
 		if (bkey.length > 16) {
 			bkey = binb_sha1(bkey, key.length * 8);
@@ -73,40 +67,8 @@
 			opad[i] = bkey[i] ^ 0x5C5C5C5C;
 		}
 
-		var hash = binb_sha1(ipad.concat(rstr2binb(data)), 512 + data.length * 8);
-		return binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
-	}
-
-	/*
-	 * Convert a raw string to an array of big-endian words
-	 * Characters >255 have their high-byte silently ignored.
-	 */
-	function rstr2binb(input)
-	{
-		var output = Array(input.length >> 2);
-
-		for (var i = 0; i < output.length; i++) {
-			output[i] = 0;
-		}
-
-		for (var i = 0; i < input.length * 8; i += 8) {
-			output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
-		}
-			
-		return output;
-	}
-
-	/*
-	 * Convert an array of big-endian words to a string
-	 */
-	function binb2rstr(input)
-	{
-		var output = "";
-		for (var i = 0; i < input.length * 32; i += 8) {
-			output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
-		}
-			
-		return output;
+		var hash = binb_sha1(ipad.concat(core.checksum.Common.rstr2binb(data)), 512 + data.length * 8);
+		return core.checksum.Common.binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
 	}
 
 	/*

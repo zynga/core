@@ -16,8 +16,8 @@
 	 * See http://pajhome.org.uk/crypt/md5 for details.
 	 * Also http://anmar.eu.org/projects/jssha2/
 	 */
-	core.Module("core.checksum.SHA256", {
-
+	core.Module("core.checksum.SHA256", 
+	{
 		hex_sha256 : function(s) { 
 			return core.checksum.Common.rstr2hex(rstr_sha256(core.checksum.Common.str2rstr_utf8(s))); 
 		},
@@ -41,17 +41,14 @@
 		any_hmac_sha256 : function(k, d, e) { 
 			return core.checksum.Common.rstr2any(rstr_hmac_sha256(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d)), e); 
 		}
-
 	});
-
-
 
 	/*
 	 * Calculate the sha256 of a raw string
 	 */
 	function rstr_sha256(s)
 	{
-		return binb2rstr(binb_sha256(rstr2binb(s), s.length * 8));
+		return core.checksum.Common.binb2rstr(binb_sha256(core.checksum.Common.rstr2binb(s), s.length * 8));
 	}
 
 	/*
@@ -59,7 +56,7 @@
 	 */
 	function rstr_hmac_sha256(key, data)
 	{
-		var bkey = rstr2binb(key);
+		var bkey = core.checksum.Common.rstr2binb(key);
 		if(bkey.length > 16) bkey = binb_sha256(bkey, key.length * 8);
 
 		var ipad = Array(16), opad = Array(16);
@@ -69,35 +66,11 @@
 			opad[i] = bkey[i] ^ 0x5C5C5C5C;
 		}
 
-		var hash = binb_sha256(ipad.concat(rstr2binb(data)), 512 + data.length * 8);
-		return binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
+		var hash = binb_sha256(ipad.concat(core.checksum.Common.rstr2binb(data)), 512 + data.length * 8);
+		return core.checksum.Common.binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
 	}
 
 
-	/*
-	 * Convert a raw string to an array of big-endian words
-	 * Characters >255 have their high-byte silently ignored.
-	 */
-	function rstr2binb(input)
-	{
-		var output = Array(input.length >> 2);
-		for(var i = 0; i < output.length; i++)
-			output[i] = 0;
-		for(var i = 0; i < input.length * 8; i += 8)
-			output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
-		return output;
-	}
-
-	/*
-	 * Convert an array of big-endian words to a string
-	 */
-	function binb2rstr(input)
-	{
-		var output = "";
-		for(var i = 0; i < input.length * 32; i += 8)
-			output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
-		return output;
-	}
 
 	/*
 	 * Main sha256 function, with its support functions

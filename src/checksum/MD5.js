@@ -7,7 +7,6 @@
 
 (function() 
 {
-	
 	/**
 	 * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.
 	 *
@@ -16,9 +15,8 @@
 	 * Distributed under the BSD License
 	 * See http://pajhome.org.uk/crypt/md5 for more info.
 	 */
-	core.Module("core.checksum.MD5Alter", 
+	core.Module("core.checksum.MD5", 
 	{
-
 		hex_md5 : function(s) { 
 			return core.checksum.Common.rstr2hex(rstr_md5(core.checksum.Common.str2rstr_utf8(s))); 
 		},
@@ -42,10 +40,7 @@
 		any_hmac_md5 : function(k, d, e) { 
 			return core.checksum.Common.rstr2any(rstr_hmac_md5(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d)), e); 
 		}
-
 	});
-
-
 
 	/*
 	 * Calculate the MD5 of a raw string
