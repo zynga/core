@@ -1,3 +1,10 @@
+/*
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2011 Sebastian Werner
+==================================================================================================
+*/
+
 /**
  * Generic animation class with support for dropped frames both optional easing and duration.
  *
