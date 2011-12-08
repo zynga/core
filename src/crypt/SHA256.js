@@ -16,30 +16,30 @@
 	 * See http://pajhome.org.uk/crypt/md5 for details.
 	 * Also http://anmar.eu.org/projects/jssha2/
 	 */
-	core.Module("core.checksum.SHA256", 
+	core.Module("core.crypt.SHA256", 
 	{
 		hex_sha256 : function(s) { 
-			return core.checksum.Common.rstr2hex(rstr_sha256(core.checksum.Common.str2rstr_utf8(s))); 
+			return core.crypt.Common.rstr2hex(rstr_sha256(core.crypt.Common.str2rstr_utf8(s))); 
 		},
 
 		b64_sha256 : function(s) { 
-			return core.checksum.Common.rstr2b64(rstr_sha256(core.checksum.Common.str2rstr_utf8(s))); 
+			return core.crypt.Common.rstr2b64(rstr_sha256(core.crypt.Common.str2rstr_utf8(s))); 
 		},
 
 		any_sha256 : function(s, e) { 
-			return core.checksum.Common.rstr2any(rstr_sha256(core.checksum.Common.str2rstr_utf8(s)), e); 
+			return core.crypt.Common.rstr2any(rstr_sha256(core.crypt.Common.str2rstr_utf8(s)), e); 
 		},
 
 		hex_hmac_sha256 : function(k, d) { 
-			return core.checksum.Common.rstr2hex(rstr_hmac_sha256(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
+			return core.crypt.Common.rstr2hex(rstr_hmac_sha256(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
 		},
 
 		b64_hmac_sha256 : function(k, d) { 
-			return core.checksum.Common.rstr2b64(rstr_hmac_sha256(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
+			return core.crypt.Common.rstr2b64(rstr_hmac_sha256(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
 		},
 
 		any_hmac_sha256 : function(k, d, e) { 
-			return core.checksum.Common.rstr2any(rstr_hmac_sha256(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d)), e); 
+			return core.crypt.Common.rstr2any(rstr_hmac_sha256(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d)), e); 
 		}
 	});
 
@@ -48,7 +48,7 @@
 	 */
 	function rstr_sha256(s)
 	{
-		return core.checksum.Common.binb2rstr(binb_sha256(core.checksum.Common.rstr2binb(s), s.length * 8));
+		return core.crypt.Common.binb2rstr(binb_sha256(core.crypt.Common.rstr2binb(s), s.length * 8));
 	}
 
 	/*
@@ -56,7 +56,7 @@
 	 */
 	function rstr_hmac_sha256(key, data)
 	{
-		var bkey = core.checksum.Common.rstr2binb(key);
+		var bkey = core.crypt.Common.rstr2binb(key);
 		if(bkey.length > 16) bkey = binb_sha256(bkey, key.length * 8);
 
 		var ipad = Array(16), opad = Array(16);
@@ -66,8 +66,8 @@
 			opad[i] = bkey[i] ^ 0x5C5C5C5C;
 		}
 
-		var hash = binb_sha256(ipad.concat(core.checksum.Common.rstr2binb(data)), 512 + data.length * 8);
-		return core.checksum.Common.binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
+		var hash = binb_sha256(ipad.concat(core.crypt.Common.rstr2binb(data)), 512 + data.length * 8);
+		return core.crypt.Common.binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
 	}
 
 

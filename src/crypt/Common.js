@@ -13,7 +13,7 @@
 	var base64Tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 	
 	
-	Module("core.checksum.Common", 
+	Module("core.crypt.Common", 
 	{
 
 		/*

@@ -15,30 +15,30 @@
 	 * Distributed under the BSD License
 	 * See http://pajhome.org.uk/crypt/md5 for details.
 	 */
-	core.Module("core.checksum.SHA1", 
+	core.Module("core.crypt.SHA1", 
 	{
 		hex_sha1 : function(s) { 
-			return core.checksum.Common.rstr2hex(rstr_sha1(core.checksum.Common.str2rstr_utf8(s))); 
+			return core.crypt.Common.rstr2hex(rstr_sha1(core.crypt.Common.str2rstr_utf8(s))); 
 		},
 
 		b64_sha1 : function(s) { 
-			return core.checksum.Common.rstr2b64(rstr_sha1(core.checksum.Common.str2rstr_utf8(s))); 
+			return core.crypt.Common.rstr2b64(rstr_sha1(core.crypt.Common.str2rstr_utf8(s))); 
 		},
 
 		any_sha1 : function(s, e) { 
-			return core.checksum.Common.rstr2any(rstr_sha1(core.checksum.Common.str2rstr_utf8(s)), e); 
+			return core.crypt.Common.rstr2any(rstr_sha1(core.crypt.Common.str2rstr_utf8(s)), e); 
 		},
 
 		hex_hmac_sha1 : function(k, d) { 
-			return core.checksum.Common.rstr2hex(rstr_hmac_sha1(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
+			return core.crypt.Common.rstr2hex(rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
 		},
 
 		b64_hmac_sha1 : function(k, d) { 
-			return core.checksum.Common.rstr2b64(rstr_hmac_sha1(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
+			return core.crypt.Common.rstr2b64(rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
 		},
 
 		any_hmac_sha1 : function(k, d, e) { 
-			return core.checksum.Common.rstr2any(rstr_hmac_sha1(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d)), e); 
+			return core.crypt.Common.rstr2any(rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d)), e); 
 		}
 	});
 
@@ -46,7 +46,7 @@
 	 * Calculate the SHA1 of a raw string
 	 */
 	function rstr_sha1(s) {
-		return core.checksum.Common.binb2rstr(binb_sha1(core.checksum.Common.rstr2binb(s), s.length * 8));
+		return core.crypt.Common.binb2rstr(binb_sha1(core.crypt.Common.rstr2binb(s), s.length * 8));
 	}
 
 	/*
@@ -54,7 +54,7 @@
 	 */
 	function rstr_hmac_sha1(key, data)
 	{
-		var bkey = core.checksum.Common.rstr2binb(key);
+		var bkey = core.crypt.Common.rstr2binb(key);
 		
 		if (bkey.length > 16) {
 			bkey = binb_sha1(bkey, key.length * 8);
@@ -67,8 +67,8 @@
 			opad[i] = bkey[i] ^ 0x5C5C5C5C;
 		}
 
-		var hash = binb_sha1(ipad.concat(core.checksum.Common.rstr2binb(data)), 512 + data.length * 8);
-		return core.checksum.Common.binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
+		var hash = binb_sha1(ipad.concat(core.crypt.Common.rstr2binb(data)), 512 + data.length * 8);
+		return core.crypt.Common.binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
 	}
 
 	/*

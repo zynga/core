@@ -15,30 +15,30 @@
 	 * Distributed under the BSD License
 	 * See http://pajhome.org.uk/crypt/md5 for more info.
 	 */
-	core.Module("core.checksum.MD5", 
+	core.Module("core.crypt.MD5", 
 	{
 		hex_md5 : function(s) { 
-			return core.checksum.Common.rstr2hex(rstr_md5(core.checksum.Common.str2rstr_utf8(s))); 
+			return core.crypt.Common.rstr2hex(rstr_md5(core.crypt.Common.str2rstr_utf8(s))); 
 		},
 
 		b64_md5 : function(s) { 
-			return core.checksum.Common.rstr2b64(rstr_md5(core.checksum.Common.str2rstr_utf8(s))); 
+			return core.crypt.Common.rstr2b64(rstr_md5(core.crypt.Common.str2rstr_utf8(s))); 
 		},
 
 		any_md5 : function(s, e) { 
-			return core.checksum.Common.rstr2any(rstr_md5(core.checksum.Common.str2rstr_utf8(s)), e); 
+			return core.crypt.Common.rstr2any(rstr_md5(core.crypt.Common.str2rstr_utf8(s)), e); 
 		},
 
 		hex_hmac_md5 : function(k, d) { 
-			return core.checksum.Common.rstr2hex(rstr_hmac_md5(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
+			return core.crypt.Common.rstr2hex(rstr_hmac_md5(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
 		},
 
 		b64_hmac_md5 : function(k, d) { 
-			return core.checksum.Common.rstr2b64(rstr_hmac_md5(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
+			return core.crypt.Common.rstr2b64(rstr_hmac_md5(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
 		},
 
 		any_hmac_md5 : function(k, d, e) { 
-			return core.checksum.Common.rstr2any(rstr_hmac_md5(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d)), e); 
+			return core.crypt.Common.rstr2any(rstr_hmac_md5(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d)), e); 
 		}
 	});
 
