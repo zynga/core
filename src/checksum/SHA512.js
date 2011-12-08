@@ -7,15 +7,6 @@
 
 (function() 
 {
-	
-	/*
-	 * Configurable variables. You may need to tweak these to be compatible with
-	 * the server-side, but the defaults work in most cases.
-	 */
-	var hexcase = 0;	/* hex output format. 0 - lowercase; 1 - uppercase				*/
-	var b64pad	= ""; /* base-64 pad character. "=" for strict RFC compliance		*/
-
-
 	/**
 	 * A JavaScript implementation of the Secure Hash Algorithm, SHA-512, as defined in FIPS 180-2
 	 *
@@ -51,13 +42,10 @@
 		}
 	});
 
-
-
 	/*
 	 * Calculate the SHA-512 of a raw string
 	 */
-	function rstr_sha512(s)
-	{
+	function rstr_sha512(s) {
 		return binb2rstr(binb_sha512(rstr2binb(s), s.length * 8));
 	}
 
@@ -79,9 +67,6 @@
 		var hash = binb_sha512(ipad.concat(rstr2binb(data)), 1024 + data.length * 8);
 		return binb2rstr(binb_sha512(opad.concat(hash), 1024 + 512));
 	}
-
-
-
 
 	/*
 	 * Convert a raw string to an array of big-endian words
