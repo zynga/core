@@ -322,11 +322,37 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		CHECKSUM
+		CRYPT
 	---------------------------------------------------------------------------
 	*/	
 	
-	module("Checksum");
+	module("Crypt");
+	
+	test("Adler32", function() {
+		
+		
+	});
+	
+	test("CRC32", function() {
+		
+		
+	});
+	
+	test("MD5", function() {
+		
+		
+	});
+	
+	test("SHA1", function() {
+		
+		
+	});
+	
+	test("SHA256", function() {
+		
+		
+	});
+	
 	
 	
 
@@ -804,7 +830,7 @@ $(function() {
 		});
 		
 		var eventMap = core.Class.getEvents(events.Mouse);
-		ok(core.Test.isMap(eventMap), "Events should be a returned as a map");
+		ok(core.Assert.map(eventMap), "Events should be a returned as a map");
 		equals(eventMap.click, MouseEvent, "No click event found");
 		
 		core.Class("events.Keyboard", {
@@ -965,16 +991,16 @@ $(function() {
 			}
 		});
 		
-		ok(core.Test.isClass(properties.Simple));
+		ok(core.Assert.cls(properties.Simple));
 		equals(Object.keys(core.Class.getProperties(properties.Simple)).join(","), "color,backgroundColor");
 
 		equals(core.Class.getProperties(properties.Simple).color.type, "String");
 		equals(typeof core.Class.getProperties(properties.Simple).color.apply, "function");
 
-		ok(core.Test.isFunction(properties.Simple.prototype.getColor));
-		ok(core.Test.isFunction(properties.Simple.prototype.getBackgroundColor));
-		ok(core.Test.isFunction(properties.Simple.prototype.setColor));
-		ok(core.Test.isFunction(properties.Simple.prototype.setBackgroundColor));
+		ok(core.Test.func(properties.Simple.prototype.getColor));
+		ok(core.Test.func(properties.Simple.prototype.getBackgroundColor));
+		ok(core.Test.func(properties.Simple.prototype.setColor));
+		ok(core.Test.func(properties.Simple.prototype.setBackgroundColor));
 
 		equals(properties.Simple.prototype.getColor.displayName, "properties.Simple.getColor");
 		equals(properties.Simple.prototype.getBackgroundColor.displayName, "properties.Simple.getBackgroundColor");
@@ -1200,7 +1226,7 @@ $(function() {
 			}
 		});
 		
-		ok(core.Test.isClass(properties.Text));
+		ok(core.Assert.cls(properties.Text));
 		equals(Object.keys(core.Class.getProperties(properties.Text)).join(","), "wrap,color,fontFamily,lineHeight");
 
 
@@ -1219,7 +1245,7 @@ $(function() {
 			}
 		});
 
-		ok(core.Test.isClass(properties.Dimension));
+		ok(core.Assert.cls(properties.Dimension));
 		equals(Object.keys(core.Class.getProperties(properties.Dimension)).join(","), "width,height");
 		
 		
@@ -1248,7 +1274,7 @@ $(function() {
 			}
 		});
 		
-		ok(core.Test.isClass(properties.Label));
+		ok(core.Assert.cls(properties.Label));
 		equals(Object.keys(core.Class.getProperties(properties.Label)).join(","), "wrap,color,fontFamily,lineHeight,width,height");
 		
 		
