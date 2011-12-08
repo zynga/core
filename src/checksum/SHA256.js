@@ -31,11 +31,11 @@
 		},
 
 		b64_sha256 : function(s) { 
-			return rstr2b64(rstr_sha256(str2rstr_utf8(s))); 
+			return core.checksum.Common.rstr2b64(rstr_sha256(str2rstr_utf8(s))); 
 		},
 
 		any_sha256 : function(s, e) { 
-			return rstr2any(rstr_sha256(str2rstr_utf8(s)), e); 
+			return core.checksum.Common.rstr2any(rstr_sha256(str2rstr_utf8(s)), e); 
 		},
 
 		hex_hmac_sha256 : function(k, d) { 
@@ -43,11 +43,11 @@
 		},
 
 		b64_hmac_sha256 : function(k, d) { 
-			return rstr2b64(rstr_hmac_sha256(str2rstr_utf8(k), str2rstr_utf8(d))); 
+			return core.checksum.Common.rstr2b64(rstr_hmac_sha256(str2rstr_utf8(k), str2rstr_utf8(d))); 
 		},
 
 		any_hmac_sha256 : function(k, d, e) { 
-			return rstr2any(rstr_hmac_sha256(str2rstr_utf8(k), str2rstr_utf8(d)), e); 
+			return core.checksum.Common.rstr2any(rstr_hmac_sha256(str2rstr_utf8(k), str2rstr_utf8(d)), e); 
 		}
 
 	});
@@ -81,81 +81,6 @@
 		return binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
 	}
 
-
-	/*
-	 * Convert a raw string to a base-64 string
-	 */
-	function rstr2b64(input)
-	{
-		try { b64pad } catch(e) { b64pad=''; }
-		var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-		var output = "";
-		var len = input.length;
-		for(var i = 0; i < len; i += 3)
-		{
-			var triplet = (input.charCodeAt(i) << 16)
-									| (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0)
-									| (i + 2 < len ? input.charCodeAt(i+2)			: 0);
-			for(var j = 0; j < 4; j++)
-			{
-				if(i * 8 + j * 6 > input.length * 8) output += b64pad;
-				else output += tab.charAt((triplet >>> 6*(3-j)) & 0x3F);
-			}
-		}
-		return output;
-	}
-
-	/*
-	 * Convert a raw string to an arbitrary string encoding
-	 */
-	function rstr2any(input, encoding)
-	{
-		var divisor = encoding.length;
-		var remainders = Array();
-		var i, q, x, quotient;
-
-		/* Convert to an array of 16-bit big-endian values, forming the dividend */
-		var dividend = Array(Math.ceil(input.length / 2));
-		for(i = 0; i < dividend.length; i++)
-		{
-			dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
-		}
-
-		/*
-		 * Repeatedly perform a long division. The binary array forms the dividend,
-		 * the length of the encoding is the divisor. Once computed, the quotient
-		 * forms the dividend for the next step. We stop when the dividend is zero.
-		 * All remainders are stored for later use.
-		 */
-		while(dividend.length > 0)
-		{
-			quotient = Array();
-			x = 0;
-			for(i = 0; i < dividend.length; i++)
-			{
-				x = (x << 16) + dividend[i];
-				q = Math.floor(x / divisor);
-				x -= q * divisor;
-				if(quotient.length > 0 || q > 0)
-					quotient[quotient.length] = q;
-			}
-			remainders[remainders.length] = x;
-			dividend = quotient;
-		}
-
-		/* Convert the remainders to the output string */
-		var output = "";
-		for(i = remainders.length - 1; i >= 0; i--)
-			output += encoding.charAt(remainders[i]);
-
-		/* Append leading zero equivalents */
-		var full_length = Math.ceil(input.length * 8 /
-																			(Math.log(encoding.length) / Math.log(2)))
-		for(i = output.length; i < full_length; i++)
-			output = encoding[0] + output;
-
-		return output;
-	}
 
 	/*
 	 * Encode a string as utf-8.
