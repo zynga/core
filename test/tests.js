@@ -830,7 +830,10 @@ $(function() {
 		});
 		
 		var eventMap = core.Class.getEvents(events.Mouse);
-		ok(core.Assert.map(eventMap), "Events should be a returned as a map");
+		ok((function() {
+			core.Assert.map(eventMap);
+			return true;
+		})(), "Events should be a returned as a map");
 		equals(eventMap.click, MouseEvent, "No click event found");
 		
 		core.Class("events.Keyboard", {
@@ -991,16 +994,19 @@ $(function() {
 			}
 		});
 		
-		ok(core.Assert.cls(properties.Simple));
+		ok((function() {
+			core.Assert.cls(properties.Simple);
+			return true;
+		})());
 		equals(Object.keys(core.Class.getProperties(properties.Simple)).join(","), "color,backgroundColor");
 
 		equals(core.Class.getProperties(properties.Simple).color.type, "String");
 		equals(typeof core.Class.getProperties(properties.Simple).color.apply, "function");
 
-		ok(core.Test.func(properties.Simple.prototype.getColor));
-		ok(core.Test.func(properties.Simple.prototype.getBackgroundColor));
-		ok(core.Test.func(properties.Simple.prototype.setColor));
-		ok(core.Test.func(properties.Simple.prototype.setBackgroundColor));
+		ok(properties.Simple.prototype.getColor instanceof Function);
+		ok(properties.Simple.prototype.getBackgroundColor instanceof Function);
+		ok(properties.Simple.prototype.setColor instanceof Function);
+		ok(properties.Simple.prototype.setBackgroundColor instanceof Function);
 
 		equals(properties.Simple.prototype.getColor.displayName, "properties.Simple.getColor");
 		equals(properties.Simple.prototype.getBackgroundColor.displayName, "properties.Simple.getBackgroundColor");
@@ -1226,7 +1232,7 @@ $(function() {
 			}
 		});
 		
-		ok(core.Assert.cls(properties.Text));
+		ok(core.Class.isClass(properties.Text));
 		equals(Object.keys(core.Class.getProperties(properties.Text)).join(","), "wrap,color,fontFamily,lineHeight");
 
 
@@ -1245,7 +1251,7 @@ $(function() {
 			}
 		});
 
-		ok(core.Assert.cls(properties.Dimension));
+		ok(core.Class.isClass(properties.Dimension));
 		equals(Object.keys(core.Class.getProperties(properties.Dimension)).join(","), "width,height");
 		
 		
@@ -1274,7 +1280,7 @@ $(function() {
 			}
 		});
 		
-		ok(core.Assert.cls(properties.Label));
+		ok(core.Class.isClass(properties.Label));
 		equals(Object.keys(core.Class.getProperties(properties.Label)).join(","), "wrap,color,fontFamily,lineHeight,width,height");
 		
 		
