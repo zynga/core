@@ -8,14 +8,6 @@
 (function() 
 {
 
-	/*
-	 * Configurable variables. You may need to tweak these to be compatible with
-	 * the server-side, but the defaults work in most cases.
-	 */
-	var hexcase = 0;	 /* hex output format. 0 - lowercase; 1 - uppercase				 */
-	var b64pad	= "";	 /* base-64 pad character. "=" for strict RFC compliance	 */
-
-
 	/**
 	 * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.
 	 *
@@ -203,30 +195,30 @@
 			c = safe_add(c, oldc);
 			d = safe_add(d, oldd);
 		}
+		
 		return Array(a, b, c, d);
 	}
 
 	/*
 	 * These functions implement the four basic operations the algorithm uses.
 	 */
-	function md5_cmn(q, a, b, x, s, t)
-	{
+	function md5_cmn(q, a, b, x, s, t) {
 		return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s),b);
 	}
-	function md5_ff(a, b, c, d, x, s, t)
-	{
+
+	function md5_ff(a, b, c, d, x, s, t) {
 		return md5_cmn((b & c) | ((~b) & d), a, b, x, s, t);
 	}
-	function md5_gg(a, b, c, d, x, s, t)
-	{
+	
+	function md5_gg(a, b, c, d, x, s, t) {
 		return md5_cmn((b & d) | (c & (~d)), a, b, x, s, t);
 	}
-	function md5_hh(a, b, c, d, x, s, t)
-	{
+	
+	function md5_hh(a, b, c, d, x, s, t) {
 		return md5_cmn(b ^ c ^ d, a, b, x, s, t);
 	}
-	function md5_ii(a, b, c, d, x, s, t)
-	{
+	
+	function md5_ii(a, b, c, d, x, s, t) {
 		return md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
 	}
 
@@ -244,8 +236,7 @@
 	/*
 	 * Bitwise rotate a 32-bit number to the left.
 	 */
-	function bit_rol(num, cnt)
-	{
+	function bit_rol(num, cnt) {
 		return (num << cnt) | (num >>> (32 - cnt));
 	}
 	
