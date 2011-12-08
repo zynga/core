@@ -17,28 +17,12 @@
 	 */
 	core.Module("core.crypt.SHA1", 
 	{
-		hex_sha1 : function(s) { 
-			return core.crypt.Common.rstr2hex(rstr_sha1(core.crypt.Common.str2rstr_utf8(s))); 
+		hash : function(s) { 
+			return rstr_sha1(core.crypt.Common.str2rstr_utf8(s)); 
 		},
 
-		b64_sha1 : function(s) { 
-			return core.crypt.Common.rstr2b64(rstr_sha1(core.crypt.Common.str2rstr_utf8(s))); 
-		},
-
-		any_sha1 : function(s, e) { 
-			return core.crypt.Common.rstr2any(rstr_sha1(core.crypt.Common.str2rstr_utf8(s)), e); 
-		},
-
-		hex_hmac_sha1 : function(k, d) { 
-			return core.crypt.Common.rstr2hex(rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
-		},
-
-		b64_hmac_sha1 : function(k, d) { 
-			return core.crypt.Common.rstr2b64(rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d))); 
-		},
-
-		any_hmac_sha1 : function(k, d, e) { 
-			return core.crypt.Common.rstr2any(rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d)), e); 
+		hmac : function(k, d) { 
+			return rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d)); 
 		}
 	});
 

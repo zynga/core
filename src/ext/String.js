@@ -90,26 +90,6 @@ Object.addPrototypeMethods("String",
 
 
 	/**
-	 * Encodes the string into base 64 encoding.
-	 *
-	 * @return {String} Encoded string
-	 */
-	encodeBase64 : function() {
-		return btoa(this);
-	},
-
-
-	/**
-	 * Decodes the string from base 64 encoding.
-	 *
-	 * @return {String} Decoded string
-	 */
-	decodeBase64 : function() {
-		return atob(this);
-	},
-
-
-	/**
 	 * Returns true if this string starts with the given substring
 	 *
 	 * @return {Boolean} Whether this string starts with the given substring
