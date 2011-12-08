@@ -12,8 +12,8 @@
 	 * Configurable variables. You may need to tweak these to be compatible with
 	 * the server-side, but the defaults work in most cases.
 	 */
-	var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
-	var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
+	var hexcase = 0;	/* hex output format. 0 - lowercase; 1 - uppercase				*/
+	var b64pad	= ""; /* base-64 pad character. "=" for strict RFC compliance		*/
 
 
 	/**
@@ -58,7 +58,7 @@
 	 */
 	function rstr_sha512(s)
 	{
-	  return binb2rstr(binb_sha512(rstr2binb(s), s.length * 8));
+		return binb2rstr(binb_sha512(rstr2binb(s), s.length * 8));
 	}
 
 	/*
@@ -66,18 +66,18 @@
 	 */
 	function rstr_hmac_sha512(key, data)
 	{
-	  var bkey = rstr2binb(key);
-	  if(bkey.length > 32) bkey = binb_sha512(bkey, key.length * 8);
+		var bkey = rstr2binb(key);
+		if(bkey.length > 32) bkey = binb_sha512(bkey, key.length * 8);
 
-	  var ipad = Array(32), opad = Array(32);
-	  for(var i = 0; i < 32; i++)
-	  {
-	    ipad[i] = bkey[i] ^ 0x36363636;
-	    opad[i] = bkey[i] ^ 0x5C5C5C5C;
-	  }
+		var ipad = Array(32), opad = Array(32);
+		for(var i = 0; i < 32; i++)
+		{
+			ipad[i] = bkey[i] ^ 0x36363636;
+			opad[i] = bkey[i] ^ 0x5C5C5C5C;
+		}
 
-	  var hash = binb_sha512(ipad.concat(rstr2binb(data)), 1024 + data.length * 8);
-	  return binb2rstr(binb_sha512(opad.concat(hash), 1024 + 512));
+		var hash = binb_sha512(ipad.concat(rstr2binb(data)), 1024 + data.length * 8);
+		return binb2rstr(binb_sha512(opad.concat(hash), 1024 + 512));
 	}
 
 	/*
@@ -85,17 +85,17 @@
 	 */
 	function rstr2hex(input)
 	{
-	  try { hexcase } catch(e) { hexcase=0; }
-	  var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
-	  var output = "";
-	  var x;
-	  for(var i = 0; i < input.length; i++)
-	  {
-	    x = input.charCodeAt(i);
-	    output += hex_tab.charAt((x >>> 4) & 0x0F)
-	           +  hex_tab.charAt( x        & 0x0F);
-	  }
-	  return output;
+		try { hexcase } catch(e) { hexcase=0; }
+		var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+		var output = "";
+		var x;
+		for(var i = 0; i < input.length; i++)
+		{
+			x = input.charCodeAt(i);
+			output += hex_tab.charAt((x >>> 4) & 0x0F)
+						 +	hex_tab.charAt( x				 & 0x0F);
+		}
+		return output;
 	}
 
 	/*
@@ -103,22 +103,22 @@
 	 */
 	function rstr2b64(input)
 	{
-	  try { b64pad } catch(e) { b64pad=''; }
-	  var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-	  var output = "";
-	  var len = input.length;
-	  for(var i = 0; i < len; i += 3)
-	  {
-	    var triplet = (input.charCodeAt(i) << 16)
-	                | (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0)
-	                | (i + 2 < len ? input.charCodeAt(i+2)      : 0);
-	    for(var j = 0; j < 4; j++)
-	    {
-	      if(i * 8 + j * 6 > input.length * 8) output += b64pad;
-	      else output += tab.charAt((triplet >>> 6*(3-j)) & 0x3F);
-	    }
-	  }
-	  return output;
+		try { b64pad } catch(e) { b64pad=''; }
+		var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+		var output = "";
+		var len = input.length;
+		for(var i = 0; i < len; i += 3)
+		{
+			var triplet = (input.charCodeAt(i) << 16)
+									| (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0)
+									| (i + 2 < len ? input.charCodeAt(i+2)			: 0);
+			for(var j = 0; j < 4; j++)
+			{
+				if(i * 8 + j * 6 > input.length * 8) output += b64pad;
+				else output += tab.charAt((triplet >>> 6*(3-j)) & 0x3F);
+			}
+		}
+		return output;
 	}
 
 	/*
@@ -126,47 +126,47 @@
 	 */
 	function rstr2any(input, encoding)
 	{
-	  var divisor = encoding.length;
-	  var i, j, q, x, quotient;
+		var divisor = encoding.length;
+		var i, j, q, x, quotient;
 
-	  /* Convert to an array of 16-bit big-endian values, forming the dividend */
-	  var dividend = Array(Math.ceil(input.length / 2));
-	  for(i = 0; i < dividend.length; i++)
-	  {
-	    dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
-	  }
+		/* Convert to an array of 16-bit big-endian values, forming the dividend */
+		var dividend = Array(Math.ceil(input.length / 2));
+		for(i = 0; i < dividend.length; i++)
+		{
+			dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
+		}
 
-	  /*
-	   * Repeatedly perform a long division. The binary array forms the dividend,
-	   * the length of the encoding is the divisor. Once computed, the quotient
-	   * forms the dividend for the next step. All remainders are stored for later
-	   * use.
-	   */
-	  var full_length = Math.ceil(input.length * 8 /
-	                                    (Math.log(encoding.length) / Math.log(2)));
-	  var remainders = Array(full_length);
-	  for(j = 0; j < full_length; j++)
-	  {
-	    quotient = Array();
-	    x = 0;
-	    for(i = 0; i < dividend.length; i++)
-	    {
-	      x = (x << 16) + dividend[i];
-	      q = Math.floor(x / divisor);
-	      x -= q * divisor;
-	      if(quotient.length > 0 || q > 0)
-	        quotient[quotient.length] = q;
-	    }
-	    remainders[j] = x;
-	    dividend = quotient;
-	  }
+		/*
+		 * Repeatedly perform a long division. The binary array forms the dividend,
+		 * the length of the encoding is the divisor. Once computed, the quotient
+		 * forms the dividend for the next step. All remainders are stored for later
+		 * use.
+		 */
+		var full_length = Math.ceil(input.length * 8 /
+																			(Math.log(encoding.length) / Math.log(2)));
+		var remainders = Array(full_length);
+		for(j = 0; j < full_length; j++)
+		{
+			quotient = Array();
+			x = 0;
+			for(i = 0; i < dividend.length; i++)
+			{
+				x = (x << 16) + dividend[i];
+				q = Math.floor(x / divisor);
+				x -= q * divisor;
+				if(quotient.length > 0 || q > 0)
+					quotient[quotient.length] = q;
+			}
+			remainders[j] = x;
+			dividend = quotient;
+		}
 
-	  /* Convert the remainders to the output string */
-	  var output = "";
-	  for(i = remainders.length - 1; i >= 0; i--)
-	    output += encoding.charAt(remainders[i]);
+		/* Convert the remainders to the output string */
+		var output = "";
+		for(i = remainders.length - 1; i >= 0; i--)
+			output += encoding.charAt(remainders[i]);
 
-	  return output;
+		return output;
 	}
 
 	/*
@@ -175,38 +175,38 @@
 	 */
 	function str2rstr_utf8(input)
 	{
-	  var output = "";
-	  var i = -1;
-	  var x, y;
+		var output = "";
+		var i = -1;
+		var x, y;
 
-	  while(++i < input.length)
-	  {
-	    /* Decode utf-16 surrogate pairs */
-	    x = input.charCodeAt(i);
-	    y = i + 1 < input.length ? input.charCodeAt(i + 1) : 0;
-	    if(0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF)
-	    {
-	      x = 0x10000 + ((x & 0x03FF) << 10) + (y & 0x03FF);
-	      i++;
-	    }
+		while(++i < input.length)
+		{
+			/* Decode utf-16 surrogate pairs */
+			x = input.charCodeAt(i);
+			y = i + 1 < input.length ? input.charCodeAt(i + 1) : 0;
+			if(0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF)
+			{
+				x = 0x10000 + ((x & 0x03FF) << 10) + (y & 0x03FF);
+				i++;
+			}
 
-	    /* Encode output as utf-8 */
-	    if(x <= 0x7F)
-	      output += String.fromCharCode(x);
-	    else if(x <= 0x7FF)
-	      output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
-	                                    0x80 | ( x         & 0x3F));
-	    else if(x <= 0xFFFF)
-	      output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
-	                                    0x80 | ((x >>> 6 ) & 0x3F),
-	                                    0x80 | ( x         & 0x3F));
-	    else if(x <= 0x1FFFFF)
-	      output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
-	                                    0x80 | ((x >>> 12) & 0x3F),
-	                                    0x80 | ((x >>> 6 ) & 0x3F),
-	                                    0x80 | ( x         & 0x3F));
-	  }
-	  return output;
+			/* Encode output as utf-8 */
+			if(x <= 0x7F)
+				output += String.fromCharCode(x);
+			else if(x <= 0x7FF)
+				output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
+																			0x80 | ( x				 & 0x3F));
+			else if(x <= 0xFFFF)
+				output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
+																			0x80 | ((x >>> 6 ) & 0x3F),
+																			0x80 | ( x				 & 0x3F));
+			else if(x <= 0x1FFFFF)
+				output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
+																			0x80 | ((x >>> 12) & 0x3F),
+																			0x80 | ((x >>> 6 ) & 0x3F),
+																			0x80 | ( x				 & 0x3F));
+		}
+		return output;
 	}
 
 	/*
@@ -214,20 +214,20 @@
 	 */
 	function str2rstr_utf16le(input)
 	{
-	  var output = "";
-	  for(var i = 0; i < input.length; i++)
-	    output += String.fromCharCode( input.charCodeAt(i)        & 0xFF,
-	                                  (input.charCodeAt(i) >>> 8) & 0xFF);
-	  return output;
+		var output = "";
+		for(var i = 0; i < input.length; i++)
+			output += String.fromCharCode( input.charCodeAt(i)				& 0xFF,
+																		(input.charCodeAt(i) >>> 8) & 0xFF);
+		return output;
 	}
 
 	function str2rstr_utf16be(input)
 	{
-	  var output = "";
-	  for(var i = 0; i < input.length; i++)
-	    output += String.fromCharCode((input.charCodeAt(i) >>> 8) & 0xFF,
-	                                   input.charCodeAt(i)        & 0xFF);
-	  return output;
+		var output = "";
+		for(var i = 0; i < input.length; i++)
+			output += String.fromCharCode((input.charCodeAt(i) >>> 8) & 0xFF,
+																		 input.charCodeAt(i)				& 0xFF);
+		return output;
 	}
 
 	/*
@@ -236,12 +236,12 @@
 	 */
 	function rstr2binb(input)
 	{
-	  var output = Array(input.length >> 2);
-	  for(var i = 0; i < output.length; i++)
-	    output[i] = 0;
-	  for(var i = 0; i < input.length * 8; i += 8)
-	    output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
-	  return output;
+		var output = Array(input.length >> 2);
+		for(var i = 0; i < output.length; i++)
+			output[i] = 0;
+		for(var i = 0; i < input.length * 8; i += 8)
+			output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
+		return output;
 	}
 
 	/*
@@ -249,10 +249,10 @@
 	 */
 	function binb2rstr(input)
 	{
-	  var output = "";
-	  for(var i = 0; i < input.length * 32; i += 8)
-	    output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
-	  return output;
+		var output = "";
+		for(var i = 0; i < input.length * 32; i += 8)
+			output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
+		return output;
 	}
 
 	/*
@@ -261,10 +261,10 @@
 	var sha512_k;
 	function binb_sha512(x, len)
 	{
-	  if(sha512_k == undefined)
-	  {
-	    //SHA512 constants
-	    sha512_k = new Array(
+		if(sha512_k == undefined)
+		{
+			//SHA512 constants
+			sha512_k = new Array(
 	new int64(0x428a2f98, -685199838), new int64(0x71374491, 0x23ef65cd),
 	new int64(-1245643825, -330482897), new int64(-373957723, -2121671748),
 	new int64(0x3956c25b, -213338824), new int64(0x59f111f1, -1241133031),
@@ -305,10 +305,10 @@
 	new int64(0x3c9ebe0a, 0x15c9bebc), new int64(0x431d67c4, -1676669620),
 	new int64(0x4cc5d4be, -885112138), new int64(0x597f299c, -60457430),
 	new int64(0x5fcb6fab, 0x3ad6faec), new int64(0x6c44198c, 0x4a475817));
-	  }
+		}
 
-	  //Initial hash values
-	  var H = new Array(
+		//Initial hash values
+		var H = new Array(
 	new int64(0x6a09e667, -205731576),
 	new int64(-1150833019, -2067093701),
 	new int64(0x3c6ef372, -23791573),
@@ -318,137 +318,137 @@
 	new int64(0x1f83d9ab, -79577749),
 	new int64(0x5be0cd19, 0x137e2179));
 
-	  var T1 = new int64(0, 0),
-	    T2 = new int64(0, 0),
-	    a = new int64(0,0),
-	    b = new int64(0,0),
-	    c = new int64(0,0),
-	    d = new int64(0,0),
-	    e = new int64(0,0),
-	    f = new int64(0,0),
-	    g = new int64(0,0),
-	    h = new int64(0,0),
-	    //Temporary variables not specified by the document
-	    s0 = new int64(0, 0),
-	    s1 = new int64(0, 0),
-	    Ch = new int64(0, 0),
-	    Maj = new int64(0, 0),
-	    r1 = new int64(0, 0),
-	    r2 = new int64(0, 0),
-	    r3 = new int64(0, 0);
-	  var j, i;
-	  var W = new Array(80);
-	  for(i=0; i<80; i++)
-	    W[i] = new int64(0, 0);
+		var T1 = new int64(0, 0),
+			T2 = new int64(0, 0),
+			a = new int64(0,0),
+			b = new int64(0,0),
+			c = new int64(0,0),
+			d = new int64(0,0),
+			e = new int64(0,0),
+			f = new int64(0,0),
+			g = new int64(0,0),
+			h = new int64(0,0),
+			//Temporary variables not specified by the document
+			s0 = new int64(0, 0),
+			s1 = new int64(0, 0),
+			Ch = new int64(0, 0),
+			Maj = new int64(0, 0),
+			r1 = new int64(0, 0),
+			r2 = new int64(0, 0),
+			r3 = new int64(0, 0);
+		var j, i;
+		var W = new Array(80);
+		for(i=0; i<80; i++)
+			W[i] = new int64(0, 0);
 
-	  // append padding to the source string. The format is described in the FIPS.
-	  x[len >> 5] |= 0x80 << (24 - (len & 0x1f));
-	  x[((len + 128 >> 10)<< 5) + 31] = len;
+		// append padding to the source string. The format is described in the FIPS.
+		x[len >> 5] |= 0x80 << (24 - (len & 0x1f));
+		x[((len + 128 >> 10)<< 5) + 31] = len;
 
-	  for(i = 0; i<x.length; i+=32) //32 dwords is the block size
-	  {
-	    int64copy(a, H[0]);
-	    int64copy(b, H[1]);
-	    int64copy(c, H[2]);
-	    int64copy(d, H[3]);
-	    int64copy(e, H[4]);
-	    int64copy(f, H[5]);
-	    int64copy(g, H[6]);
-	    int64copy(h, H[7]);
+		for(i = 0; i<x.length; i+=32) //32 dwords is the block size
+		{
+			int64copy(a, H[0]);
+			int64copy(b, H[1]);
+			int64copy(c, H[2]);
+			int64copy(d, H[3]);
+			int64copy(e, H[4]);
+			int64copy(f, H[5]);
+			int64copy(g, H[6]);
+			int64copy(h, H[7]);
 
-	    for(j=0; j<16; j++)
-	    {
-	        W[j].h = x[i + 2*j];
-	        W[j].l = x[i + 2*j + 1];
-	    }
+			for(j=0; j<16; j++)
+			{
+					W[j].h = x[i + 2*j];
+					W[j].l = x[i + 2*j + 1];
+			}
 
-	    for(j=16; j<80; j++)
-	    {
-	      //sigma1
-	      int64rrot(r1, W[j-2], 19);
-	      int64revrrot(r2, W[j-2], 29);
-	      int64shr(r3, W[j-2], 6);
-	      s1.l = r1.l ^ r2.l ^ r3.l;
-	      s1.h = r1.h ^ r2.h ^ r3.h;
-	      //sigma0
-	      int64rrot(r1, W[j-15], 1);
-	      int64rrot(r2, W[j-15], 8);
-	      int64shr(r3, W[j-15], 7);
-	      s0.l = r1.l ^ r2.l ^ r3.l;
-	      s0.h = r1.h ^ r2.h ^ r3.h;
+			for(j=16; j<80; j++)
+			{
+				//sigma1
+				int64rrot(r1, W[j-2], 19);
+				int64revrrot(r2, W[j-2], 29);
+				int64shr(r3, W[j-2], 6);
+				s1.l = r1.l ^ r2.l ^ r3.l;
+				s1.h = r1.h ^ r2.h ^ r3.h;
+				//sigma0
+				int64rrot(r1, W[j-15], 1);
+				int64rrot(r2, W[j-15], 8);
+				int64shr(r3, W[j-15], 7);
+				s0.l = r1.l ^ r2.l ^ r3.l;
+				s0.h = r1.h ^ r2.h ^ r3.h;
 
-	      int64add4(W[j], s1, W[j-7], s0, W[j-16]);
-	    }
+				int64add4(W[j], s1, W[j-7], s0, W[j-16]);
+			}
 
-	    for(j = 0; j < 80; j++)
-	    {
-	      //Ch
-	      Ch.l = (e.l & f.l) ^ (~e.l & g.l);
-	      Ch.h = (e.h & f.h) ^ (~e.h & g.h);
+			for(j = 0; j < 80; j++)
+			{
+				//Ch
+				Ch.l = (e.l & f.l) ^ (~e.l & g.l);
+				Ch.h = (e.h & f.h) ^ (~e.h & g.h);
 
-	      //Sigma1
-	      int64rrot(r1, e, 14);
-	      int64rrot(r2, e, 18);
-	      int64revrrot(r3, e, 9);
-	      s1.l = r1.l ^ r2.l ^ r3.l;
-	      s1.h = r1.h ^ r2.h ^ r3.h;
+				//Sigma1
+				int64rrot(r1, e, 14);
+				int64rrot(r2, e, 18);
+				int64revrrot(r3, e, 9);
+				s1.l = r1.l ^ r2.l ^ r3.l;
+				s1.h = r1.h ^ r2.h ^ r3.h;
 
-	      //Sigma0
-	      int64rrot(r1, a, 28);
-	      int64revrrot(r2, a, 2);
-	      int64revrrot(r3, a, 7);
-	      s0.l = r1.l ^ r2.l ^ r3.l;
-	      s0.h = r1.h ^ r2.h ^ r3.h;
+				//Sigma0
+				int64rrot(r1, a, 28);
+				int64revrrot(r2, a, 2);
+				int64revrrot(r3, a, 7);
+				s0.l = r1.l ^ r2.l ^ r3.l;
+				s0.h = r1.h ^ r2.h ^ r3.h;
 
-	      //Maj
-	      Maj.l = (a.l & b.l) ^ (a.l & c.l) ^ (b.l & c.l);
-	      Maj.h = (a.h & b.h) ^ (a.h & c.h) ^ (b.h & c.h);
+				//Maj
+				Maj.l = (a.l & b.l) ^ (a.l & c.l) ^ (b.l & c.l);
+				Maj.h = (a.h & b.h) ^ (a.h & c.h) ^ (b.h & c.h);
 
-	      int64add5(T1, h, s1, Ch, sha512_k[j], W[j]);
-	      int64add(T2, s0, Maj);
+				int64add5(T1, h, s1, Ch, sha512_k[j], W[j]);
+				int64add(T2, s0, Maj);
 
-	      int64copy(h, g);
-	      int64copy(g, f);
-	      int64copy(f, e);
-	      int64add(e, d, T1);
-	      int64copy(d, c);
-	      int64copy(c, b);
-	      int64copy(b, a);
-	      int64add(a, T1, T2);
-	    }
-	    int64add(H[0], H[0], a);
-	    int64add(H[1], H[1], b);
-	    int64add(H[2], H[2], c);
-	    int64add(H[3], H[3], d);
-	    int64add(H[4], H[4], e);
-	    int64add(H[5], H[5], f);
-	    int64add(H[6], H[6], g);
-	    int64add(H[7], H[7], h);
-	  }
+				int64copy(h, g);
+				int64copy(g, f);
+				int64copy(f, e);
+				int64add(e, d, T1);
+				int64copy(d, c);
+				int64copy(c, b);
+				int64copy(b, a);
+				int64add(a, T1, T2);
+			}
+			int64add(H[0], H[0], a);
+			int64add(H[1], H[1], b);
+			int64add(H[2], H[2], c);
+			int64add(H[3], H[3], d);
+			int64add(H[4], H[4], e);
+			int64add(H[5], H[5], f);
+			int64add(H[6], H[6], g);
+			int64add(H[7], H[7], h);
+		}
 
-	  //represent the hash as an array of 32-bit dwords
-	  var hash = new Array(16);
-	  for(i=0; i<8; i++)
-	  {
-	    hash[2*i] = H[i].h;
-	    hash[2*i + 1] = H[i].l;
-	  }
-	  return hash;
+		//represent the hash as an array of 32-bit dwords
+		var hash = new Array(16);
+		for(i=0; i<8; i++)
+		{
+			hash[2*i] = H[i].h;
+			hash[2*i + 1] = H[i].l;
+		}
+		return hash;
 	}
 
 	//A constructor for 64-bit numbers
 	function int64(h, l)
 	{
-	  this.h = h;
-	  this.l = l;
-	  //this.toString = int64toString;
+		this.h = h;
+		this.l = l;
+		//this.toString = int64toString;
 	}
 
 	//Copies src into dst, assuming both are 64-bit numbers
 	function int64copy(dst, src)
 	{
-	  dst.h = src.h;
-	  dst.l = src.l;
+		dst.h = src.h;
+		dst.l = src.l;
 	}
 
 	//Right-rotates a 64-bit number by shift
@@ -456,58 +456,58 @@
 	//The function revrrot() is for that
 	function int64rrot(dst, x, shift)
 	{
-	    dst.l = (x.l >>> shift) | (x.h << (32-shift));
-	    dst.h = (x.h >>> shift) | (x.l << (32-shift));
+			dst.l = (x.l >>> shift) | (x.h << (32-shift));
+			dst.h = (x.h >>> shift) | (x.l << (32-shift));
 	}
 
 	//Reverses the dwords of the source and then rotates right by shift.
 	//This is equivalent to rotation by 32+shift
 	function int64revrrot(dst, x, shift)
 	{
-	    dst.l = (x.h >>> shift) | (x.l << (32-shift));
-	    dst.h = (x.l >>> shift) | (x.h << (32-shift));
+			dst.l = (x.h >>> shift) | (x.l << (32-shift));
+			dst.h = (x.l >>> shift) | (x.h << (32-shift));
 	}
 
 	//Bitwise-shifts right a 64-bit number by shift
 	//Won't handle shift>=32, but it's never needed in SHA512
 	function int64shr(dst, x, shift)
 	{
-	    dst.l = (x.l >>> shift) | (x.h << (32-shift));
-	    dst.h = (x.h >>> shift);
+			dst.l = (x.l >>> shift) | (x.h << (32-shift));
+			dst.h = (x.h >>> shift);
 	}
 
 	//Adds two 64-bit numbers
 	//Like the original implementation, does not rely on 32-bit operations
 	function int64add(dst, x, y)
 	{
-	   var w0 = (x.l & 0xffff) + (y.l & 0xffff);
-	   var w1 = (x.l >>> 16) + (y.l >>> 16) + (w0 >>> 16);
-	   var w2 = (x.h & 0xffff) + (y.h & 0xffff) + (w1 >>> 16);
-	   var w3 = (x.h >>> 16) + (y.h >>> 16) + (w2 >>> 16);
-	   dst.l = (w0 & 0xffff) | (w1 << 16);
-	   dst.h = (w2 & 0xffff) | (w3 << 16);
+		 var w0 = (x.l & 0xffff) + (y.l & 0xffff);
+		 var w1 = (x.l >>> 16) + (y.l >>> 16) + (w0 >>> 16);
+		 var w2 = (x.h & 0xffff) + (y.h & 0xffff) + (w1 >>> 16);
+		 var w3 = (x.h >>> 16) + (y.h >>> 16) + (w2 >>> 16);
+		 dst.l = (w0 & 0xffff) | (w1 << 16);
+		 dst.h = (w2 & 0xffff) | (w3 << 16);
 	}
 
 	//Same, except with 4 addends. Works faster than adding them one by one.
 	function int64add4(dst, a, b, c, d)
 	{
-	   var w0 = (a.l & 0xffff) + (b.l & 0xffff) + (c.l & 0xffff) + (d.l & 0xffff);
-	   var w1 = (a.l >>> 16) + (b.l >>> 16) + (c.l >>> 16) + (d.l >>> 16) + (w0 >>> 16);
-	   var w2 = (a.h & 0xffff) + (b.h & 0xffff) + (c.h & 0xffff) + (d.h & 0xffff) + (w1 >>> 16);
-	   var w3 = (a.h >>> 16) + (b.h >>> 16) + (c.h >>> 16) + (d.h >>> 16) + (w2 >>> 16);
-	   dst.l = (w0 & 0xffff) | (w1 << 16);
-	   dst.h = (w2 & 0xffff) | (w3 << 16);
+		 var w0 = (a.l & 0xffff) + (b.l & 0xffff) + (c.l & 0xffff) + (d.l & 0xffff);
+		 var w1 = (a.l >>> 16) + (b.l >>> 16) + (c.l >>> 16) + (d.l >>> 16) + (w0 >>> 16);
+		 var w2 = (a.h & 0xffff) + (b.h & 0xffff) + (c.h & 0xffff) + (d.h & 0xffff) + (w1 >>> 16);
+		 var w3 = (a.h >>> 16) + (b.h >>> 16) + (c.h >>> 16) + (d.h >>> 16) + (w2 >>> 16);
+		 dst.l = (w0 & 0xffff) | (w1 << 16);
+		 dst.h = (w2 & 0xffff) | (w3 << 16);
 	}
 
 	//Same, except with 5 addends
 	function int64add5(dst, a, b, c, d, e)
 	{
-	   var w0 = (a.l & 0xffff) + (b.l & 0xffff) + (c.l & 0xffff) + (d.l & 0xffff) + (e.l & 0xffff);
-	   var w1 = (a.l >>> 16) + (b.l >>> 16) + (c.l >>> 16) + (d.l >>> 16) + (e.l >>> 16) + (w0 >>> 16);
-	   var w2 = (a.h & 0xffff) + (b.h & 0xffff) + (c.h & 0xffff) + (d.h & 0xffff) + (e.h & 0xffff) + (w1 >>> 16);
-	   var w3 = (a.h >>> 16) + (b.h >>> 16) + (c.h >>> 16) + (d.h >>> 16) + (e.h >>> 16) + (w2 >>> 16);
-	   dst.l = (w0 & 0xffff) | (w1 << 16);
-	   dst.h = (w2 & 0xffff) | (w3 << 16);
+		 var w0 = (a.l & 0xffff) + (b.l & 0xffff) + (c.l & 0xffff) + (d.l & 0xffff) + (e.l & 0xffff);
+		 var w1 = (a.l >>> 16) + (b.l >>> 16) + (c.l >>> 16) + (d.l >>> 16) + (e.l >>> 16) + (w0 >>> 16);
+		 var w2 = (a.h & 0xffff) + (b.h & 0xffff) + (c.h & 0xffff) + (d.h & 0xffff) + (e.h & 0xffff) + (w1 >>> 16);
+		 var w3 = (a.h >>> 16) + (b.h >>> 16) + (c.h >>> 16) + (d.h >>> 16) + (e.h >>> 16) + (w2 >>> 16);
+		 dst.l = (w0 & 0xffff) | (w1 << 16);
+		 dst.h = (w2 & 0xffff) | (w3 << 16);
 	}
 	
 })();
