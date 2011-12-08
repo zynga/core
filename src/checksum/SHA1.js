@@ -32,27 +32,27 @@
 		 * They take string arguments and return either hex or base-64 encoded strings
 		 */
 		hex_sha1 : function(s) { 
-			return core.checksum.Common.rstr2hex(rstr_sha1(str2rstr_utf8(s))); 
+			return core.checksum.Common.rstr2hex(rstr_sha1(core.checksum.Common.str2rstr_utf8(s))); 
 		},
 
 		b64_sha1 : function(s) { 
-			return core.checksum.Common.rstr2b64(rstr_sha1(str2rstr_utf8(s))); 
+			return core.checksum.Common.rstr2b64(rstr_sha1(core.checksum.Common.str2rstr_utf8(s))); 
 		},
 
 		any_sha1 : function(s, e) { 
-			return core.checksum.Common.rstr2any(rstr_sha1(str2rstr_utf8(s)), e); 
+			return core.checksum.Common.rstr2any(rstr_sha1(core.checksum.Common.str2rstr_utf8(s)), e); 
 		},
 
 		hex_hmac_sha1 : function(k, d) { 
-			return core.checksum.Common.rstr2hex(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d))); 
+			return core.checksum.Common.rstr2hex(rstr_hmac_sha1(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
 		},
 
 		b64_hmac_sha1 : function(k, d) { 
-			return core.checksum.Common.rstr2b64(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d))); 
+			return core.checksum.Common.rstr2b64(rstr_hmac_sha1(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d))); 
 		},
 
 		any_hmac_sha1 : function(k, d, e) { 
-			return core.checksum.Common.rstr2any(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d)), e); 
+			return core.checksum.Common.rstr2any(rstr_hmac_sha1(core.checksum.Common.str2rstr_utf8(k), core.checksum.Common.str2rstr_utf8(d)), e); 
 		}
 
 	});
@@ -86,46 +86,6 @@
 		return binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
 	}
 
-
-	/*
-	 * Encode a string as utf-8.
-	 * For efficiency, this assumes the input is valid utf-16.
-	 */
-	function str2rstr_utf8(input)
-	{
-		var output = "";
-		var i = -1;
-		var x, y;
-
-		while(++i < input.length)
-		{
-			/* Decode utf-16 surrogate pairs */
-			x = input.charCodeAt(i);
-			y = i + 1 < input.length ? input.charCodeAt(i + 1) : 0;
-			if(0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF)
-			{
-				x = 0x10000 + ((x & 0x03FF) << 10) + (y & 0x03FF);
-				i++;
-			}
-
-			/* Encode output as utf-8 */
-			if(x <= 0x7F)
-				output += String.fromCharCode(x);
-			else if(x <= 0x7FF)
-				output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
-																			0x80 | ( x				 & 0x3F));
-			else if(x <= 0xFFFF)
-				output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
-																			0x80 | ((x >>> 6 ) & 0x3F),
-																			0x80 | ( x				 & 0x3F));
-			else if(x <= 0x1FFFFF)
-				output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
-																			0x80 | ((x >>> 12) & 0x3F),
-																			0x80 | ((x >>> 6 ) & 0x3F),
-																			0x80 | ( x				 & 0x3F));
-		}
-		return output;
-	}
 
 	/*
 	 * Encode a string as utf-16
