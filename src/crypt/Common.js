@@ -13,7 +13,7 @@
 	var base64Tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split("");
 	
 	
-	Module("core.crypt.Common", 
+	core.Module("core.crypt.Common", 
 	{
 
 		/*
@@ -25,13 +25,12 @@
 		rstr2hex : function(input, uppercase)
 		{
 			var hex_tab = uppercase ? upperHexTab : lowerHexTab;
-			var splitted = input.split("");
 			var output = "";
 			var x;
-
+			
 			for (var i = 0; i < input.length; i++)
 			{
-				x = splitted[i];
+				x = input.charCodeAt(i);
 				output += hex_tab[(x >>> 4) & 0x0F] + hex_tab[x & 0x0F];
 			}
 
@@ -45,20 +44,23 @@
 		 * @param input {String} Raw string to convert into base64
 		 * @param padding {String ? ""} Padding character. "=" for strict RFC compliance
 		 */
-		rstr2b64 : function(input)
+		rstr2b64 : function(input, padding)
 		{
 			var output = "";
-			var splitted = input.split("");
 			var len = input.length;
+			
+			if (padding == null) {
+				padding = "";
+			}
 
 			for (var i = 0; i < len; i += 3)
 			{
-				var triplet = (splitted[i] << 16) | (i + 1 < len ? splitted[i+1] << 8 : 0) | (i + 2 < len ? splitted[i+2] : 0);
+				var triplet = (input.charCodeAt(i) << 16) | (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0) | (i + 2 < len ? input.charCodeAt(i+2) : 0);
 
 				for (var j = 0; j < 4; j++)
 				{
 					if (i * 8 + j * 6 > len * 8) {
-						output += b64pad;
+						output += padding;
 					} else {
 						output += base64Tab[(triplet >>> 6*(3-j)) & 0x3F];
 					}
@@ -153,7 +155,7 @@
 					output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07), 0x80 | ((x >>> 12) & 0x3F), 0x80 | ((x >>> 6 ) & 0x3F), 0x80 | ( x & 0x3F));
 				}
 			}
-
+			
 			return output;
 		},
 		
@@ -185,8 +187,11 @@
 		binb2rstr : function(input)
 		{
 			var output = "";
-			for(var i = 0; i < input.length * 32; i += 8)
+			
+			for(var i = 0; i < input.length * 32; i += 8) {
 				output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
+			}
+			
 			return output;
 		}
 

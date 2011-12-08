@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-core.Module("core.Crc32",
+core.Module("core.crypt.CRC32",
 {
 	/**
 	 * Compute CRC-32, the 32-bit checksum of an ASCII string.
