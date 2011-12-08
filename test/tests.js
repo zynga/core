@@ -330,45 +330,45 @@ $(function() {
 	
 	test("Adler32", function() {
 		
-		equal(core.crypt.Adler32.compute("hello world"), "436929629");
-		equal(core.crypt.Adler32.compute("hello world!"), "512296062");
+		strictEqual(core.crypt.Adler32.compute("hello world"), 436929629);
+		strictEqual(core.crypt.Adler32.compute("hello world!"), 512296062);
 		
 	});
 	
 	test("CRC32", function() {
 		
-		equal(core.crypt.CRC32.compute("hello world"), "222957957");
-		equal(core.crypt.CRC32.compute("hello world!"), "62177901");
+		strictEqual(core.crypt.CRC32.compute("hello world"), 222957957);
+		strictEqual(core.crypt.CRC32.compute("hello world!"), 62177901);
 
 	});
 	
 	test("MD5", function() {
 
-		equal(core.crypt.MD5.hash("hello world").hex(), "5eb63bbbe01eeed093cb22bb8f5acdc3");
-		equal(core.crypt.MD5.hash("hello karl").hex(), "967f3d167631b54ea74b380e439ec2d5");
+		strictEqual(core.crypt.MD5.hash("hello world").hex(), "5eb63bbbe01eeed093cb22bb8f5acdc3");
+		strictEqual(core.crypt.MD5.hash("hello karl").hex(), "967f3d167631b54ea74b380e439ec2d5");
 		
-		equal(btoa(core.crypt.MD5.hash("hello world")), "XrY7u+Ae7tCTyyK7j1rNww==");
-		equal(btoa(core.crypt.MD5.hash("hello karl")), "ln89FnYxtU6nSzgOQ57C1Q==");
+		strictEqual(btoa(core.crypt.MD5.hash("hello world")), "XrY7u+Ae7tCTyyK7j1rNww==");
+		strictEqual(btoa(core.crypt.MD5.hash("hello karl")), "ln89FnYxtU6nSzgOQ57C1Q==");
 		
 	});
 	
 	test("SHA1", function() {
 		
-		equal(core.crypt.SHA1.hash("hello world").hex(), "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed");
-		equal(core.crypt.SHA1.hash("hello karl").hex(), "1665bcf30c12443dbb332b84590123f7d544500b");
+		strictEqual(core.crypt.SHA1.hash("hello world").hex(), "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed");
+		strictEqual(core.crypt.SHA1.hash("hello karl").hex(), "1665bcf30c12443dbb332b84590123f7d544500b");
 
-		equal(btoa(core.crypt.SHA1.hash("hello world")), "Kq5sNclPz7QV2+lfQIuc6R7oRu0=");
-		equal(btoa(core.crypt.SHA1.hash("hello karl")), "FmW88wwSRD27MyuEWQEj99VEUAs=");
+		strictEqual(btoa(core.crypt.SHA1.hash("hello world")), "Kq5sNclPz7QV2+lfQIuc6R7oRu0=");
+		strictEqual(btoa(core.crypt.SHA1.hash("hello karl")), "FmW88wwSRD27MyuEWQEj99VEUAs=");
 		
 	});
 	
 	test("SHA256", function() {
 
-		equal(core.crypt.SHA256.hash("hello world").hex(), "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9");
-		equal(core.crypt.SHA256.hash("hello karl").hex(), "710e9c35558708b24698b55e5e890b506fc946558b3aaa4b356ba008e4edc860");
+		strictEqual(core.crypt.SHA256.hash("hello world").hex(), "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9");
+		strictEqual(core.crypt.SHA256.hash("hello karl").hex(), "710e9c35558708b24698b55e5e890b506fc946558b3aaa4b356ba008e4edc860");
 
-		equal(btoa(core.crypt.SHA256.hash("hello world")), "uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek=");
-		equal(btoa(core.crypt.SHA256.hash("hello karl")), "cQ6cNVWHCLJGmLVeXokLUG/JRlWLOqpLNWugCOTtyGA=");
+		strictEqual(btoa(core.crypt.SHA256.hash("hello world")), "uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek=");
+		strictEqual(btoa(core.crypt.SHA256.hash("hello karl")), "cQ6cNVWHCLJGmLVeXokLUG/JRlWLOqpLNWugCOTtyGA=");
 		
 	});
 	
