@@ -131,6 +131,6 @@ Module("core.checksum.Common",
 																			0x80 | ( x				 & 0x3F));
 		}
 		return output;
-	}	
+	}
 	
 });
