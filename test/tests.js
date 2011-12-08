@@ -969,7 +969,7 @@ $(function() {
 			{
 				color : 
 				{
-					type : "String",
+					type : "string",
 					apply : function(value, old) {
 						// pass
 					}
@@ -977,7 +977,7 @@ $(function() {
 				
 				backgroundColor : 
 				{
-					type : "String",
+					type : "string",
 					apply : function(value, old) {
 						// pass
 					},
@@ -1000,7 +1000,7 @@ $(function() {
 		})());
 		equals(Object.keys(core.Class.getProperties(properties.Simple)).join(","), "color,backgroundColor");
 
-		equals(core.Class.getProperties(properties.Simple).color.type, "String");
+		equals(core.Class.getProperties(properties.Simple).color.type, "string");
 		equals(typeof core.Class.getProperties(properties.Simple).color.apply, "function");
 
 		ok(properties.Simple.prototype.getColor instanceof Function);
@@ -1033,7 +1033,7 @@ $(function() {
 			properties : 
 			{
 				color : {
-					type : "String",
+					type : "string",
 					fire : "changeColor"
 				}
 			}
@@ -1046,7 +1046,7 @@ $(function() {
 			{
 				color : 
 				{
-					type : "String",
+					type : "string",
 					fire : "changeColor"
 				}
 			},
@@ -1068,7 +1068,7 @@ $(function() {
 				{
 					color : 
 					{
-						type : "String"
+						type : "string"
 					}
 				}
 			});
@@ -1079,7 +1079,7 @@ $(function() {
 			properties : 
 			{
 				fontSize : {
-					type : "Integer",
+					type : "integer",
 					inheritable : true
 				}
 			}
@@ -1092,7 +1092,7 @@ $(function() {
 			{
 				fontSize : 
 				{
-					type : "Integer",
+					type : "integer",
 					inheritable : true
 				}
 			},
@@ -1122,7 +1122,7 @@ $(function() {
 				{
 					fontSize : 
 					{
-						type : "String",
+						type : "string",
 						inheritable : true
 					}
 				},
@@ -1193,7 +1193,7 @@ $(function() {
 			{
 				wrap : 
 				{
-					type : "Boolean",
+					type : "boolean",
 					apply : function(value, old) {
 						this.__textElement.style.whiteSpace = value ? "" : "no-wrap"
 					}
@@ -1201,7 +1201,7 @@ $(function() {
 				
 				color : 
 				{
-					type : "String",
+					type : "string",
 					apply : function(value, old) {
 						this.__textElement.style.color = value;
 					},
@@ -1217,7 +1217,7 @@ $(function() {
 				
 				lineHeight : 
 				{
-					type : "Integer",
+					type : "integer",
 					apply : function(value, old) {
 						this.__textElement.style.lineHeight = value;
 					}
@@ -1242,11 +1242,11 @@ $(function() {
 			properties : 
 			{
 				width : {
-					type : "Integer"
+					type : "integer"
 				},
 				
 				height : {
-					type : "Integer"
+					type : "integer"
 				}
 			}
 		});
