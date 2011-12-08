@@ -5,15 +5,8 @@
 ==================================================================================================
 */
 
-/*
- * A JavaScript implementation of the Secure Hash Algorithm, SHA-512, as defined
- * in FIPS 180-2
- * Version 2.2 Copyright Anonymous Contributor, Paul Johnston 2000 - 2009.
- * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- * Distributed under the BSD License
- * See http://pajhome.org.uk/crypt/md5 for details.
- */
-(function() {
+(function() 
+{
 	
 	/*
 	 * Configurable variables. You may need to tweak these to be compatible with
@@ -23,7 +16,14 @@
 	var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
 
 
-
+	/**
+	 * A JavaScript implementation of the Secure Hash Algorithm, SHA-512, as defined in FIPS 180-2
+	 *
+	 * Version 2.2 Copyright Anonymous Contributor, Paul Johnston 2000 - 2009.
+	 * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+	 * Distributed under the BSD License
+	 * See http://pajhome.org.uk/crypt/md5 for details.
+	 */
 	core.Module("core.checksum.SHA512", 
 	{
 		hex_sha512 : function(s) { 
@@ -50,8 +50,6 @@
 			return rstr2any(rstr_hmac_sha512(str2rstr_utf8(k), str2rstr_utf8(d)), e);
 		}
 	});
-
-
 
 
 
