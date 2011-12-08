@@ -1,4 +1,11 @@
 /*
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2011 Sebastian Werner
+==================================================================================================
+*/
+
+/*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-512, as defined
  * in FIPS 180-2
  * Version 2.2 Copyright Anonymous Contributor, Paul Johnston 2000 - 2009.

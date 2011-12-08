@@ -1,4 +1,11 @@
 /*
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2011 Sebastian Werner
+==================================================================================================
+*/
+
+/*
  * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
  * Digest Algorithm, as defined in RFC 1321.
  * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
