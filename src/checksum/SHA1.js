@@ -32,7 +32,7 @@
 		 * They take string arguments and return either hex or base-64 encoded strings
 		 */
 		hex_sha1 : function(s) { 
-			return rstr2hex(rstr_sha1(str2rstr_utf8(s))); 
+			return core.checksum.Common.rstr2hex(rstr_sha1(str2rstr_utf8(s))); 
 		},
 
 		b64_sha1 : function(s) { 
@@ -44,7 +44,7 @@
 		},
 
 		hex_hmac_sha1 : function(k, d) { 
-			return rstr2hex(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d))); 
+			return core.checksum.Common.rstr2hex(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d))); 
 		},
 
 		b64_hmac_sha1 : function(k, d) { 
@@ -86,23 +86,6 @@
 		return binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
 	}
 
-	/*
-	 * Convert a raw string to a hex string
-	 */
-	function rstr2hex(input)
-	{
-		try { hexcase } catch(e) { hexcase=0; }
-		var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
-		var output = "";
-		var x;
-		for(var i = 0; i < input.length; i++)
-		{
-			x = input.charCodeAt(i);
-			output += hex_tab.charAt((x >>> 4) & 0x0F)
-						 +	hex_tab.charAt( x				 & 0x0F);
-		}
-		return output;
-	}
 
 	/*
 	 * Convert a raw string to a base-64 string
