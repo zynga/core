@@ -18,8 +18,8 @@
 	 */
 	core.Module("core.crypt.SHA256", 
 	{
-		hash : function(s) { 
-			return rstr_sha256(core.crypt.Common.str2rstr_utf8(s)); 
+		hash : function(str) { 
+			return rstr_sha256(core.crypt.Common.str2rstr_utf8(str)); 
 		},
 
 		hmac : function(k, d) { 
@@ -30,8 +30,7 @@
 	/*
 	 * Calculate the sha256 of a raw string
 	 */
-	function rstr_sha256(s)
-	{
+	function rstr_sha256(s) {
 		return core.crypt.Common.binb2rstr(binb_sha256(core.crypt.Common.rstr2binb(s), s.length * 8));
 	}
 
@@ -113,12 +112,11 @@
 			for(j = 0; j < 64; j++)
 			{
 				if (j < 16) W[j] = m[j + i];
-				else W[j] = safe_add(safe_add(safe_add(sha256_Gamma1256(W[j - 2]), W[j - 7]),
-																							sha256_Gamma0256(W[j - 15])), W[j - 16]);
+				else W[j] = safe_add(safe_add(safe_add(sha256_Gamma1256(W[j - 2]), W[j - 7]), sha256_Gamma0256(W[j - 15])), W[j - 16]);
 
-				T1 = safe_add(safe_add(safe_add(safe_add(h, sha256_Sigma1256(e)), sha256_Ch(e, f, g)),
-																														sha256_K[j]), W[j]);
+				T1 = safe_add(safe_add(safe_add(safe_add(h, sha256_Sigma1256(e)), sha256_Ch(e, f, g)), sha256_K[j]), W[j]);
 				T2 = safe_add(sha256_Sigma0256(a), sha256_Maj(a, b, c));
+				
 				h = g;
 				g = f;
 				f = e;

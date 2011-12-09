@@ -17,8 +17,8 @@
 	 */
 	core.Module("core.crypt.SHA1", 
 	{
-		hash : function(s) { 
-			return rstr_sha1(core.crypt.Common.str2rstr_utf8(s)); 
+		hash : function(str) { 
+			return rstr_sha1(core.crypt.Common.str2rstr_utf8(str)); 
 		},
 
 		hmac : function(k, d) { 

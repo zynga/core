@@ -9,7 +9,6 @@
 {
 	core.Module("core.crypt.Common", 
 	{
-
 		/*
 		 * Encode a string as utf-8.
 		 * For efficiency, this assumes the input is valid utf-16.
@@ -48,7 +47,6 @@
 		},
 		
 		
-		
 		/*
 		 * Convert a raw string to an array of big-endian words
 		 * Characters >255 have their high-byte silently ignored.
@@ -82,8 +80,6 @@
 			
 			return output;
 		}
-
 	});
-	
 })();
 
