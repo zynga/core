@@ -352,6 +352,12 @@ $(function() {
 		strictEqual(btoa(core.crypt.MD5.hash("hello world")), "XrY7u+Ae7tCTyyK7j1rNww==");
 		strictEqual(btoa(core.crypt.MD5.hash("hello karl")), "ln89FnYxtU6nSzgOQ57C1Q==");
 		
+		strictEqual(core.crypt.MD5.hmac("secret", "hello world").hex(), "78d6997b1230f38e59b6d1642dfaa3a4");
+		strictEqual(core.crypt.MD5.hmac("secret", "hello karl").hex(), "1df06dd6ad23a62de80b713bdfc5f59f");
+		
+		strictEqual(core.crypt.MD5.hmac("other secret", "hello world").hex(), "614ff83602727ee68fba3e9500856fad");
+		strictEqual(core.crypt.MD5.hmac("other secret", "hello karl").hex(), "71b406e27e5184663c0c01448b57c5a7");
+		
 	});
 	
 	test("SHA1", function() {
@@ -362,6 +368,12 @@ $(function() {
 		strictEqual(btoa(core.crypt.SHA1.hash("hello world")), "Kq5sNclPz7QV2+lfQIuc6R7oRu0=");
 		strictEqual(btoa(core.crypt.SHA1.hash("hello karl")), "FmW88wwSRD27MyuEWQEj99VEUAs=");
 		
+		strictEqual(core.crypt.SHA1.hmac("secret", "hello world").hex(), "03376ee7ad7bbfceee98660439a4d8b125122a5a");
+		strictEqual(core.crypt.SHA1.hmac("secret", "hello karl").hex(), "1de9256cf6805f714a59b69806647b34315ae6ad");
+		
+		strictEqual(core.crypt.SHA1.hmac("other secret", "hello world").hex(), "2b7dd1114abb301c6a3879612c040db1dc76efe7");
+		strictEqual(core.crypt.SHA1.hmac("other secret", "hello karl").hex(), "1005fc78d9e3c525c72c3dcaef4ec2d1ae2d638d");
+
 	});
 	
 	test("SHA256", function() {
@@ -372,6 +384,12 @@ $(function() {
 		strictEqual(btoa(core.crypt.SHA256.hash("hello world")), "uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek=");
 		strictEqual(btoa(core.crypt.SHA256.hash("hello karl")), "cQ6cNVWHCLJGmLVeXokLUG/JRlWLOqpLNWugCOTtyGA=");
 		
+		strictEqual(core.crypt.SHA256.hmac("secret", "hello world").hex(), "734cc62f32841568f45715aeb9f4d7891324e6d948e4c6c60c0621cdac48623a");
+		strictEqual(core.crypt.SHA256.hmac("secret", "hello karl").hex(), "22585ec85d81b38049d3446dd109507bd6d72478b07ef35efb4767260fe09715");
+		
+		strictEqual(core.crypt.SHA256.hmac("other secret", "hello world").hex(), "02113759509b1c7ae0deaee8f022d84f828e7d46ae9255044c3d801ad2b09a39");
+		strictEqual(core.crypt.SHA256.hmac("other secret", "hello karl").hex(), "17f71ee9084ade98ed82ee4153ceb47707381e5852b473fb77eb8632e06e8bb8");
+
 	});
 	
 	

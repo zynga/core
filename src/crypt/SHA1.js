@@ -17,12 +17,20 @@
 	 */
 	core.Module("core.crypt.SHA1", 
 	{
+		/**
+		 *
+		 *
+		 */
 		hash : function(str) { 
 			return rstr_sha1(core.crypt.Common.str2rstr_utf8(str)); 
 		},
 
-		hmac : function(k, d) { 
-			return rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d)); 
+		/**
+		 *
+		 *
+		 */
+		hmac : function(key, str) { 
+			return rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(key), core.crypt.Common.str2rstr_utf8(str)); 
 		}
 	});
 

@@ -17,41 +17,50 @@
 	 */
 	core.Module("core.crypt.MD5", 
 	{
+		/**
+		 * Computes the MD5 checksum of the given string
+		 *
+		 * @param str {String} The string to compute the checksum of
+		 * @return {String} Computed MD5 checksum
+		 */
 		hash : function(str) { 
-			return rstr_md5(core.crypt.Common.str2rstr_utf8(str)); 
+			return binl2rstr(binl_md5(rstr2binl(core.crypt.Common.str2rstr_utf8(str)), str.length * 8));
 		},
 
-		hmac : function(k, d) { 
-			return rstr_hmac_md5(core.crypt.Common.str2rstr_utf8(k), core.crypt.Common.str2rstr_utf8(d)); 
+
+		/**
+		 * Computes a HMAC (Hash-based Message Authentication Code) using the MD5 hash function. HMAC is a 
+		 * specific construction for calculating a message authentication code (MAC) involving a 
+		 * cryptographic hash function in combination with a secret key.
+		 *
+		 * @param key {String} The secret key for verifying authenticity
+		 * @param msg {String} Message to compute the HMAC for
+		 * @return {String} Computed HMAC-MD5 code
+		 */
+		hmac : function(key, msg) { 
+			
+			key = core.crypt.Common.str2rstr_utf8(key);
+			msg = core.crypt.Common.str2rstr_utf8(msg);
+			
+			var bkey = rstr2binl(key);
+			if (bkey.length > 16) {
+				bkey = binl_md5(bkey, key.length * 8);
+			}
+
+			var ipad = Array(16);
+			var opad = Array(16);
+			
+			for(var i = 0; i < 16; i++)
+			{
+				ipad[i] = bkey[i] ^ 0x36363636;
+				opad[i] = bkey[i] ^ 0x5C5C5C5C;
+			}
+
+			var hash = binl_md5(ipad.concat(rstr2binl(msg)), 512 + msg.length * 8);
+			return binl2rstr(binl_md5(opad.concat(hash), 512 + 128));
+			
 		}
 	});
-
-	/*
-	 * Calculate the MD5 of a raw string
-	 */
-	function rstr_md5(s) {
-		return binl2rstr(binl_md5(rstr2binl(s), s.length * 8));
-	}
-
-	/*
-	 * Calculate the HMAC-MD5, of a key and some data (raw strings)
-	 */
-	function rstr_hmac_md5(key, data)
-	{
-		var bkey = rstr2binl(key);
-		if(bkey.length > 16) bkey = binl_md5(bkey, key.length * 8);
-
-		var ipad = Array(16), opad = Array(16);
-		for(var i = 0; i < 16; i++)
-		{
-			ipad[i] = bkey[i] ^ 0x36363636;
-			opad[i] = bkey[i] ^ 0x5C5C5C5C;
-		}
-
-		var hash = binl_md5(ipad.concat(rstr2binl(data)), 512 + data.length * 8);
-		return binl2rstr(binl_md5(opad.concat(hash), 512 + 128));
-	}
-
 
 
 	/*
@@ -88,10 +97,10 @@
 		x[len >> 5] |= 0x80 << ((len) % 32);
 		x[(((len + 64) >>> 9) << 4) + 14] = len;
 
-		var a =	 1732584193;
+		var a = 1732584193;
 		var b = -271733879;
 		var c = -1732584194;
-		var d =	 271733878;
+		var d = 271733878;
 
 		for(var i = 0; i < x.length; i += 16)
 		{
