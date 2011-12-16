@@ -7,6 +7,9 @@
 ==================================================================================================
 */
 
+/**
+ * @require {core.ext.Core}
+ */
 Object.addObjectMethods("Array", 
 {
 	/**
@@ -22,6 +25,9 @@ Object.addObjectMethods("Array",
 	}
 });
 
+/**
+ * @require {core.ext.Core}
+ */
 Object.addPrototypeMethods("Array", 
 {
 	/**

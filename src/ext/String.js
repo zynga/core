@@ -5,14 +5,19 @@
 ==================================================================================================
 */
 
-(function() {
-
+(function() 
+{
 	var hexTable = "0123456789abcdef".split("");
 
+	/**
+	 * @require {core.ext.Core}
+	 */
 	Object.addPrototypeMethods("String",
 	{
 		/*
-		 * Convert a raw string to a hex string
+		 * Convert a string to a hex string
+		 * 
+		 * @return {String} A hex representation of the string
 		 */
 		hex : function()
 		{
@@ -27,6 +32,16 @@
 			}
 
 			return output;
+		},
+		
+
+		/**
+		 * Converts a string to a base64 string 
+		 * 
+		 * @return {String} A base64 representation of the string
+		 */
+		base64: function() {
+			return btoa(this);
 		},
 
 
