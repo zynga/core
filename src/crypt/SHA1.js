@@ -22,7 +22,11 @@
 		 *
 		 */
 		hash : function(str) { 
-			return rstr_sha1(core.crypt.Common.str2rstr_utf8(str)); 
+
+			str = core.crypt.Common.str2rstr_utf8(str);
+			
+			return core.crypt.Common.binb2rstr(binb_sha1(core.crypt.Common.rstr2binb(str), str.length * 8));
+
 		},
 
 		/**
@@ -30,38 +34,29 @@
 		 *
 		 */
 		hmac : function(key, str) { 
-			return rstr_hmac_sha1(core.crypt.Common.str2rstr_utf8(key), core.crypt.Common.str2rstr_utf8(str)); 
+			
+			key = core.crypt.Common.str2rstr_utf8(key);
+			str = core.crypt.Common.str2rstr_utf8(str);
+			
+			var bkey = core.crypt.Common.rstr2binb(key);
+
+			if (bkey.length > 16) {
+				bkey = binb_sha1(bkey, key.length * 8);
+			}
+
+			var ipad = Array(16), opad = Array(16);
+			for (var i = 0; i < 16; i++)
+			{
+				ipad[i] = bkey[i] ^ 0x36363636;
+				opad[i] = bkey[i] ^ 0x5C5C5C5C;
+			}
+
+			var hash = binb_sha1(ipad.concat(core.crypt.Common.rstr2binb(str)), 512 + str.length * 8);
+			return core.crypt.Common.binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
+
 		}
 	});
 
-	/*
-	 * Calculate the SHA1 of a raw string
-	 */
-	function rstr_sha1(s) {
-		return core.crypt.Common.binb2rstr(binb_sha1(core.crypt.Common.rstr2binb(s), s.length * 8));
-	}
-
-	/*
-	 * Calculate the HMAC-SHA1 of a key and some data (raw strings)
-	 */
-	function rstr_hmac_sha1(key, data)
-	{
-		var bkey = core.crypt.Common.rstr2binb(key);
-		
-		if (bkey.length > 16) {
-			bkey = binb_sha1(bkey, key.length * 8);
-		}
-
-		var ipad = Array(16), opad = Array(16);
-		for (var i = 0; i < 16; i++)
-		{
-			ipad[i] = bkey[i] ^ 0x36363636;
-			opad[i] = bkey[i] ^ 0x5C5C5C5C;
-		}
-
-		var hash = binb_sha1(ipad.concat(core.crypt.Common.rstr2binb(data)), 512 + data.length * 8);
-		return core.crypt.Common.binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
-	}
 
 	/*
 	 * Calculate the SHA-1 of an array of big-endian words, and a bit length

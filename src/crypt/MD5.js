@@ -24,7 +24,11 @@
 		 * @return {String} Computed MD5 checksum
 		 */
 		hash : function(str) { 
-			return binl2rstr(binl_md5(rstr2binl(core.crypt.Common.str2rstr_utf8(str)), str.length * 8));
+			
+			str = core.crypt.Common.str2rstr_utf8(str);
+			var md5 = binl_md5(core.crypt.Common.rstr2binl(str), str.length * 8);
+			
+			return core.crypt.Common.binl2rstr(md5);
 		},
 
 
@@ -42,7 +46,7 @@
 			key = core.crypt.Common.str2rstr_utf8(key);
 			msg = core.crypt.Common.str2rstr_utf8(msg);
 			
-			var bkey = rstr2binl(key);
+			var bkey = core.crypt.Common.rstr2binl(key);
 			if (bkey.length > 16) {
 				bkey = binl_md5(bkey, key.length * 8);
 			}
@@ -56,37 +60,12 @@
 				opad[i] = bkey[i] ^ 0x5C5C5C5C;
 			}
 
-			var hash = binl_md5(ipad.concat(rstr2binl(msg)), 512 + msg.length * 8);
-			return binl2rstr(binl_md5(opad.concat(hash), 512 + 128));
+			var hash = binl_md5(ipad.concat(core.crypt.Common.rstr2binl(msg)), 512 + msg.length * 8);
+			return core.crypt.Common.binl2rstr(binl_md5(opad.concat(hash), 512 + 128));
 			
 		}
 	});
 
-
-	/*
-	 * Convert a raw string to an array of little-endian words
-	 * Characters >255 have their high-byte silently ignored.
-	 */
-	function rstr2binl(input)
-	{
-		var output = Array(input.length >> 2);
-		for(var i = 0; i < output.length; i++)
-			output[i] = 0;
-		for(var i = 0; i < input.length * 8; i += 8)
-			output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (i%32);
-		return output;
-	}
-
-	/*
-	 * Convert an array of little-endian words to a string
-	 */
-	function binl2rstr(input)
-	{
-		var output = "";
-		for(var i = 0; i < input.length * 32; i += 8)
-			output += String.fromCharCode((input[i>>5] >>> (i % 32)) & 0xFF);
-		return output;
-	}
 
 	/*
 	 * Calculate the MD5 of an array of little-endian words, and a bit length.

@@ -23,7 +23,11 @@
 		 *
 		 */
 		hash : function(str) { 
-			return rstr_sha256(core.crypt.Common.str2rstr_utf8(str)); 
+			
+			str = core.crypt.Common.str2rstr_utf8(str);
+			
+			return core.crypt.Common.binb2rstr(binb_sha256(core.crypt.Common.rstr2binb(str), str.length * 8));
+
 		},
 
 		/**
@@ -31,36 +35,25 @@
 		 *
 		 */
 		hmac : function(key, str) { 
-			return rstr_hmac_sha256(core.crypt.Common.str2rstr_utf8(key), core.crypt.Common.str2rstr_utf8(str)); 
+			
+			key = core.crypt.Common.str2rstr_utf8(key);
+			str = core.crypt.Common.str2rstr_utf8(str);
+			
+			var bkey = core.crypt.Common.rstr2binb(key);
+			if(bkey.length > 16) bkey = binb_sha256(bkey, key.length * 8);
+
+			var ipad = Array(16), opad = Array(16);
+			for(var i = 0; i < 16; i++)
+			{
+				ipad[i] = bkey[i] ^ 0x36363636;
+				opad[i] = bkey[i] ^ 0x5C5C5C5C;
+			}
+
+			var hash = binb_sha256(ipad.concat(core.crypt.Common.rstr2binb(str)), 512 + str.length * 8);
+			return core.crypt.Common.binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
+			
 		}
 	});
-
-	/*
-	 * Calculate the sha256 of a raw string
-	 */
-	function rstr_sha256(s) {
-		return core.crypt.Common.binb2rstr(binb_sha256(core.crypt.Common.rstr2binb(s), s.length * 8));
-	}
-
-	/*
-	 * Calculate the HMAC-sha256 of a key and some data (raw strings)
-	 */
-	function rstr_hmac_sha256(key, data)
-	{
-		var bkey = core.crypt.Common.rstr2binb(key);
-		if(bkey.length > 16) bkey = binb_sha256(bkey, key.length * 8);
-
-		var ipad = Array(16), opad = Array(16);
-		for(var i = 0; i < 16; i++)
-		{
-			ipad[i] = bkey[i] ^ 0x36363636;
-			opad[i] = bkey[i] ^ 0x5C5C5C5C;
-		}
-
-		var hash = binb_sha256(ipad.concat(core.crypt.Common.rstr2binb(data)), 512 + data.length * 8);
-		return core.crypt.Common.binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
-	}
-
 
 
 	/*
@@ -79,8 +72,7 @@
 	function sha256_Gamma0512(x) {return (sha256_S(x, 1)	^ sha256_S(x, 8) ^ sha256_R(x, 7));}
 	function sha256_Gamma1512(x) {return (sha256_S(x, 19) ^ sha256_S(x, 61) ^ sha256_R(x, 6));}
 
-	var sha256_K = new Array
-	(
+	var sha256_K = [
 		1116352408, 1899447441, -1245643825, -373957723, 961987163, 1508970993,
 		-1841331548, -1424204075, -670586216, 310598401, 607225278, 1426881987,
 		1925078388, -2132889090, -1680079193, -1046744716, -459576895, -272742522,
@@ -92,12 +84,11 @@
 		430227734, 506948616, 659060556, 883997877, 958139571, 1322822218,
 		1537002063, 1747873779, 1955562222, 2024104815, -2067236844, -1933114872,
 		-1866530822, -1538233109, -1090935817, -965641998
-	);
+	];
 
 	function binb_sha256(m, l)
 	{
-		var HASH = new Array(1779033703, -1150833019, 1013904242, -1521486534,
-												 1359893119, -1694144372, 528734635, 1541459225);
+		var HASH = [1779033703, -1150833019, 1013904242, -1521486534, 1359893119, -1694144372, 528734635, 1541459225];
 		var W = new Array(64);
 		var a, b, c, d, e, f, g, h;
 		var i, j, T1, T2;
@@ -147,10 +138,11 @@
 		return HASH;
 	}
 
-	function safe_add (x, y)
+	function safe_add(x, y)
 	{
 		var lsw = (x & 0xFFFF) + (y & 0xFFFF);
 		var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+		
 		return (msw << 16) | (lsw & 0xFFFF);
 	}
 	

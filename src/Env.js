@@ -62,23 +62,7 @@
 				console.info("core.Env: " + key.join(", "));
 			}
 
-			var adler32 = (function(data)
-			{
-				var MOD_ADLER = 65521;
-				var a=1, b=0;
-
-				// Process each byte of the data in order
-				for (var index=0, len=data.length; index<len; ++index)
-				{
-					a = (a + data.charCodeAt(index)) % MOD_ADLER;
-					b = (b + a) % MOD_ADLER;
-				}
-
-				return (b << 16) | a;
-			})(key.join(";"));
-
-			var prefix = adler32 < 0 ? "a" : "b";
-			var checksum = prefix + (adler32 < 0 ? -adler32 : adler32).toString(16);
+			var checksum = core.crypt.SHA1.hash(key.join(";"));
 
 			return checksum;
 		})();
