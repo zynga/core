@@ -25,10 +25,10 @@
 		 */
 		hash : function(str) { 
 			
-			str = core.crypt.Common.strToUtf8(str);
-			var md5 = binl_md5(core.crypt.Common.rawStringToLittleEndian(str), str.length * 8);
+			str = core.crypt.Util.strToUtf8(str);
+			var md5 = binl_md5(core.crypt.Util.rawStringToLittleEndian(str), str.length * 8);
 			
-			return core.crypt.Common.littleEndianToRawString(md5);
+			return core.crypt.Util.littleEndianToRawString(md5);
 		},
 
 
@@ -43,10 +43,10 @@
 		 */
 		hmac : function(key, msg, method) { 
 			
-			key = core.crypt.Common.strToUtf8(key);
-			msg = core.crypt.Common.strToUtf8(msg);
+			key = core.crypt.Util.strToUtf8(key);
+			msg = core.crypt.Util.strToUtf8(msg);
 			
-			var bkey = core.crypt.Common.rawStringToLittleEndian(key);
+			var bkey = core.crypt.Util.rawStringToLittleEndian(key);
 			if (bkey.length > 16) {
 				bkey = binl_md5(bkey, key.length * 8);
 			}
@@ -60,8 +60,8 @@
 				opad[i] = bkey[i] ^ 0x5C5C5C5C;
 			}
 
-			var hash = binl_md5(ipad.concat(core.crypt.Common.rawStringToLittleEndian(msg)), 512 + msg.length * 8);
-			return core.crypt.Common.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128));
+			var hash = binl_md5(ipad.concat(core.crypt.Util.rawStringToLittleEndian(msg)), 512 + msg.length * 8);
+			return core.crypt.Util.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128));
 			
 		}
 	});

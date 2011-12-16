@@ -24,9 +24,9 @@
 		 */
 		hash : function(str) { 
 			
-			str = core.crypt.Common.strToUtf8(str);
+			str = core.crypt.Util.strToUtf8(str);
 			
-			return core.crypt.Common.bigEndianToRawString(binb_sha256(core.crypt.Common.rawStringToBigEndian(str), str.length * 8));
+			return core.crypt.Util.bigEndianToRawString(binb_sha256(core.crypt.Util.rawStringToBigEndian(str), str.length * 8));
 
 		},
 
@@ -36,10 +36,10 @@
 		 */
 		hmac : function(key, str) { 
 			
-			key = core.crypt.Common.strToUtf8(key);
-			str = core.crypt.Common.strToUtf8(str);
+			key = core.crypt.Util.strToUtf8(key);
+			str = core.crypt.Util.strToUtf8(str);
 			
-			var bkey = core.crypt.Common.rawStringToBigEndian(key);
+			var bkey = core.crypt.Util.rawStringToBigEndian(key);
 			if (bkey.length > 16) {
 				bkey = binb_sha256(bkey, key.length * 8);
 			}
@@ -53,8 +53,8 @@
 				opad[i] = bkey[i] ^ 0x5C5C5C5C;
 			}
 
-			var hash = binb_sha256(ipad.concat(core.crypt.Common.rawStringToBigEndian(str)), 512 + str.length * 8);
-			return core.crypt.Common.bigEndianToRawString(binb_sha256(opad.concat(hash), 512 + 256));
+			var hash = binb_sha256(ipad.concat(core.crypt.Util.rawStringToBigEndian(str)), 512 + str.length * 8);
+			return core.crypt.Util.bigEndianToRawString(binb_sha256(opad.concat(hash), 512 + 256));
 			
 		}
 	});

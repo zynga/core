@@ -9,7 +9,7 @@
 {
 	var hexTable = "0123456789abcdef".split("");
 	
-	core.Module("core.crypt.Common", 
+	core.Module("core.crypt.Util", 
 	{
 		/*
 		 * Encode a string as utf-8.
@@ -67,6 +67,7 @@
 				
 			return output;
 		},
+
 
 		/*
 		 * Convert an array of little-endian words to a string
