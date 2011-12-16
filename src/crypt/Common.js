@@ -7,13 +7,15 @@
 
 (function() 
 {
+	var hexTable = "0123456789abcdef".split("");
+	
 	core.Module("core.crypt.Common", 
 	{
 		/*
 		 * Encode a string as utf-8.
 		 * For efficiency, this assumes the input is valid utf-16.
 		 */
-		str2rstr_utf8 : function(input)
+		strToUtf8 : function(input)
 		{
 			var output = "";
 			var i = -1;
@@ -51,24 +53,32 @@
 		 * Convert a raw string to an array of little-endian words
 		 * Characters >255 have their high-byte silently ignored.
 		 */
-		rstr2binl : function(input)
+		rawStringToLittleEndian : function(input)
 		{
 			var output = Array(input.length >> 2);
-			for(var i = 0; i < output.length; i++)
+			
+			for(var i = 0; i < output.length; i++) {
 				output[i] = 0;
-			for(var i = 0; i < input.length * 8; i += 8)
+			}
+				
+			for(var i = 0; i < input.length * 8; i += 8) {
 				output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (i%32);
+			}
+				
 			return output;
 		},
 
 		/*
 		 * Convert an array of little-endian words to a string
 		 */
-		binl2rstr : function(input)
+		littleEndianToRawString : function(input)
 		{
 			var output = "";
-			for(var i = 0; i < input.length * 32; i += 8)
+			
+			for(var i = 0; i < input.length * 32; i += 8) {
 				output += String.fromCharCode((input[i>>5] >>> (i % 32)) & 0xFF);
+			}
+				
 			return output;
 		},
 		
@@ -77,7 +87,7 @@
 		 * Convert a raw string to an array of big-endian words
 		 * Characters >255 have their high-byte silently ignored.
 		 */
-		rstr2binb : function (input)
+		rawStringToBigEndian : function(input)
 		{
 			var output = Array(input.length >> 2);
 
@@ -96,7 +106,7 @@
 		/*
 		 * Convert an array of big-endian words to a string
 		 */
-		binb2rstr : function(input)
+		bigEndianToRawString : function(input)
 		{
 			var output = "";
 			

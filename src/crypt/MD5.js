@@ -25,10 +25,10 @@
 		 */
 		hash : function(str) { 
 			
-			str = core.crypt.Common.str2rstr_utf8(str);
-			var md5 = binl_md5(core.crypt.Common.rstr2binl(str), str.length * 8);
+			str = core.crypt.Common.strToUtf8(str);
+			var md5 = binl_md5(core.crypt.Common.rawStringToLittleEndian(str), str.length * 8);
 			
-			return core.crypt.Common.binl2rstr(md5);
+			return core.crypt.Common.littleEndianToRawString(md5);
 		},
 
 
@@ -41,12 +41,12 @@
 		 * @param msg {String} Message to compute the HMAC for
 		 * @return {String} Computed HMAC-MD5 code
 		 */
-		hmac : function(key, msg) { 
+		hmac : function(key, msg, method) { 
 			
-			key = core.crypt.Common.str2rstr_utf8(key);
-			msg = core.crypt.Common.str2rstr_utf8(msg);
+			key = core.crypt.Common.strToUtf8(key);
+			msg = core.crypt.Common.strToUtf8(msg);
 			
-			var bkey = core.crypt.Common.rstr2binl(key);
+			var bkey = core.crypt.Common.rawStringToLittleEndian(key);
 			if (bkey.length > 16) {
 				bkey = binl_md5(bkey, key.length * 8);
 			}
@@ -54,14 +54,14 @@
 			var ipad = Array(16);
 			var opad = Array(16);
 			
-			for(var i = 0; i < 16; i++)
+			for (var i = 0; i < 16; i++)
 			{
 				ipad[i] = bkey[i] ^ 0x36363636;
 				opad[i] = bkey[i] ^ 0x5C5C5C5C;
 			}
 
-			var hash = binl_md5(ipad.concat(core.crypt.Common.rstr2binl(msg)), 512 + msg.length * 8);
-			return core.crypt.Common.binl2rstr(binl_md5(opad.concat(hash), 512 + 128));
+			var hash = binl_md5(ipad.concat(core.crypt.Common.rawStringToLittleEndian(msg)), 512 + msg.length * 8);
+			return core.crypt.Common.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128));
 			
 		}
 	});

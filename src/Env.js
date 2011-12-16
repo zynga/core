@@ -62,9 +62,10 @@
 				console.info("core.Env: " + key.join(", "));
 			}
 
-			var checksum = core.crypt.SHA1.hash(key.join(";"));
-
-			return checksum;
+			/**
+			 * @require {core.ext.String}
+			 */
+			return core.crypt.SHA1.hash(key.join(";")).hex();
 		})();
 	}
 	else
