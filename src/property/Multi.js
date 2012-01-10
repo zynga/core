@@ -30,12 +30,12 @@
 		// User (aka Instance-specific value)
 		3: {},
 
-		// Theme, see {@link core.property.IThemeable}
+		// Theme, see {core.property.IThemeable}
 		2: {
 			get : "getThemedValue"
 		},
 
-		// Inheritance, see {@link core.property.IInheritable}
+		// Inheritance, see {core.property.IInheritable}
 		1 : {
 			get : "getInheritedValue"
 		}

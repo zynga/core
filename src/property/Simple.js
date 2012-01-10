@@ -24,7 +24,7 @@
 	 * <li><strong>apply</strong>: Link to function to call after a new value has been stored. The signature of the method is
 	 *	 <code>function(newValue, oldValue)</code>.</li>
 	 * <li><strong>event</strong>: Event to fire after a new value has been stored (and apply has been called). The event
-	 *	 type is a {@link core.property.Event} which contains both, the old and new value.</li>
+	 *	 type is a {core.property.Event} which contains both, the old and new value.</li>
 	 * <li><strong>init</strong>: Init value for the property. If no value is set or the property gets reset, the getter
 	 *	 will return the <code>init</code> value.</li>
 	 * <li><strong>nullable</strong>: Whether the property is able to store null values. This also allows the system to

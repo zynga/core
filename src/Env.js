@@ -71,7 +71,7 @@
 	else
 	{
 		// Enable debug by default
-		// All other data might be configured using {@link #define} later.
+		// All other data might be configured using {#define} later.
 		var selected = {
 			debug : true
 		};

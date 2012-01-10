@@ -37,7 +37,7 @@
 
 	/**
 	 * Internal class for handling of dynamic property groups. Should only be used
-	 * through the methods provided by {@link qx.Class}.
+	 * through the methods provided by {qx.Class}.
 	 *
 	 * For a complete documentation of properties take a
 	 * look at http://qooxdoo.org/documentation/developer_manual/properties.

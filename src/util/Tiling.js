@@ -29,7 +29,7 @@ core.Class("core.util.Tiling", {
 
 
 		/**
-		 * Renders the given location on the area defined by {@link #setup} by calling
+		 * Renders the given location on the area defined by {#setup} by calling
 		 * `paint(row, column, left, top, width, height, zoom)` as needed.
 		 *
 		 * @param left {Number} Left position to render
