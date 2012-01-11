@@ -7,12 +7,6 @@
 
 core.Module("core.detect.Param",
 {
-	/**
-	 * Returns the value of the given parameter
-	 *
-	 * @param name {String} Parameter name
-	 * @return {String} Parameter value
-	 */
 	get : (function()
 	{
 		var items = location.search.substring(1).split("&");
@@ -45,6 +39,9 @@ core.Module("core.detect.Param",
 		// Cleanup temporary reference types
 		items = translate = null;
 
+		/**
+		 * {String} Returns the value of the given parameter @name {String}.
+		 */
 		return function get(name) {
 			return name in map ? map[name] : null;
 		}

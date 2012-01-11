@@ -33,9 +33,12 @@ core.Module("core.detect.Object",
 			"feature.socket" : "WebSocket"
 		};
 
-		return function get(name)
+		/**
+		 * {Boolean} Returns the whether the given @feature {String} is supported
+		 */
+		return function get(feature)
 		{
-			var test = allowed[name];
+			var test = allowed[feature];
 
 			try {
 				var result = test && test in global;

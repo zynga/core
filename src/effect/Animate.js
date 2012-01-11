@@ -27,7 +27,7 @@
 	core.Module("core.effect.Animate", {
 
 		/**
-		 * {Boolean} Stops the given animation via its @id {Integer}. Returns the whether the animation was stopped.
+		 * {Boolean} Stops the given animation via its @id {Integer}. Returns whether the animation was stopped.
 		 */
 		stop: function(id) {
 			var cleared = running[id] != null;

@@ -7,6 +7,7 @@
 
 core.Module("core.detect.Engine",
 {
+	/** {=String} One of presto, gecko, webkit, trident */
 	VALUE : (function(global)
 	{
 		var engine;
