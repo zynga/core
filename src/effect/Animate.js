@@ -5,18 +5,6 @@
 ==================================================================================================
 */
 
-/**
- * Generic animation class with support for dropped frames both optional easing and duration.
- *
- * Optional duration is useful when the lifetime is defined by another condition than time
- * e.g. speed of an animating object, etc.
- *
- * Dropped frame logic allows to keep using the same updater logic independent from the actual
- * rendering. This eases a lot of cases where it might be pretty complex to break down a state
- * based on the pure time difference.
- *
- * @require {core.polyfill.requestAnimationFrame}
- */
 (function() {
 	var time = Date.now;
 	var desiredFrames = 60;
@@ -24,13 +12,22 @@
 	var running = {};
 	var counter = 1;
 
+	/**
+	 * Generic animation class with support for dropped frames both optional easing and duration.
+	 *
+	 * Optional duration is useful when the lifetime is defined by another condition than time
+	 * e.g. speed of an animating object, etc.
+	 *
+	 * Dropped frame logic allows to keep using the same updater logic independent from the actual
+	 * rendering. This eases a lot of cases where it might be pretty complex to break down a state
+	 * based on the pure time difference.
+	 *
+	 * Requires: {core.polyfill.requestAnimationFrame}
+	 */
 	core.Module("core.effect.Animate", {
 
 		/**
-		 * Stops the given animation.
-		 *
-		 * @param id {Integer} Unique animation ID
-		 * @return {Boolean} Whether the animation was stopped (aka, was running before)
+		 * {Boolean} Stops the given animation via its @id {Integer}. Returns the whether the animation was stopped.
 		 */
 		stop: function(id) {
 			var cleared = running[id] != null;
@@ -43,10 +40,7 @@
 
 
 		/**
-		 * Whether the given animation is still running.
-		 *
-		 * @param id {Integer} Unique animation ID
-		 * @return {Boolean} Whether the animation is still running
+		 * {Boolean} Whether the given animation via its @id {Integer} is still running.
 		 */
 		isRunning: function(id) {
 			return running[id] != null;
@@ -54,20 +48,19 @@
 
 
 		/**
-		 * Start the animation.
+		 * {Integer} Start the animation. Returns the identifier of animation. Can be used to stop it any time.
 		 *
-		 * @param stepCallback {Function} Pointer to function which is executed on every step.
+		 * * @stepCallback {Function} Pointer to function which is executed on every step.
 		 *   Signature of the method should be `function(percent, now, virtual) { return continueWithAnimation; }`
-		 * @param verifyCallback {Function} Executed before every animation step.
+		 * * @verifyCallback {Function} Executed before every animation step.
 		 *   Signature of the method should be `function() { return continueWithAnimation; }`
-		 * @param completedCallback {Function}
+		 * * @completedCallback {Function}
 		 *   Signature of the method should be `function(droppedFrames, finishedAnimation) {}`
-		 * @param duration {Integer} Milliseconds to run the animation
-		 * @param easingMethod {Function} Pointer to easing function
+		 * * @duration {Integer} Milliseconds to run the animation
+		 * * @easingMethod {Function} Pointer to easing function
 		 *   Signature of the method should be `function(percent) { return modifiedValue; }`
-		 * @param root {Element ? document.body} Render root, when available. Used for internal
+		 * * @root {Element ? document.body} Render root, when available. Used for internal
 		 *   usage of requestAnimationFrame.
-		 * @return {Integer} Identifier of animation. Can be used to stop it any time.
 		 */
 		start: function(stepCallback, verifyCallback, completedCallback, duration, easingMethod, root) {
 
