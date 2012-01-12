@@ -10,6 +10,9 @@
  */
 core.Module("core.detect.Locale",
 {
+	/**
+	 * {=String} Locale string as configured by the user e.g. `de_AT`, `es_ES` or short like `de`
+	 */
 	VALUE : (function()
 	{
 		var nav = navigator;

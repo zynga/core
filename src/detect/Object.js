@@ -8,18 +8,20 @@
 /**
  * Checks for existance of global API objects.
  *
+ * - feature.appcache
+ * - feature.worker
+ * - feature.xhr
+ * - feature.storage
+ * - feature.gl
+ * - feature.message
+ * - feature.db
+ * - feature.json
+ * - feature.socket
  */
 core.Module("core.detect.Object",
 {
 	get : (function(global)
 	{
-		// TODO
-		// But not possible here:
-		// - Canvas
-		// - SVG
-		// - GeoLocation (navigator)
-		// - QuerySelectorAll
-
 		var allowed =
 		{
 			"feature.appcache" : "applicationCache",
