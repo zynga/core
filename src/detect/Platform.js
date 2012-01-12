@@ -1,11 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2011 Sebastian Werner
---------------------------------------------------------------------------------------------------
-  Based on code of Unify Project
-  License: MIT + Apache (V2)
-  Copyright: 2009-2011 Deutsche Telekom AG, Germany, http://telekom.com
+  Copyright 2010-2012 Sebastian Werner
 ==================================================================================================
 */
 
@@ -34,6 +30,9 @@ Module("core.detect.Platform",
 			name = "other";
 		}
 
+		/** 
+		 * {=String} One of win, mac, unix or other
+		 */
 		return name;
 	})()
 });
