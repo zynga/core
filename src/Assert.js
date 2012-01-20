@@ -6,15 +6,15 @@
 */
 
 /**
- * @require {fix.ArrayIndexOf}
- * @require {fix.Console}
- * @require {fix.DateNow}
- * @require {fix.DocumentHead}
- * @require {fix.ExecScript}
- * @require {fix.FunctionBind}
- * @require {fix.HTML5Markup}
- * @require {fix.ObjectKeys}
- * @require {fix.SetTimeoutArgs}
+ * @require {core.fix.ArrayIndexOf}
+ * @require {core.fix.Console}
+ * @require {core.fix.DateNow}
+ * @require {core.fix.DocumentHead}
+ * @require {core.fix.ExecScript}
+ * @require {core.fix.FunctionBind}
+ * @require {core.fix.HTML5Markup}
+ * @require {core.fix.ObjectKeys}
+ * @require {core.fix.SetTimeoutArgs}
  */
 (function(global, toString) 
 {

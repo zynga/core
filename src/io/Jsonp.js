@@ -9,7 +9,7 @@
 */
 
 /**
- * @require {fix.DocumentHead}
+ * @require {core.fix.DocumentHead}
  */
 (function(global, doc) {
 	

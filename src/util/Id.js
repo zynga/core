@@ -15,25 +15,25 @@
 	core.Module("core.util.Id", {
 		
 		/**
-		 * Returns a unique ID of the given object.
+		 * {Integer} Returns a unique ID of the given @object {Function|Object|Element}.
 		 *
 		 * To improve performance one could also use:
 		 * `var uniqueId = obj.$$id || core.util.Id.get(obj);`
 		 */
-		get: function(obj) {
+		get: function(object) {
 			
 			if (core.Env.isSet("debug")) {
 
-				var type = typeof obj;
-				if (obj == null || (type != "object" && type != "function") || obj.constructor == Object) {
-					throw new Error("Could not detect ID of " + obj);
+				var type = typeof object;
+				if (object == null || (type != "object" && type != "function") || object.constructor == Object) {
+					throw new Error("Could not detect ID of " + object);
 				}
 
 			}
 			
-			var id = obj.$$id;
+			var id = object.$$id;
 			if (id == null) {
-				id = obj.$$id = count++;
+				id = object.$$id = count++;
 			}
 			
 			return id;

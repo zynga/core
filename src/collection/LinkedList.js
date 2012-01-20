@@ -15,7 +15,7 @@
 	 * The implementation is a doubly linked list which stores references on the objects which are stored. So
 	 * these objects are modified. Iterating through this objects will show the keys added by the LinkedList!
 	 *
-	 * Wikipedia on LinkedList:
+	 * **Wikipedia on LinkedList**
 	 *
 	 * The principal benefit of a linked list over a conventional array is that the list elements can easily 
 	 * be inserted or removed without reallocation or reorganization of the entire structure because the data 
@@ -34,7 +34,7 @@
 	core.Class("core.collection.LinkedList", 
 	{
 		/**
-		 * @param array {Array} Native array like object to import
+		 * Native @array {Array} like object to import
 		 */
 		construct: function(array) 
 		{
@@ -86,12 +86,9 @@
 			
 
 			/**
-			 * Adds the given object to the list
+			 * {LinkedList} Adds the given @obj {Object} to the list
 			 *
 			 * Performance behavior: O(1)
-			 *
-			 * @param obj {Object} Object to add
-			 * @return {LinkedList} Returns this object for further operations
 			 */
 			add: function(obj) {
 
@@ -127,12 +124,9 @@
 			
 
 			/**
-			 * Removes the given object from the list
+			 * {LinkedList} Removes the given @obj {Object} from the list
 			 *
 			 * Performance behavior: O(1)
-			 *
-			 * @param obj {Object} Object to remove
-			 * @return {LinkedList} Returns this object for further operations
 			 */
 			remove: function(obj) {
 
@@ -183,12 +177,9 @@
 
 
 			/**
-			 * Whether the list contains the given object
+			 * {Boolean} Returns whether the list contains the given @obj {Object}
 			 *
 			 * Performance behavior: O(1)
-			 *
-			 * @param obj {Object} Object to check for
-			 * @return {Boolean} Whether the object is in the list
 			 */
 			has: function(obj) {
 				return !!obj[this.__id];
@@ -196,12 +187,9 @@
 			
 			
 			/**
-			 * Returns the position of the object in the list
+			 * {Integer} Returns the position of the @obj {Object} in the list
 			 *
 			 * Performance behavior: O(n); in negative cases just O(1)
-			 *
-			 * @param obj {Object} Object to check for
-			 * @return {Integer} The position of the object in the list. `-1` when object was not found.
 			 */
 			indexOf: function(obj) {
 				
@@ -229,11 +217,9 @@
 			
 			
 			/**
-			 * Whether the LinkedList is empty
+			 * {Boolean} Returns whether the list is empty
 			 *
 			 * Performance behavior: O(1)
-			 *
-			 * @return {Boolean} Whether the list is empty
 			 */
 			isEmpty: function() {
 				return this.__length > 0;
@@ -241,11 +227,9 @@
 			
 			
 			/**
-			 * Returns the length of the list
+			 * {Integer} Returns the length of the list
 			 *
 			 * Performance behavior: O(1)
-			 *
-			 * @return {Integer} Length of the list
 			 */
 			getLength: function() {
 				return this.__length;
@@ -253,11 +237,9 @@
 			
 			
 			/**
-			 * Clears the full list
+			 * {LinkedList} Clears the full list and returns the list object
 			 *
 			 * Performance behavior: O(n)
-			 *
-			 * @return {LinkedList} Returns this object for further operations
 			 */
 			clear: function() {
 				
@@ -281,11 +263,9 @@
 			
 			
 			/**
-			 * Returns an array copy of the list
+			 * {Array} Returns an array copy of the list
 			 *
 			 * Performance behavior: O(n)
-			 *
-			 * @return {Array} Current list converted to an array
 			 */
 			toArray: function() {
 				

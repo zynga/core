@@ -11,7 +11,7 @@
  *
  * It's used by both standard property system: core.property.Simple and core.property.Multi.
  *
- * @require {fix.Console}
+ * @require {core.fix.Console}
  */
 core.Module("core.property.Debug",
 {
