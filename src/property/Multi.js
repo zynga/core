@@ -260,7 +260,6 @@
 			var propertyInit = config.init;
 			var propertyEvent = config.event;
 			var propertyApply = config.apply;
-			var propertyValidate = config.validate;
 			var propertyInheritable = config.inheritable;
 
 
