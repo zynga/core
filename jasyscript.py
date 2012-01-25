@@ -16,6 +16,7 @@ def api():
     
     writer = ApiWriter(session)
     writer.write("api/data")
+    # writer.write("api/packed", "msgpack")
         
     session.close()
         
