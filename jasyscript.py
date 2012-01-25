@@ -15,7 +15,7 @@ def api():
     session.addProject(Project("."))
     
     writer = ApiWriter(session)
-    writer.write("api")
+    writer.write("api/data")
         
     session.close()
         
