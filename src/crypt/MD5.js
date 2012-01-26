@@ -2,51 +2,49 @@
 ==================================================================================================
   Core - JavaScript Foundation
   Copyright 2010-2012 Sebastian Werner
+--------------------------------------------------------------------------------------------------
+  Based on the work of:
+  Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
+  Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+  Distributed under the BSD License
+  See http://pajhome.org.uk/crypt/md5 for more info.
 ==================================================================================================
 */
 
-(function() 
+(function(Util) 
 {
 	/**
 	 * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.
-	 *
-	 * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
-	 * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
-	 * Distributed under the BSD License
-	 * See http://pajhome.org.uk/crypt/md5 for more info.
 	 */
 	core.Module("core.crypt.MD5", 
 	{
 		/**
-		 * Computes the MD5 checksum of the given string
-		 *
-		 * @param str {String} The string to compute the checksum of
-		 * @return {String} Computed MD5 checksum
+		 * {String} Returns the MD5 checksum of the given @str {String}.
 		 */
 		hash : function(str) { 
 			
-			str = core.crypt.Util.strToUtf8(str);
-			var md5 = binl_md5(core.crypt.Util.rawStringToLittleEndian(str), str.length * 8);
+			str = Util.strToUtf8(str);
+			var md5 = binl_md5(Util.rawStringToLittleEndian(str), str.length * 8);
 			
-			return core.crypt.Util.littleEndianToRawString(md5);
+			return Util.littleEndianToRawString(md5);
 		},
 
 
 		/**
-		 * Computes a HMAC (Hash-based Message Authentication Code) using the MD5 hash function. HMAC is a 
-		 * specific construction for calculating a message authentication code (MAC) involving a 
+		 * {String} Returns a HMAC (Hash-based Message Authentication Code) using the MD5 hash function. 
+		 *
+		 * HMAC is a specific construction for calculating a message authentication code (MAC) involving a 
 		 * cryptographic hash function in combination with a secret key.
 		 *
-		 * @param key {String} The secret key for verifying authenticity
-		 * @param msg {String} Message to compute the HMAC for
-		 * @return {String} Computed HMAC-MD5 code
+		 * - @key {String} The secret key for verifying authenticity
+		 * - @str {String} Message to compute the HMAC for
 		 */
-		hmac : function(key, msg, method) { 
+		hmac : function(key, str) { 
 			
-			key = core.crypt.Util.strToUtf8(key);
-			msg = core.crypt.Util.strToUtf8(msg);
+			key = Util.strToUtf8(key);
+			str = Util.strToUtf8(str);
 			
-			var bkey = core.crypt.Util.rawStringToLittleEndian(key);
+			var bkey = Util.rawStringToLittleEndian(key);
 			if (bkey.length > 16) {
 				bkey = binl_md5(bkey, key.length * 8);
 			}
@@ -60,8 +58,8 @@
 				opad[i] = bkey[i] ^ 0x5C5C5C5C;
 			}
 
-			var hash = binl_md5(ipad.concat(core.crypt.Util.rawStringToLittleEndian(msg)), 512 + msg.length * 8);
-			return core.crypt.Util.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128));
+			var hash = binl_md5(ipad.concat(Util.rawStringToLittleEndian(str)), 512 + str.length * 8);
+			return Util.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128));
 			
 		}
 	});
@@ -207,4 +205,4 @@
 		return (num << cnt) | (num >>> (32 - cnt));
 	}
 	
-})();
+})(core.crypt.Util);

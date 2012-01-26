@@ -2,43 +2,49 @@
 ==================================================================================================
   Core - JavaScript Foundation
   Copyright 2010-2012 Sebastian Werner
+--------------------------------------------------------------------------------------------------
+  Based on the work of:
+  Version 2.2 Copyright Paul Johnston 2000 - 2009.
+  Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+  Distributed under the BSD License
+  See http://pajhome.org.uk/crypt/md5 for details.
 ==================================================================================================
 */
 
-(function() 
+(function(Util) 
 {
 	/**
 	 * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined in FIPS 180-1
-	 *
-	 * Version 2.2 Copyright Paul Johnston 2000 - 2009.
-	 * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
-	 * Distributed under the BSD License
-	 * See http://pajhome.org.uk/crypt/md5 for details.
 	 */
 	core.Module("core.crypt.SHA1", 
 	{
 		/**
-		 *
-		 *
+		 * {String} Returns the SHA1 checksum of the given @str {String}.
 		 */
 		hash : function(str) { 
 
-			str = core.crypt.Util.strToUtf8(str);
+			str = Util.strToUtf8(str);
 			
-			return core.crypt.Util.bigEndianToRawString(binb_sha1(core.crypt.Util.rawStringToBigEndian(str), str.length * 8));
+			return Util.bigEndianToRawString(binb_sha1(Util.rawStringToBigEndian(str), str.length * 8));
 
 		},
 
+
 		/**
+		 * {String} Returns a HMAC (Hash-based Message Authentication Code) using the SHA1 hash function. 
 		 *
+		 * HMAC is a specific construction for calculating a message authentication code (MAC) involving a 
+		 * cryptographic hash function in combination with a secret key.
 		 *
+		 * - @key {String} The secret key for verifying authenticity
+		 * - @str {String} Message to compute the HMAC for
 		 */
 		hmac : function(key, str) { 
 			
-			key = core.crypt.Util.strToUtf8(key);
-			str = core.crypt.Util.strToUtf8(str);
+			key = Util.strToUtf8(key);
+			str = Util.strToUtf8(str);
 			
-			var bkey = core.crypt.Util.rawStringToBigEndian(key);
+			var bkey = Util.rawStringToBigEndian(key);
 			if (bkey.length > 16) {
 				bkey = binb_sha1(bkey, key.length * 8);
 			}
@@ -52,8 +58,8 @@
 				opad[i] = bkey[i] ^ 0x5C5C5C5C;
 			}
 
-			var hash = binb_sha1(ipad.concat(core.crypt.Util.rawStringToBigEndian(str)), 512 + str.length * 8);
-			return core.crypt.Util.bigEndianToRawString(binb_sha1(opad.concat(hash), 512 + 160));
+			var hash = binb_sha1(ipad.concat(Util.rawStringToBigEndian(str)), 512 + str.length * 8);
+			return Util.bigEndianToRawString(binb_sha1(opad.concat(hash), 512 + 160));
 
 		}
 	});
@@ -154,4 +160,4 @@
 		return (num << cnt) | (num >>> (32 - cnt));
 	}
 	
-})();
+})(core.crypt.Util);
