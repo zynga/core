@@ -2,7 +2,7 @@
  * Helper class for doing cell tiling and distribution. Uses a paint callbacks on a
  * predefined area when location to render is being modified.
  */
-core.Class("core.util.Tiling", {
+core.Class("core.render.Tiling", {
 
 	members: {
 

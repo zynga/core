@@ -18,7 +18,7 @@
 	/**
 	 * Utility class to work with text e.g. measuring, formatting, etc.
 	 */
-	core.Module("core.util.Text", {
+	core.Module("core.bom.Text", {
 
 		/**
 		 * Measures the given text with the given styles. Supports optional
