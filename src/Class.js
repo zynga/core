@@ -10,10 +10,10 @@ if(!core.Env.isSet("es5"))
 {
 	// These classes don't really exist, so we need to protect the access.
 	try{
-		es5.Array;
-		es5.Date;
-		es5.String;
-		es5.JSON;
+		core.es5.Array;
+		core.es5.Date;
+		core.es5.String;
+		core.es5.JSON;
 	} catch(ex) {};
 }
 
