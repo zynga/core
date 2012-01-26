@@ -21,7 +21,7 @@
 		/**
 		 * {String} Returns the MD5 checksum of the given @str {String}.
 		 */
-		hash : function(str) { 
+		checksum : function(str) { 
 			
 			str = Util.strToUtf8(str);
 			var md5 = binl_md5(Util.rawStringToLittleEndian(str), str.length * 8);

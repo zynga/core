@@ -22,7 +22,7 @@
 		/**
 		 * {String} Returns the SHA256 checksum of the given @str {String}.
 		 */
-		hash : function(str) { 
+		checksum : function(str) { 
 			
 			str = Util.strToUtf8(str);
 			

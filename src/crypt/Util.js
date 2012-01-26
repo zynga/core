@@ -9,10 +9,14 @@
 {
 	var hexTable = "0123456789abcdef".split("");
 	
+	/**
+	 * Utility collection used by the different checksum/hashing implementations.
+	 */
 	core.Module("core.crypt.Util", 
 	{
-		/*
-		 * Encode a string as utf-8.
+		/**
+		 * {String} Encodes @input {String} as utf-8.
+		 *
 		 * For efficiency, this assumes the input is valid utf-16.
 		 */
 		strToUtf8 : function(input)
@@ -49,9 +53,10 @@
 		},
 		
 		
-		/*
-		 * Convert a raw string to an array of little-endian words
-		 * Characters >255 have their high-byte silently ignored.
+		/**
+		 * {Array} Convert @input {String} to an array of little-endian words.
+		 * 
+		 * Note: Characters >255 have their high-byte silently ignored.
 		 */
 		rawStringToLittleEndian : function(input)
 		{
@@ -69,8 +74,8 @@
 		},
 
 
-		/*
-		 * Convert an array of little-endian words to a string
+		/**
+		 * {String} Converts @input {Array} of little-endian words to a string.
 		 */
 		littleEndianToRawString : function(input)
 		{
@@ -84,9 +89,10 @@
 		},
 		
 		
-		/*
-		 * Convert a raw string to an array of big-endian words
-		 * Characters >255 have their high-byte silently ignored.
+		/**
+		 * {Array} Converts a @input {String} to an array of big-endian words.
+		 *
+		 * Note: Characters >255 have their high-byte silently ignored.
 		 */
 		rawStringToBigEndian : function(input)
 		{
@@ -104,8 +110,8 @@
 		},
 		
 		
-		/*
-		 * Convert an array of big-endian words to a string
+		/**
+		 * {String} Converts @input {Array} of big-endian words to a string.
 		 */
 		bigEndianToRawString : function(input)
 		{

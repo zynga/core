@@ -15,7 +15,7 @@ core.Module("core.crypt.Adler32",
 	/**
 	 * {Integer} Returns the Adler-32 checksum of @str {String}
 	 */
-	compute : function(str)
+	checksum : function(str)
 	{
 		var MOD_ADLER = 65521;
 		var a=1, b=0;
