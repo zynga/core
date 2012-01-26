@@ -16,21 +16,21 @@
 core.Module("core.effect.Easing", 
 {
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInQuad: function(pos) {
 		return Math.pow(pos, 2);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutQuad: function(pos) {
 		return -(Math.pow((pos - 1), 2) - 1);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutQuad: function(pos) {
 		if ((pos /= 0.5) < 1) {
@@ -41,21 +41,21 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInCubic: function(pos) {
 		return Math.pow(pos, 3);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutCubic: function(pos) {
 		return (Math.pow((pos - 1), 3) + 1);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutCubic: function(pos) {
 		if ((pos /= 0.5) < 1) {
@@ -66,21 +66,21 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInQuart: function(pos) {
 		return Math.pow(pos, 4);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutQuart: function(pos) {
 		return -(Math.pow((pos - 1), 4) - 1);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutQuart: function(pos) {
 		if ((pos /= 0.5) < 1) {
@@ -91,21 +91,21 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInQuint: function(pos) {
 		return Math.pow(pos, 5);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutQuint: function(pos) {
 		return (Math.pow((pos - 1), 5) + 1);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutQuint: function(pos) {
 		if ((pos /= 0.5) < 1) {
@@ -116,42 +116,42 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInSine: function(pos) {
 		return -Math.cos(pos * (Math.PI / 2)) + 1;
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutSine: function(pos) {
 		return Math.sin(pos * (Math.PI / 2));
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutSine: function(pos) {
 		return (-0.5 * (Math.cos(Math.PI * pos) - 1));
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInExpo: function(pos) {
 		return (pos === 0) ? 0 : Math.pow(2, 10 * (pos - 1));
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutExpo: function(pos) {
 		return (pos === 1) ? 1 : -Math.pow(2, -10 * pos) + 1;
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutExpo: function(pos) {
 		if (pos === 0) {
@@ -170,21 +170,21 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInCirc: function(pos) {
 		return -(Math.sqrt(1 - (pos * pos)) - 1);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutCirc: function(pos) {
 		return Math.sqrt(1 - Math.pow((pos - 1), 2));
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutCirc: function(pos) {
 		if ((pos /= 0.5) < 1) {
@@ -195,7 +195,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutBounce: function(pos) {
 		if ((pos) < (1 / 2.75)) {
@@ -210,7 +210,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInBack: function(pos) {
 		var s = 1.70158;
@@ -218,7 +218,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeOutBack: function(pos) {
 		var s = 1.70158;
@@ -226,7 +226,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeInOutBack: function(pos) {
 		var s = 1.70158;
@@ -238,14 +238,14 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	elastic: function(pos) {
 		return -1 * Math.pow(4, - 8 * pos) * Math.sin((pos * 6 - 1) * (2 * Math.PI) / 2) + 1;
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	swingFromTo: function(pos) {
 		var s = 1.70158;
@@ -254,7 +254,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	swingFrom: function(pos) {
 		var s = 1.70158;
@@ -262,7 +262,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	swingTo: function(pos) {
 		var s = 1.70158;
@@ -270,7 +270,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	bounce: function(pos) {
 		if (pos < (1 / 2.75)) {
@@ -285,7 +285,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	bouncePast: function(pos) {
 		if (pos < (1 / 2.75)) {
@@ -300,7 +300,7 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeFromTo: function(pos) {
 		if ((pos /= 0.5) < 1) {
@@ -311,14 +311,14 @@ core.Module("core.effect.Easing",
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeFrom: function(pos) {
 		return Math.pow(pos, 4);
 	},
 
 	/**
-	 * Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
+	 * {Number} Transforms a position (@pos {Number}) between 0 (start of effect) and 1 (end of effect) into a effect modified one.
 	 */
 	easeTo: function(pos) {
 		return Math.pow(pos, 0.25);
