@@ -25,7 +25,7 @@
 			return global.outerWidth < global.outerHeight;
 		},
 		
-		/** {Boolean} Returns the viewport orientation */
+		/** {String} Returns the viewport orientation. */
 		getOrientation: function() 
 		{
 			var orient = global.orientation;
