@@ -14,8 +14,8 @@
 		if (!gpuStacking) {
 
 			// Note: translateZ is supported on some clients even if 3D transforms and perspective is not.
-			var elem = document.createElement("div");
-			var style = elem.style;
+			var element = document.createElement("div");
+			var style = element.style;
 			var value = "translateZ(20px)";
 			
 			style[transform] = value
@@ -49,7 +49,7 @@
 	
 	if (gpuStacking) 
 	{
-		var set = function(elem, x, y, z, zoom) 
+		var set = function(element, x, y, z, zoom) 
 		{
 			if (core.Env.isSet("debug")) {
 				validate(arguments);
@@ -66,21 +66,21 @@
 				value += " scale(" + zoom + ")";
 			}
 			
-			elem.style[transform] = value;
+			element.style[transform] = value;
 		};
 		
-		var reset = function(elem) 
+		var reset = function(element) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.element(elem);
+				core.Assert.element(element);
 			}
 			
-			elem.style[transform] = "";
+			element.style[transform] = "";
 		};
 	} 
 	else if (transform) 
 	{
-		var set = function(elem, x, y, z, zoom) 
+		var set = function(element, x, y, z, zoom) 
 		{
 			if (core.Env.isSet("debug")) {
 				validate(arguments);
@@ -92,7 +92,7 @@
 				value += " scale(" + zoom + ")";
 			}
 
-			var style = elem.style;
+			var style = element.style;
 			style[transform] = value;
 			
 			if (z != null) {
@@ -100,26 +100,30 @@
 			}
 		};
 
-		var reset = function(elem) 
+		var reset = function(element) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.element(elem);
+				core.Assert.element(element);
 			}
 			
-			var style = elem.style;
+			var style = element.style;
 			style[transform] = "";
 			style.zIndex = "";
 		};
 	}
 	else 
 	{
-		var set = function(elem, x, y, z, zoom) 
+		/**
+		 * Positions the given @element {DOMElement} on coordinates @x {Number}, @y {Number} and @z {Integer?null}.
+		 * Optionally supports zooming using the @zoom {Number?1} parameter as well.
+		 */
+		var set = function(element, x, y, z, zoom) 
 		{
 			if (core.Env.isSet("debug")) {
 				validate(arguments);
 			}
 			
-			var style = elem.style;
+			var style = element.style;
 			style.left = (x / zoom) + "px";
 			style.top = (y / zoom) + "px";
 
@@ -132,13 +136,16 @@
 			}
 		};
 
-		var reset = function(elem) 
+		/**
+		 * Resets the position of the given @element {DOMElement}.
+		 */
+		var reset = function(element) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.element(elem);
+				core.Assert.element(element);
 			}
 			
-			var style = elem.style;
+			var style = element.style;
 			style.left = style.top = style.zIndex = style.zoom = "";
 		};
 	}
@@ -149,22 +156,7 @@
 	 */
 	core.Module("core.bom.Position", 
 	{
-		/**
-		 * Positions the given DOM element on coordinates x, y and z.
-		 *
-		 * @param elem {Element} DOM element to position
-		 * @param x {Number} Left position
-		 * @param y {Number} Top position
-		 * @param z {Integer ? null} Depth position
-		 * @param zoom {Number ? null} Zooming to apply
-		 */ 
 		set: set,
-		
-		/**
-		 * Resets the position of the given DOM element
-		 * 
-		 * @param elem {Element} DOM element to reset
-		 */
 		reset: reset
 	});
 })();

@@ -6,15 +6,12 @@
 */
 
 /**
- * Offers methods around serialization tasks of form items.
+ * Collection of serialization methods for form items
  */
 core.Module("core.bom.FormItem",
 {
 	/**
-	 * Whether the form field is successful (should be submitted to the server)
-	 *
-	 * @param item {Element} DOM element
-	 * @return {Boolean} Whether the value of the given form element should be submitted to the server
+	 * {Boolean} Returns whether the form @item {DOMElement} is successful (should be submitted to the server)
 	 */
 	isSuccessful: function(item)
 	{
@@ -48,10 +45,7 @@ core.Module("core.bom.FormItem",
 
 
 	/**
-	 * Returns the serialized representation of the given form item.
-	 *
-	 * @param item {Element} DOM element
-	 * @return {String} Serialized representation of the form item
+	 * {String} Returns the serialized representation of the given form @item {DOMElement}.
 	 */
 	serialize: function(item) 
 	{

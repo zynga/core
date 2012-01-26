@@ -12,14 +12,23 @@
 
 	if (root.requestFullScreen) 
 	{
-		request = function(elem) {
-			(elem||root).requestFullScreen();
+		/**
+		 * Requests full screen mode for given @element {DOMElement?document.documentElement}.
+		 */
+		request = function(element) {
+			(element||root).requestFullScreen();
 		};
 		
+		/**
+		 * Cancels full screen mode.
+		 */
 		cancel = function() {
 			document.cancelFullScreen();
 		};
 		
+		/**
+		 * {Boolean} Returns whether the browser is in full screen mode.
+		 */
 		is = function() {
 			return document.fullScreenElement != null;
 		};
@@ -42,8 +51,8 @@
 			var hasName = prefix + baseName
 			var isName = prefix + "Is" + baseName;
 			
-			request = function(elem) {
-				(elem||root)[requestName]();
+			request = function(element) {
+				(element||root)[requestName]();
 			};
 			
 			cancel = function() {
@@ -63,24 +72,13 @@
 	}
 	
 
+	/**
+	 * Collection of methods to deal with different full screen APIs in browsers.
+	 */
 	core.Module("core.bom.FullScreen", {
 	
-		/**
-		 * Requests full screen mode
-		 *
-		 */
 		request: request,
-
-		/**
-		 * Cancels full screen mode
-		 */
 		cancel: cancel,
-
-		/**
-		 * Whether the browser is in full screen mode
-		 *
-		 * @return {Boolean} Whether the browser is in full screen mode
-		 */
 		is: is
 		
 	});

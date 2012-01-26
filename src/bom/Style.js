@@ -7,7 +7,9 @@
 
 (function() 
 {
+	/** Caches CSS property names to browser specific names. Can be used as a fast lookup alternative to {#property}. */
 	var nameCache = {};
+
 	var helperElem = document.createElement('div');
 	var helperStyle = helperElem.style;
 	var undef;
@@ -19,6 +21,10 @@
 		presto: 'O'
 	});
 
+	/**
+	 * {String} Returns the supported property (e.g. `WebkitTransform`) of the given standard CSS property 
+	 * @name {String} like `transform`. Returns `null` when the property is not supported.
+	 */
 	var getProperty = function(name) 
 	{
 		// Fast path, real native property
@@ -37,69 +43,61 @@
 		if (vendorName in helperStyle) {
 			return (nameCache[name] = vendorName);
 		}
+		
+		return null;
 	};
 
 
 	/**
-	 * Utility class for dealing with style properties (setting/getting). Automatically figures out the
-	 * correct name when the property name is vendor prefixed etc.
+	 * Utility class for working with HTML style properties (setting/getting). Automatically figures out the
+	 * correct property name when the engine does not yet support the specified name, but a vendor prefixed one.
 	 */
 	core.Module("core.bom.Style", 
 	{
-		/** {Map} Caches CSS property names to browser specific names. Can be used as a fast lookup alternative to property(name). */
 		names: nameCache,
-
+		property: getProperty,
+		
 
 		/**
-		 * Returns the value of the given property property on the given element.
+		 * {String} Returns the value of the given property @name {String} on the given @element {DOMElement}. By
+		 * default the method returns the locally applied property value but there is also support for figuring
+		 * out the @computed {Boolean?false} value by triggering the corresponding flag.
 		 *
-		 * Attention:
-		 *
-		 * In Internet Explorer there is no 100% possibility to have access to the computed value.
+		 * **Note:** In Internet Explorer there is no 100% possibility to have access to the computed value.
 		 * We fallback to the only supported thing: cascaded properties. These are the actual value
 		 * of the property as applied - non interpreted. This means that units are not translated
 		 * to pixels etc. like which is normally the case in computed properties.
-		 *
-		 * @param elem {Element} DOM element to query
-		 * @param name {String} Name of style property
-		 * @param computed {Boolean?false} Whether the computed value should be returned
-		 * @return {String} Returns the value of the given style property
 		 */
-		get: function(elem, name, computed) 
+		get: function(element, name, computed) 
 		{
 			// Find real name, use if supported
 			var supported = name in helperStyle && name || nameCache[name] || getProperty(name);
 
 			// Fast-path: local styles
 			if (!computed) {
-				return elem.style[supported];
+				return element.style[supported];
 			}
 
 			// Check support for computed style, fall back to cascaded styles
 			// The solution is not 100% correct in IE, but as there is no 100% solution we omit the
 			// whole thing here and just implement the basic fallback. Should be enough in most cases.
-			var global = elem.ownerDocument.defaultView;
+			var global = element.ownerDocument.defaultView;
 			if (global) {
-				return global.getComputedStyle(elem, null)[supported];
-			} else if (elem.currentStyle) {
-				return elem.currentStyle[supported];
+				return global.getComputedStyle(element, null)[supported];
+			} else if (element.currentStyle) {
+				return element.currentStyle[supported];
 			}
 		},
 
 
 		/**
-		 * Sets a new style property. If you want to modify
-		 * multiple styles at once it's a lot faster to use a map
-		 * as second argument.
-		 *
-		 * @param elem {Element} DOM element to modify
-		 * @param name {String|Map} Style name or Map of styles/values to apply
-		 * @param value {String} Style value
-		 * @return {Class} Returns the class for further modifications
+		 * Sets one or multiple style properties on the given @element {DOMElement}. If @name {String|Map} is a `String`
+		 * the third parameter @value defines the value to apply. Alternatively @name can be a `Map` which defines
+		 * all properties to set.
 		 */
-		set: function(elem, name, value) 
+		set: function(element, name, value) 
 		{
-			var style = elem.style;
+			var style = element.style;
 			var supported;
 
 			if (typeof name === 'string') 
@@ -122,19 +120,7 @@
 					}
 				}
 			}
-
-			// Chaining support
-			return this;
-		},
-
-
-		/**
-		 * Detects a name of a CSS property in the current engine and returns it.
-		 *
-		 * @param name {String} Standard (or pre standard) name e.g. 'opacity', 'transform', ...
-		 * @return {String} Vendor property name e.g. 'WebkitTransform'
-		 */
-		property: getProperty
+		}
 	});
 })();
 
