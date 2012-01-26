@@ -1,19 +1,19 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2011 Sebastian Werner
+  Copyright 2010-2012 Sebastian Werner
 ==================================================================================================
 */
 
+/**
+ * Implements the CRC32 checksum for ASCII strings (non unicode)
+ * 
+ * See also: http://en.wikipedia.org/wiki/CRC-32
+ */
 core.Module("core.crypt.CRC32",
 {
 	/**
-	 * Compute CRC-32, the 32-bit checksum of an ASCII string.
-	 *
-	 * Unicode is not supported by this implementation!
-	 *
-	 * @param str {String} ASCII string
-	 * @return {Integer} Checksum
+	 * {Integer} Returns the CRC-32 checksum of @str {String}
 	 */
 	compute : (function()
 	{
