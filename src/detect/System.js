@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2011 Sebastian Werner
+  Copyright 2010-2012 Sebastian Werner
 --------------------------------------------------------------------------------------------------
   Based on code of Unify Project
   License: MIT + Apache (V2)

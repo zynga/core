@@ -1,7 +1,7 @@
 /* 
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2011 Sebastian Werner
+  Copyright 2010-2012 Sebastian Werner
 --------------------------------------------------------------------------------------------------
   Based on the work of Andrea Giammarchi
   Vice-Versa Project: http://code.google.com/p/vice-versa/
