@@ -7,13 +7,15 @@
 ==================================================================================================
 */
 
-(function(global) {
+(function(global) 
+{
 	
 	/**
 	 * Utility module for dealing with the browser viewport. Contains methods
 	 * specifically interesting for mobile devices like smartphones/tablets (orientation, etc.)
 	 */
-	core.Module("core.bom.Viewport", {
+	core.Module("core.bom.Viewport", 
+	{
 		
 		/** {Boolean} Whether the viewport is in landscape orientation */
 		isLandscape: function() {
@@ -41,6 +43,7 @@
 			return orient;
 			
 		}
+		
 	});
 	
 })(this);

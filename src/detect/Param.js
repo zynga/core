@@ -5,6 +5,9 @@
 ==================================================================================================
 */
 
+/**
+ * Parses the URL of the location at loadtime into parameters and make them easily available via {#get()}.
+ */
 core.Module("core.detect.Param",
 {
 	get : (function()
