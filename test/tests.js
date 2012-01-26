@@ -330,13 +330,6 @@ $(function() {
 	
 	module("Util");
 	
-	test("StringEncode", function() {
-		
-		strictEqual(core.util.StringEncode.encode("hello world", "abcdefghijklmnopqrstuvwxyz"), "dzourlqqnefjouzdenw");
-		strictEqual(core.util.StringEncode.encode("hello world", "0123456789"), "309054545037006034346730496");
-		
-	});
-	
 	test("Id", function() {
 		
 		var myFunc = new Function;
@@ -509,7 +502,7 @@ $(function() {
 		
 		// Exported not modified by changes
 		equal(exported.length, 3);
-		
+		72.32.231.8
 	});
 	
 	test("Add/Remove Random", function() {
