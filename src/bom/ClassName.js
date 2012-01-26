@@ -7,19 +7,22 @@
 
 (function() 
 {
-	// Add a new test for class names
-	core.Assert.add(function(value) {
-		return typeof value == "string" && value.length != 0 && !(/\s/.test(value));
-	}, "isClassName", "Not a valid class name");
+	/**
+	 * {Boolean} Returns whether the given @string {String} is a valid {CSSClassName}.
+	 */
+	var isValid = function(string) {
+		return typeof string == "string" && string.length != 0 && !(/\s/.test(string));
+	};
 	
 	// Verify incoming parameters
 	if (core.Env.isSet("debug")) 
 	{
 		var validate = function(args) 
 		{
-			core.Assert.equal(args.length, 2);
-			core.Assert.element(args[0]);
-			core.Assert.className(args[1]);
+			core.Assert.assertEqual(args.length, 2);
+			core.Assert.assertType(args[0], "object");
+			core.Assert.assertTrue(args[0].nodeType == 1);
+			core.Assert.assertTrue(isValid(args[1], "Invalid CSS class name!"));
 		};
 	}
 	
@@ -67,6 +70,9 @@
 		
 		var space = " ";
 		
+		/**
+		 * Adds the @className {CSSClassName} to the given @elem {DOMElement}.
+		 */
 		var addClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -78,6 +84,9 @@
 			}
 		};
 
+		/**
+		 * Removes the @className {CSSClassName} from the given @elem {DOMElement}.
+		 */
 		var removeClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -87,6 +96,9 @@
 			elem.className = (space + elem.className + space).replace(className, "")
 		};
 
+		/**
+		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {DOMElement}.
+		 */
 		var containsClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -96,6 +108,9 @@
 		  return elem.className && (elem.className == className || (space + elem.className + space).indexOf(space + className + space) !== -1);
 		};
 
+		/**
+		 * Toggles the @className {CSSClassName} for the given @elem {DOMElement}.
+		 */
 		var toggleClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -120,37 +135,10 @@
 	 */
 	core.Module("core.bom.ClassName",
 	{
-		/**
-		 * Adds a class to an element's list of classes
-		 *
-		 * @param elem {Element} DOM element to modify
-		 * @param className {String} Class to add
-		 */
+		isValid: isValid,
 		add : addClass,
-		
-		/**
-		 * Removes a class from an element's list of classes
-		 *
-		 * @param elem {Element} DOM element to modify
-		 * @param className {String} Class to remove
-		 */
 		remove : removeClass,
-	
-		/**
-		 * Whether the given node contains the given class
-		 *
-		 * @param elem {Element} DOM element to modify
-		 * @param className {String} Class to check for
-		 * @return {Boolean} Whether the element contains the given class
-		 */
 		contains : containsClass,
-		
-		/**
-		 * Toggles the existence of a class in an element's list of classes
-		 *
-		 * @param elem {Element} DOM element to modify
-		 * @param className {String} Class to toggle
-		 */
 		toggle : toggleClass
 	});
 	

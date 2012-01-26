@@ -20,7 +20,7 @@ core.Module("core.bom.FormItem",
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.equal(args.length, 1);
+			core.Assert.assertEqual(args.length, 1);
 			core.Assert.element(item);
 		}
 		
@@ -57,7 +57,7 @@ core.Module("core.bom.FormItem",
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.equal(args.length, 1);
+			core.Assert.assertEqual(args.length, 1);
 			core.Assert.element(item);
 			core.Assert.string(item.name);
 		}
