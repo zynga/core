@@ -5,6 +5,9 @@
 ==================================================================================================
 */
 
+/**
+ * Custom string encoder
+ */
 core.Module("core.util.StringEncode",
 {
 	encode: function(input, encoding)

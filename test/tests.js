@@ -324,6 +324,46 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
+		UTIL
+	---------------------------------------------------------------------------
+	*/
+	
+	module("Util");
+	
+	test("StringEncode", function() {
+		
+		strictEqual(core.util.StringEncode.encode("hello world", "abcdefghijklmnopqrstuvwxyz"), "dzourlqqnefjouzdenw");
+		strictEqual(core.util.StringEncode.encode("hello world", "0123456789"), "309054545037006034346730496");
+		
+	});
+	
+	test("Id", function() {
+		
+		var myFunc = new Function;
+		strictEqual(core.util.Id.get(myFunc), 1);
+		strictEqual(core.util.Id.get(myFunc), 1);
+
+		strictEqual(core.util.Id.get(document.body), 2);
+		strictEqual(core.util.Id.get(document.body), 2);
+		
+	});
+	
+	test("Text", function() {
+		
+		strictEqual(typeof core.util.Text.measure("hello world"), "object");
+		strictEqual(typeof core.util.Text.measure("hello world").width, "number");
+		strictEqual(typeof core.util.Text.measure("hello world").height, "number");
+
+		strictEqual(typeof core.util.Text.measure("hello world foo bar baz", null, 40), "object");
+		strictEqual(core.util.Text.measure("hello world foo bar baz", null, 40).width, 40);
+		
+	});
+	
+	
+	
+	
+	/*
+	---------------------------------------------------------------------------
 		CRYPT
 	---------------------------------------------------------------------------
 	*/	
