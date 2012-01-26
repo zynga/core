@@ -5,7 +5,8 @@
 ==================================================================================================
 */
 
-(function() {
+(function() 
+{
 	var time = Date.now;
 	var desiredFrames = 60;
 	var millisecondsPerSecond = 1000;
@@ -22,7 +23,7 @@
 	 * rendering. This eases a lot of cases where it might be pretty complex to break down a state
 	 * based on the pure time difference.
 	 *
-	 * Requires: {core.polyfill.requestAnimationFrame}
+	 * Requires {core.polyfill.requestAnimationFrame} for cross browser support.
 	 */
 	core.Module("core.effect.Animate", {
 
@@ -50,16 +51,16 @@
 		/**
 		 * {Integer} Start the animation. Returns the identifier of animation. Can be used to stop it any time.
 		 *
-		 * * @stepCallback {Function} Pointer to function which is executed on every step.
+		 * - @stepCallback {Function} Pointer to function which is executed on every step.
 		 *   Signature of the method should be `function(percent, now, virtual) { return continueWithAnimation; }`
-		 * * @verifyCallback {Function} Executed before every animation step.
+		 * - @verifyCallback {Function} Executed before every animation step.
 		 *   Signature of the method should be `function() { return continueWithAnimation; }`
-		 * * @completedCallback {Function}
+		 * - @completedCallback {Function}
 		 *   Signature of the method should be `function(droppedFrames, finishedAnimation) {}`
-		 * * @duration {Integer} Milliseconds to run the animation
-		 * * @easingMethod {Function} Pointer to easing function
+		 * - @duration {Integer} Milliseconds to run the animation
+		 * - @easingMethod {Function} Pointer to easing function
 		 *   Signature of the method should be `function(percent) { return modifiedValue; }`
-		 * * @root {Element ? document.body} Render root, when available. Used for internal
+		 * - @root {Element ? document.body} Render root, when available. Used for internal
 		 *   usage of requestAnimationFrame.
 		 */
 		start: function(stepCallback, verifyCallback, completedCallback, duration, easingMethod, root) {
