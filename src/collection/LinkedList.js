@@ -86,7 +86,7 @@
 			
 
 			/**
-			 * {LinkedList} Adds the given @obj {Object} to the list
+			 * {core.collection.LinkedList} Adds the given @obj {Object} to the list
 			 *
 			 * Performance behavior: O(1)
 			 */
@@ -124,7 +124,7 @@
 			
 
 			/**
-			 * {LinkedList} Removes the given @obj {Object} from the list
+			 * {core.collection.LinkedList} Removes the given @obj {Object} from the list
 			 *
 			 * Performance behavior: O(1)
 			 */
@@ -237,7 +237,7 @@
 			
 			
 			/**
-			 * {LinkedList} Clears the full list and returns the list object
+			 * {core.collection.LinkedList} Clears the full list and returns the list object
 			 *
 			 * Performance behavior: O(n)
 			 */
