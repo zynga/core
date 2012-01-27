@@ -87,18 +87,15 @@
 	 */
 	core.Module("core.Env",
 	{
-		/** {Map} Currently selected fields from Env data */
+		/** {=Map} Currently selected fields from Env data */
 		SELECTED : selected,
 
-		/** {Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
+		/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
 		CHECKSUM : checksum,
 
 
 		/**
-		 * Configure environment data dynamically
-		 *
-		 * @param name {String} Name of the field to configure
-		 * @param value {var} Value to set
+		 * Configure environment data dynamically via setting a field @name {String} and its @value {var}.
 		 */
 		define : function(name, value) {
 			selected[name] = value;
@@ -106,13 +103,10 @@
 
 
 		/**
-		 * Whether the given field was set to the given value. Boolean
-		 * fields could also be checked without a given value as the value
-		 * defaults to <code>true</code>.
+		 * {Boolean} Whether the field with the given @name {String} was set to the given @value {var?true}. 
 		 *
-		 * @param name {String} Name of the field to query
-		 * @param value {var?true} Value to compare to (defaults to true)
-		 * @return {Boolean} Whether the field is set to the given value
+		 * Boolean fields could also be checked without a given value as the value
+		 * defaults to `true`.
 		 */
 		isSet : function(name, value)
 		{
@@ -127,10 +121,7 @@
 
 
 		/**
-		 * Returns the value of the given field
-		 *
-		 * @param name {String} Name of the field to query
-		 * @return {var} The value of the given field
+		 * {var} Returns the value of the field with the given @name {String}.
 		 */
 		getValue : function(name) {
 			return selected[name];
@@ -138,11 +129,8 @@
 		
 		
 		/**
-		 * Selects the current value of the given name from the map.
-		 *
-		 * @param name {String} Name of the field to query
-		 * @param map {Map} Map to select a key by the value of the given field
-		 * @return {var} Selected value
+		 * {var} Selects and returns the current value of the field with the given 
+		 * @name {String} from the given @map {Map}.
 		 */
 		select: function(name, map) {
 			return map[selected[name]];
