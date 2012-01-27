@@ -58,21 +58,7 @@
 	/**
 	 * Assert module which contains and manages assertions.
 	 */
-	var Assert = core.Assert = 
-	{
-		/**
-		 * Adds a new assertion check. Wraps the original method
-		 *
-		 * Supports two different function signatures:
-		 *
-		 * * function(expression)
-		 * * function(expression, comparison) (supports replacing %s inside the error message with the comparison value)
-		 *
-		 * @param func {Function} Function for the test. Must return boolean.
-		 * @param name {String} Name of the method to attach.
-		 * @param msg {String} Generic message to print out
-		 *
-		 */
+	var Assert = core.Assert = {
 		add : add
 	};
 

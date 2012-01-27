@@ -370,10 +370,7 @@ if(!core.Env.isSet("es5"))
 
 
 	/**
-	 * Resolves a given Class name
-	 *
-	 * @param className {String} Name to resolve
-	 * @return {Object} Returns the Class stored under the given name
+	 * {Class} Resolves a given @className {String}
 	 */
 	Class.getByName = function(className) 
 	{
@@ -387,10 +384,7 @@ if(!core.Env.isSet("es5"))
 
 
 	/**
-	 * Returns the events supported by the given class
-	 *
-	 * @param cls {Class} Class to query
-	 * @return {Map} Map of all events and their type
+	 * {Map} Returns a map of all events and their type of the given class (@cls {Class}).
 	 */
 	Class.getEvents = function(cls) 
 	{
@@ -403,10 +397,7 @@ if(!core.Env.isSet("es5"))
 	
 	
 	/**
-	 * Returns the properties supported by the given class
-	 *
-	 * @param cls {Class} Class to query
-	 * @return {Map} Map of all properties and their configuration
+	 * {Map} Returns a map of all properties and their configuration supported by the given class (@cls {Class}).
 	 */
 	Class.getProperties = function(cls) 
 	{
@@ -419,9 +410,7 @@ if(!core.Env.isSet("es5"))
 	
 	
 	/**
-	 * Returns a list of all property features used in the given class.
-	 *
-	 * @return {Map} Map of all features (feature is used as a key for fast lookup)
+	 * {Map} Returns all property features used in the given class (@cls {Class}).
 	 */
 	Class.getPropertyFeatures = function(cls) 
 	{
@@ -440,30 +429,29 @@ if(!core.Env.isSet("es5"))
 
 
 	/**
-	 * Whether the given object is a Class
+	 * {Boolean} Returns whether the given @obj {Object} is a class.
 	 *
-	 * @return {Boolean} Whether the given argument is an valid Class.
+	 * @return  Whether the given argument is an valid Class.
 	 */
-	var isClass = Class.isClass = function(cls) {
-		return !!(cls && typeof cls == "function" && cls.__isClass);
+	var isClass = Class.isClass = function(obj) {
+		return !!(obj && typeof obj == "function" && obj.__isClass);
 	};
 	
 	
 	/**
-	 * Whether the given class includes the given class.
+	 * {Boolean} Whether the first class includes the second one.
 	 *
-	 * @param cls {Class} Class to check for including other class.
-	 * @param incCls {Class} Class for checking if being included into first one.
-	 * @return {Boolean} Whether the second class is included in the first class.
+	 * - @cls {Class} Class to check for including other class.
+	 * - @inc {Class} Class for checking if being included into first one.
 	 */
-	var includesClass = Class.includesClass = function(cls, incCls) 
+	var includesClass = Class.includesClass = function(cls, inc) 
 	{
 		if (core.Env.isSet("debug")) {
 			core.Assert.cls(cls, "Class to check for including class is itself not a class!");
-			core.Assert.cls(incCls, "Class to check for being included is not a class!");
+			core.Assert.cls(inc, "Class to check for being included is not a class!");
 		}
 		
-		return cls.__includes.indexOf(incCls) != -1;
+		return cls.__includes.indexOf(inc) != -1;
 	};
 	
 	

@@ -16,12 +16,12 @@ core.Class("core.render.Tiling", {
 		/**
 		 * This method is required to being called every time the cell, outer or inner dimensions are being modified.
 		 *
-		 * @param clientWidth {Number} Inner width of container
-		 * @param clientHeight {Number} Inner height of container
-		 * @param contentWidth {Number} Outer width of content
-		 * @param contentHeight {Number} Outer height of content
-		 * @param cellWidth {Number} Width of each cell to render
-		 * @param cellHeight {Number} Height of each cell to render
+		 * - @clientWidth {Number} Inner width of container
+		 * - @clientHeight {Number} Inner height of container
+		 * - @contentWidth {Number} Outer width of content
+		 * - @contentHeight {Number} Outer height of content
+		 * - @cellWidth {Number} Width of each cell to render
+		 * - @cellHeight {Number} Height of each cell to render
 		 */
 		setup: function(clientWidth, clientHeight, contentWidth, contentHeight, cellWidth, cellHeight) {
 
@@ -39,10 +39,10 @@ core.Class("core.render.Tiling", {
 		 * Renders the given location on the area defined by {#setup} by calling
 		 * `paint(row, column, left, top, width, height, zoom)` as needed.
 		 *
-		 * @param left {Number} Left position to render
-		 * @param top {Number} Top position to render
-		 * @param zoom {Number} Current zoom level (should be applied to `left` and `top` already)
-		 * @param paint {Function} Callback method for every cell to paint.
+		 * - @left {Number} Left position to render
+		 * - @top {Number} Top position to render
+		 * - @zoom {Number} Current zoom level (should be applied to `left` and `top` already)
+		 * - @paint {Function} Callback method for every cell to paint.
 		 */
 		render: function(left, top, zoom, paint) {
 

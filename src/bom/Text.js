@@ -14,7 +14,7 @@
 	measureStyle.left = measureStyle.top = "-1000px";
 	measureStyle.visibility = "hidden";
 
-	var emptyStyle = {};
+	var emptyStyles = {};
 
 	var textNode = document.createTextNode('');
 	textNode.nodeValue = "";
@@ -28,23 +28,19 @@
 	core.Module("core.bom.Text", {
 
 		/**
-		 * Measures the given text with the given styles. Supports optional
-		 * maximum width for supporting text wrapping.
-		 *
-		 * @param text {String} Text to measure
-		 * @param style {Map} Style properties to apply (supports `fontFamily`, `fontSize`, `fontStyle` and `lineHeight`)
-		 * @param width {Number ? auto} Maximium width to apply
-		 * @return {Map} Returns the `width` and `height` of the given text
+		 * {Map} Returns the `width` and `height` of the given @text {String} with the given 
+		 * @styles {Map} (supports `fontFamily`, `fontSize`, `fontStyle` and `lineHeight`). 
+		 * Supports optional maximum @width {Number ? "auto"} for supporting text wrapping.
 		 */
 		measure: function(text, style, width) {
 
-			style = style || emptyStyle;
+			styles = styles || emptyStyles;
 
 			measureStyle.width = width + "px" || "auto";
-			measureStyle.fontFamily = style.fontFamily || "";
-			measureStyle.fontSize = style.fontFamily || "";
-			measureStyle.fontStyle = style.fontStyle || "";
-			measureStyle.lineHeight = style.lineHeight || "";
+			measureStyle.fontFamily = styles.fontFamily || "";
+			measureStyle.fontSize = styles.fontFamily || "";
+			measureStyle.fontStyle = styles.fontStyle || "";
+			measureStyle.lineHeight = styles.lineHeight || "";
 
 			textNode.nodeValue = text;
 
