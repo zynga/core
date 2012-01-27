@@ -101,6 +101,71 @@
 		return cache[name] = current[splits[i]] = object;
 	}
 	
+	
+	/**
+	 * {Array} Returns all registers names (modules, interfaces, classes, etc.)
+	 */
+	function getNamespaces() {
+		return Object.keys(cache);
+	}
+
+
+	/**
+	 * {Boolean} Clears the object under the given @name {String} (including name cache) and returns if that was successful.
+	 */
+	function clearNamespace(name)
+	{
+		if (name in cache)
+		{
+			delete cache[name];
+
+			var current = global;
+			var splitted = name.split(".");
+			for (var i=0, l=splitted.length-1; i<l; i++) {
+				current = current[splitted[i]];
+			}
+
+			// Delete might not work when global object is affected
+			try{
+				delete current[splitted[i]];
+			} catch(ex) {
+				current[splitted[i]] = undef;
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * {Object|Function|Array} Resolves a given @name {String} into the item stored unter it.
+	 */
+	function resolveNamespace(name)
+	{
+		var current = cache[name];
+		if (!current)
+		{
+			current = global;
+			if (name)
+			{
+				var splitted = name.split(".");
+				for (var i=0, l=splitted.length; i<l; i++)
+				{
+					current = current[splitted[i]];
+					if (!current)
+					{
+						current = null;
+						break;
+					}
+				}
+			}
+		}
+
+		return current;
+	}
+	
 
 	/**
 	 * {Boolean} Whether the given @object {Object} or the @property {String?} inside the given object is a native host type.
@@ -182,8 +247,13 @@
 	Object.prototype.addStatics("Object", 
 	{
 		declareNamespace : declareNamespace,
+		getNamespaces: getNamespaces,
+		clearNamespace: clearNamespace,
+		resolveNamespace: resolveNamespace,
+
 		addStatics : addStatics,
 		addMembers : addMembers,
+
 		isHostType : isHostType,
 		isClassOf : isClassOf,
 		isTypeOf : isTypeOf
