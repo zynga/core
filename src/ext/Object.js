@@ -8,7 +8,7 @@
 /**
  * @require {core.ext.Core}
  */
-Object.addPrototypeMethods("Object", 
+Object.addMembers("Object", 
 {
 	/**
 	 * Creates a new object with prefilled content. Keys come from 

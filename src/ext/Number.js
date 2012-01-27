@@ -8,7 +8,7 @@
 /**
  * @require {core.ext.Core}
  */
-Object.addPrototypeMethods("Number",
+Object.addMembers("Number",
 {
 	/**
 	 * Pads the number to reach the given length

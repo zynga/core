@@ -7,7 +7,7 @@
 ==================================================================================================
 */
 
-Object.addObjectMethods("Array", 
+Object.addStatics("Array", 
 {
 	/**
 	 * {Array} Converts the given @args {arguments} into an array.
@@ -18,7 +18,7 @@ Object.addObjectMethods("Array",
 	}
 });
 
-Object.addPrototypeMethods("Array", 
+Object.addMembers("Array", 
 {
 	/**
 	 * {Number} Returns the maximum number in the array.

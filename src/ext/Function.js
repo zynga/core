@@ -8,7 +8,7 @@
 /**
  * @require {core.ext.Core}
  */
-Object.addPrototypeMethods("Function",
+Object.addMembers("Function",
 {
 	/**
 	 * Debounces the given method.

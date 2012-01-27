@@ -12,7 +12,7 @@
 	/**
 	 * @require {core.ext.Core}
 	 */
-	Object.addPrototypeMethods("String",
+	Object.addMembers("String",
 	{
 		/*
 		 * Convert a string to a hex string
@@ -57,7 +57,7 @@
 
 
 		/**
-	   * Returns true if the string has a length of 0 or contains only whitespace.
+		 * Returns true if the string has a length of 0 or contains only whitespace.
 		 *
 		 * @return {Boolean} Whether the string is blank
 		 */
