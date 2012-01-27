@@ -7,33 +7,21 @@
 ==================================================================================================
 */
 
-/**
- * @require {core.ext.Core}
- */
 Object.addObjectMethods("Array", 
 {
 	/**
-	 * Converts the given arguments object into an array.
-	 *
-	 * Via: http://jsperf.com/arrayifying-arguments/4
-	 *
-	 * @param args {arguments} Arguments object to convert
-	 * @return {Array} Created array instance
+	 * {Array} Converts the given @args {arguments} into an array.
 	 */
 	fromArguments : function(args) {
+		// See also: http://jsperf.com/arrayifying-arguments/4
 		return Array.apply(null, args);
 	}
 });
 
-/**
- * @require {core.ext.Core}
- */
 Object.addPrototypeMethods("Array", 
 {
 	/**
-	 * Returns the maximum number in the array.
-	 *
-	 * @return {Number} Maximum number
+	 * {Number} Returns the maximum number in the array.
 	 */
 	max : function() {
 		return Math.max.apply(Math, this);
@@ -41,9 +29,7 @@ Object.addPrototypeMethods("Array",
 	
 
 	/**
-	 * Returns the minimum number in the array.
-	 *
-	 * @return {Number} Minimum number
+	 * {Number} Returns the minimum number in the array.
 	 */
 	min : function() {
 		return Math.min.apply(Math, this);
@@ -51,9 +37,7 @@ Object.addPrototypeMethods("Array",
 
 
 	/**
-	 * Returns the sum of all values in the array.
-	 *
-	 * @return {Number} Sum of all values.
+	 * {Number} Returns the sum of all values in the array.
 	 */
 	sum : function() 
 	{
@@ -67,24 +51,18 @@ Object.addPrototypeMethods("Array",
 
 	
 	/**
-	 * Inserts the given value at the given position
-	 *
-	 * @param value {var} Any value
-	 * @param pos {Integer?null} Position to insert to (defaults to the end). Supports negative values, too
-	 * @return {var} Returns the inserted value
+	 * {var} Inserts and returns the given @value {var} at the given @position {Integer?-1}. 
+	 * Supports negative position values, too. Appends to the end if no position is defined.
 	 */
-	insertAt : function(value, pos) 
+	insertAt : function(value, position) 
 	{
-		pos == null ? this.push(value) : this.splice(pos < 0 ? this.length+pos : pos, 0, value);
+		position == null ? this.push(value) : this.splice(position < 0 ? this.length+position : position, 0, value);
 		return value;
 	},
 	
 	
 	/**
-	 * Whether the array contains the given value
-	 *
-	 * @param value {var} Any value
-	 * @return {Boolean} Whether the value was found in the array
+	 * {Boolean} Whether the array contains the given @value {var}.
 	 */
 	contains : function(value) {
 		return ~this.indexOf(value);
@@ -92,9 +70,7 @@ Object.addPrototypeMethods("Array",
 	
 	
 	/**
-	 * Clones the whole array and returns it.
-	 *
-	 * @return {Array} Cloned array
+	 * {Array} Clones the whole array and returns it.
 	 */
 	clone : function() 
 	{
@@ -104,10 +80,7 @@ Object.addPrototypeMethods("Array",
 	
 	
 	/**
-	 * Filters out sparse fields (including all null/undefined values if first param is <code>true</code>) and returns a new compact array.
-	 *
-	 * @param {Boolean?false} Filter out null values (not just sparse fields) as well.
-	 * @return {Array} Compacted array
+	 * {Array} Filters out sparse fields (including all null/undefined values if @nulls is `true`) and returns a new compacted array.
 	 */
 	compact : function(nulls) 
 	{
@@ -117,9 +90,7 @@ Object.addPrototypeMethods("Array",
 	
 	
 	/**
-	 * Returns a flattened, one-dimensional copy of the array.
-	 *
-	 * @return {Array} One-dimensional copy of the array.
+	 * {Array} Returns a flattened, one-dimensional copy of the array.
 	 */
 	flatten: function() 
 	{
@@ -137,32 +108,9 @@ Object.addPrototypeMethods("Array",
 		return result;
 	},
 	
-	
-	/**
-	 * Flattens the original array and returns it.
-	 *
-	 * @return {Array} One-dimensionalified array.
-	 */
-	flatten2: function()
-	{
-		var i, value;
-
-		for (i=0; i<arr.length;) {
-			value = arr[i];
-			if (value instanceof Array) {
-				// prepend `splice()` arguments to `tmp` array, to enable `apply()` call
-				arr.splice.apply(arr,[i,1].concat(arr[i]));
-			} else {
-				i++;
-			}
-		}
-
-		return arr;
-	},
-	
 
 	/**
-	 * Randomizes array via Fisher-Yates algorithm.
+	 * Randomizes the array via Fisher-Yates algorithm.
 	 */
 	randomize : function() {
 		for(var j, x, self=this, i=self.length; i; j = parseInt(Math.random() * i), x = self[--i], self[i] = self[j], self[j] = x);
@@ -170,30 +118,25 @@ Object.addPrototypeMethods("Array",
 	
 	
 	/** 
-	 * Removes the given value (first only) from the array and returns it.
-	 *
-	 * @param value {var} Any value
-	 * @return {var} The removed value (if it was found, otherwise undefined)
+	 * {var} Removes the given @value {var} (first occourence only) from the array and returns it.
 	 */
 	remove : function(value) 
 	{
-		var pos = this.indexOf(value);
-		if (pos != -1) 
+		var position = this.indexOf(value);
+		if (position != -1) 
 		{
-			this.splice(pos, 1);
+			this.splice(position, 1);
 			return value;
 		}
 	},
 	
 	
 	/**
-	 * Returns a new array with all elements that are unique. 
+	 * {Array} Returns a new array with all elements that are unique. 
 	 * 
 	 * Comparison happens based on the toString() value! So numbers
 	 * and booleans might be unified with strings with the same "value".
 	 * This is mainly because of performance reasons.
-	 * 
-	 * @return {Array} Newly created filtered array
 	 */
 	unique : function() 
 	{
@@ -208,34 +151,19 @@ Object.addPrototypeMethods("Array",
 	
 	
 	/**
-	 * Returns the value at the given position. Supports negative indexes, too.
-	 *
-	 * @param index {Integer} Index to query
-	 * @return {var} Value at index. Might be undefined, too.
+	 * {var} Returns the value at the given @position {Integer}. Supports negative indexes, too.
 	 */
-	at : function(index) 
-	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.integer(index, "Param 'index' must be be an integer!");
-		}
-
-		return this[index < 0 ? this.length + index : index];
+	at : function(position) {
+		return this[position < 0 ? this.length + position : position];
 	},
 	
 
 	/** 
-	 * Removes the value at the given index.
-	 *
-	 * @param index {Integer} Index to delete, supports negative indexes, too
-	 * @return {var} Returns the value which was removed (if so)
+	 * {var} Removes and returns the value at the given @position {Integer}.
 	 */
-	removeAt : function(index) 
+	removeAt : function(position) 
 	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.integer(index, "Param 'index' must be be an integer!");
-		}
-		
-		var ret = this.splice(index<0?this.length+index:index, 1);
+		var ret = this.splice(position < 0 ? this.length + position : position, 1);
 		if (ret.length) {
 			return ret[0];
 		}
@@ -243,25 +171,16 @@ Object.addPrototypeMethods("Array",
 
 
 	/**
-	 * Removes a specific range from the array. Also support negative indexes.
-	 *
-	 * Based on Array Remove - By John Resig (MIT Licensed)
-	 * http://ejohn.org/blog/javascript-array-remove/
-	 *
-	 * @param from {Integer} Start index
-	 * @param to {Integer} End index
-	 * @return {Integer} Length of modified array
+	 * Removes a specific range (@from {Integer} <-> @to {Integer}) from the array. Supports negative indexes, too.
 	 */
 	removeRange : function(from, to) 
 	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.integer(from, "Param 'from' must be be an integer!");
-			core.Assert.integer(to, "Param 'to' must be be an integer!");
-		}
-
+		// Based on Array Remove - By John Resig (MIT Licensed)
+		// http://ejohn.org/blog/javascript-array-remove/
+		
 		var rest = this.slice((to || from) + 1 || this.length);
 		this.length = from < 0 ? this.length + from : from;
-		return this.push.apply(this, rest);
+		this.push.apply(this, rest);
 	}
 });
 

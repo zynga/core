@@ -75,14 +75,7 @@
 	
 	addObjectMethods("Object", 
 	{
-		/**
-		 * 
-		 */
 		addObjectMethods : addObjectMethods,
-
-		/**
-		 * 
-		 */
 		addPrototypeMethods : addPrototypeMethods
 	});
 	

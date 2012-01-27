@@ -68,10 +68,7 @@
 	core.Module("core.io.Queue",
 	{
 		/**
-		 * Whether the given URIs were loaded before
-		 *
-		 * @param uris {Array} One or multiple URIs to verify.
-		 * @return {Boolean} Whether all given URIs have been loaded. Returns `false` with the first new one.
+		 * {Boolean} Returns whether the given @uris {String|String[]} were loaded before.
 		 */
 		isLoaded : function(uris) 
 		{
@@ -95,13 +92,9 @@
 		
 		
 		/**
-		 * Loads the given URIs and optionally executes the given callback after all are completed
-		 *
-		 * @param uris {Array} List of URLs to load
-		 * @param callback {Function ? null} Callback method to execute
-		 * @param context {Object ? null} Context in which the callback function should be executed
-		 * @param nocache {Boolean ? false} Whether a cache prevention logic should be applied (to force a fresh copy)
-		 * @param type {String ? auto} Whether the automatic type detection should be disabled and the given type should be used.
+		 * Loads the given @uris {String[]} and optionally executes the given @callback {Function} with the @context {Object?null} after all are completed.
+		 * One can optionally disable the browser caching using enforced get parameters via the @nocache {Boolean?false} flag. Typically
+		 * the matching loader is figured out automatically based on the file extension but can be controlled using the @type {String?} parameter.
 		 */
 		load : function(uris, callback, context, nocache, type) 
 		{
@@ -134,11 +127,8 @@
 			
 			
 			/**
-			 * Registers the given URI as being loaded. 
-			 * 
-			 * @param uri {String} URI to mark as being loaded
-			 * @param errornous {Boolean?false} Whether request was not successful
-			 * @param data {Map} Additional data to exchange
+			 * Registers the given @uri {String} as being loaded and deals with error reports (@errornous {Boolean?false}) 
+			 * and @data {var?null} delivered by the loader.
 			 */
 			var onLoad = function(uri, errornous, data) 
 			{
