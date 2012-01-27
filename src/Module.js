@@ -5,6 +5,10 @@
 ==================================================================================================
 */
 
+/**
+ * Declarations of simple modules with static members
+ */
+
 (function(global, undef)
 {
 	var genericToString = function() {
@@ -62,33 +66,25 @@
 	Object.addStatics("core.Module", 
 	{
 		/**
-		 * Resolves a given Module name
-		 *
-		 * @param moduleName {String} Name to resolve
-		 * @return {Object} Returns the Module stored under the given name
+		 * {Module} Resolves a given @name {String} and returns the stored module.
 		 */
-		getByName : function(moduleName)
+		getByName : function(name)
 		{
-			var obj = Module.resolveName(moduleName);
+			var obj = Module.resolveName(name);
 			return isModule(obj) ? obj : null;
 		},
 		
 		
 		/**
-		 * Whether the given name is a valid module name.
-		 *
-		 * @param value {String} Any string
-		 * @return {Boolean} Whether the given string is a valid module name
+		 * {Boolean} Returns whether the given @name {String} is a valid module name.
 		 */
-		isModuleName : function(value) {
-			return /^(([a-z][a-z0-9]*\.)*)([A-Z][a-zA-Z0-9]*)$/.test(value);
+		isModuleName : function(name) {
+			return /^(([a-z][a-z0-9]*\.)*)([A-Z][a-zA-Z0-9]*)$/.test(name);
 		},
 		
 		
 		/**
-		 * Whether the given object is a Model
-		 *
-		 * @return {Boolean} Whether the given argument is an valid Model.
+		 * {Boolean} Whether the given object is a valid @module {Object}.
 		 */
 		isModule : function(module) {
 			return !!(module && typeof module == "object" && module.__isModule);
