@@ -1,3 +1,10 @@
+/* 
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2012 Sebastian Werner
+==================================================================================================
+*/
+
 (function(global) 
 {
 	// Dynamic URI can be shared because we do not support reloading files

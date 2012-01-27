@@ -1,3 +1,10 @@
+/* 
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2012 Sebastian Werner
+==================================================================================================
+*/
+
 (function() {
 	
 	var count = 1;
@@ -12,7 +19,8 @@
 	 *
 	 * Does not work on primitive data objects aka maps/dict and primitive values aka `string`, `number`, ...
 	 */
-	core.Module("core.util.Id", {
+	core.Module("core.util.Id", 
+	{
 		
 		/**
 		 * {Integer} Returns a unique ID of the given @object {Function|Object|Element}.

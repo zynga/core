@@ -1,3 +1,10 @@
+/* 
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2012 Sebastian Werner
+==================================================================================================
+*/
+
 /**
  * Helper class for doing cell tiling and distribution. Uses a paint callbacks on a
  * predefined area when location to render is being modified.
