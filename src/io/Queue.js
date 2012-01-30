@@ -77,7 +77,7 @@
 			}
 			
 			if (core.Env.isSet("debug")) {
-				core.Assert.assertTypeOf(uris, "Array", "Invalid list of URIs!");
+				core.Assert.isType(uris, "Array", "Invalid list of URIs!");
 			}
 
 			for (var i=0, l=uris.length; i<l; i++) 
@@ -100,22 +100,22 @@
 		{
 			if (core.Env.isSet("debug")) 
 			{
-				core.Assert.assertTypeOf(uris, "Array");
+				core.Assert.isType(uris, "Array");
 
 				if (callback != null) {
-					core.Assert.assertTypeOf(callback, "Function", "Invalid callback method!");
+					core.Assert.isType(callback, "Function", "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					core.Assert.assertTypeOf(context, "Object", "Invalid callback context!");
+					core.Assert.isType(context, "Object", "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					core.Assert.assertTypeOf(nocache, "Boolean");
+					core.Assert.isType(nocache, "Boolean");
 				}
 
 				if (type != null) {
-					core.Assert.assertTypeOf(type, "String");
+					core.Assert.isType(type, "String");
 				}
 			}
 			
@@ -134,10 +134,10 @@
 			{
 				if (core.Env.isSet("debug")) 
 				{
-					core.Assert.assertTypeOf(uri, "String", "Got invalid URI from loader!");
+					core.Assert.isType(uri, "String", "Got invalid URI from loader!");
 					
 					if (errornous != null) {
-						core.Assert.assertTypeOf(errornous, "Boolean", "Got invalid errornous flag from loader for uri: " + uri);
+						core.Assert.isType(errornous, "Boolean", "Got invalid errornous flag from loader for uri: " + uri);
 					}
 				}
 

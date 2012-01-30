@@ -53,7 +53,7 @@ core.Module("core.bom.FormItem",
 		{
 			core.Assert.assertEqual(args.length, 1);
 			core.dom.Node.assertIsNode(item);
-			core.Assert.assertTypeOf(item.name, "String");
+			core.Assert.isType(item.name, "String");
 		}
 		
 		return item.name + "=" + encodeURIComponent(item.value);

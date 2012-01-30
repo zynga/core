@@ -54,7 +54,7 @@
 			if (array) {
 				
 				if (core.Env.isSet("debug")) {
-					core.Assert.assertTypeOf(array, "Array");
+					core.Assert.isType(array, "Array");
 				}
 				
 				var length = array.length;

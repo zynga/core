@@ -902,7 +902,7 @@ $(function() {
 		
 		var eventMap = core.Class.getEvents(events.Mouse);
 		ok((function() {
-			core.Assert.assertTypeOf(eventMap, "Map");
+			core.Assert.isType(eventMap, "Map");
 			return true;
 		})(), "Events should be a returned as a map");
 		equals(eventMap.click, MouseEvent, "No click event found");

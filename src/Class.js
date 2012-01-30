@@ -156,7 +156,7 @@ if(!core.Env.isSet("es5"))
 				throw new Error("Invalid class name " + name + "!");
 			}
 			
-			core.Assert.assertTypeOf(config, "Map", "Invalid class configuration in " + name);
+			core.Assert.isType(config, "Map", "Invalid class configuration in " + name);
 			
 			var invalidKeys = Object.validateKeys(config, "construct,events,members,properties,include,implement".split(","));
 			if (invalidKeys.length > 0) {
@@ -164,27 +164,27 @@ if(!core.Env.isSet("es5"))
 			}
 			
 			if ("construct" in config) {
-				core.Assert.assertTypeOf(config.construct, "Function", "Invalid constructor in class " + name + "!");
+				core.Assert.isType(config.construct, "Function", "Invalid constructor in class " + name + "!");
 			}
 			
 			if ("events" in config) {
-				core.Assert.assertTypeOf(config.events, "Map", "Invalid event data in class " + name + "!");
+				core.Assert.isType(config.events, "Map", "Invalid event data in class " + name + "!");
 			}
 			
 			if ("members" in config) {
-				core.Assert.assertTypeOf(config.members, "Map", "Invalid member section in class " + name);
+				core.Assert.isType(config.members, "Map", "Invalid member section in class " + name);
 			}
 
 			if ("properties" in config) {
-				core.Assert.assertTypeOf(config.properties, "Map", "Invalid properties section in class " + name);
+				core.Assert.isType(config.properties, "Map", "Invalid properties section in class " + name);
 			}
 			
 			if ("include" in config) {
-				core.Assert.assertTypeOf(config.include, "Array", "Invalid include list in class " + name);
+				core.Assert.isType(config.include, "Array", "Invalid include list in class " + name);
 			}
 
 			if ("implement" in config) {
-				core.Assert.assertTypeOf(config.implement, "Array", "Invalid implement list in class " + name);
+				core.Assert.isType(config.implement, "Array", "Invalid implement list in class " + name);
 			}
 		}
 		
@@ -405,7 +405,7 @@ if(!core.Env.isSet("es5"))
 		getByName : function(className) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.assertTypeOf(className, "String");
+				core.Assert.isType(className, "String");
 			}
 
 			var obj = core.Module.resolveName(className);

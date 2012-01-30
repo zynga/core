@@ -26,7 +26,7 @@
 				throw new Error("Invalid interface name " + name + "!");
 			}
 
-			core.Assert.assertTypeOf(config, "Map", "Invalid interface configuration in " + name);
+			core.Assert.isType(config, "Map", "Invalid interface configuration in " + name);
 		}
 
 		var iface =
@@ -83,7 +83,7 @@
 	Interface.getByName = function(interfaceName)
 	{
 		if (core.Env.isSet("debug")) {
-			core.Assert.assertTypeOf(interfaceName, "String");
+			core.Assert.isType(interfaceName, "String");
 		}
 
 		var obj = core.Module.resolveName(interfaceName);

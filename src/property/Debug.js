@@ -68,7 +68,7 @@ core.Module("core.property.Debug",
 					} 
 					else if (Object.CLASSES[type] || Object.TYPES[type]) 
 					{
-						core.Assert.assertTypeOf(value, type);
+						core.Assert.isType(value, type);
 					}
 					else
 					{

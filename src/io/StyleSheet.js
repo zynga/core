@@ -40,18 +40,18 @@
 		{
 			if (core.Env.isSet("debug")) 
 			{
-				core.Assert.assertTypeOf(uri, "String");
+				core.Assert.isType(uri, "String");
 
 				if (callback != null) {
-					core.Assert.assertTypeOf(callback, "Function", "Invalid callback method!");
+					core.Assert.isType(callback, "Function", "Invalid callback method!");
 				}
 				
 				if (context != null) {
-					core.Assert.assertTypeOf(context, "Object", "Invalid callback context!");
+					core.Assert.isType(context, "Object", "Invalid callback context!");
 				}
 				
 				if (nocache != null) {
-					core.Assert.assertTypeOf(nocache, "Boolean");
+					core.Assert.isType(nocache, "Boolean");
 				}
 			}
 			

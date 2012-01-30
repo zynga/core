@@ -66,10 +66,10 @@
 					throw new Error("Property declaration of " + propertyName + " contains invalid configuration keys: " + invalidKeys.join(", ") + "!");
 				}
 				
-				core.Assert.assertTypeOf(propertyName, "String");
+				core.Assert.isType(propertyName, "String");
 
 				if (propertyNullable !== undef) {
-					core.Assert.assertTypeOf(propertyNullable, "Boolean");
+					core.Assert.isType(propertyNullable, "Boolean");
 				}
 
 				if (propertyType) {
@@ -77,11 +77,11 @@
 				}
 
 				if (propertyFire) {
-					core.Assert.assertTypeOf(propertyFire, "String");
+					core.Assert.isType(propertyFire, "String");
 				}
 
 				if (propertyApply) {
-					core.Assert.assertTypeOf(propertyApply, "Function");
+					core.Assert.isType(propertyApply, "Function");
 				}
 			}
 
