@@ -8,8 +8,12 @@
 (function(global, undef)
 {
 	// Jasy is replacing this call via the kernel permutation
-	var fields = core.Env.getValue("fields");
-
+	// Catch this as it produce an error (missing API) when not being replaced.
+	var fields;
+	try{
+		fields = core.Env.getValue("fields");
+	} catch (ex) {}
+	
 	if (fields)
 	{
 		// Stores all selected fields in a simple map
@@ -65,7 +69,7 @@
 			/**
 			 * @require {core.ext.String}
 			 */
-			return core.crypt.SHA1.hash(key.join(";")).hex();
+			return core.crypt.SHA1.checksum(key.join(";")).hex();
 		})();
 	}
 	else
