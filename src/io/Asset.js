@@ -54,10 +54,7 @@
 	core.Module("core.io.Asset",
 	{
 		/**
-		 * Whether the registry has information about the given asset.
-		 *
-		 * @param id {String} The asset to get the information for
-		 * @return {Boolean} <code>true</code> when the asset is known.
+		 * {Boolean} Whether the registry has information about the given asset @id {String}.
 		 */
 		has : function(id) {
 			return entryCache[id] || getEntry(id) != null;
@@ -65,13 +62,8 @@
 
 
 		/**
-		 * Loads the given asset and optionally executes the given callback after all are completed
-		 *
-		 * @param ids {Array} List of assets to load
-		 * @param callback {Function ? null} Callback method to execute
-		 * @param context {Object ? null} Context in which the callback function should be executed
-		 * @param nocache {Boolean ? false} Whether a cache prevention logic should be applied (to force a fresh copy)
-		 * @param type {String ? auto} Whether the automatic type detection should be disabled and the given type should be used.
+		 * Loads the given asset @ids {String[]} and optionally executes the given @callback {Function?} (in the given @context {Object}) after all are completed.
+		 * The behavior is tweakable by enabling @nocache {Boolean?false} to append a dynamic `GET` parameter and @type {String} to enforce a specific loader class.
 		 */
 		load: function(ids, callback, context, nocache, type) {
 
@@ -121,12 +113,7 @@
 
 
 		/**
-		 * Returns sprite details for being used for the given image ID.
-		 *
-		 * Nothing is returned when the given ID is not available as part of an image sprite.
-		 *
-		 * @param id {String} Asset identifier
-		 * @return {Map}
+		 * {Map} Returns sprite details for being used for the given image @id {String}.
 		 */
 		getImageSprite : function(id)
 		{
@@ -158,11 +145,8 @@
 
 
 		/**
-		 * Converts the given asset ID to a full qualified URI
-		 *
-		 * @param id {String} Asset ID
-		 * @return {String} Resulting URI
-		 * @throws when the asset ID is unknown
+		 * {String} Converts the given asset @id {String} to a full qualified URI. 
+		 * The method throws an error whenever an asset ID is unknown.
 		 */
 		toUri : function(id)
 		{
