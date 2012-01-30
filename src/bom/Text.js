@@ -32,7 +32,7 @@
 		 * @styles {Map} (supports `fontFamily`, `fontSize`, `fontStyle` and `lineHeight`). 
 		 * Supports optional maximum @width {Number ? "auto"} for supporting text wrapping.
 		 */
-		measure: function(text, style, width) {
+		measure: function(text, styles, width) {
 
 			styles = styles || emptyStyles;
 
