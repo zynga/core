@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-(function(global) {
+(function(global, toString) {
 	
 	// defineProperty exists in IE8 but will error when trying to define a property on
 	// native objects. IE8 does not have defineProperies, however, so this check saves a try/catch block.
@@ -48,7 +48,7 @@
 				item.displayName = prefix + name;
 			}
 
-			add(object, name, item);
+			add(object, memberName, item);
 		}
 	}
 
@@ -68,7 +68,7 @@
 				item.displayName = prefix + name;
 			}
 
-			add(proto, name, item);
+			add(proto, memberName, item);
 		}
 	}
 	
@@ -179,7 +179,7 @@
 
 	// Prefill cache for `isClassOf`
 	var toStringMap = {};
-	"Array Function RegExp Object Date Number String".replace(/\w+/g, function(cls) {
+	"Array Function RegExp Object Date Number String Boolean".replace(/\w+/g, function(cls) {
 		toStringMap[cls] = "[object " + cls + "]";
 	});
 	
@@ -196,9 +196,10 @@
 	 * - `Date`
 	 * - `Number`
 	 * - `String`
+	 * - `Boolean`
 	 */
 	function isClassOf(value, name) {
-		return value != null && toStringMap[toString.call(value)] == name;
+		return value != null && toString.call(value) == toStringMap[name];
 	}
 	
 	
@@ -207,18 +208,22 @@
 	 *
 	 * Supports all class checks support by `isClassOf` but also:
 	 * 
+	 * - `Native`
 	 * - `Map`
 	 * - `Integer`
 	 * - `Primitive`
 	 */
 	function isTypeOf(value, type) 
 	{
-		
 		var result;
 		
 		if (toStringMap[type]) 
 		{
 			result = isClassOf(value, type);
+		}
+		else if (type == "Native")
+		{
+			result = isHostType(value);
 		}
 		else if (type == "Map") 
 		{
@@ -233,18 +238,51 @@
 			var type = typeof value;
 			result = value == null || type == "boolean" || type == "number" || type == "string";
 		}
+		else if (global.console)
+		{
+			console.warn("Unsupported type call to Object.isTypeOf(): " + type);
+		}
 		
 		return result;
 	}
 	
 	
+	/**
+	 * {String} Validates the @object {Map} to don't hold other keys than the ones defined by @allowed {Array}. 
+	 * Returns first non matching key which was found or `undefined` if all keys are valid.
+	 */
+	function validateKeys(object, allowed) 
+	{
+		// Build lookup table
+		var set = {};
+		for (var i=0, l=allowed.length; i<l; i++) {
+			set[allowed[i]] = true;
+		}
+		
+		// Collect used keys
+		var list = Object.keys(object);
+		
+		// Validate keys
+		var invalid = [];
+		for (var i=0, l=list.length; i<l; i++) 
+		{
+			var current = list[i];
+			if (!set[current]) {
+				invalid.push(current);
+			}
+		}
+		
+		return invalid;
+	}	
+	
+	
 	// Temporary hack to make next statement workable
-	Object.prototype.addStatics = addStatics;
+	Object.addStatics = addStatics;
 	
 	/**
 	 * Useful root methods to add members to objects
 	 */
-	Object.prototype.addStatics("Object", 
+	Object.addStatics("Object", 
 	{
 		declareNamespace : declareNamespace,
 		getNamespaces: getNamespaces,
@@ -253,10 +291,12 @@
 
 		addStatics : addStatics,
 		addMembers : addMembers,
+		
+		validateKeys : validateKeys,
 
 		isHostType : isHostType,
 		isClassOf : isClassOf,
 		isTypeOf : isTypeOf
 	});
 	
-})(this);
+})(this, Object.prototype.toString);
