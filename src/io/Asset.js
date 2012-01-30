@@ -16,7 +16,7 @@
 	var getEntry = function(id)
 	{
 		if (core.Env.isSet("debug")) {
-			core.Assert.string(id, "Invalid asset identifier: " + id);
+			core.Assert.assertTypeOf(id, "String", "Invalid asset identifier: " + id);
 		}
 
 		var entry = entryCache[id];

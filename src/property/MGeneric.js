@@ -45,7 +45,7 @@
 				if (arguments.length == 2)
 				{
 					if (core.Env.isSet("debug")) {
-						core.Assert.string(property);
+						core.Assert.assertTypeOf(property, "String");
 					}
 
 					var method = setters[property];
@@ -62,7 +62,7 @@
 				else
 				{
 					if (core.Env.isSet("debug")) {
-						core.Assert.map(property);
+						core.Assert.assertTypeOf(property, "Map");
 					}
 
 					for (var name in property)
@@ -99,7 +99,7 @@
 				if (typeof property == "string")
 				{
 					if (core.Env.isSet("debug")) {
-						core.Assert.string(property);
+						core.Assert.assertTypeOf(property, "String");
 					}
 
 					var method = getters[property];

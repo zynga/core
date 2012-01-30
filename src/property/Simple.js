@@ -61,13 +61,15 @@
 			// Validation
 			if (core.Env.isSet("debug"))
 			{
-				core.Assert.hasAllowedKeysOnly(config, ["name","nullable","init","type","fire","apply"],
-					"Invalid simple property configuration of '" + propertyName + "'! Unallowed key(s) found!");
-
-				core.Assert.string(propertyName);
+				var invalidKeys = Object.validateKeys(config, "name,nullable,init,type,fire,apply".split(","));
+				if (invalidKeys.length > 0) {
+					throw new Error("Property declaration of " + propertyName + " contains invalid configuration keys: " + invalidKeys.join(", ") + "!");
+				}
+				
+				core.Assert.assertTypeOf(propertyName, "String");
 
 				if (propertyNullable !== undef) {
-					core.Assert.boolean(propertyNullable);
+					core.Assert.assertTypeOf(propertyNullable, "Boolean");
 				}
 
 				if (propertyType) {
@@ -75,11 +77,11 @@
 				}
 
 				if (propertyFire) {
-					core.Assert.string(propertyFire);
+					core.Assert.assertTypeOf(propertyFire, "String");
 				}
 
 				if (propertyApply) {
-					core.Assert.func(propertyApply);
+					core.Assert.assertTypeOf(propertyApply, "Function");
 				}
 			}
 

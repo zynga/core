@@ -225,7 +225,7 @@ if(!core.Env.isSet("es5"))
 			if (core.Env.isSet("debug")) 
 			{
 				for (var i=0, l=include.length; i<l; i++) {
-					core.Assert.cls(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
+					core.Class.assertIsClass(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
 				}
 				
 				checkMixinMemberConflicts(include, config.members, name);
@@ -374,90 +374,106 @@ if(!core.Env.isSet("es5"))
 	// Shorthand
 	var Class = core.Class;
 
-
-	/**
-	 * {Class} Resolves a given @className {String}
-	 */
-	Class.getByName = function(className) 
-	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.string(className);
-		}
-		
-		var obj = core.Module.resolveName(className);
-		return isClass(obj) ? obj : null;
-	};
-
-
-	/**
-	 * {Map} Returns a map of all events and their type of the given class (@cls {Class}).
-	 */
-	Class.getEvents = function(cls) 
-	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.cls(cls);
-		}
-		
-		return cls.__events;
-	};
 	
-	
-	/**
-	 * {Map} Returns a map of all properties and their configuration supported by the given class (@cls {Class}).
-	 */
-	Class.getProperties = function(cls) 
-	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.cls(cls);
-		}
-		
-		return cls.__properties;
-	};
-	
-	
-	/**
-	 * {Map} Returns all property features used in the given class (@cls {Class}).
-	 */
-	Class.getPropertyFeatures = function(cls) 
-	{
-		var all = {};
-		var properties = cls.__properties;
-		for (var name in properties)
-		{
-			var config = properties[name];
-			for (var key in config) {
-				all[key] || (all[key] = true);
-			}
-		}
-		
-		return all;
-	};
-
-
 	/**
 	 * {Boolean} Returns whether the given @obj {Object} is a class.
 	 *
 	 * @return  Whether the given argument is an valid Class.
 	 */
-	Class.isClass = function(obj) {
-		return !!(obj && typeof obj == "function" && obj.__isClass);
+	var isClass = function(object) {
+		return !!(object && typeof object == "function" && object.__isClass);
 	};
 	
-	
-	/**
-	 * {Boolean} Whether the first class includes the second one.
-	 *
-	 * - @cls {Class} Class to check for including other class.
-	 * - @inc {Class} Class for checking if being included into first one.
-	 */
-	Class.includesClass = function(cls, inc) 
+	var assertIsClass = function(object, message) 
 	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.cls(cls, "Class to check for including class is itself not a class!");
-			core.Assert.cls(inc, "Class to check for being included is not a class!");
+		if (!isClass(object)) {
+			throw new Error(message || "Invalid class: " + object);
+		}
+	};
+
+
+
+	Object.addStatics(core.Class, 
+	{
+		isClass : isClass,
+		assertIsClass: assertIsClass,
+		
+		
+		/**
+		 * {Class} Resolves a given @className {String}
+		 */
+		getByName : function(className) 
+		{
+			if (core.Env.isSet("debug")) {
+				core.Assert.assertTypeOf(className, "String");
+			}
+
+			var obj = core.Module.resolveName(className);
+			return isClass(obj) ? obj : null;
+		},
+
+
+		/**
+		 * {Map} Returns a map of all events and their type of the given class (@cls {Class}).
+		 */
+		getEvents : function(cls) 
+		{
+			if (core.Env.isSet("debug")) {
+				core.Class.assertIsClass(cls);
+			}
+
+			return cls.__events;
+		},
+
+
+		/**
+		 * {Map} Returns a map of all properties and their configuration supported by the given class (@cls {Class}).
+		 */
+		getProperties : function(cls) 
+		{
+			if (core.Env.isSet("debug")) {
+				core.Class.assertIsClass(cls);
+			}
+
+			return cls.__properties;
+		},
+
+
+		/**
+		 * {Map} Returns all property features used in the given class (@cls {Class}).
+		 */
+		getPropertyFeatures : function(cls) 
+		{
+			var all = {};
+			var properties = cls.__properties;
+			for (var name in properties)
+			{
+				var config = properties[name];
+				for (var key in config) {
+					all[key] || (all[key] = true);
+				}
+			}
+
+			return all;
+		},
+
+
+		/**
+		 * {Boolean} Whether the first class includes the second one.
+		 *
+		 * - @cls {Class} Class to check for including other class.
+		 * - @inc {Class} Class for checking if being included into first one.
+		 */
+		includesClass : function(cls, inc) 
+		{
+			if (core.Env.isSet("debug")) {
+				core.Class.assertIsClass(cls, "Class to check for including class is itself not a class!");
+				core.Class.assertIsClass(inc, "Class to check for being included is not a class!");
+			}
+
+			return cls.__includes.indexOf(inc) != -1;
 		}
 		
-		return cls.__includes.indexOf(inc) != -1;
-	};
-	
+	});
+
 })(this);

@@ -30,7 +30,7 @@
 		{
 			if (core.Env.isSet("debug")) 
 			{
-				core.Assert.string(uri);
+				core.Assert.assertTypeOf(uri, "String");
 
 				if (callback != null) {
 					core.Assert.func(callback, "Invalid callback method!");

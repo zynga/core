@@ -83,7 +83,7 @@
 	Interface.getByName = function(interfaceName)
 	{
 		if (core.Env.isSet("debug")) {
-			core.Assert.string(interfaceName);
+			core.Assert.assertTypeOf(interfaceName, "String");
 		}
 
 		var obj = core.Module.resolveName(interfaceName);

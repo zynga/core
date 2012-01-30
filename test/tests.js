@@ -661,9 +661,9 @@ $(function() {
 	
 	module("ClassesCore", {
 		teardown : function() {
-			core.Module.clearName("abc.Class1");
-			core.Module.clearName("abc.Class2");
-			core.Module.clearName("abc.Class3");
+			Object.clearNamespace("abc.Class1");
+			Object.clearNamespace("abc.Class2");
+			Object.clearNamespace("abc.Class3");
 		}
 	});
 
@@ -705,9 +705,9 @@ $(function() {
 	
 	module("ClassesMembers", {
 		teardown : function() {
-			core.Module.clearName("members.Class1");
-			core.Module.clearName("members.Include1");
-			core.Module.clearName("members.Include2");
+			Object.clearNamespace("members.Class1");
+			Object.clearNamespace("members.Include1");
+			Object.clearNamespace("members.Include2");
 		}
 	});
 	
@@ -871,10 +871,10 @@ $(function() {
 	
 	module("ClassesEvents", {
 		teardown : function() {
-			core.Module.clearName("events.Keyboard");
-			core.Module.clearName("events.Mouse");
-			core.Module.clearName("events.Widget");
-			core.Module.clearName("events.Widget2");
+			Object.clearNamespace("events.Keyboard");
+			Object.clearNamespace("events.Mouse");
+			Object.clearNamespace("events.Widget");
+			Object.clearNamespace("events.Widget2");
 		}
 	});
 	
@@ -902,7 +902,7 @@ $(function() {
 		
 		var eventMap = core.Class.getEvents(events.Mouse);
 		ok((function() {
-			core.Assert.map(eventMap);
+			core.Assert.assertTypeOf(eventMap, "Map");
 			return true;
 		})(), "Events should be a returned as a map");
 		equals(eventMap.click, MouseEvent, "No click event found");
@@ -1018,17 +1018,17 @@ $(function() {
 	
 	module("ClassesProperties", {
 		teardown : function() {
-			core.Module.clearName("properties.Text");
-			core.Module.clearName("properties.Dimension");
-			core.Module.clearName("properties.Label");
-			core.Module.clearName("properties.Simple");
-			core.Module.clearName("properties.IColor");
-			core.Module.clearName("properties.IFontSize");
-			core.Module.clearName("properties.ColorImplementer");
-			core.Module.clearName("properties.ColorWrongImplementer");
-			core.Module.clearName("properties.FontSizeImplementer");
-			core.Module.clearName("properties.FontSizeMissing");
-			core.Module.clearName("properties.FontSizeWrongImplementer");
+			Object.clearNamespace("properties.Text");
+			Object.clearNamespace("properties.Dimension");
+			Object.clearNamespace("properties.Label");
+			Object.clearNamespace("properties.Simple");
+			Object.clearNamespace("properties.IColor");
+			Object.clearNamespace("properties.IFontSize");
+			Object.clearNamespace("properties.ColorImplementer");
+			Object.clearNamespace("properties.ColorWrongImplementer");
+			Object.clearNamespace("properties.FontSizeImplementer");
+			Object.clearNamespace("properties.FontSizeMissing");
+			Object.clearNamespace("properties.FontSizeWrongImplementer");
 		}
 	});	
 	
@@ -1066,7 +1066,7 @@ $(function() {
 		});
 		
 		ok((function() {
-			core.Assert.cls(properties.Simple);
+			core.Class.assertIsClass(properties.Simple);
 			return true;
 		})());
 		equals(Object.keys(core.Class.getProperties(properties.Simple)).join(","), "color,backgroundColor");

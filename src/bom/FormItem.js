@@ -53,7 +53,7 @@ core.Module("core.bom.FormItem",
 		{
 			core.Assert.assertEqual(args.length, 1);
 			core.Assert.element(item);
-			core.Assert.string(item.name);
+			core.Assert.assertTypeOf(item.name, "String");
 		}
 		
 		return item.name + "=" + encodeURIComponent(item.value);
