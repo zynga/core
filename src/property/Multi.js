@@ -69,12 +69,9 @@
 	*/
 
 	/**
-	 * Updates children of a object where the given property has been modified.
-	 *
-	 * @param obj {qx.core.Object} Object which was modified
-	 * @param newValue {var} Current newValue
-	 * @param oldValue {var} Old value
-	 * @param config {Map} Property configuration
+	 * Updates children of a obj {Object} where the given property has been modified
+	 * from the @oldValue {var} to the @newValue {var}. The property configuration
+	 * is made available via @config {Map}.
 	 */
 	var changeInheritedHelper = function(obj, newValue, oldValue, config)
 	{
@@ -220,14 +217,9 @@
 		*/
 
 		/**
-		 * Adds a new multi-field property to the given class.
+		 * Adds a new multi-field property with the given @name {String} (Camel-case and no special characters) and configuration (@config {Map}) to the @clazz {Class}.
 		 *
-		 * Please note that you need to define one of "init" or "nullable". Otherwise you might get errors during runtime
-		 * function calls.
-		 *
-		 * @param clazz {Class} The class to modify
-		 * @param name {String} Name of the property. Camel-case. No special characters.
-		 * @param config {Map} Configuration for the property to being created
+		 * Please note that you need to define one of "init" or "nullable". Otherwise you might get errors during runtime function calls.
 		 */
 		create : function(config)
 		{
@@ -556,11 +548,9 @@
 
 
 		/**
-		 * Returns a value from a specific field for the given property - ignoring the priorities.
-		 *
-		 * @param obj {qx.core.Object} Any object with the given property
-		 * @param propertyName {String} Name of the property to query
-		 * @param field {String} One of "init", "inheritance", "theme", "user" or "override"
+		 * Returns a value of the obj {Object} from a specific @field {String} 
+		 * (one of "init", "inheritance", "theme", "user" or "override") for the given @propertyName {String} - 
+		 * ignoring any priorities.
 		 */
 		getSingleValue : function(obj, propertyName, field)
 		{
@@ -580,11 +570,10 @@
 		 * Imports a list of values. Useful for batch-applying a whole set of properties. Supports
 		 * <code>undefined</code> values to reset properties.
 		 *
-		 * @param obj {qx.ui.core.Widget} Any widget
-		 * @param values {Map} Map of properties to apply
-		 * @param oldValues {Map} Map of old property values. Just used for comparision.
-		 * Required for theme changes. In case of a state change the old value is not available otherwise.
-		 * @param field {String} Storage field to modify
+		 * - @obj {qx.ui.core.Widget} Any widget
+		 * - @values {Map} Map of properties to apply
+		 * - @oldValues {Map} Map of old property values. Just used for comparision. Required for theme changes. In case of a state change the old value is not available otherwise.
+		 * - @field {String} Storage field to modify
 		 */
 		importData : function(obj, values, oldValues, field)
 		{
@@ -736,14 +725,11 @@
 		*/
 
 		/**
-		 * Returns a list of all inheritable properties supported by the given class.
+		 * {Map} Returns a list (a map type for faster lookup) of all inheritable properties supported by the given clazz {Class}.
 		 *
 		 * You may choose to access inheritable properties via:
-		 * obj.__inheritables || core.property.Multi.getInheritableProperties(obj)
+		 * `obj.__inheritables || core.property.Multi.getInheritableProperties(obj)`
 		 * for better performance.
-		 *
-		 * @param clazz {Class} Class to query
-		 * @return {Map} All inheritable property names and a dictionary for faster lookup
 		 */
 		getInheritableProperties : function(clazz)
 		{
@@ -785,9 +771,9 @@
 		 * call (e.g. themed or itself inherited). This means it is basically cheap for initial application creation,
 		 * but is more expensive as soon as the application is running and objects are moved around dynamically.
 		 *
-		 * @param obj {qx.core.Object} The modified object
-		 * @param newParent {qx.core.Object} The current parent
-		 * @param oldParent {qx.core.Object} The new parent
+		 * - @obj {Object} The modified object
+		 * - @newParent {Object} The current parent
+		 * - @oldParent {Object} The new parent
 		 */
 		moveObject : function(obj, newParent, oldParent)
 		{
