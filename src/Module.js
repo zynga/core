@@ -7,8 +7,9 @@
 
 /**
  * Declarations of simple modules with static members
+ *
+ * #require(core.fix.*)
  */
-
 (function(global, undef)
 {
 	var genericToString = function() {
@@ -25,7 +26,7 @@
 			throw new Error("Invalid module name " + name + "!");
 		}
 		
-		if (!Object.isType(members, "Map")) {
+		if (!Object.isTypeOf(members, "Map")) {
 			throw new Error("Invalid map as module configuration in " + name + "!");
 		}
 
@@ -63,32 +64,36 @@
 	});
 	
 	
+	/**
+	 * {Module} Resolves a given @name {String} and returns the stored module.
+	 */
+	var getByName = function(name)
+	{
+		var obj = Module.resolveName(name);
+		return isModule(obj) ? obj : null;
+	}
+
+	/**
+	 * {Boolean} Returns whether the given @name {String} is a valid module name.
+	 */
+	var isModuleName = function(name) {
+		return /^(([a-z][a-z0-9]*\.)*)([A-Z][a-zA-Z0-9]*)$/.test(name);
+	}
+	
+	/**
+	 * {Boolean} Whether the given object is a valid @module {Object}.
+	 */
+	var isModule = function(module) {
+		return !!(module && typeof module == "object" && module.__isModule);
+	}
+	
+	
 	Object.addStatics("core.Module", 
 	{
-		/**
-		 * {Module} Resolves a given @name {String} and returns the stored module.
-		 */
-		getByName : function(name)
-		{
-			var obj = Module.resolveName(name);
-			return isModule(obj) ? obj : null;
-		},
-		
-		
-		/**
-		 * {Boolean} Returns whether the given @name {String} is a valid module name.
-		 */
-		isModuleName : function(name) {
-			return /^(([a-z][a-z0-9]*\.)*)([A-Z][a-zA-Z0-9]*)$/.test(name);
-		},
-		
-		
-		/**
-		 * {Boolean} Whether the given object is a valid @module {Object}.
-		 */
-		isModule : function(module) {
-			return !!(module && typeof module == "object" && module.__isModule);
-		}
+
+		getByName : getByName,
+		isModuleName : isModuleName,
+		isModule : isModule,
 	});
 
 })(this);

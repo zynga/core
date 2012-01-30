@@ -18,12 +18,15 @@
 	 * @param name {String} Name of Interface
 	 * @param config {Map} Data structure containing the keys 'events', 'properties' and 'members'.
 	 */
-	core.Module.declareName("core.Interface", function(name, config)
+	Object.declareNamespace("core.Interface", function(name, config)
 	{
 		if (core.Env.isSet("debug"))
 		{
-			core.Assert.moduleName(name, "Invalid interface name " + name + "!");
-			core.Assert.map(config, "Invalid interface configuration in " + name);
+			if (!core.Module.isModuleName(name)) {
+				throw new Error("Invalid interface name " + name + "!");
+			}
+
+			core.Assert.assertTypeOf(config, "Map", "Invalid interface configuration in " + name);
 		}
 
 		var iface =
@@ -63,7 +66,7 @@
 		};
 
 		// Attach to namespace
-		core.Module.declareName(name, iface, true);
+		Object.declareNamespace(name, iface, true);
 	});
 
 
@@ -84,7 +87,7 @@
 		}
 
 		var obj = core.Module.resolveName(interfaceName);
-		return isInterface(obj) ? obj : null;
+		return Interface.isInterface(obj) ? obj : null;
 	};
 
 
@@ -227,12 +230,8 @@
 	 *
 	 * @return {Boolean} Whether the given argument is an valid Interface.
 	 */
-	var isInterface = Interface.isInterface = function(iface) {
+	Interface.isInterface = function(iface) {
 		return !!(iface && typeof iface == "object" && iface.__isInterface);
 	};
-
-
-	// Add assertion for interface type
-	core.Assert.add(isInterface, "isInterface", "Invalid interface!");
 
 })();

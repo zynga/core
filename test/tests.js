@@ -159,26 +159,20 @@ $(function() {
 	
 	test("Array.prototype.removeRange", function() 
 	{
-		raises(function() {
-			// Use removeAt() instead!
-			var arr = [1,2,3,4,5,6,7,8,9];
-			arr.removeRange(1);
-		})
-
 		var arr = [1,2,3,4,5,6,7,8,9];
-		equals(arr.removeRange(1, 1), 8);
+		arr.removeRange(1, 1);
 		equals(arr.join(","), "1,3,4,5,6,7,8,9");
 
 		var arr = [1,2,3,4,5,6,7,8,9];
-		equals(arr.removeRange(1, 3), 6);
+		arr.removeRange(1, 3);
 		equals(arr.join(","), "1,5,6,7,8,9");
 
 		var arr = [1,2,3,4,5,6,7,8,9];
-		equals(arr.removeRange(1, -3), 3);
+		arr.removeRange(1, -3);
 		equals(arr.join(","), "1,8,9");
 
 		var arr = [1,2,3,4,5,6,7,8,9];
-		equals(arr.removeRange(-3, -1), 6);
+		arr.removeRange(-3, -1);
 		equals(arr.join(","), "1,2,3,4,5,6");
 	});
 	
@@ -365,28 +359,28 @@ $(function() {
 	
 	test("Adler32", function() {
 		
-		strictEqual(core.crypt.Adler32.compute("hello world"), 436929629);
-		strictEqual(core.crypt.Adler32.compute("hello world!"), 512296062);
-		strictEqual(core.crypt.Adler32.compute("günthér falit°@"), 1027999529);
+		strictEqual(core.crypt.Adler32.checksum("hello world"), 436929629);
+		strictEqual(core.crypt.Adler32.checksum("hello world!"), 512296062);
+		strictEqual(core.crypt.Adler32.checksum("günthér falit°@"), 1027999529);
 		
 	});
 	
 	test("CRC32", function() {
 		
-		strictEqual(core.crypt.CRC32.compute("hello world"), 222957957);
-		strictEqual(core.crypt.CRC32.compute("hello world!"), 62177901);
-		strictEqual(core.crypt.CRC32.compute("günthér falit°@"), 1750898803);
+		strictEqual(core.crypt.CRC32.checksum("hello world"), 222957957);
+		strictEqual(core.crypt.CRC32.checksum("hello world!"), 62177901);
+		strictEqual(core.crypt.CRC32.checksum("günthér falit°@"), 1750898803);
 
 	});
 	
 	test("MD5", function() {
 
-		strictEqual(core.crypt.MD5.hash("hello world").hex(), "5eb63bbbe01eeed093cb22bb8f5acdc3");
-		strictEqual(core.crypt.MD5.hash("hello karl").hex(), "967f3d167631b54ea74b380e439ec2d5");
-		strictEqual(core.crypt.MD5.hash("günthér falit°@").hex(), "c901b2c94c101e0c2fdb2c96a041ceda");
+		strictEqual(core.crypt.MD5.checksum("hello world").hex(), "5eb63bbbe01eeed093cb22bb8f5acdc3");
+		strictEqual(core.crypt.MD5.checksum("hello karl").hex(), "967f3d167631b54ea74b380e439ec2d5");
+		strictEqual(core.crypt.MD5.checksum("günthér falit°@").hex(), "c901b2c94c101e0c2fdb2c96a041ceda");
 		
-		strictEqual(btoa(core.crypt.MD5.hash("hello world")), "XrY7u+Ae7tCTyyK7j1rNww==");
-		strictEqual(btoa(core.crypt.MD5.hash("hello karl")), "ln89FnYxtU6nSzgOQ57C1Q==");
+		strictEqual(btoa(core.crypt.MD5.checksum("hello world")), "XrY7u+Ae7tCTyyK7j1rNww==");
+		strictEqual(btoa(core.crypt.MD5.checksum("hello karl")), "ln89FnYxtU6nSzgOQ57C1Q==");
 		
 		strictEqual(core.crypt.MD5.hmac("secret", "hello world").hex(), "78d6997b1230f38e59b6d1642dfaa3a4");
 		strictEqual(core.crypt.MD5.hmac("secret", "hello karl").hex(), "1df06dd6ad23a62de80b713bdfc5f59f");
@@ -398,12 +392,12 @@ $(function() {
 	
 	test("SHA1", function() {
 		
-		strictEqual(core.crypt.SHA1.hash("hello world").hex(), "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed");
-		strictEqual(core.crypt.SHA1.hash("hello karl").hex(), "1665bcf30c12443dbb332b84590123f7d544500b");
-		strictEqual(core.crypt.SHA1.hash("günthér falit°@").hex(), "01695e64d0f83e453281f385209884e94784c7bf");
+		strictEqual(core.crypt.SHA1.checksum("hello world").hex(), "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed");
+		strictEqual(core.crypt.SHA1.checksum("hello karl").hex(), "1665bcf30c12443dbb332b84590123f7d544500b");
+		strictEqual(core.crypt.SHA1.checksum("günthér falit°@").hex(), "01695e64d0f83e453281f385209884e94784c7bf");
 
-		strictEqual(btoa(core.crypt.SHA1.hash("hello world")), "Kq5sNclPz7QV2+lfQIuc6R7oRu0=");
-		strictEqual(btoa(core.crypt.SHA1.hash("hello karl")), "FmW88wwSRD27MyuEWQEj99VEUAs=");
+		strictEqual(btoa(core.crypt.SHA1.checksum("hello world")), "Kq5sNclPz7QV2+lfQIuc6R7oRu0=");
+		strictEqual(btoa(core.crypt.SHA1.checksum("hello karl")), "FmW88wwSRD27MyuEWQEj99VEUAs=");
 		
 		strictEqual(core.crypt.SHA1.hmac("secret", "hello world").hex(), "03376ee7ad7bbfceee98660439a4d8b125122a5a");
 		strictEqual(core.crypt.SHA1.hmac("secret", "hello karl").hex(), "1de9256cf6805f714a59b69806647b34315ae6ad");
@@ -415,12 +409,12 @@ $(function() {
 	
 	test("SHA256", function() {
 
-		strictEqual(core.crypt.SHA256.hash("hello world").hex(), "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9");
-		strictEqual(core.crypt.SHA256.hash("hello karl").hex(), "710e9c35558708b24698b55e5e890b506fc946558b3aaa4b356ba008e4edc860");
-		strictEqual(core.crypt.SHA256.hash("günthér falit°@").hex(), "2b62c8f744680ed05d50246db24cdbc491532f185a736c72e7cd94a7bbd41e77");
+		strictEqual(core.crypt.SHA256.checksum("hello world").hex(), "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9");
+		strictEqual(core.crypt.SHA256.checksum("hello karl").hex(), "710e9c35558708b24698b55e5e890b506fc946558b3aaa4b356ba008e4edc860");
+		strictEqual(core.crypt.SHA256.checksum("günthér falit°@").hex(), "2b62c8f744680ed05d50246db24cdbc491532f185a736c72e7cd94a7bbd41e77");
 
-		strictEqual(btoa(core.crypt.SHA256.hash("hello world")), "uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek=");
-		strictEqual(btoa(core.crypt.SHA256.hash("hello karl")), "cQ6cNVWHCLJGmLVeXokLUG/JRlWLOqpLNWugCOTtyGA=");
+		strictEqual(btoa(core.crypt.SHA256.checksum("hello world")), "uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek=");
+		strictEqual(btoa(core.crypt.SHA256.checksum("hello karl")), "cQ6cNVWHCLJGmLVeXokLUG/JRlWLOqpLNWugCOTtyGA=");
 		
 		strictEqual(core.crypt.SHA256.hmac("secret", "hello world").hex(), "734cc62f32841568f45715aeb9f4d7891324e6d948e4c6c60c0621cdac48623a");
 		strictEqual(core.crypt.SHA256.hmac("secret", "hello karl").hex(), "22585ec85d81b38049d3446dd109507bd6d72478b07ef35efb4767260fe09715");
@@ -502,7 +496,7 @@ $(function() {
 		
 		// Exported not modified by changes
 		equal(exported.length, 3);
-		72.32.231.8
+
 	});
 	
 	test("Add/Remove Random", function() {
@@ -577,12 +571,12 @@ $(function() {
 	});
 	
 	test("Creating global", function() {
-		core.Module.declareName("foo", 3);
+		Object.declareNamespace("foo", 3);
 		equals(global.foo, 3);
 	});
 
 	test("Creating namespace", function() {
-		core.Module.declareName("abc.def", 5);
+		Object.declareNamespace("abc.def", 5);
 		equals(global.abc.def, 5);
 	});
 

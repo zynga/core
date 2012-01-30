@@ -148,37 +148,43 @@ if(!core.Env.isSet("es5"))
 	
 	
 	
-	core.Module.declareName("core.Class", function(name, config) 
+	Object.declareNamespace("core.Class", function(name, config) 
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.moduleName(name, "Invalid class name " + name + "!");
-			core.Assert.map(config, "Invalid class configuration in " + name);
-			core.Assert.hasAllowedKeysOnly(config, ["construct","events","members","properties","include","implement"], 
-				"Invalid configuration in class " + name + "! Unallowed key(s) found!");
+			if (!core.Module.isModuleName(name)) {
+				throw new Error("Invalid class name " + name + "!");
+			}
+			
+			core.Assert.assertTypeOf(config, "Map", "Invalid class configuration in " + name);
+			
+			var invalidKeys = Object.validateKeys(config, "construct,events,members,properties,include,implement".split(","));
+			if (invalidKeys.length > 0) {
+				throw new Error("Class declaration of " + name + " contains invalid configuration keys: " + invalidKeys.join(", ") + "!");
+			}
 			
 			if ("construct" in config) {
-				core.Assert.func(config.construct, "Invalid constructor in class " + name + "!");
+				core.Assert.assertTypeOf(config.construct, "Function", "Invalid constructor in class " + name + "!");
 			}
 			
 			if ("events" in config) {
-				core.Assert.map(config.events, "Invalid event data in class " + name + "!");
+				core.Assert.assertTypeOf(config.events, "Map", "Invalid event data in class " + name + "!");
 			}
 			
 			if ("members" in config) {
-				core.Assert.map(config.members, "Invalid member section in class " + name);
+				core.Assert.assertTypeOf(config.members, "Map", "Invalid member section in class " + name);
 			}
 
 			if ("properties" in config) {
-				core.Assert.map(config.properties, "Invalid properties section in class " + name);
+				core.Assert.assertTypeOf(config.properties, "Map", "Invalid properties section in class " + name);
 			}
 			
 			if ("include" in config) {
-				core.Assert.array(config.include, "Invalid include list in class " + name);
+				core.Assert.assertTypeOf(config.include, "Array", "Invalid include list in class " + name);
 			}
 
 			if ("implement" in config) {
-				core.Assert.array(config.implement, "Invalid implement list in class " + name);
+				core.Assert.assertTypeOf(config.implement, "Array", "Invalid implement list in class " + name);
 			}
 		}
 		
@@ -361,7 +367,7 @@ if(!core.Env.isSet("es5"))
 		// ------------------------------------
 		
 		// Attach to namespace
-		core.Module.declareName(name, construct, true);
+		Object.declareNamespace(name, construct, true);
 	});
 
 	
@@ -433,7 +439,7 @@ if(!core.Env.isSet("es5"))
 	 *
 	 * @return  Whether the given argument is an valid Class.
 	 */
-	var isClass = Class.isClass = function(obj) {
+	Class.isClass = function(obj) {
 		return !!(obj && typeof obj == "function" && obj.__isClass);
 	};
 	
@@ -444,7 +450,7 @@ if(!core.Env.isSet("es5"))
 	 * - @cls {Class} Class to check for including other class.
 	 * - @inc {Class} Class for checking if being included into first one.
 	 */
-	var includesClass = Class.includesClass = function(cls, inc) 
+	Class.includesClass = function(cls, inc) 
 	{
 		if (core.Env.isSet("debug")) {
 			core.Assert.cls(cls, "Class to check for including class is itself not a class!");
@@ -453,10 +459,5 @@ if(!core.Env.isSet("es5"))
 		
 		return cls.__includes.indexOf(inc) != -1;
 	};
-	
-	
-	// Add assertions
-	core.Assert.add(isClass, "cls", "Invalid class!");
-	core.Assert.add(includesClass, "includesClass", "Does not include class %1!");
 	
 })(this);
