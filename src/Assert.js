@@ -132,7 +132,7 @@
 		 * Raises an exception when the value @a {var} does not match the regular expression @regexp {RegExp}.
 		 * Customizable with a custom @message {String?} for the exception text.
 		 */
-		assertMatches: function(a, regexp) 
+		assertMatches: function(a, regexp, message) 
 		{
 			if (!regexp.match(a)) {
 				raise(message || "Value " + a + " must match " + regexp);
@@ -143,10 +143,32 @@
 		 * Raises an exception when the value @a {var} matches the regular expression @regexp {RegExp}.
 		 * Customizable with a custom @message {String?} for the exception text.
 		 */
-		assertNotMatches: function(a, regexp) 
+		assertNotMatches: function(a, regexp, message) 
 		{
 			if (regexp.match(a)) {
 				raise(message || "Value " + a + " must not match " + regexp);
+			}
+		},
+		
+		/**
+		 * Raises an exception when the value @a {var} is not of @type {String} (checked via {core.Bootstrap#isType})
+		 * Customizable with a custom @message {String?} for the exception text.
+		 */
+		assertTypeOf: function(a, type, message) 
+		{
+			if (!Object.isTypeOf(a, type)) {
+				raise(message || "Value " + a + " must match type: " + type);
+			}
+		},
+
+		/**
+		 * Raises an exception when the value @a {var} is of @type {String} (checked via {core.Bootstrap#isType})
+		 * Customizable with a custom @message {String?} for the exception text.
+		 */
+		assertNotTypeOf: function(a, type, message) 
+		{
+			if (Object.isTypeOf(a, type)) {
+				raise(message || "Value " + a + " must not match type: " + type);
 			}
 		}
 		
