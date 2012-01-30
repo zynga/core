@@ -31,18 +31,18 @@
 		{
 			// Three required parameters
 			core.dom.Node.assertIsNode(args[0]);
-			core.Assert.assertIsType(args[1], "Number");
-			core.Assert.assertIsType(args[2], "Number");
+			core.Assert.isType(args[1], "Number");
+			core.Assert.isType(args[2], "Number");
 			
 			// Two optional ones
 			if (args[3] != null) 
 			{
 				// zIndex does not support floats.
-				core.Assert.assertIsType(args[3], "Integer");
+				core.Assert.isType(args[3], "Integer");
 			}
 
 			if (args[4] != null) {
-				core.Assert.assertIsType(args[4], "Number");
+				core.Assert.isType(args[4], "Number");
 			}
 		};
 	}

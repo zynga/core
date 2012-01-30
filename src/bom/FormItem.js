@@ -17,7 +17,7 @@ core.Module("core.bom.FormItem",
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.assertEqual(args.length, 1);
+			core.Assert.equal(args.length, 1);
 			core.dom.Node.assertIsNode(item);
 		}
 		
@@ -51,7 +51,7 @@ core.Module("core.bom.FormItem",
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.assertEqual(args.length, 1);
+			core.Assert.equal(args.length, 1);
 			core.dom.Node.assertIsNode(item);
 			core.Assert.isType(item.name, "String");
 		}

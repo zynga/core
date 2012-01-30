@@ -17,9 +17,9 @@ core.Module("core.bom.Form",
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.assertEqual(args.length, 1);
+			core.Assert.equal(args.length, 1);
 			core.dom.Node.assertIsNode(form);
-			core.Assert.assertEqual(form.tagName, "FORM");
+			core.Assert.equal(form.tagName, "FORM");
 		}
 		
 		return Array.prototype.filter.call(form.elements, core.bom.FormItem.isSuccessful).map(core.bom.FormItem.serialize).join("&");
