@@ -46,20 +46,15 @@
 
 
 		/**
-		 * Whether the string contains the given substring
-		 *
-		 * @param sub {String} Any string
-		 * @return {Boolean} Whether the substring was found in the string
+		 * Whether the string contains the given @substring {String}.
 		 */
-		contains : function(sub) {
-			return this.indexOf(sub) != -1;
+		contains : function(substring) {
+			return this.indexOf(substring) != -1;
 		},
 
 
 		/**
-		 * Returns true if the string has a length of 0 or contains only whitespace.
-		 *
-		 * @return {Boolean} Whether the string is blank
+		 * {Boolean} Returns true if the string has a length of 0 or contains only whitespace.
 		 */
 		isBlank : function() {
 			return this.trim().length == 0;
@@ -67,9 +62,7 @@
 
 
 		/**
-		 * Reverses the string
-		 *
-		 * @return {String} Reversed string
+		 * {String} Reverses the string
 		 */
 		reverse : function() {
 			return this.split("").reverse().join("");
@@ -77,9 +70,7 @@
 
 
 		/**
-		 * Removes double spaces and line breaks.
-		 *
-		 * @return {String} Returns a compacted string
+		 * {String} Removes double spaces and line breaks.
 		 */
 		compact : function() {
 			return this.replace(/[\r\n]/g, " ").trim().replace(/([\s　])+/g, '$1');
@@ -87,24 +78,20 @@
 
 
 		/**
-		 * Returns a hyphenated copy of the original string e.g.
+		 * {String} Returns a hyphenated copy of the original string e.g.
 		 *
-		 * * camelCase => camel-case
-		 * * HelloWorld => -hello-world
-		 *
-		 * Via: http://es5.github.com/#x15.5.4.11
-		 *
-		 * @return {String} Hyphenated string
+		 * - camelCase => camel-case
+		 * - HelloWorld => -hello-world
 		 */
-		hyphenate : function() {
+		hyphenate : function() 
+		{
+			// Via: http://es5.github.com/#x15.5.4.11
 			return this.replace(/[A-Z]/g,'-$&').toLowerCase();
 		},
 
 
 		/**
-		 * Camelizes this string.
-		 *
-		 * @return {String} Camelized string
+		 * {String} Camelizes this string.
 		 */
 		camelize: function ()
 		{
@@ -115,10 +102,7 @@
 
 
 		/**
-		 * Returns a new string which is a repeated copy of the original one.
-		 *
-		 * @param nr {Integer} Number of times to repeat
-		 * @return {String} Repeated string
+		 * {String} Returns a new string which is a @nr {Integer} repeated copy of the original one.
 		 */
 		repeat : function(nr)
 		{
@@ -128,9 +112,7 @@
 
 
 		/**
-		 * Returns true if this string starts with the given substring
-		 *
-		 * @return {Boolean} Whether this string starts with the given substring
+		 * {Boolean} Returns `true` if this string starts with the given substring
 		 */
 		startsWith : function(begin) {
 			return begin == this.slice(0, begin.length);
@@ -138,9 +120,7 @@
 
 
 		/**
-		 * Returns true if this string ends with the given substring
-		 *
-		 * @return {Boolean} Whether this string ends with the given substring
+		 * {Boolean} Returns `true` if this string ends with the given substring
 		 */
 		endsWith : function(end) {
 			return end == this.slice(-end.length);

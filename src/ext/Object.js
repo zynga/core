@@ -5,19 +5,11 @@
 ==================================================================================================
 */
 
-/**
- * @require {core.ext.Core}
- */
 Object.addMembers("Object", 
 {
 	/**
-	 * Creates a new object with prefilled content. Keys come from 
-	 * the given array. The value is always the same, defaults to true,
-	 * but is also configurable.
-	 * 
-	 * @param keys {Array} Keys as a list of keys
-	 * @param value {var ? true} Value to use for all keys
-	 * @return {Map} Newly created map with the given keys
+	 * {Map} Creates a new object with prefilled content from the @keys {Array} list.
+	 * The @value {var ? true} is always the same, defaults to true, but is also configurable.
 	 */
 	fromArray : function(keys, value) 
 	{
@@ -34,10 +26,7 @@ Object.addMembers("Object",
 	},
 	
 	/**
-	 * Returns all the values of the given object as an array.
-	 *
-	 * @param object {Map} Object to return values from
-	 * @return {Array} List of all values
+	 * {Array} Returns all the values of the given @object {Map}.
 	 */
 	values : function(object) 
 	{

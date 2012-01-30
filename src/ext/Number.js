@@ -5,16 +5,10 @@
 ==================================================================================================
 */
 
-/**
- * @require {core.ext.Core}
- */
 Object.addMembers("Number",
 {
 	/**
-	 * Pads the number to reach the given length
-	 *
-	 * @param {Integer} Expected string length
-	 * @return {String} Padded number as a string
+	 * {String} Pads the number to reach the given @length {Integer}.
 	 */
 	pad : function(length) {
 		return ("0".repeat(length) + this).slice(-length);
@@ -22,10 +16,8 @@ Object.addMembers("Number",
 
 
 	/**
-	 * Executes the given function x-times.
-	 *
-	 * @param func {Function} Function to execute
-	 * @param context {Object?null} Context to call function in
+	 * Executes the given @func {Function} x-times.
+	 * Support an optional @context {Object?} for execution.
 	 */
 	times : function(func, context) {
 		for (var i=0; i<this; i++) {
@@ -35,9 +27,7 @@ Object.addMembers("Number",
 
 
 	/**
-	 * Converts the number to a hex string.
-	 *
-	 * @return {String} Hex string
+	 * {String} Converts the number to a hex string.
 	 */
 	hex : function() {
 		return this.toString(16);

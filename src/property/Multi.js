@@ -204,9 +204,9 @@
 	 *
 	 * <ul>
 	 * <li><strong>inheritable</strong>: Whether the property value should be inheritable. If the property does not have a
-	 *	 user defined or an init value, the property will try to get the value from the parent of the current object.</li>
+	 * user defined or an init value, the property will try to get the value from the parent of the current object.</li>
 	 * <li><strong>themeable</strong>: Whether the property allows a themable value read dynamically from a theming system.
-	 *	 The object containing this property needs to implement a method <code>getThemedValue</code>.</li>
+	 * The object containing this property needs to implement a method <code>getThemedValue</code>.</li>
 	 * </ul>
 	 *
 	 * @break {qx.core.ValidationError}
@@ -583,7 +583,7 @@
 		 * @param obj {qx.ui.core.Widget} Any widget
 		 * @param values {Map} Map of properties to apply
 		 * @param oldValues {Map} Map of old property values. Just used for comparision.
-		 *		Required for theme changes. In case of a state change the old value is not available otherwise.
+		 * Required for theme changes. In case of a state change the old value is not available otherwise.
 		 * @param field {String} Storage field to modify
 		 */
 		importData : function(obj, values, oldValues, field)

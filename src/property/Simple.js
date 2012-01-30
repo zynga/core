@@ -22,14 +22,14 @@
 	 * <ul>
 	 * <li><strong>type</strong>: Check the incoming value for the given type or function.</li>
 	 * <li><strong>apply</strong>: Link to function to call after a new value has been stored. The signature of the method is
-	 *	 <code>function(newValue, oldValue)</code>.</li>
+	 * <code>function(newValue, oldValue)</code>.</li>
 	 * <li><strong>event</strong>: Event to fire after a new value has been stored (and apply has been called). The event
-	 *	 type is a {core.property.Event} which contains both, the old and new value.</li>
+	 * type is a {core.property.Event} which contains both, the old and new value.</li>
 	 * <li><strong>init</strong>: Init value for the property. If no value is set or the property gets reset, the getter
-	 *	 will return the <code>init</code> value.</li>
+	 * will return the <code>init</code> value.</li>
 	 * <li><strong>nullable</strong>: Whether the property is able to store null values. This also allows the system to
-	 *	 return <code>null</code> when no other value is available. Otherwise an error is thrown whenever no value is
-	 *	 available.</li>
+	 * return <code>null</code> when no other value is available. Otherwise an error is thrown whenever no value is
+	 * available.</li>
 	 * </ul>
 	 */
 	core.Module("core.property.Simple",

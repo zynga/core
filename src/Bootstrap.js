@@ -74,11 +74,7 @@
 	
 	
 	/**
-	 * Declares the given name and stores the given object onto it.
-	 *
-	 * @param name {String} Namespace/Package e.g. foo.bar.baz
-	 * @param object {Object|Function} Any object or function
-	 * @return {Object} Returns the given object
+	 * {Object} Declares the given @name {String} and stores the given @object {Object|Function} onto it.
 	 */
 	function declareNamespace(name, object, duplicate)
 	{
