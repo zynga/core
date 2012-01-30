@@ -179,7 +179,8 @@
 
 	// Prefill cache for `isClassOf`
 	var toStringMap = {};
-	"Array Function RegExp Object Date Number String Boolean".replace(/\w+/g, function(cls) {
+	var classes = "Array Function RegExp Object Date Number String Boolean";
+	classes.replace(/\w+/g, function(cls) {
 		toStringMap[cls] = "[object " + cls + "]";
 	});
 	
@@ -246,6 +247,8 @@
 		return result;
 	}
 	
+	var types = "Native Map Integer Primitive";
+	
 	
 	/**
 	 * {String} Validates the @object {Map} to don't hold other keys than the ones defined by @allowed {Array}. 
@@ -275,6 +278,16 @@
 		return invalid;
 	}	
 	
+	function arrayToSet(array) 
+	{
+		var set = {};
+		for (var i=0, l=array.length; i<l; i++) {
+			set[array[i]] = true;
+		}
+		
+		return set;
+	}
+	
 	
 	// Temporary hack to make next statement workable
 	Object.addStatics = addStatics;
@@ -284,6 +297,12 @@
 	 */
 	Object.addStatics("Object", 
 	{
+		/** {Set} Set of classes which are supported */
+		CLASSES: arrayToSet(classes.split(" ")),
+		
+		/** {Set} Set of types which are supported */
+		TYPES: arrayToSet(types.split(" ")),
+		
 		declareNamespace : declareNamespace,
 		getNamespaces: getNamespaces,
 		clearNamespace: clearNamespace,

@@ -77,7 +77,7 @@
 			}
 			
 			if (core.Env.isSet("debug")) {
-				core.Assert.array(uris, "Invalid list of URIs!");
+				core.Assert.assertTypeOf(uris, "Array", "Invalid list of URIs!");
 			}
 
 			for (var i=0, l=uris.length; i<l; i++) 

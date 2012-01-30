@@ -50,20 +50,29 @@ core.Module("core.property.Debug",
 			{
 				try
 				{
-					if (type instanceof Array) {
-						core.Assert.inList(value, type);
-					} else if (core.Class.isClass(type)) {
-						core.Assert.instanceOf(value, type);
-					} else if (core.Interface.isInterface(type)) {
+					if (type instanceof Array) 
+					{
+						if (type.indexOf(value) == -1) {
+							throw new Error("Value of property must be one of " + type + ". Invalid value: " + value);
+						}
+					}
+					else if (core.Class.isClass(type)) 
+					{
+						if (!(value instanceof type)) {
+							throw new Error("Value of property " + name + " must be instance of " + type + ". Invalid value: " + value);
+						}
+					}
+					else if (core.Interface.isInterface(type)) 
+					{
 						core.Interface.assert(value, type);
 					} 
+					else if (Object.CLASSES[type] || Object.TYPES[type]) 
+					{
+						core.Assert.assertTypeOf(value, type);
+					}
 					else
 					{
-						if (core.Assert[type]) {
-							core.Assert[type](value);
-						} else {
-							console.warn("Unsupported check: " + type + "!");
-						}
+						console.warn("Unsupported property type: " + type + " in " + name + "! Property types are equal to documentation types. See also: core.Bootstrap#isTypeOf().");
 					}
 				}
 				catch(ex) {

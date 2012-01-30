@@ -33,15 +33,15 @@
 				core.Assert.assertTypeOf(uri, "String");
 
 				if (callback != null) {
-					core.Assert.func(callback, "Invalid callback method!");
+					core.Assert.assertTypeOf(callback, "Function", "Invalid callback method!");
 				}
 
 				if (context != null) {
-					core.Assert.object(context, "Invalid callback context!");
+					core.Assert.assertTypeOf(context, "Object", "Invalid callback context!");
 				}
 
 				if (nocache != null) {
-					core.Assert.boolean(nocache);
+					core.Assert.assertTypeOf(nocache, "Boolean");
 				}
 			}
 			

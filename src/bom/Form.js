@@ -18,7 +18,7 @@ core.Module("core.bom.Form",
 		if (core.Env.isSet("debug")) 
 		{
 			core.Assert.assertEqual(args.length, 1);
-			core.Assert.element(form);
+			core.dom.Node.assertIsNode(form);
 			core.Assert.assertEqual(form.tagName, "FORM");
 		}
 		

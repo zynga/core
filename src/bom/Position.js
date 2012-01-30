@@ -30,19 +30,19 @@
 		var validate = function(args) 
 		{
 			// Three required parameters
-			core.Assert.element(args[0]);
-			core.Assert.number(args[1]);
-			core.Assert.number(args[2]);
+			core.dom.Node.assertIsNode(args[0]);
+			core.Assert.assertIsType(args[1], "Number");
+			core.Assert.assertIsType(args[2], "Number");
 			
 			// Two optional ones
 			if (args[3] != null) 
 			{
 				// zIndex does not support floats.
-				core.Assert.integer(args[3]);
+				core.Assert.assertIsType(args[3], "Integer");
 			}
 
 			if (args[4] != null) {
-				core.Assert.number(args[4]);
+				core.Assert.assertIsType(args[4], "Number");
 			}
 		};
 	}
@@ -72,7 +72,7 @@
 		var reset = function(element) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.element(element);
+				core.dom.Node.assertIsNode(element);
 			}
 			
 			element.style[transform] = "";
@@ -103,7 +103,7 @@
 		var reset = function(element) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.element(element);
+				core.dom.Node.assertIsNode(element);
 			}
 			
 			var style = element.style;
@@ -142,7 +142,7 @@
 		var reset = function(element) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.element(element);
+				core.dom.Node.assertIsNode(element);
 			}
 			
 			var style = element.style;

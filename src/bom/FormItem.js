@@ -18,7 +18,7 @@ core.Module("core.bom.FormItem",
 		if (core.Env.isSet("debug")) 
 		{
 			core.Assert.assertEqual(args.length, 1);
-			core.Assert.element(item);
+			core.dom.Node.assertIsNode(item);
 		}
 		
 		if (!item.name || item.disabled) {
@@ -52,7 +52,7 @@ core.Module("core.bom.FormItem",
 		if (core.Env.isSet("debug")) 
 		{
 			core.Assert.assertEqual(args.length, 1);
-			core.Assert.element(item);
+			core.dom.Node.assertIsNode(item);
 			core.Assert.assertTypeOf(item.name, "String");
 		}
 		
