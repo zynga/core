@@ -10,57 +10,55 @@
 ==================================================================================================
 */
 
-if (!Function.prototype.bind) 
+Object.addMembers("Function",
 {
-	Object.addMembers("Function",
+	/**
+	 * {Function} Binds the function to the specific @context {Object} with optionally bound arbitrary number of @varargs {var...}.
+	 *
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
+	 */
+	bind : function(context, varargs) 
 	{
-		/**
-		 * {Function} Binds the function to the specific @context {Object} with optionally bound arbitrary number of @varargs {var...}.
-		 *
-		 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
-		 */
-		bind : function(context, varargs) 
-		{
-			// closest thing possible to the ECMAScript 5 internal IsCallable function
-			if (typeof this !== "function") {
-				throw new TypeError();
-			}
-
-			// "trapped" function reference
-			var self = this;
-			var undef;
-
-			// only if there is more than an argument
-			// we are interested into more complex operations
-			// this will speed up common bind creation
-			// avoiding useless slices over arguments
-			if (varargs !== undef) 
-			{
-				// extra arguments to send by default
-				var args = arguments;
-				var extraargs = Array.prototype.slice.call(args, 1);
-				return function()
-				{
-					return self.apply(
-						context,
-						// thanks @kangax for this suggestion
-						args.length ?
-							// concat arguments with those received
-							extraargs.concat(Array.prototype.slice.call(args)) :
-							// send just arguments, no concat, no slice
-							extraargs
-					);
-				};
-			}
-			else
-			{
-				// optimized callback
-				return function() 
-				{
-					// speed up when function is called without arguments
-					return arguments.length ? self.apply(context, arguments) : self.call(context);
-				};
-			}
+		// closest thing possible to the ECMAScript 5 internal IsCallable function
+		if (typeof this !== "function") {
+			throw new TypeError();
 		}
-	});
-}
+
+		// "trapped" function reference
+		var self = this;
+		var undef;
+
+		// only if there is more than an argument
+		// we are interested into more complex operations
+		// this will speed up common bind creation
+		// avoiding useless slices over arguments
+		if (varargs !== undef) 
+		{
+			// extra arguments to send by default
+			var args = arguments;
+			var extraargs = Array.prototype.slice.call(args, 1);
+			return function()
+			{
+				return self.apply(
+					context,
+					// thanks @kangax for this suggestion
+					args.length ?
+						// concat arguments with those received
+						extraargs.concat(Array.prototype.slice.call(args)) :
+						// send just arguments, no concat, no slice
+						extraargs
+				);
+			};
+		}
+		else
+		{
+			// optimized callback
+			return function() 
+			{
+				// speed up when function is called without arguments
+				return arguments.length ? self.apply(context, arguments) : self.call(context);
+			};
+		}
+	}
+}, true);
+

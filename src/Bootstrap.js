@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-(function(global, toString) {
+(function(global, toString, undef) {
 	
 	// defineProperty exists in IE8 but will error when trying to define a property on
 	// native objects. IE8 does not have defineProperies, however, so this check saves a try/catch block.
@@ -35,40 +35,56 @@
 
 
 	/**
-	 * Add @members {Map} to the object found under the given @name {String|Object}.
+	 * Add @statics {Map} to the object found under the given @name {String}.
+	 * It is possible to control whether to @keep {Boolean?false} existing statics.
 	 */
-	function addStatics(name, members) 
+	function addStatics(name, statics, keep) 
 	{
-		var object = typeof name == "string" ? global[name] || cache[name] : name;
+		if (typeof name != "string") {
+			throw new Error("Invalid name: " + name);
+		}
+		
+		var object = global[name] || cache[name];
 		var prefix = name + ".";
-		for (var memberName in members) 
+		for (var staticName in statics) 
 		{
-			var item = members[memberName];
-			if (item instanceof Function) {
-				item.displayName = prefix + name;
-			}
+			if (!keep || object[staticName] === undef) 
+			{
+				var item = statics[staticName];
+				if (item instanceof Function) {
+					item.displayName = prefix + name;
+				}
 
-			add(object, memberName, item);
+				add(object, staticName, item);
+			}
 		}
 	}
 
 
 	/**
-	 * Add @members {Map} to the prototype of the object found under the given @name {String|Object}.
+	 * Add @members {Map} to the prototype of the object found under the given @name {String}.
+	 * It is possible to control whether to @keep {Boolean?false} existing members.
 	 */
-	function addMembers(name, members) 
+	function addMembers(name, members, keep) 
 	{
-		var object = typeof name == "string" ? global[name] || cache[name] : name;
+		if (typeof name != "string") {
+			throw new Error("Invalid name: " + name);
+		}
+		
+		var object = global[name] || cache[name];
 		var proto = object.prototype;
 		var prefix = name + ".prototype.";
 		for (var memberName in members) 
 		{
-			var item = members[memberName];
-			if (item instanceof Function) {
-				item.displayName = prefix + name;
-			}
+			if (!keep || proto[memberName] === undef) 
+			{
+				var item = members[memberName];
+				if (item instanceof Function) {
+					item.displayName = prefix + name;
+				}
 
-			add(proto, memberName, item);
+				add(proto, memberName, item);
+			}
 		}
 	}
 	
@@ -76,7 +92,7 @@
 	/**
 	 * {Object} Declares the given @name {String} and stores the given @object {Object|Function} onto it.
 	 */
-	function declareNamespace(name, object, duplicate)
+	function declareNamespace(name, object)
 	{
 		var splits = name.split(".");
 		var current = global;

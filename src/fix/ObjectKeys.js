@@ -9,7 +9,7 @@
 ==================================================================================================
 */
 
-(function(Object) 
+(function() 
 {
 	// Fix for IE bug with enumerables
 	var hasDontEnumBug = true;
@@ -23,25 +23,22 @@
 		var dontEnumsLength = dontEnums.length;
 	}
 	
-	var owns = Object.hasOwnProperty;
-
-	if (!Object.keys) 
+	Object.addStatics("Object", 
 	{
 		/**
-		 * Returns an array of all own enumerable properties found upon a given object, 
+		 * {Array} Returns an array of all own enumerable properties found upon a given @object {Object}, 
 		 * in the same order as that provided by a for-in loop 
 		 * 
-		 * @see ES5 15.2.3.14
-		 * @see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys
+		 * See also: 
 		 *
-		 * @param object {Object} Object to query
-		 * @return {Array} Array of strings
+		 * - ES5 15.2.3.14
+		 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys
 		 */
-		Object.keys = function keys(object) 
+		keys : function keys(object) 
 		{
 			var keys = [];
 			for (var name in object) {
-				if (owns(object, name)) {
+				if (Object.hasOwnProperty(object, name)) {
 					keys.push(name);
 				}
 			}
@@ -51,26 +48,21 @@
 				for (var i=0; i<dontEnumsLength; i++) 
 				{
 					var dontEnum = dontEnums[i];
-					if (owns(object, dontEnum)) {
+					if (Object.hasOwnProperty(object, dontEnum)) {
 						keys.push(dontEnum);
 					}
 				}
 			}
 
 			return keys;
-		};
-	}
+		},
 
-	// non standard extension (because it's easier here than anywhere else)
-	if (!Object.isEmpty)
-	{
 		/**
-		 * Tests whether the given object is empty
+		 * {Boolean} Tests whether the given @object {Object} is empty
 		 *
-		 * @param object {Object} Object to test
-		 * @return {Boolean} Whether the object is empty
+		 * Non standard extension (because it's easier here than anywhere else)
 		 */
-		Object.empty = function(object) 
+		empty : function(object) 
 		{
 			for (var name in object) {
 				return false;
@@ -80,13 +72,15 @@
 			{
 				for (var i=0; i<dontEnumsLength; i++) 
 				{
-					if (owns(object, dontEnums[i])) {
+					if (Object.hasOwnProperty(object, dontEnums[i])) {
 						return false;
 					}
 				}
 			}
 
 			return true;
-		};
-	}
-})(Object);
+		}
+		
+	}, true);
+
+})();

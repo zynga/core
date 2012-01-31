@@ -59,19 +59,14 @@
 			 * @param objectOrClass {Object|Class} Object or Class to verify
 			 * @throws Whenever the object or class does not implements the interface.
 			 */
-			assert : Interface.assert
+			assert : core.Interface.assert
 		};
 
 		// Attach to namespace
-		Object.declareNamespace(name, iface, true);
+		Object.declareNamespace(name, iface);
 	});
 
-
-	// Shorthand
-	var Interface = core.Interface;
-
-
-	Object.addStatics(core.Interface, 
+	Object.addStatics("core.Interface", 
 	{
 		/**
 		 * {Interface} Resolves a given @interfaceName {String}.
@@ -83,7 +78,7 @@
 			}
 
 			var obj = core.Module.resolveName(interfaceName);
-			return Interface.isInterface(obj) ? obj : null;
+			return core.Interface.isInterface(obj) ? obj : null;
 		},
 
 
@@ -111,7 +106,7 @@
 				iface = this;
 			}
 
-			if (!Interface.isInterface(iface)) {
+			if (!core.Interface.isInterface(iface)) {
 				throw new Error("Invalid interface " + iface);
 			}
 

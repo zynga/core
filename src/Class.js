@@ -367,7 +367,7 @@ if(!core.Env.isSet("es5"))
 		// ------------------------------------
 		
 		// Attach to namespace
-		Object.declareNamespace(name, construct, true);
+		Object.declareNamespace(name, construct);
 	});
 
 	
@@ -392,8 +392,7 @@ if(!core.Env.isSet("es5"))
 	};
 
 
-
-	Object.addStatics(core.Class, 
+	Object.addStatics("core.Class", 
 	{
 		isClass : isClass,
 		assertIsClass: assertIsClass,
