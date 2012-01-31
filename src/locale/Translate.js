@@ -70,11 +70,8 @@
 
 
 		/**
-		 * Translates the given message and replaces placeholders in the result string.
-		 *
-		 * @param message {String} Message to translate (used as a fallback when no translation is available)
-		 * @param varargs {var...} Placeholder values
-		 * @return {String} Translated string
+		 * {String} Translates the given @message {String} and replaces any numeric placeholders 
+		 * (`%[0-9]`) with the corresponding number arguments passed via @varargs {var...?}.
 		 */
 		tr : function(message, varargs)
 		{
@@ -84,13 +81,9 @@
 
 
 		/**
-		 * Translates the given message (with a hint for the translator) and
-		 * replaces placeholders in the result string.
-		 *
-		 * @param hint {String} Hint for the translator of the message
-		 * @param message {String} Message to translate (used as a fallback when no translation is available)
-		 * @param varargs {var...} Placeholder values
-		 * @return {String} Translated string
+		 * {String} Translates the given @message {String} und while choosing the one which matches the 
+		 * given @hint {String} and replaces any numeric placeholders (`%[0-9]`) with the corresponding 
+		 * number arguments passed via @varargs {var...?}.
 		 */
 		trc : function(hint, message, varargs)
 		{
@@ -100,13 +93,10 @@
 
 
 		/**
-		 * Translates the given message and replaces placeholders in the result string.
-		 *
-		 * @param messageSingular {String} Fallback message for singular case
-		 * @param messagePlural {String} Fallback message for plural case
-		 * @param number {Integer} Number of items (chooses between the exact translation which is being used)
-		 * @param varargs {var...} Placeholder values
-		 * @return {String} Translated string
+		 * {String} Translates the given @messageSingular {String} or @messagePlural {String} 
+		 * depending on the @number {Number} passed to the method.
+		 * Like the other methods it also supports replacing any numeric placeholders 
+		 * (`%[0-9]`) with the corresponding number arguments passed via @varargs {var...?}.
 		 */
 		trn : global.locale && function(messageSingular, messagePlural, number, varargs)
 		{

@@ -35,12 +35,10 @@
 	core.Module("core.property.Simple",
 	{
 		/**
-		 * Creates a new set of member methods for the given property configuration.
+		 * {Map} Creates a new set of member methods for the given property @config {Map}.
 		 *
 		 * Please note that you need to define one of "init" or "nullable". Otherwise you
 		 * might get errors during runtime function calls.
-		 *
-		 * @param config {Map} Configuration for the property to being created
 		 */
 		create : function(config)
 		{

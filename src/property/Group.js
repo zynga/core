@@ -8,11 +8,8 @@
 (function(slice)
 {
 	/**
-	 * Expand shorthand definition to a four element list.
+	 * {Array} Expand shorthand definition @data {Array} to a four element list.
 	 * This is an utility function for padding/margin and all other shorthand handling.
-	 *
-	 * @param data {Array} array with one to four items
-	 * @return {Array} an array with four items
 	 */
 	var expandShortHand = function(data)
 	{
@@ -37,10 +34,7 @@
 
 	/**
 	 * Internal class for handling of dynamic property groups. Should only be used
-	 * through the methods provided by {qx.Class}.
-	 *
-	 * For a complete documentation of properties take a
-	 * look at http://qooxdoo.org/documentation/developer_manual/properties.
+	 * through the methods provided by {core.Class}.
 	 *
 	 * Property groups are defined in a similar way but support a different set of keys:
 	 *
@@ -61,9 +55,7 @@
 	core.Module("core.property.Group",
 	{
 		/**
-		 * Creates a new property group and returns the corresponding methods.
-		 *
-		 * @param config {Map} Property configuration map
+		 * {Map} Creates a new property group with the given @config {Map} and returns the corresponding methods.
 		 */
 		create : function(config)
 		{

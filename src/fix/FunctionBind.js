@@ -13,7 +13,7 @@
 Object.addMembers("Function",
 {
 	/**
-	 * {Function} Binds the function to the specific @context {Object} with optionally bound arbitrary number of @varargs {var...}.
+	 * {Function} Binds the function to the specific @context {Object} with optionally bound arbitrary number of @varargs {var...?}.
 	 *
 	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
 	 */

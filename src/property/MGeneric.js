@@ -83,10 +83,6 @@
 			 *
 			 *     var value = get("property");
 			 *     var values = get(["property1", "property2"]);
-			 *
-			 * @param property {String | Array} String name of property or Array of names
-			 * @param value {var} Any value
-			 * @return {var} Returns the value from the setter (if single property is used)
 			 */
 			get : function(property)
 			{

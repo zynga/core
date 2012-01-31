@@ -18,9 +18,9 @@ core.Module("core.property.Debug",
 	/**
 	 * Validates the incoming parameters of a setter method
 	 *
-	 * @param obj {Object} Object which is modified
-	 * @param config {Map} Property configuration
-	 * @param args {arguments} List of all arguments send to the setter
+	 * - @obj {Object} Object which is modified
+	 * - @config {Map} Property configuration
+	 * - @args {arguments} List of all arguments send to the setter
 	 */
 	checkSetter : function(obj, config, args)
 	{
@@ -86,9 +86,9 @@ core.Module("core.property.Debug",
 	/**
 	 * Validates the incoming parameters of a resetter method
 	 *
-	 * @param obj {Object} Object which is modified
-	 * @param config {Map} Property configuration
-	 * @param args {arguments} List of all arguments send to the setter
+	 * - @obj {Object} Object which is modified
+	 * - @config {Map} Property configuration
+	 * - @args {arguments} List of all arguments send to the setter
 	 */
 	checkResetter : function(obj, config, args)
 	{
@@ -101,9 +101,9 @@ core.Module("core.property.Debug",
 	/**
 	 * Validates the incoming parameters of a getter method
 	 *
-	 * @param obj {Object} Object which is queried
-	 * @param config {Map} Property configuration
-	 * @param args {arguments} List of all arguments send to the setter
+	 * - @obj {Object} Object which is queried
+	 * - @config {Map} Property configuration
+	 * - @args {arguments} List of all arguments send to the setter
 	 */
 	checkGetter : function(obj, config, args)
 	{

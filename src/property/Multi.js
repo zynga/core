@@ -205,8 +205,6 @@
 	 * <li><strong>themeable</strong>: Whether the property allows a themable value read dynamically from a theming system.
 	 * The object containing this property needs to implement a method <code>getThemedValue</code>.</li>
 	 * </ul>
-	 *
-	 * @break {qx.core.ValidationError}
 	 */
 	core.Module("core.property.Multi",
 	{
@@ -570,7 +568,7 @@
 		 * Imports a list of values. Useful for batch-applying a whole set of properties. Supports
 		 * <code>undefined</code> values to reset properties.
 		 *
-		 * - @obj {qx.ui.core.Widget} Any widget
+		 * - @obj {Object} Any object
 		 * - @values {Map} Map of properties to apply
 		 * - @oldValues {Map} Map of old property values. Just used for comparision. Required for theme changes. In case of a state change the old value is not available otherwise.
 		 * - @field {String} Storage field to modify
