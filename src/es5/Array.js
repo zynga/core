@@ -8,20 +8,27 @@
 ==================================================================================================
 */
 
-// ES5
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/isArray
-if (!Array.isArray) 
+/**
+ * Adds ES5 Array methods if these are not implemented by the engine.
+ */
+Object.addStatics("Array",
 {
-	Array.isArray = function(value) {
+	/**
+	 * Implements ES5 `isArray` method.
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/isArray
+	 */
+	isArray : function(value) {
 		return value != null && Object.prototype.toString.call(value) == "[object Array]";
-	};
-}
+	}
+}, true);
 
-// ES5 15.4.4.18
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/foreach
-if (!Array.prototype.forEach) 
+Object.addMembers("Array",
 {
-	Array.prototype.forEach = function forEach(block, thisObject) 
+	/**
+	 * Implements ES5 `forEach` method as defined by: ES5 15.4.4.18
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/foreach
+	 */
+	forEach : function(block, thisObject) 
 	{
 		var len = +this.length;
 		for (var i = 0; i < len; i++) 
@@ -30,14 +37,13 @@ if (!Array.prototype.forEach)
 				block.call(thisObject, this[i], i, this);
 			}
 		}
-	};
-}
+	},
 
-// ES5 15.4.4.19
-// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map
-if (!Array.prototype.map) 
-{
-	Array.prototype.map = function map(fun /*, thisp*/) 
+	/**
+	 * Implements ES5 `map` method as defined by: ES5 15.4.4.19
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map
+	 */
+	map : function(fun /*, thisp*/) 
 	{
 		if (typeof fun !== "function") {
 			throw new TypeError();
@@ -55,14 +61,13 @@ if (!Array.prototype.map)
 		}
 
 		return res;
-	};
-}
+	},
 
-// ES5 15.4.4.20
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/filter
-if (!Array.prototype.filter) 
-{
-	Array.prototype.filter = function filter(block /*, thisp */) 
+	/**
+	 * Implements ES5 `filter` method as defined by: ES5 15.4.4.20
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/filter
+	 */
+	filter : function(block /*, thisp */) 
 	{
 		var values = [];
 		var thisp = arguments[1];
@@ -75,14 +80,13 @@ if (!Array.prototype.filter)
 		}
 		
 		return values;
-	};
-}
+	},
 
-// ES5 15.4.4.16
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every
-if (!Array.prototype.every) 
-{
-	Array.prototype.every = function every(block /*, thisp */) 
+	/**
+	 * Implements ES5 `every` method as defined by: ES5 15.4.4.16
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every
+	 */
+	every : function(block /*, thisp */) 
 	{
 		var thisp = arguments[1];
 		
@@ -94,14 +98,13 @@ if (!Array.prototype.every)
 		}
 
 		return true;
-	};
-}
+	},
 
-// ES5 15.4.4.17
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
-if (!Array.prototype.some) 
-{
-	Array.prototype.some = function some(block /*, thisp */) 
+	/**
+	 * Implements ES5 `some` method as defined by: ES5 15.4.4.17
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
+	 */
+	some : function(block /*, thisp */) 
 	{
 		var thisp = arguments[1];
 		
@@ -113,14 +116,13 @@ if (!Array.prototype.some)
 		}
 		
 		return false;
-	};
-}
+	},
 
-// ES5 15.4.4.21
-// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduce
-if (!Array.prototype.reduce) 
-{
-	Array.prototype.reduce = function reduce(fun /*, initial*/) 
+	/**
+	 * Implements ES5 `reduce` method as defined by: ES5 15.4.4.21
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reduce
+	 */
+	reduce : function(fun /*, initial*/) 
 	{
 		var len = +this.length;
 	
@@ -179,14 +181,13 @@ if (!Array.prototype.reduce)
 		}
 
 		return rv;
-	};
-}
+	},
 
-// ES5 15.4.4.22
-// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduceRight
-if (!Array.prototype.reduceRight) 
-{
-	Array.prototype.reduceRight = function reduceRight(fun /*, initial*/) 
+	/**
+	 * Implements ES5 `reduceRight` method as defined by: ES5 15.4.4.22
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reduceRight
+	 */
+	reduceRight : function(fun /*, initial*/) 
 	{
 		if (typeof fun !== "function") {
 			throw new TypeError();
@@ -229,14 +230,13 @@ if (!Array.prototype.reduceRight)
 		}
 
 		return rv;
-	};
-}
+	},
 
-// ES5 15.4.4.15
-// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf
-if (!Array.prototype.lastIndexOf) 
-{
-	Array.prototype.lastIndexOf = function lastIndexOf(value /*, fromIndex */) 
+	/**
+	 * Implements ES5 `lastIndexOf` method as defined by: ES5 15.4.4.15
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf
+	 */
+	lastIndexOf : function(value /*, fromIndex */) 
 	{
 		var length = this.length;
 		if (!length) {
@@ -262,5 +262,6 @@ if (!Array.prototype.lastIndexOf)
 		}
 
 		return -1;
-	};
-}
+	}
+}, true);
+

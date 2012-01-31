@@ -8,9 +8,14 @@
 ==================================================================================================
 */
 
-(function() {
-	var tags = 'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary time video';
-	tags.replace(/\w+/g, function(tagName) {
-		document.createElement(tagName); 
-	});
-})();
+(function(global) 
+{
+	// Verify browser environment
+	if (global.document) 
+	{
+		var tags = 'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary time video';
+		tags.replace(/\w+/g, function(tagName) {
+			document.createElement(tagName); 
+		});
+	}
+})(this);

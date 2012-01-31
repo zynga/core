@@ -2,7 +2,6 @@
 ==================================================================================================
   Core - JavaScript Foundation
   Copyright 2010-2012 Sebastian Werner
---------------------------------------------------------------------------------------------------
 ==================================================================================================
 */
 
@@ -14,7 +13,17 @@
 		return;
 	}
 	
-	// - Emulate localStorage using userData behavior (see: lawnchair)
-	// - Emulate sessionStorage using window.name + rc4 crypt (+ cookies) (see: webreflection sessionstorage)
+	/**
+	 * Emulation for `localStorage` object to store text data on the browser.
+	 *
+	 */
+	Object.createNamespace("localStorage",
+	{
+
+		// TODO:
+		// - Emulate localStorage using userData behavior (see: lawnchair)
+		// - Emulate sessionStorage using window.name + rc4 crypt (+ cookies) (see: webreflection sessionstorage)
+
+	});
 	
 })(this);

@@ -5,17 +5,23 @@
 ==================================================================================================
 */
 
-// ES5 15.5.4.20
-if (!String.prototype.trim)
+(function()
 {
-	(function()
-	{
-		// http://blog.stevenlevithan.com/archives/faster-trim-javascript
-		var trimBeginRegexp = /^\s\s*/;
-		var trimEndRegexp = /\s\s*$/;
+	// http://blog.stevenlevithan.com/archives/faster-trim-javascript
+	var trimBeginRegexp = /^\s\s*/;
+	var trimEndRegexp = /\s\s*$/;
 
-		String.prototype.trim = function trim() {
+	/**
+	 * Adds ES5 String methods if these are not implemented by the engine.
+	 */
+	Object.addMembers("String", 
+	{
+		/**
+		 * Implements `trim` according to ES5 15.5.4.20
+		 */
+		trim: function() {
 			return String(this).replace(trimBeginRegexp, '').replace(trimEndRegexp, '');
-		};
-	})();
-}
+		}
+	})
+
+})();

@@ -40,47 +40,66 @@
 	var requests = {};
 	var rafHandle = 1;
 	var timeoutHandle = null;
-
-	global.requestAnimationFrame = function(callback, root) 
+	
+	/**
+	 * Adds new style `requestAnimationFrame` API to browser engines which are missing it.
+	 */
+	Object.addStatics("global", 
 	{
-		var callbackHandle = rafHandle++;
-		
-		// Store callback
-		requests[callbackHandle] = callback;
-
-		// Create timeout at first request
-		if (timeoutHandle === null) 
+		/** 
+		 * {var} Tells the browser that you wish to perform an animation; this requests that the browser schedule a 
+		 * repaint of the window for the next animation frame. The method takes as an argument a @callback {Function} to 
+		 * be invoked before the repaint and a @root {Element?} to specifying the element that visually bounds the entire animation.
+		 * Returns a handle to cancel the request using {#cancelRequestAnimationFrame}.
+		 *
+		 * See also: https://developer.mozilla.org/en/DOM/window.requestAnimationFrame
+		 */
+		requestAnimationFrame : function(callback, root) 
 		{
-			timeoutHandle = setTimeout(function() 
+			var callbackHandle = rafHandle++;
+
+			// Store callback
+			requests[callbackHandle] = callback;
+
+			// Create timeout at first request
+			if (timeoutHandle === null) 
 			{
-				var time = Date.now();
-				var currentRequests = requests;
-				var keys = Object.keys(currentRequests);
+				timeoutHandle = setTimeout(function() 
+				{
+					var time = Date.now();
+					var currentRequests = requests;
+					var keys = Object.keys(currentRequests);
 
-				// Reset data structure before executing callbacks
-				requests = {};
-				timeoutHandle = null;
+					// Reset data structure before executing callbacks
+					requests = {};
+					timeoutHandle = null;
 
-				// Process all callbacks
-				for (var i=0, l=keys.length; i<l; i++) {
-					currentRequests[keys[i]](time);
-				}
-			}, 1000 / TARGET_FPS);
-		}
+					// Process all callbacks
+					for (var i=0, l=keys.length; i<l; i++) {
+						currentRequests[keys[i]](time);
+					}
+				}, 1000 / TARGET_FPS);
+			}
 
-		return callbackHandle;
-	};
+			return callbackHandle;
+		},
 
-	global.cancelRequestAnimationFrame = function(handle) 
-	{
-		delete requests[handle];
-
-		// Stop timeout if all where removed
-		if (Object.empty(requests)) 
+		/**
+		 * Stops the animation scheduled under the given @handle {var}.
+		 * 
+		 * See also: https://developer.mozilla.org/en/DOM/window.requestAnimationFrame
+		 */
+		cancelRequestAnimationFrame : function(handle) 
 		{
-			clearTimeout(timeoutHandle);
-			timeoutHandle = null;
+			delete requests[handle];
+
+			// Stop timeout if all where removed
+			if (Object.empty(requests)) 
+			{
+				clearTimeout(timeoutHandle);
+				timeoutHandle = null;
+			}
 		}
-	};
+	});
 
 })(this);

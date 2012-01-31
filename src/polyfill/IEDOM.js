@@ -18,6 +18,8 @@
  * * insertAdjacentElement(where, elem)
  * * insertAdjacentHTML(where, html)
  * * insertAdjacentText(where, text)
+ *
+ * #custom
  */
 (function(global, document, map, indexOf) 
 {

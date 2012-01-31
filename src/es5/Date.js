@@ -8,12 +8,15 @@
 ==================================================================================================
 */
 
-// ES5 15.9.5.43
-// Format a Date object as a string according to a subset of the ISO-8601 standard.
-// Useful in Atom, among other things.
-if (!Date.prototype.toISOString) 
+/**
+ * Adds ES5 Date methods if these are not implemented by the engine.
+ */
+Object.addMembers("Date",
 {
-	Date.prototype.toISOString = function toISOString() 
+	// ES5 15.9.5.43
+	// Format a Date object as a string according to a subset of the ISO-8601 standard.
+	// Useful in Atom, among other things.
+	toISOString : function() 
 	{
 		return (
 			this.getUTCFullYear() + "-" +
@@ -23,13 +26,10 @@ if (!Date.prototype.toISOString)
 			this.getUTCMinutes() + ":" +
 			this.getUTCSeconds() + "Z"
 		);
-	}
-}
-
-// ES5 15.9.5.44
-if (!Date.prototype.toJSON) 
-{
-	Date.prototype.toJSON = function toJSON(key) 
+	},
+	
+	// ES5 15.9.5.44
+	toJSON : function(key) 
 	{
 		// This function provides a String representation of a Date object for
 		// use by JSON.stringify (15.12.3). When the toJSON method is called
@@ -56,5 +56,7 @@ if (!Date.prototype.toJSON)
 		// it does require that any such object have a toISOString method. An
 		// object is free to use the argument key to filter its
 		// stringification.
-	};
-}
+	}
+	
+}, true);
+
