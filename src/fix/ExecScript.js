@@ -7,9 +7,6 @@
 ==================================================================================================
 */
 
-/**
- * A method for executing aribritary script content in global context. 
- */
 (function(global) 
 {
 	// if indirect eval executes code globally, use it
@@ -32,7 +29,9 @@
 		}
 	})())
 	{
-		
+		/**
+		 * Adds a method for executing aribritary script content in global context. 
+		 */
 		Object.addStatics("global", 
 		{
 			/**

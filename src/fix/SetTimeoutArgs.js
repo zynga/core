@@ -13,7 +13,7 @@
 /**
  * Adds support for extra parameters for setInterval/setTimeout for browsers (IE, ...) missing it
  */
-(function(global, slice, undef) 
+(function(global, undef) 
 {
 	// Only fix where support is missing
 	if (global.setTimeout.length !== undef) {
@@ -27,18 +27,36 @@
 	// create a delegate
 	var delegate = function(callback, args) 
 	{
-		args = slice.call(args, 2);
+		args = Array.prototype.slice.call(args, 2);
 		return function() {
 			callback.apply(null, args);
 		};
 	};
 	
-	// redefine original implementation
-	global.setTimeout = function(callback, delay) {
-		return origTimeout(delegate(callback, arguments), delay);
-	};
+	/**
+	 * Overrides global `setTimeout` and `setInterval` with implementations which supports
+	 * extra parameters - a feature already supported by most JavaScript engines.
+	 */
+	Object.addStatics("global", 
+	{
+		/**
+		 * Executes the @callback {Function} after specified @delay {Number}.
+		 * 
+		 * See also: https://developer.mozilla.org/en/DOM/window.setTimeout
+		 */
+		setTimeout : function(callback, delay) {
+			return origTimeout(delegate(callback, arguments), delay);
+		},
+
+		/**
+		 * Executes the @callback {Function} repeatedly, with a fixed time @delay {Number} between each call to that function.
+		 *
+		 * See also: https://developer.mozilla.org/en/DOM/window.setTimeout
+		 */
+		setInterval : function(callback, delay) {
+			return origInterval(delegate(callback, arguments), delay);
+		}
+		
+	});
 	
-	global.setInterval = function(callback, delay) {
-		return origInterval(delegate(callback, arguments), delay);
-	};
-})(this, Array.prototype.slice);
+})(this);
