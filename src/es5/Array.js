@@ -1,10 +1,10 @@
 /* 
 ==================================================================================================
-  Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+	Core - JavaScript Foundation
+	Copyright 2010-2012 Sebastian Werner
 --------------------------------------------------------------------------------------------------
-  Based on the work of ES5 Shim
-  MIT License, Copyright (c) 2009, 280 North Inc. http://280north.com/ 
+	Based on the work of ES5 Shim
+	MIT License, Copyright (c) 2009, 280 North Inc. http://280north.com/ 
 ==================================================================================================
 */
 
@@ -25,92 +25,145 @@ Object.addStatics("Array",
 Object.addMembers("Array",
 {
 	/**
-	 * Implements ES5 `forEach` method as defined by: ES5 15.4.4.18
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/foreach
+	 * Calls function @fun {Function} once for each element present in the array, in ascending order.
+	 *
+	 * ES5 15.4.4.18: http://es5.github.com/#x15.4.4.18
+	 * https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach
 	 */
-	forEach : function(block, thisObject) 
-	{
-		var len = +this.length;
-		for (var i = 0; i < len; i++) 
+	forEach : function forEach(fun /*, thisp*/) {
+		var self = toObject(this);
+		var thisp = arguments[1];
+		var i = -1;
+		var length = self.length >>> 0;
+
+		// If no callback function or if callback is not a callable function
+		if (_toString(fun) != "[object Function]") {
+			throw new TypeError(); // TODO message
+		}
+
+		while (++i < length) 
 		{
-			if (i in this) {
-				block.call(thisObject, this[i], i, this);
+			if (i in self) 
+			{
+				// Invoke the callback function with call, passing arguments:
+				// context, property value, property key, thisArg object context
+				fun.call(thisp, self[i], i, self);
 			}
 		}
 	},
 
 	/**
-	 * Implements ES5 `map` method as defined by: ES5 15.4.4.19
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map
+	 * {Array} Calls function @fun {Function} once for each element in the array, in ascending order, 
+	 * and constructs a new `Array` from the results.
+	 *
+	 * - ES5 15.4.4.19: http://es5.github.com/#x15.4.4.19
+	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map
 	 */
-	map : function(fun /*, thisp*/) 
+	map : function map(fun /*, thisp*/) 
 	{
-		if (typeof fun !== "function") {
-			throw new TypeError();
+		var self = toObject(this);
+		var length = self.length >>> 0;
+		var result = Array(length);
+		var thisp = arguments[1];
+
+		// If no callback function or if callback is not a callable function
+		if (_toString(fun) != "[object Function]") {
+			throw new TypeError(); // TODO message
 		}
 
-		var len = this.length;
-		var res = new Array(len);
-		var thisp = arguments[1];
-		
-		for (var i = 0; i < len; i++) 
+		for (var i = 0; i < length; i++) 
 		{
-			if (i in this) {
-				res[i] = fun.call(thisp, this[i], i, this);
-			}
-		}
-
-		return res;
-	},
-
-	/**
-	 * Implements ES5 `filter` method as defined by: ES5 15.4.4.20
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/filter
-	 */
-	filter : function(block /*, thisp */) 
-	{
-		var values = [];
-		var thisp = arguments[1];
-		
-		for (var i = 0; i < this.length; i++) 
-		{
-			if (block.call(thisp, this[i])) {
-				values.push(this[i]);
+			if (i in self) {
+				result[i] = fun.call(thisp, self[i], i, self);
 			}
 		}
 		
-		return values;
+		return result;
 	},
 
 	/**
-	 * Implements ES5 `every` method as defined by: ES5 15.4.4.16
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every
+	 * {Array} Calls function @fun {Function} once for each element in the array, in ascending order, 
+	 * and constructs a new `Array` of all the values for which @fun returns `true`.
+	 *
+	 * - ES5 15.4.4.20: http://es5.github.com/#x15.4.4.20
+	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter
 	 */
-	every : function(block /*, thisp */) 
+	filter : function filter(fun /*, thisp */) 
 	{
+		var self = toObject(this);
+		var length = self.length >>> 0;
+		var result = [];
+		var value;
 		var thisp = arguments[1];
-		
-		for (var i = 0; i < this.length; i++) 
+
+		// If no callback function or if callback is not a callable function
+		if (_toString(fun) != "[object Function]") {
+			throw new TypeError(); // TODO message
+		}
+
+		for (var i = 0; i < length; i++) 
 		{
-			if (!block.call(thisp, this[i])) {
+			if (i in self) 
+			{
+				value = self[i];
+				if (fun.call(thisp, value, i, self)) {
+					result.push(value);
+				}
+			}
+		}
+		
+		return result;
+	},
+
+	/**
+	 * {Boolean} Calls function @fun {Function} once for each element present in the array, in ascending order, 
+	 * until it finds one where @fun returns `false`. If such an element is found, every immediately 
+	 * returns `false`. Otherwise, if @fun returned `true` for all elements, every will return `true`.
+	 *
+	 * - ES5 15.4.4.16: http://es5.github.com/#x15.4.4.16
+	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every
+	 */
+	every : function every(fun /*, thisp */) 
+	{
+		var self = toObject(this);
+		var length = self.length >>> 0;
+		var thisp = arguments[1];
+
+		// If no callback function or if callback is not a callable function
+		if (_toString(fun) != "[object Function]") {
+			throw new TypeError(); // TODO message
+		}
+
+		for (var i = 0; i < length; i++) 
+		{
+			if (i in self && !fun.call(thisp, self[i], i, self)) {
 				return false;
 			}
 		}
-
+		
 		return true;
 	},
 
 	/**
-	 * Implements ES5 `some` method as defined by: ES5 15.4.4.17
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
+	 *
+	 *
+	 * - ES5 15.4.4.17: http://es5.github.com/#x15.4.4.17
+	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
 	 */
-	some : function(block /*, thisp */) 
+	some : function some(fun /*, thisp */) 
 	{
+		var self = toObject(this);
+		var length = self.length >>> 0;
 		var thisp = arguments[1];
-		
-		for (var i = 0; i < this.length; i++) 
+
+		// If no callback function or if callback is not a callable function
+		if (_toString(fun) != "[object Function]") {
+			throw new TypeError(); // TODO message
+		}
+
+		for (var i = 0; i < length; i++) 
 		{
-			if (block.call(thisp, this[i])) {
+			if (i in self && fun.call(thisp, self[i], i, self)) {
 				return true;
 			}
 		}
@@ -119,149 +172,176 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 * Implements ES5 `reduce` method as defined by: ES5 15.4.4.21
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reduce
+	 *
+	 *
+	 * - ES5 15.4.4.21: http://es5.github.com/#x15.4.4.21
+	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduce
 	 */
 	reduce : function(fun /*, initial*/) 
 	{
-		var len = +this.length;
-	
-		// Whether to include (... || fun instanceof RegExp)
-		// in the following expression to trap cases where
-		// the provided function was actually a regular
-		// expression literal, which in V8 and
-		// JavaScriptCore is a typeof "function".  Only in
-		// V8 are regular expression literals permitted as
-		// reduce parameters, so it is desirable in the
-		// general case for the shim to match the more
-		// strict and common behavior of rejecting regular
-		// expressions. However, the only case where the
-		// shim is applied is IE's Trident (and perhaps very
-		// old revisions of other engines).	 In Trident,
-		// regular expressions are a typeof "object", so the
-		// following guard alone is sufficient.
-		
-		if (typeof fun !== "function") {
-			throw new TypeError();
+		var self = toObject(this);
+		var length = self.length >>> 0;
+
+		// If no callback function or if callback is not a callable function
+		if (_toString(fun) != "[object Function]") {
+			throw new TypeError(); // TODO message
 		}
 
 		// no value to return if no initial value and an empty array
-		if (len === 0 && arguments.length === 1) {
-			throw new TypeError();
+		if (!length && arguments.length == 1) {
+			throw new TypeError(); // TODO message
 		}
 
 		var i = 0;
-		if (arguments.length >= 2) 
-		{
-			var rv = arguments[1];
-		}
+		var result;
+		if (arguments.length >= 2) {
+			result = arguments[1];
+		} 
 		else 
 		{
 			do 
 			{
-				if (i in this) 
+				if (i in self) 
 				{
-					rv = this[i++];
+					result = self[i++];
 					break;
 				}
 
 				// if array contains no values, no initial value to return
-				if (++i >= len) {
-					throw new TypeError();
+				if (++i >= length) {
+					throw new TypeError(); // TODO message
 				}
-			} 
-			while (true);
+				
+			} while (true);
 		}
 
-		for (; i < len; i++) 
+		for (; i < length; i++) 
 		{
-			if (i in this) {
-				rv = fun.call(null, rv, this[i], i, this);
+			if (i in self) {
+				result = fun.call(void 0, result, self[i], i, self);
 			}
 		}
 
-		return rv;
+		return result;
 	},
 
 	/**
-	 * Implements ES5 `reduceRight` method as defined by: ES5 15.4.4.22
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reduceRight
+	 *
+	 *
+	 * - ES5 15.4.4.22: http://es5.github.com/#x15.4.4.22
+	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduceRight
 	 */
 	reduceRight : function(fun /*, initial*/) 
 	{
-		if (typeof fun !== "function") {
-			throw new TypeError();
+		var self = toObject(this);
+		var length = self.length >>> 0;
+
+		// If no callback function or if callback is not a callable function
+		if (_toString(fun) != "[object Function]") {
+			throw new TypeError(); // TODO message
 		}
 
 		// no value to return if no initial value, empty array
-		var len = this.length;
-		if (len === 0 && arguments.length === 1) {
-			throw new TypeError();
+		if (!length && arguments.length == 1) {
+			throw new TypeError(); // TODO message
 		}
 
-		var rv, i = len - 1;
+		var result, i = length - 1;
 		if (arguments.length >= 2) 
 		{
-			rv = arguments[1];
+			result = arguments[1];
 		}
 		else
 		{
-			do
+			do 
 			{
-				if (i in this) 
+				if (i in self) 
 				{
-					rv = this[i--];
+					result = self[i--];
 					break;
 				}
 
 				// if array contains no values, no initial value to return
 				if (--i < 0) {
-					throw new TypeError();
+					throw new TypeError(); // TODO message
 				}
-			} 
-			while (true);
+				
+			} while (true);
 		}
 
-		for (; i >= 0; i--) 
+		do 
 		{
 			if (i in this) {
-				rv = fun.call(null, rv, this[i], i, this);
+				result = fun.call(void 0, result, self[i], i, self);
 			}
-		}
+		} while (i--);
 
-		return rv;
+		return result;
 	},
 
 	/**
-	 * Implements ES5 `lastIndexOf` method as defined by: ES5 15.4.4.15
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf
+	 *
+	 *
+	 * - ES5 15.4.4.14: http://es5.github.com/#x15.4.4.14
+	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
 	 */
-	lastIndexOf : function(value /*, fromIndex */) 
+	indexOf : function(sought /*, fromIndex */ ) 
 	{
-		var length = this.length;
+		var self = toObject(this);
+		var length = self.length >>> 0;
+
 		if (!length) {
 			return -1;
 		}
-			
-		var i = arguments[1] || length;
-		if (i < 0) {
-			i += length;
+
+		var i = 0;
+		if (arguments.length > 1) {
+			i = toInteger(arguments[1]);
 		}
-			
-		i = Math.min(i, length - 1);
-		
-		for (; i >= 0; i--) 
+
+		// handle negative indices
+		i = i >= 0 ? i : Math.max(0, length + i);
+		for (; i < length; i++) 
 		{
-			if (!(i in this)) {
-				continue;
-			}
-				
-			if (value === this[i]) {
+			if (i in self && self[i] === sought) {
 				return i;
 			}
 		}
+		
+		return -1;
+	},
 
+	/**
+	 * 
+	 *
+	 * - ES5 15.4.4.15: http://es5.github.com/#x15.4.4.15
+	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf
+	 */
+	lastIndexOf : function(sought /*, fromIndex */) 
+	{
+		var self = toObject(this);
+		var length = self.length >>> 0;
+
+		if (!length) {
+			return -1;
+		}
+		
+		var i = length - 1;
+		if (arguments.length > 1) {
+			i = Math.min(i, toInteger(arguments[1]));
+		}
+		
+		// handle negative indices
+		i = i >= 0 ? i : length - Math.abs(i);
+		for (; i >= 0; i--) 
+		{
+			if (i in self && sought === self[i]) {
+				return i;
+			}
+		}
+		
 		return -1;
 	}
+	
 }, true);
 
