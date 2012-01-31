@@ -19,9 +19,9 @@
  * * insertAdjacentHTML(where, html)
  * * insertAdjacentText(where, text)
  *
- * #custom
+ * #custom(HTMLElement)
  */
-(function(global, document, map, indexOf) 
+(function(global, document, proto, map, indexOf) 
 {
 	if(typeof document.documentElement.sourceIndex == "undefined") 
 	{

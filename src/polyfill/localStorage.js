@@ -17,7 +17,7 @@
 	 * Emulation for `localStorage` object to store text data on the browser.
 	 *
 	 */
-	Object.createNamespace("localStorage",
+	Object.declareNamespace("localStorage",
 	{
 
 		// TODO:

@@ -7,6 +7,8 @@
 
 /**
  * Fixes missing `document.head` in older browser engines.
+ *
+ * #custom
  */
 (function(doc) {
 	if (doc && !doc.head) {

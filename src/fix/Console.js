@@ -10,6 +10,8 @@
  *
  * Emulates just the basic logging methods with an empty function. Maps missing functions
  * to `console.log` automatically.
+ *
+ * #custom(console)
  */
 (function(global)
 {

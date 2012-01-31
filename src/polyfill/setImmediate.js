@@ -38,28 +38,47 @@
 			}
 		}, true);
 		
-		global.setImmediate = function setImmediate(func) 
+		/** Adds non-standard methods `setImmediate` and `clearImmediate` which were introduced by Firefox to the global object.*/
+		Object.addStatics("global",
 		{
-			timeouts.push(func);
-			postMessage(messageName, "*");
-			return func; // use function as timeout handle
-		};
+			/**
+			 * This method is used to break-up long running operations and run a callback @func {Function} immediately after the browser 
+			 * has completed other operations such as events and display updates.
+			 *
+			 * See also: https://developer.mozilla.org/en/Document_Object_Model_(DOM)/window.setImmediate
+			 */
+			setImmediate : function(func) 
+			{
+				timeouts.push(func);
+				postMessage(messageName, "*");
+				return func; // use function as timeout handle
+			},
 		
-		global.clearImmediate = function clearImmediate(handle) {
-			var pos = timeouts.lastIndexOf(handle);
-			if (pos != -1) {
-				timeouts.splice(pos, 1);
+			/**
+			 * This method clears the action specified by {#setImmediate} via the given @handle {var}.
+			 *
+			 * See also: https://developer.mozilla.org/en/Document_Object_Model_(DOM)/window.clearImmediate
+			 */
+			clearImmediate : function(handle) 
+			{
+				var pos = timeouts.lastIndexOf(handle);
+				if (pos != -1) {
+					timeouts.splice(pos, 1);
+				}
 			}
-		};
+		}, true);
 	}
 	else
 	{
-		global.setImmediate = function setImmediate(func) {
-			return setTimeout(func, 0);
-		};
+		Object.addStatics("global",
+		{
+			setImmediate : function(func) {
+				return setTimeout(func, 0);
+			},
 
-		global.clearImmediate = function clearImmediate(handle) {
-			clearTimeout(handle);
-		};
+			clearImmediate : function(handle) {
+				clearTimeout(handle);
+			}
+		}, true);
 	}
 })(this);
