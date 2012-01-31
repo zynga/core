@@ -8,7 +8,9 @@
 */
 
 /**
- * Contains a method for executing aribritary script content in global context.
+ * A method for executing aribritary script content in global context. 
+ * 
+ * Emulates the global `execScript` function of Internet Explorer for other browsers. 
  * See also: http://msdn.microsoft.com/en-us/library/ms536420(v=vs.85).aspx
  */
 (function(global) 
@@ -33,13 +35,17 @@
 		}
 	})())
 	{
-		global.execScript = function(expression) 
+		
+		Object.addStatics("global", 
 		{
-			global.eval(expression);
+			execScript : function(expression) {
+				global.eval(expression);
+
+				// Always returns null according to msdn docs
+				return null;
+			}
 			
-			// Always returns null according to msdn docs
-			return null;
-		};
+		}, true);
 	};
 
 	// otherwise, execScript is `undefined` since nothing is returned

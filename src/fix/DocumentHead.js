@@ -5,7 +5,9 @@
 ==================================================================================================
 */
 
-// Fix for missing document.head
+/**
+ * Fixes missing `document.head` in older browser engines.
+ */
 (function(doc) {
 	if (doc && !doc.head) {
 		doc.head = doc.getElementsByTagName('head')[0];

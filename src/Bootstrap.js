@@ -31,7 +31,9 @@
 	
 	
 	/** {Map} Stores and maps namespaces */
-	var cache = {};
+	var cache = {
+		"global" : global
+	};
 
 
 	/**

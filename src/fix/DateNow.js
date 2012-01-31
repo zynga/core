@@ -5,12 +5,18 @@
 ==================================================================================================
 */
 
-(function(Date) 
+/**
+ * Fixes missing `Date.now()` in older browser engines.
+ */
+Object.addStatics("Date", 
 {
-	if (!Date.now) 
-	{
-		Date.now = function() {
-			return +new Date;
-		};
+	/** 
+	 * {Number} Returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC. 
+	 *
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date/now
+	 */
+	now: function() {
+		return +new Date;
 	}
-})(Date);
+}, true);
+
