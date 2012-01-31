@@ -26,19 +26,15 @@
 		members :
 		{
 			/**
-			 * Generic setter. Supports two possible use cases:
+			 * {var} Generic setter. Supports two possible use cases for @property {String|Map} and @value {var?}:
 			 *
-			 * <code>
-			 * set("property", value);
-			 * set({
-			 *   property1: value1,
-			 *   property2: value2
-			 * });
-			 * </code>
+			 *     set("property", value);
+			 *     set({
+			 *       property1: value1,
+			 *       property2: value2
+			 *     });
 			 *
-			 * @param property {String | Map} Name of property or map of key values
-			 * @param value {var} Any value
-			 * @return {var} Returns the value from the setter (if single property is used)
+			 * Returns the value from the setter (if single property is used)
 			 */
 			set : function(property, value)
 			{
@@ -83,12 +79,10 @@
 
 
 			/**
-			 * Generic getter. Supports two possible use cases:
+			 * {var} Generic getter for @property {String|Array}. Supports two possible use cases:
 			 *
-			 * <code>
-			 * get("property");
-			 * get(["property1", "property2"]);
-			 * </code>
+			 *     var value = get("property");
+			 *     var values = get(["property1", "property2"]);
 			 *
 			 * @param property {String | Array} String name of property or Array of names
 			 * @param value {var} Any value

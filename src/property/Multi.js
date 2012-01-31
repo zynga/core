@@ -548,7 +548,7 @@
 
 
 		/**
-		 * Returns a value of the obj {Object} from a specific @field {String} 
+		 * Returns a value of the @obj {Object} from a specific @field {String} 
 		 * (one of "init", "inheritance", "theme", "user" or "override") for the given @propertyName {String} - 
 		 * ignoring any priorities.
 		 */
@@ -725,7 +725,7 @@
 		*/
 
 		/**
-		 * {Map} Returns a list (a map type for faster lookup) of all inheritable properties supported by the given clazz {Class}.
+		 * {Map} Returns a list (a map type for faster lookup) of all inheritable properties supported by the given @clazz {Class}.
 		 *
 		 * You may choose to access inheritable properties via:
 		 * `obj.__inheritables || core.property.Multi.getInheritableProperties(obj)`

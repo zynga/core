@@ -96,7 +96,7 @@
 
 
 		/**
-		 * Returns the dimensions of the given image ID
+		 * {Map} Returns the dimensions of the given image @id {String} with the keys `width` and `height`.
 		 */
 		getImageSize : function(id)
 		{

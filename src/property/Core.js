@@ -5,6 +5,9 @@
 ==================================================================================================
 */
 
+/**
+ * Shared data for property system
+ */
 core.Module("core.property.Core", 
 {
 	/** Internal unique ID for usage in Single/Multi properties */

@@ -10,38 +10,35 @@
 ==================================================================================================
 */
 
-(function(proto, slice)
+if (!Function.prototype.bind) 
 {
-	if (!proto.bind)
+	Object.addMembers("Function",
 	{
 		/**
-		 * Binds the given function to the specific context.
+		 * {Function} Binds the function to the specific @context {Object} with optionally bound arbitrary number of @varargs {var...}.
 		 *
-		 * https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
-		 *
-		 * @param context {Object} Object to bind function to.
-		 * @param varargs {var} Static arguments
-		 * @return {Function} Returns a new function which is bound to the given object.
+		 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
 		 */
-		proto.bind = function(context) 
+		bind : function(context, varargs) 
 		{
 			// closest thing possible to the ECMAScript 5 internal IsCallable function
 			if (typeof this !== "function") {
 				throw new TypeError();
 			}
-			
+
 			// "trapped" function reference
 			var self = this;
+			var undef;
 
 			// only if there is more than an argument
 			// we are interested into more complex operations
 			// this will speed up common bind creation
 			// avoiding useless slices over arguments
-			if (1 < arguments.length) 
+			if (varargs !== undef) 
 			{
 				// extra arguments to send by default
 				var args = arguments;
-				var extraargs = slice.call(args, 1);
+				var extraargs = Array.prototype.slice.call(args, 1);
 				return function()
 				{
 					return self.apply(
@@ -49,7 +46,7 @@
 						// thanks @kangax for this suggestion
 						args.length ?
 							// concat arguments with those received
-							extraargs.concat(slice.call(args)) :
+							extraargs.concat(Array.prototype.slice.call(args)) :
 							// send just arguments, no concat, no slice
 							extraargs
 					);
@@ -64,6 +61,6 @@
 					return arguments.length ? self.apply(context, arguments) : self.call(context);
 				};
 			}
-		};
-	}	
-})(Function.prototype, Array.prototype.slice);
+		}
+	});
+}
