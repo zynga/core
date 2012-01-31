@@ -5,6 +5,9 @@
 ==================================================================================================
 */
 
+/**
+ * Adds useful non-standard extensions to the `Function.prototype` like {#debounce}.
+ */
 Object.addMembers("Function",
 {
 	/**
@@ -16,7 +19,7 @@ Object.addMembers("Function",
 	 * period, the signal will not be sent!
 	 *
 	 * Via: 
-   *
+	 *
 	 * - @threshold {Integer} Number of milliseconds of distance required before reacting/resetting.
 	 * - @execAsap {Boolean?false} Whether the execution should happen at begin.
 	 */

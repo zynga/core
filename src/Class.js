@@ -17,7 +17,8 @@ if(!core.Env.isSet("es5"))
 	} catch(ex) {};
 }
 
-(function(global, undef) {
+(function(global, undef) 
+{
 	var genericToString = function() {
 		return "[class " + this.className + "]";
 	};
@@ -147,7 +148,12 @@ if(!core.Env.isSet("es5"))
 	var propertyJoinableNames = {};
 	
 	
-	
+	/**
+	 * Rich class system for declaring powerful classes in JavaScript. The declarations supports a lot of convenience
+	 * features and unifies all features under a simple declarative API which can be easily processed by 3rd party tools.
+	 *
+	 * Defines a new class with @name {String} using the given @config {Map}.
+	 */
 	Object.declareNamespace("core.Class", function(name, config) 
 	{
 		if (core.Env.isSet("debug")) 
@@ -376,7 +382,7 @@ if(!core.Env.isSet("es5"))
 
 	
 	/**
-	 * {Boolean} Returns whether the given @obj {Object} is a class.
+	 * {Boolean} Returns whether the given @object {Object} is a class.
 	 *
 	 * @return  Whether the given argument is an valid Class.
 	 */
@@ -384,6 +390,10 @@ if(!core.Env.isSet("es5"))
 		return !!(object && typeof object == "function" && object.__isClass);
 	};
 	
+	
+	/**
+	 * Throws an error with a custom @message {String?} when the given @object {var} is not a class.
+	 */
 	var assertIsClass = function(object, message) 
 	{
 		if (!isClass(object)) {

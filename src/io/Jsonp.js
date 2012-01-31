@@ -30,7 +30,7 @@
 		SUPPORTS_PARALLEL : true,
 		
 		/**
-		 * Loads an JSONP via the given @url {String} and fires a @callback {Function} (in the given @context {Object?}) when the data was loaded.
+		 * Loads an JSONP via the given @uri {String} and fires a @callback {Function} (in the given @context {Object?}) when the data was loaded.
 		 * Optionally appends an random `GET` parameter to omit caching when @nocache {Boolean?false} is enabled.
 		 */
 		load : function load(uri, callback, context, nocache) 

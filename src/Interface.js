@@ -67,7 +67,7 @@
 
 
 		/**
-		 * Verifies whether the given @objectOrClass {Object|Class} implements the given interface {Interface?this}.
+		 * Verifies whether the given @objectOrClass {Object|Class} implements the given @iface {Interface?this}.
 		 *
 		 * - Tests all members of being defined and being the same type (based on Object.toString).
 		 * - Tests all properties regarding existance. Also checks whether the outer visible aspects: events, group, themeable and inheritable are identical.
@@ -199,7 +199,7 @@
 
 
 		/**
-		 * Whether the given object is a Interface
+		 * Whether the given object is a @iface {Interface}.
 		 *
 		 * @return {Boolean} Whether the given argument is an valid Interface.
 		 */

@@ -174,6 +174,7 @@
 	 */	
 	core.Module("core.detect.System", {
 		
+		/** System identification */
 		VALUE: name + " " + version
 		
 	});

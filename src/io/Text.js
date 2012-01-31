@@ -19,6 +19,9 @@
 	// Dynamic URI can be shared because we do not support reloading files
 	var dynamicExtension = "?r=" + Date.now();
 	
+	/**
+	 * Generic loader for any text content using XMLHTTPRequests.
+	 */
 	core.Module("core.io.Text", 
 	{
 		/** Whether the loader supports parallel requests */

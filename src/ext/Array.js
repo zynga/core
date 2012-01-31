@@ -8,7 +8,7 @@
 */
 
 /**
- * Sugar methods for native Arrays
+ * Adds useful non-standard extensions to the `Array.prototype` like {#min}, {#contains} and {#remove}.
  */
 Object.addStatics("Array", 
 {

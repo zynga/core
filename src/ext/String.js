@@ -10,11 +10,11 @@
 	var hexTable = "0123456789abcdef".split("");
 
 	/**
-	 * @require {core.ext.Core}
+	 * Adds useful non-standard extensions to the `String.prototype` like {#hyphenate}, {#startsWith} and {#contains}.
 	 */
 	Object.addMembers("String",
 	{
-		/*
+		/**
 		 * Convert a string to a hex string
 		 * 
 		 * @return {String} A hex representation of the string
@@ -112,7 +112,7 @@
 
 
 		/**
-		 * {Boolean} Returns `true` if this string starts with the given substring
+		 * {Boolean} Returns `true` if this string starts with the given substring @begin {String}
 		 */
 		startsWith : function(begin) {
 			return begin == this.slice(0, begin.length);
@@ -120,7 +120,7 @@
 
 
 		/**
-		 * {Boolean} Returns `true` if this string ends with the given substring
+		 * {Boolean} Returns `true` if this string ends with the given substring @end {String}
 		 */
 		endsWith : function(end) {
 			return end == this.slice(-end.length);

@@ -16,7 +16,7 @@
 	
 	if (fields)
 	{
-		// Stores all selected fields in a simple map
+		/** Currently selected fields from Env data */
 		var selected = {};
 
 		var checksum = (function()
@@ -91,7 +91,6 @@
 	 */
 	core.Module("core.Env",
 	{
-		/** {=Map} Currently selected fields from Env data */
 		SELECTED : selected,
 
 		/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */

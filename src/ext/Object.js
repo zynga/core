@@ -5,7 +5,10 @@
 ==================================================================================================
 */
 
-Object.addMembers("Object", 
+/**
+ * Adds useful non-standard extensions to the Object class like {#fromArray} and {#values}.
+ */
+Object.addStatics("Object", 
 {
 	/**
 	 * {Map} Creates a new object with prefilled content from the @keys {Array} list.

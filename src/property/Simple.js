@@ -7,10 +7,10 @@
 
 (function(global, undef)
 {
-	/** {Integer} Maps simple property names to global property IDs */
+	/** {Map} Maps simple property names to global property IDs */
 	var propertyNameToId = {};
 
-	/** {String} Field where the data is stored */
+	/** {=String} Field where the data is stored */
 	var store = "$$data";
 
 

@@ -23,6 +23,10 @@
 		var dontEnumsLength = dontEnums.length;
 	}
 	
+	/**
+	 * Adds missing ES5 `Object.keys` to the Object constructor when not implemented natively by the browser engine.
+	 * Also adds a custom extension `Object.empty` to quickly check whether an object is empty (no keys).
+	 */
 	Object.addStatics("Object", 
 	{
 		/**

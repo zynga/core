@@ -198,7 +198,7 @@
 	
 	
 	/**
-	 * {Boolean} Whether the given value is an instance of the given native class @name.
+	 * {Boolean} Whether the given @value {var} is an instance of the given native class @name {String}.
 	 *
 	 * Supports these classes:
 	 *
@@ -217,7 +217,7 @@
 	
 	
 	/**
-	 * {Boolean} Whether the given value is of the given type
+	 * {Boolean} Whether the given @value {var} is of the given @type {String}.
 	 *
 	 * Supports all class checks support by `isClassOf` but also:
 	 * 
@@ -309,10 +309,10 @@
 	 */
 	Object.addStatics("Object", 
 	{
-		/** {Set} Set of classes which are supported */
+		/** {=Set} Set of classes which are supported */
 		CLASSES: arrayToSet(classes.split(" ")),
 		
-		/** {Set} Set of types which are supported */
+		/** {=Set} Set of types which are supported */
 		TYPES: arrayToSet(types.split(" ")),
 		
 		declareNamespace : declareNamespace,

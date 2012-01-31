@@ -5,6 +5,9 @@
 ==================================================================================================
 */
 
+/**
+ * Adds useful non-standard extensions to the `Number.prototype` like {#pad}, {#times} and {#hex}.
+ */
 Object.addMembers("Number",
 {
 	/**
