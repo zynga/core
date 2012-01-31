@@ -21,20 +21,13 @@
 	 */
 	core.Module("core.io.StyleSheet",
 	{
-		/** {Boolean} Whether the loader supports parallel requests. Always true for stylesheets (order should, hopefully, not be important). */
+		/** Whether the loader supports parallel requests. Always true for stylesheets (order should, hopefully, not be important). */
 		SUPPORTS_PARALLEL : true,
 		
 		
 		/**
-		 * Loads a stylesheet and fires a callback when the stylesheet is applied to the page.
-		 *
-		 * Inspired by:
-		 * http://www.phpied.com/when-is-a-stylesheet-really-loaded/
-		 *
-		 * @param uri {String} URI pointing to the stylesheet
-		 * @param callback {Function ? null} Callback that fires when stylesheet is loaded
-		 * @param context {Object ? null} Context in which the callback is being executed. Defaults to global context.
-		 * @param nocache {Boolean ? false} Appends a dynamic parameter to each URL to force a fresh copy
+		 * Loads a StyleSheet file from the given @uri {String} and fires a @callback {Function} (in @context {Object?}) when it was loaded.
+		 * Optionally appends an random `GET` parameter to omit caching when @nocache {Boolean?false} is enabled..
 		 */
 		load: function(uri, callback, context, nocache) 
 		{

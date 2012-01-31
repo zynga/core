@@ -32,19 +32,13 @@
 	 */
 	core.Module("core.io.Script",
 	{
-		/** {Boolean} Whether the loader supports parallel requests */
+		/** Whether the loader supports parallel requests */
 		SUPPORTS_PARALLEL : supportsScriptAsync || core.Env.isSet("engine", "gecko") || core.Env.isSet("engine", "opera"),
 
 
 		/**
-		 * Loads a JavaScript file from the given URI.
-		 *
-		 * Automatically using preloading in modern browsers.
-		 *
-		 * @param uri {String} URI of script sources to load
-		 * @param callback {Function ? null} Function to execute when script is loaded
-		 * @param context {Object ? null} Context in which the callback should be executed
-		 * @param nocache {Boolean ? false} Appends a dynamic parameter to each script to force a fresh copy
+		 * Loads a JavaScript file from the given @uri {String} and fires a @callback {Function} (in @context {Object?}) when the script was loaded.
+		 * Optionally appends an random `GET` parameter to omit caching when @nocache {Boolean?false} is enabled..
 		 */
 		load : function(uri, callback, context, nocache)
 		{

@@ -76,9 +76,7 @@
 	core.Module("core.io.Network", 
 	{
 		/**
-		 * Returns whether the client is online based on the last check
-		 * 
-		 * @return {Boolean} Whether the client is online
+		 * {Boolean} Returns whether the client is online based on the last check
 		 */
 		isOnline : function() {
 			return updateHandle ? isOnline : null;
@@ -86,9 +84,7 @@
 		
 
 		/**
-		 * Starts the network monitoring
-		 *
-		 * @param interval {Number} Number of milliseconds between the update requests
+		 * Starts the network monitoring with the given @interval {Number?1000} in milliseconds.
 		 */
 		startMonitoring : function(interval) 
 		{

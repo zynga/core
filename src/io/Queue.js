@@ -7,11 +7,11 @@
 
 (function() 
 {
-	/** {Map} Keys are all URIs which are completely loaded */
+	/** Keys are all URIs which are completely loaded */
 	var completed = {};
 
 	
-	/** {Map} Maps extensions to loader classes */
+	/** Maps extensions to loader classes */
 	var typeLoader = 
 	{
 		js : core.io.Script,
@@ -29,10 +29,7 @@
 
 
 	/**
-	 * Returns the extension of the given filename
-	 *
-	 * @param filename {String} Name of file or full URI
-	 * @return {String} Extension part or <code>null</code> if no extension was found
+	 * {String} Returns the extension of the given @filename {String}
 	 */
 	var extractExtension = function(filename) 
 	{
@@ -218,9 +215,7 @@
 			else
 			{
 				/**
-				 * Loads the next URI for the given type
-				 *
-				 * @param type {String} Which queue to use
+				 * Loads the next URI for the given @type {String}
 				 */
 				var loadNext = function(type)
 				{

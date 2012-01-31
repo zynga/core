@@ -5,7 +5,12 @@
 ==================================================================================================
 */
 
-(function() {
+(function() 
+{
+	
+	/**
+	 * {String} Returns a string representing the Interface.
+	 */
 	var genericToString = function() {
 		return "[interface " + this.interfaceName + "]";
 	};
@@ -36,29 +41,8 @@
 			/** {String} Name of the interface */
 			interfaceName : name,
 
-			/**
-			 * Returns a string representing the Interface.
-			 *
-			 * @signature function() {}
-			 * @return {String} String representing
-			 */
 			toString : genericToString,
-
-			/**
-			 * Returns a string representing the Interface.
-			 *
-			 * @signature function() {}
-			 * @return {String} String representing
-			 */
 			valueOf : genericToString,
-
-			/**
-			 * Returns a string representing the Interface.
-			 *
-			 * @signature function(objectOrClass) {}
-			 * @param objectOrClass {Object|Class} Object or Class to verify
-			 * @throws Whenever the object or class does not implements the interface.
-			 */
 			assert : core.Interface.assert
 		};
 
