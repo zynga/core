@@ -6,10 +6,15 @@
 */
 
 /**
- * Fixes missing `Array.prototype.indexOf` is some browsers.
+ * Fixes missing `Array.prototype.indexOf` is some non JavaScript 1.6 compatible browsers.
  */
 Object.addMembers("Array", 
 {
+	/**
+	 * {Integer} Returns the first index at which a given @searchElement {var} can be found in the array, or `-1` if it is not present.
+	 * 
+	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
+	 */
 	indexOf : function(searchElement /*, fromIndex */)
 	{
 		if (this == null) {

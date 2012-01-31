@@ -9,9 +9,6 @@
 
 /**
  * A method for executing aribritary script content in global context. 
- * 
- * Emulates the global `execScript` function of Internet Explorer for other browsers. 
- * See also: http://msdn.microsoft.com/en-us/library/ms536420(v=vs.85).aspx
  */
 (function(global) 
 {
@@ -38,6 +35,12 @@
 		
 		Object.addStatics("global", 
 		{
+			/**
+			 * {null} Executes the specified script @expression {String} in global context.
+			 * 
+			 * This emulates the global `execScript` function of Internet Explorer for other browsers. 
+			 * See also: http://msdn.microsoft.com/en-us/library/ms536420(v=vs.85).aspx
+			 */
 			execScript : function(expression) {
 				global.eval(expression);
 
