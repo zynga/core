@@ -13,7 +13,7 @@
  * phase of the class. The defaults listed in the API viewer need not
  * to be identical to the values at runtime.
  */
-Module("core.detect.Platform", 
+core.Module("core.detect.Platform", 
 {
 	VALUE: (function() 
 	{

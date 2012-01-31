@@ -47,6 +47,8 @@
  */
 (function(global) {
 
-	// TODO
+	core.Module("core.detect.Version", {
+		
+	});
 
 })(this);
