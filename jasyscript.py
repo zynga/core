@@ -6,6 +6,7 @@ formatting = Formatting()
 session = Session()
 session.addProject(Project("."))
 session.permutateField("es5")
+session.permutateField("debug")
 
 @task("Clear Cache")
 def clear():
