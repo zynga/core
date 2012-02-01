@@ -147,7 +147,7 @@
 		 */
 		isTypeOf : function(value, type) 
 		{
-			var result;
+			var result = false;
 
 			if (value == null) 
 			{
@@ -169,10 +169,6 @@
 			{
 				var type = typeof value;
 				result = value == null || type == "boolean" || type == "number" || type == "string";
-			}
-			else if (global.console)
-			{
-				console.warn("Unsupported type call to Object.isTypeOf(): " + type);
 			}
 
 			return result;
