@@ -9,7 +9,14 @@
  * Declarations of simple modules with static members
  *
  * #require(core.Bootstrap)
- * #require(core.fix.*)
+ * #require(core.fix.ArrayIndexOf)
+ * #require(core.fix.Console)
+ * #require(core.fix.DateNow)
+ * #require(core.fix.DocumentHead)
+ * #require(core.fix.FunctionBind)
+ * #require(core.fix.HTML5Markup)
+ * #require(core.fix.ObjectKeys)
+ * #require(core.fix.TimeoutArgs)
  */
 (function(global, undef)
 {
