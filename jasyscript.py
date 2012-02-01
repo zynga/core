@@ -17,9 +17,8 @@ def clear():
 def api():
     writer = ApiWriter(session)
     writer.write("api/data")
-    # writer.write("api/packed", "msgpack")
-        
-        
+
+
 @task("Writing Module")
 def module():
     for permutation in session.getPermutations():
