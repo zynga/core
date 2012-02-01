@@ -8,8 +8,7 @@ def clear():
     session.close()
 
 
-
-@task("Generate API Data")
+@task("Store API Data")
 def api():
     session = Session()
     session.addProject(Project("."))
@@ -20,3 +19,15 @@ def api():
         
     session.close()
         
+        
+@task("Writing Core")
+def core():
+    session = Session()
+    session.addProject(Project("."))
+
+    resolver = Resolver(session.getProjects())
+    resolver.addClassName("core.Module")
+    classes = Sorter(resolver).getSortedClasses()
+
+    storeCompressed("dist/core.js", classes, formatting=Formatting("semicolon", "comma"))
+

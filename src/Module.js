@@ -8,6 +8,7 @@
 /**
  * Declarations of simple modules with static members
  *
+ * #require(core.Bootstrap)
  * #require(core.fix.*)
  */
 (function(global, undef)
