@@ -40,3 +40,20 @@ def oo():
 
         print("Classes: %s" % classes)
         storeCompressed("dist/oo-%s.js" % permutation.getKey(), classes, formatting=formatting, optimization=optimization)
+        
+        
+@task("Writing Sugar")
+def sugar():
+    for permutation in session.getPermutations():
+        resolver = Resolver(session.getProjects(), permutation)
+        resolver.addClassName("core.ext.Array")
+        resolver.addClassName("core.ext.Function")
+        resolver.addClassName("core.ext.Number")
+        resolver.addClassName("core.ext.Object")
+        resolver.addClassName("core.ext.String")
+        classes = Sorter(resolver, permutation).getSortedClasses()
+
+        print("Classes: %s" % classes)
+        storeCompressed("dist/sugar-%s.js" % permutation.getKey(), classes, formatting=formatting, optimization=optimization)
+                
+                
