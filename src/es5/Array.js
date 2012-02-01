@@ -25,7 +25,7 @@ Object.addStatics("Array",
 Object.addMembers("Array",
 {
 	/**
-	 * Calls function @fun {Function} once for each element present in the array, in ascending order.
+	 * Executes a provided function @fun {Function} once per array element.
 	 *
 	 * ES5 15.4.4.18: http://es5.github.com/#x15.4.4.18
 	 * https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach
@@ -53,8 +53,7 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 * {Array} Calls function @fun {Function} once for each element in the array, in ascending order, 
-	 * and constructs a new `Array` from the results.
+	 * {Array} Creates a new array with the results of calling a provided function @fun {Function} on every element in this array.
 	 *
 	 * - ES5 15.4.4.19: http://es5.github.com/#x15.4.4.19
 	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map
@@ -82,8 +81,7 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 * {Array} Calls function @fun {Function} once for each element in the array, in ascending order, 
-	 * and constructs a new `Array` of all the values for which @fun returns `true`.
+	 * {Array} Creates a new array with all elements that pass the test implemented by the provided function @fun {Function}.
 	 *
 	 * - ES5 15.4.4.20: http://es5.github.com/#x15.4.4.20
 	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter
@@ -116,9 +114,7 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 * {Boolean} Calls function @fun {Function} once for each element present in the array, in ascending order, 
-	 * until it finds one where @fun returns `false`. If such an element is found, every immediately 
-	 * returns `false`. Otherwise, if @fun returned `true` for all elements, every will return `true`.
+	 * {Boolean} Tests whether all elements in the array pass the test implemented by the provided function @fun {Function}.
 	 *
 	 * - ES5 15.4.4.16: http://es5.github.com/#x15.4.4.16
 	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every
@@ -145,7 +141,7 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 *
+	 * {Boolean} Tests whether some element in the array passes the test implemented by the provided function @fun {Function}.
 	 *
 	 * - ES5 15.4.4.17: http://es5.github.com/#x15.4.4.17
 	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
@@ -172,7 +168,8 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 *
+	 * {var} Apply a function @fun {Function} against an accumulator and each value of the 
+	 * array (from left-to-right) as to reduce it to a single value.
 	 *
 	 * - ES5 15.4.4.21: http://es5.github.com/#x15.4.4.21
 	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduce
@@ -194,7 +191,8 @@ Object.addMembers("Array",
 
 		var i = 0;
 		var result;
-		if (arguments.length >= 2) {
+		if (arguments.length >= 2) 
+		{
 			result = arguments[1];
 		} 
 		else 
@@ -226,7 +224,8 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 *
+	 * {var} Apply a function @fun {Function} simultaneously against two values of the 
+	 * array (from right-to-left) as to reduce it to a single value.
 	 *
 	 * - ES5 15.4.4.22: http://es5.github.com/#x15.4.4.22
 	 * - https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduceRight
@@ -280,7 +279,8 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 *
+	 * {Integer} Returns the first index at which a given element @sought {var} can be found 
+	 * in the array, or -1 if it is not present.
 	 *
 	 * - ES5 15.4.4.14: http://es5.github.com/#x15.4.4.14
 	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
@@ -312,7 +312,9 @@ Object.addMembers("Array",
 	},
 
 	/**
-	 * 
+	 * {Integer} Returns the last index at which a given element @sought {var} can be found
+	 * in the array, or `-1` if it is not present. The array is searched backwards, starting 
+	 * at `fromIndex` (second argument).
 	 *
 	 * - ES5 15.4.4.15: http://es5.github.com/#x15.4.4.15
 	 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf
