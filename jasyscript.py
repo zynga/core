@@ -29,6 +29,7 @@ def module():
         print("Classes: %s" % classes)
         storeCompressed("dist/module-%s.js" % permutation.getKey(), classes, formatting=formatting, optimization=optimization)
 
+
 @task("Writing OO")
 def oo():
     for permutation in session.getPermutations():
