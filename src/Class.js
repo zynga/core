@@ -114,7 +114,7 @@ if(!core.Env.isSet("es5"))
 
 				for (var eventName in includedEvents) {
 					if (eventName in allIncludeEvents) {
-						throw new Error("Included class " + includedClass.className + " overwrites event of other included class " + allIncludeEvents[key].className + " in class " + name);
+						throw new Error("Included class " + includedClass.className + " overwrites event of other included class " + allIncludeEvents[eventName].className + " in class " + name);
 					}
 
 					allIncludeEvents[eventName] = includedClass;
@@ -135,7 +135,7 @@ if(!core.Env.isSet("es5"))
 
 				for (var propertyName in includedProperties) {
 					if (propertyName in allIncludeProperties) {
-						throw new Error("Included class " + includedClass.className + " overwrites event of other included class " + allIncludeEvents[key].className + " in class " + name);
+						throw new Error("Included class " + includedClass.className + " overwrites event of other included class " + allIncludeProperties[propertyName].className + " in class " + name);
 					}
 
 					allIncludeProperties[propertyName] = includedClass;
