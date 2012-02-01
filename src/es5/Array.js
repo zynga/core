@@ -10,6 +10,8 @@
 
 /**
  * Adds ES5 Array methods if these are not implemented by the engine.
+ *
+ * #require(core.Bootstrap)
  */
 Object.addStatics("Array",
 {

@@ -11,6 +11,8 @@
 
 	/**
 	 * Adds useful non-standard extensions to the `String.prototype` like {#hyphenate}, {#startsWith} and {#contains}.
+	 *
+	 * #require(core.Bootstrap)
 	 */
 	Object.addMembers("String",
 	{

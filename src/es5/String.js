@@ -17,6 +17,8 @@
 
 	/**
 	 * Adds ES5 String methods if these are not implemented by the engine.
+	 *
+	 * #require(core.Bootstrap)
 	 */
 	Object.addMembers("String", 
 	{

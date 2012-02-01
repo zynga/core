@@ -5,18 +5,6 @@
 ==================================================================================================
 */
 
-// Include ES5 support if not natively supported
-if(!core.Env.isSet("es5")) 
-{
-	// These classes don't really exist, so we need to protect the access.
-	try{
-		core.es5.Array;
-		core.es5.Date;
-		core.es5.String;
-		core.es5.JSON;
-	} catch(ex) {};
-}
-
 (function(global, undef) 
 {
 	var genericToString = function() {

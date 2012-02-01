@@ -9,6 +9,8 @@
 
 /**
  * Adds useful non-standard extensions to the `Array.prototype` like {#min}, {#contains} and {#remove}.
+ *
+ * #require(core.Bootstrap)
  */
 Object.addStatics("Array", 
 {

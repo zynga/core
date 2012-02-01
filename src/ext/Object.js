@@ -7,6 +7,8 @@
 
 /**
  * Adds useful non-standard extensions to the Object class like {#fromArray} and {#values}.
+ *
+ * #require(core.Bootstrap)
  */
 Object.addStatics("Object", 
 {

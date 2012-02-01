@@ -31,6 +31,8 @@
 	{
 		/**
 		 * Adds a method for executing aribritary script content in global context. 
+		 *
+		 * #require(core.Bootstrap)
 		 */
 		Object.addStatics("global", 
 		{

@@ -5,6 +5,16 @@
 ==================================================================================================
 */
 
+/**
+ * #load(core.fix.ArrayIndexOf)
+ * #load(core.fix.Console)
+ * #load(core.fix.DateNow)
+ * #load(core.fix.DocumentHead)
+ * #load(core.fix.FunctionBind)
+ * #load(core.fix.HTML5Markup)
+ * #load(core.fix.ObjectKeys)
+ * #load(core.fix.TimeoutArgs)
+ */
 (function(global, toString, undef) {
 	
 	// defineProperty exists in IE8 but will error when trying to define a property on

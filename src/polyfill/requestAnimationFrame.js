@@ -43,6 +43,8 @@
 	
 	/**
 	 * Adds new style `requestAnimationFrame` API to browser engines which are missing it.
+	 *
+	 * #require(core.Bootstrap)
 	 */
 	Object.addStatics("global", 
 	{

@@ -38,7 +38,11 @@
 			}
 		}, true);
 		
-		/** Adds non-standard methods `setImmediate` and `clearImmediate` which were introduced by Firefox to the global object.*/
+		/** 
+		 * Adds non-standard methods `setImmediate` and `clearImmediate` which were introduced by Firefox to the global object.
+		 *
+		 * #require(core.Bootstrap)
+		 */
 		Object.addStatics("global",
 		{
 			/**

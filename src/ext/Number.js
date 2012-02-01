@@ -7,6 +7,8 @@
 
 /**
  * Adds useful non-standard extensions to the `Number.prototype` like {#pad}, {#times} and {#hex}.
+ *
+ * #require(core.Bootstrap)
  */
 Object.addMembers("Number",
 {

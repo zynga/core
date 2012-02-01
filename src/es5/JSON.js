@@ -9,6 +9,7 @@
  * JSON implementation for browsers who are missing native support.
  *
  * #custom(JSON)
+ * #require(core.Bootstrap)
  */
 
 /*
