@@ -31,6 +31,8 @@
 	 * return <code>null</code> when no other value is available. Otherwise an error is thrown whenever no value is
 	 * available.</li>
 	 * </ul>
+	 *
+	 * #break(core.property.Debug)
 	 */
 	core.Module("core.property.Simple",
 	{

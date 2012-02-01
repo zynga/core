@@ -205,6 +205,8 @@
 	 * <li><strong>themeable</strong>: Whether the property allows a themable value read dynamically from a theming system.
 	 * The object containing this property needs to implement a method <code>getThemedValue</code>.</li>
 	 * </ul>
+	 *
+	 * #break(core.property.Debug)
 	 */
 	core.Module("core.property.Multi",
 	{

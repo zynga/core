@@ -20,7 +20,11 @@
 	// Try catch to prevent access error to core.Env which is not yet existend
 	if (global.core)
 	{ 
-		// Include ES5 support if not natively supported
+		/**
+		 * Include ES5 support if not natively supported
+		 *
+		 * #break(core.Env)
+		 */
 		if (!core.Env.isSet("es5")) 
 		{
 			/**

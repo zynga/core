@@ -21,6 +21,7 @@
 	 * Define an interface with @name {String} using @config {Map} which can be used for validation of class instances.
 	 *
 	 * #require(core.Bootstrap)
+	 * #break(core.Class)
 	 */
 	Object.declareNamespace("core.Interface", function(name, config)
 	{
