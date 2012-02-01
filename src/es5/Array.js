@@ -14,7 +14,7 @@
 Object.addStatics("Array",
 {
 	/**
-	 * Implements ES5 `isArray` method.
+	 * Implements ES5 `isArray` method to verify whether @value {var} is an `Array`.
 	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/isArray
 	 */
 	isArray : function(value) {

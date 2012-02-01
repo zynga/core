@@ -13,9 +13,13 @@
  */
 Object.addMembers("Date",
 {
-	// ES5 15.9.5.43
-	// Format a Date object as a string according to a subset of the ISO-8601 standard.
-	// Useful in Atom, among other things.
+	/**
+	 * Converts the `Date` instance to an ISO string representation.
+	 *
+	 * - ES5 15.9.5.43
+	 * - Format a Date object as a string according to a subset of the ISO-8601 standard.
+	 * - Useful in Atom, among other things.
+	 */
 	toISOString : function() 
 	{
 		return (
@@ -28,7 +32,12 @@ Object.addMembers("Date",
 		);
 	},
 	
-	// ES5 15.9.5.44
+	/**
+	 * Converts the `Date` instance to a JSON representation.
+	 *
+	 * - @key is currently unused.
+	 * - ES5 15.9.5.44
+	 */
 	toJSON : function(key) 
 	{
 		// This function provides a String representation of a Date object for
