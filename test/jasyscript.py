@@ -6,6 +6,8 @@ def test():
     session.addProject(Project("."))
     
     resolver = Resolver(session.getProjects())
+    resolver.addClassName("jquery")
+    resolver.addClassName("qunit")
     resolver.addClassName("tests")
     classes = Sorter(resolver).getSortedClasses()
 
