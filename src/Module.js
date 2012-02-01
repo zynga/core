@@ -16,17 +16,6 @@
 		return "[module " + this.moduleName + "]";
 	};
 	
-	// Include ES5 support if not natively supported
-	if(!core.Env.isSet("es5")) 
-	{
-		/**
-		 * #require(core.es5.Array)
-		 * #require(core.es5.Date)
-		 * #require(core.es5.String)
-		 * #require(core.es5.JSON)
-		 */
-		null;
-	}
 
 	/**
 	 * Define a module with the given @name {String} with static @members {Map} being attached.
