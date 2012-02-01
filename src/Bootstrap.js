@@ -6,7 +6,6 @@
 */
 
 /**
- * #load(core.fix.ArrayIndexOf)
  * #load(core.fix.Console)
  * #load(core.fix.DateNow)
  * #load(core.fix.DocumentHead)
