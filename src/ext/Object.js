@@ -28,6 +28,7 @@ Object.addStatics("Object",
 		return obj;
 	},
 	
+	
 	/**
 	 * {Array} Returns all the values of the given @object {Map}.
 	 */
@@ -36,6 +37,35 @@ Object.addStatics("Object",
 		return Object.keys(object).map(function(key) {
 			return object[key];
 		});
+	},
+	
+	
+	/**
+	 * {String} Validates the @object {Map} to don't hold other keys than the ones defined by @allowed {Array}. 
+	 * Returns first non matching key which was found or `undefined` if all keys are valid.
+	 */
+	validateKeys : function(object, allowed) 
+	{
+		// Build lookup table
+		var set = {};
+		for (var i=0, l=allowed.length; i<l; i++) {
+			set[allowed[i]] = true;
+		}
+		
+		// Collect used keys
+		var list = Object.keys(object);
+		
+		// Validate keys
+		var invalid = [];
+		for (var i=0, l=list.length; i<l; i++) 
+		{
+			var current = list[i];
+			if (!set[current]) {
+				invalid.push(current);
+			}
+		}
+		
+		return invalid;
 	}
 });
 

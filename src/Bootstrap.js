@@ -40,12 +40,8 @@
 	 * Add @statics {Map} to the object found under the given @name {String}.
 	 * It is possible to control whether to @keep {Boolean?false} existing statics.
 	 */
-	function addStatics(name, statics, keep) 
+	var addStatics = function(name, statics, keep) 
 	{
-		if (typeof name != "string") {
-			throw new Error("Invalid name: " + name);
-		}
-		
 		var object = global[name] || cache[name];
 		var prefix = name + ".";
 		for (var staticName in statics) 
@@ -67,12 +63,8 @@
 	 * Add @members {Map} to the prototype of the object found under the given @name {String}.
 	 * It is possible to control whether to @keep {Boolean?false} existing members.
 	 */
-	function addMembers(name, members, keep) 
+	var addMembers = function(name, members, keep) 
 	{
-		if (typeof name != "string") {
-			throw new Error("Invalid name: " + name);
-		}
-		
 		var object = global[name] || cache[name];
 		var proto = object.prototype;
 		var prefix = name + ".prototype.";
@@ -90,218 +82,12 @@
 		}
 	}
 	
-	
-	/**
-	 * {Object} Declares the given @name {String} and stores the given @object {Object|Function} onto it.
-	 */
-	function declareNamespace(name, object)
-	{
-		var splits = name.split(".");
-		var current = global;
-		var length = splits.length-1;
-		var segment;
-		var i = 0;
-
-		while(i<length)
-		{
-			segment = splits[i++];
-			if (current[segment] == null) {
-				current = current[segment] = {};
-			} else {
-				current = current[segment];
-			}
-		}
-
-		return cache[name] = current[splits[i]] = object;
-	}
-	
-	
-	/**
-	 * {Array} Returns all registers names (modules, interfaces, classes, etc.)
-	 */
-	function getNamespaces() {
-		return Object.keys(cache);
-	}
-
-
-	/**
-	 * {Boolean} Clears the object under the given @name {String} (including name cache) and returns if that was successful.
-	 */
-	function clearNamespace(name)
-	{
-		if (name in cache)
-		{
-			delete cache[name];
-
-			var current = global;
-			var splitted = name.split(".");
-			for (var i=0, l=splitted.length-1; i<l; i++) {
-				current = current[splitted[i]];
-			}
-
-			// Delete might not work when global object is affected
-			try{
-				delete current[splitted[i]];
-			} catch(ex) {
-				current[splitted[i]] = undef;
-			}
-
-			return true;
-		}
-
-		return false;
-	}
-
-
-	/**
-	 * {Object|Function|Array} Resolves a given @name {String} into the item stored unter it.
-	 */
-	function resolveNamespace(name)
-	{
-		var current = cache[name];
-		if (!current)
-		{
-			current = global;
-			if (name)
-			{
-				var splitted = name.split(".");
-				for (var i=0, l=splitted.length; i<l; i++)
-				{
-					current = current[splitted[i]];
-					if (!current)
-					{
-						current = null;
-						break;
-					}
-				}
-			}
-		}
-
-		return current;
-	}
-	
-
-	/**
-	 * {Boolean} Whether the given @object {Object} or the @property {String?} inside the given object is a native host type.
-	 */
-	function isHostType(object, property) 
-	{
-		var type = object != null ? typeof object[property] : 'number';
-		return !/^(?:boolean|number|string|undefined)$/.test(type) && (type == 'object' ? !!object[property] : true);
-	}
-
-
-	// Prefill cache for `isClassOf`
+	// Prefill cache
 	var toStringMap = {};
 	var classes = "Array Function RegExp Object Date Number String Boolean";
 	classes.replace(/\w+/g, function(cls) {
 		toStringMap[cls] = "[object " + cls + "]";
 	});
-	
-	
-	/**
-	 * {Boolean} Whether the given @value {var} is an instance of the given native class @name {String}.
-	 *
-	 * Supports these classes:
-	 *
-	 * - `Array`
-	 * - `Function`
-	 * - `RegExp`
-	 * - `Object`
-	 * - `Date`
-	 * - `Number`
-	 * - `String`
-	 * - `Boolean`
-	 */
-	function isClassOf(value, name) {
-		return value != null && toString.call(value) == toStringMap[name];
-	}
-	
-	
-	/**
-	 * {Boolean} Whether the given @value {var} is of the given @type {String}.
-	 *
-	 * Supports all class checks support by `isClassOf` but also:
-	 * 
-	 * - `Native`
-	 * - `Map`
-	 * - `Integer`
-	 * - `Primitive`
-	 */
-	function isTypeOf(value, type) 
-	{
-		var result;
-		
-		if (toStringMap[type]) 
-		{
-			result = isClassOf(value, type);
-		}
-		else if (type == "Native")
-		{
-			result = isHostType(value);
-		}
-		else if (type == "Map") 
-		{
-			result = isClassOf(value, "Object") && value.constructor === Object;
-		}
-		else if (type == "Integer") 
-		{
-			result = isClassOf(value, "Number") && (~~value) == value;
-		} 
-		else if (type == "Primitive") 
-		{
-			var type = typeof value;
-			result = value == null || type == "boolean" || type == "number" || type == "string";
-		}
-		else if (global.console)
-		{
-			console.warn("Unsupported type call to Object.isTypeOf(): " + type);
-		}
-		
-		return result;
-	}
-	
-	var types = "Native Map Integer Primitive";
-	
-	
-	/**
-	 * {String} Validates the @object {Map} to don't hold other keys than the ones defined by @allowed {Array}. 
-	 * Returns first non matching key which was found or `undefined` if all keys are valid.
-	 */
-	function validateKeys(object, allowed) 
-	{
-		// Build lookup table
-		var set = {};
-		for (var i=0, l=allowed.length; i<l; i++) {
-			set[allowed[i]] = true;
-		}
-		
-		// Collect used keys
-		var list = Object.keys(object);
-		
-		// Validate keys
-		var invalid = [];
-		for (var i=0, l=list.length; i<l; i++) 
-		{
-			var current = list[i];
-			if (!set[current]) {
-				invalid.push(current);
-			}
-		}
-		
-		return invalid;
-	}	
-	
-	function arrayToSet(array) 
-	{
-		var set = {};
-		for (var i=0, l=array.length; i<l; i++) {
-			set[array[i]] = true;
-		}
-		
-		return set;
-	}
-	
 	
 	// Temporary hack to make next statement workable
 	Object.addStatics = addStatics;
@@ -311,25 +97,144 @@
 	 */
 	Object.addStatics("Object", 
 	{
-		/** {=Set} Set of classes which are supported */
-		CLASSES: arrayToSet(classes.split(" ")),
+		/** {=Array} Set of types which are supported */
+		TYPES: (classes + " Null Native Map Integer Primitive").split(" "),
 		
-		/** {=Set} Set of types which are supported */
-		TYPES: arrayToSet(types.split(" ")),
+		/**
+		 * {Boolean} Whether the given @value {var} is of the given @type {String}.
+		 *
+		 * Supports these types:
+		 * 
+		 * - `Null`
+		 * - `Array`
+		 * - `Function`
+		 * - `RegExp`
+		 * - `Object`
+		 * - `Date`
+		 * - `Number`
+		 * - `String`
+		 * - `Boolean`
+		 * - `Map`
+		 * - `Integer`
+		 * - `Primitive`
+		 */
+		isTypeOf : function(value, type) 
+		{
+			var result;
+
+			if (value == null) 
+			{
+				result = type == "Null";
+			}
+			else if (type in toStringMap) 
+			{
+				result = toString.call(value) == toStringMap[type];
+			}
+			else if (type == "Map") 
+			{
+				result = toString.call(value) == toStringMap.Object && value.constructor === Object;
+			}
+			else if (type == "Integer") 
+			{
+				result = toString.call(value) == toStringMap.Number && (~~value) == value;
+			} 
+			else if (type == "Primitive") 
+			{
+				var type = typeof value;
+				result = value == null || type == "boolean" || type == "number" || type == "string";
+			}
+			else if (global.console)
+			{
+				console.warn("Unsupported type call to Object.isTypeOf(): " + type);
+			}
+
+			return result;
+		},
 		
-		declareNamespace : declareNamespace,
-		getNamespaces: getNamespaces,
-		clearNamespace: clearNamespace,
-		resolveNamespace: resolveNamespace,
+
+		/**
+		 * {Object} Declares the given @name {String} and stores the given @object {Object|Function} onto it.
+		 */
+		declareNamespace : function (name, object)
+		{
+			var splits = name.split(".");
+			var current = global;
+			var length = splits.length-1;
+			var segment;
+			var i = 0;
+
+			while(i<length)
+			{
+				segment = splits[i++];
+				if (current[segment] == null) {
+					current = current[segment] = {};
+				} else {
+					current = current[segment];
+				}
+			}
+
+			return cache[name] = current[splits[i]] = object;
+		},
+		
+
+		/**
+		 * {Boolean} Clears the object under the given @name {String} (including name cache) and returns if that was successful.
+		 */
+		clearNamespace: function(name)
+		{
+			if (name in cache)
+			{
+				delete cache[name];
+
+				var current = global;
+				var splitted = name.split(".");
+				for (var i=0, l=splitted.length-1; i<l; i++) {
+					current = current[splitted[i]];
+				}
+
+				// Delete might not work when global object is affected
+				try{
+					delete current[splitted[i]];
+				} catch(ex) {
+					current[splitted[i]] = undef;
+				}
+
+				return true;
+			}
+
+			return false;
+		},
+		
+
+		/**
+		 * {Object|Function|Array} Resolves a given @name {String} into the item stored unter it.
+		 */
+		resolveNamespace: function(name)
+		{
+			var current = cache[name];
+			if (!current)
+			{
+				current = global;
+				if (name)
+				{
+					var splitted = name.split(".");
+					for (var i=0, l=splitted.length; i<l; i++)
+					{
+						current = current[splitted[i]];
+						if (!current)
+						{
+							current = null;
+							break;
+						}
+					}
+				}
+			}
+
+			return current;
+		},
 
 		addStatics : addStatics,
-		addMembers : addMembers,
-		
-		validateKeys : validateKeys,
-
-		isHostType : isHostType,
-		isClassOf : isClassOf,
-		isTypeOf : isTypeOf
+		addMembers : addMembers
 	});
 	
 })(this, Object.prototype.toString);

@@ -164,6 +164,7 @@ if(!core.Env.isSet("es5"))
 			
 			core.Assert.isType(config, "Map", "Invalid class configuration in " + name);
 			
+			/** #require(core.ext.Object) */
 			var invalidKeys = Object.validateKeys(config, "construct,events,members,properties,include,implement".split(","));
 			if (invalidKeys.length > 0) {
 				throw new Error("Class declaration of " + name + " contains invalid configuration keys: " + invalidKeys.join(", ") + "!");

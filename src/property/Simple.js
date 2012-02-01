@@ -59,6 +59,7 @@
 			// Validation
 			if (core.Env.isSet("debug"))
 			{
+				/** #require(core.ext.Object) */
 				var invalidKeys = Object.validateKeys(config, "name,nullable,init,type,fire,apply".split(","));
 				if (invalidKeys.length > 0) {
 					throw new Error("Property declaration of " + propertyName + " contains invalid configuration keys: " + invalidKeys.join(", ") + "!");
