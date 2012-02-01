@@ -66,7 +66,7 @@ core.Module("core.property.Debug",
 					{
 						core.Interface.assert(value, type);
 					} 
-					else if (Object.TYPES[type])
+					else if (Object.TYPES.indexOf(type) != -1)
 					{
 						core.Assert.isType(value, type);
 					}
