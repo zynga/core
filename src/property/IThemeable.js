@@ -13,8 +13,9 @@ core.Interface("core.property.IThemeable",
 	members : 
 	{
 		/**
-		 * Returns the themed value of the given property
+		 * {var} Returns the themed value of the given @property {String}.
 		 */
 		getThemedValue : function(property) {}
 	}
 });
+ 

@@ -13,7 +13,7 @@ core.Interface("core.property.IInheritable",
 	members : 
 	{
 		/**
-		 * Returns the inherited value of the given property
+		 * {var} Returns the inherited value of the given @property {String}.
 		 */
 		getInheritedValue : function(property) {}
 	}
