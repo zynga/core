@@ -10,6 +10,7 @@
 	var root = document.documentElement;
 	var request, cancel, is;
 
+	// See also: http://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
 	if (root.requestFullScreen) 
 	{
 		/**
