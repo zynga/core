@@ -26,7 +26,7 @@
 			
 			str = Util.strToUtf8(str);
 			
-			return Util.bigEndianToRawString(binb_sha256(Util.rawStringToBigEndian(str), str.length * 8));
+			return Util.strToHex(Util.bigEndianToRawString(binb_sha256(Util.rawStringToBigEndian(str), str.length * 8)));
 
 		},
 		
@@ -60,7 +60,7 @@
 			}
 
 			var hash = binb_sha256(ipad.concat(Util.rawStringToBigEndian(str)), 512 + str.length * 8);
-			return Util.bigEndianToRawString(binb_sha256(opad.concat(hash), 512 + 256));
+			return Util.strToHex(Util.bigEndianToRawString(binb_sha256(opad.concat(hash), 512 + 256)));
 			
 		}
 	});

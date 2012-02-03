@@ -390,52 +390,43 @@ $(function() {
 	
 	test("MD5", function() {
 
-		strictEqual(core.crypt.MD5.checksum("hello world").hex(), "5eb63bbbe01eeed093cb22bb8f5acdc3");
-		strictEqual(core.crypt.MD5.checksum("hello karl").hex(), "967f3d167631b54ea74b380e439ec2d5");
-		strictEqual(core.crypt.MD5.checksum("günthér falit°@").hex(), "c901b2c94c101e0c2fdb2c96a041ceda");
+		strictEqual(core.crypt.MD5.checksum("hello world"), "5eb63bbbe01eeed093cb22bb8f5acdc3");
+		strictEqual(core.crypt.MD5.checksum("hello karl"), "967f3d167631b54ea74b380e439ec2d5");
+		strictEqual(core.crypt.MD5.checksum("günthér falit°@"), "c901b2c94c101e0c2fdb2c96a041ceda");
 		
-		strictEqual(btoa(core.crypt.MD5.checksum("hello world")), "XrY7u+Ae7tCTyyK7j1rNww==");
-		strictEqual(btoa(core.crypt.MD5.checksum("hello karl")), "ln89FnYxtU6nSzgOQ57C1Q==");
+		strictEqual(core.crypt.MD5.hmac("secret", "hello world"), "78d6997b1230f38e59b6d1642dfaa3a4");
+		strictEqual(core.crypt.MD5.hmac("secret", "hello karl"), "1df06dd6ad23a62de80b713bdfc5f59f");
 		
-		strictEqual(core.crypt.MD5.hmac("secret", "hello world").hex(), "78d6997b1230f38e59b6d1642dfaa3a4");
-		strictEqual(core.crypt.MD5.hmac("secret", "hello karl").hex(), "1df06dd6ad23a62de80b713bdfc5f59f");
-		
-		strictEqual(core.crypt.MD5.hmac("other secret", "hello world").hex(), "614ff83602727ee68fba3e9500856fad");
-		strictEqual(core.crypt.MD5.hmac("other secret", "hello karl").hex(), "71b406e27e5184663c0c01448b57c5a7");
+		strictEqual(core.crypt.MD5.hmac("other secret", "hello world"), "614ff83602727ee68fba3e9500856fad");
+		strictEqual(core.crypt.MD5.hmac("other secret", "hello karl"), "71b406e27e5184663c0c01448b57c5a7");
 		
 	});
 	
 	test("SHA1", function() {
 		
-		strictEqual(core.crypt.SHA1.checksum("hello world").hex(), "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed");
-		strictEqual(core.crypt.SHA1.checksum("hello karl").hex(), "1665bcf30c12443dbb332b84590123f7d544500b");
-		strictEqual(core.crypt.SHA1.checksum("günthér falit°@").hex(), "01695e64d0f83e453281f385209884e94784c7bf");
+		strictEqual(core.crypt.SHA1.checksum("hello world"), "2aae6c35c94fcfb415dbe95f408b9ce91ee846ed");
+		strictEqual(core.crypt.SHA1.checksum("hello karl"), "1665bcf30c12443dbb332b84590123f7d544500b");
+		strictEqual(core.crypt.SHA1.checksum("günthér falit°@"), "01695e64d0f83e453281f385209884e94784c7bf");
 
-		strictEqual(btoa(core.crypt.SHA1.checksum("hello world")), "Kq5sNclPz7QV2+lfQIuc6R7oRu0=");
-		strictEqual(btoa(core.crypt.SHA1.checksum("hello karl")), "FmW88wwSRD27MyuEWQEj99VEUAs=");
+		strictEqual(core.crypt.SHA1.hmac("secret", "hello world"), "03376ee7ad7bbfceee98660439a4d8b125122a5a");
+		strictEqual(core.crypt.SHA1.hmac("secret", "hello karl"), "1de9256cf6805f714a59b69806647b34315ae6ad");
 		
-		strictEqual(core.crypt.SHA1.hmac("secret", "hello world").hex(), "03376ee7ad7bbfceee98660439a4d8b125122a5a");
-		strictEqual(core.crypt.SHA1.hmac("secret", "hello karl").hex(), "1de9256cf6805f714a59b69806647b34315ae6ad");
-		
-		strictEqual(core.crypt.SHA1.hmac("other secret", "hello world").hex(), "2b7dd1114abb301c6a3879612c040db1dc76efe7");
-		strictEqual(core.crypt.SHA1.hmac("other secret", "hello karl").hex(), "1005fc78d9e3c525c72c3dcaef4ec2d1ae2d638d");
+		strictEqual(core.crypt.SHA1.hmac("other secret", "hello world"), "2b7dd1114abb301c6a3879612c040db1dc76efe7");
+		strictEqual(core.crypt.SHA1.hmac("other secret", "hello karl"), "1005fc78d9e3c525c72c3dcaef4ec2d1ae2d638d");
 
 	});
 	
 	test("SHA256", function() {
 
-		strictEqual(core.crypt.SHA256.checksum("hello world").hex(), "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9");
-		strictEqual(core.crypt.SHA256.checksum("hello karl").hex(), "710e9c35558708b24698b55e5e890b506fc946558b3aaa4b356ba008e4edc860");
-		strictEqual(core.crypt.SHA256.checksum("günthér falit°@").hex(), "2b62c8f744680ed05d50246db24cdbc491532f185a736c72e7cd94a7bbd41e77");
+		strictEqual(core.crypt.SHA256.checksum("hello world"), "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9");
+		strictEqual(core.crypt.SHA256.checksum("hello karl"), "710e9c35558708b24698b55e5e890b506fc946558b3aaa4b356ba008e4edc860");
+		strictEqual(core.crypt.SHA256.checksum("günthér falit°@"), "2b62c8f744680ed05d50246db24cdbc491532f185a736c72e7cd94a7bbd41e77");
 
-		strictEqual(btoa(core.crypt.SHA256.checksum("hello world")), "uU0nuZNNPgilLlLX2n2r+sSE7+N6U4DukIj3rOLvzek=");
-		strictEqual(btoa(core.crypt.SHA256.checksum("hello karl")), "cQ6cNVWHCLJGmLVeXokLUG/JRlWLOqpLNWugCOTtyGA=");
+		strictEqual(core.crypt.SHA256.hmac("secret", "hello world"), "734cc62f32841568f45715aeb9f4d7891324e6d948e4c6c60c0621cdac48623a");
+		strictEqual(core.crypt.SHA256.hmac("secret", "hello karl"), "22585ec85d81b38049d3446dd109507bd6d72478b07ef35efb4767260fe09715");
 		
-		strictEqual(core.crypt.SHA256.hmac("secret", "hello world").hex(), "734cc62f32841568f45715aeb9f4d7891324e6d948e4c6c60c0621cdac48623a");
-		strictEqual(core.crypt.SHA256.hmac("secret", "hello karl").hex(), "22585ec85d81b38049d3446dd109507bd6d72478b07ef35efb4767260fe09715");
-		
-		strictEqual(core.crypt.SHA256.hmac("other secret", "hello world").hex(), "02113759509b1c7ae0deaee8f022d84f828e7d46ae9255044c3d801ad2b09a39");
-		strictEqual(core.crypt.SHA256.hmac("other secret", "hello karl").hex(), "17f71ee9084ade98ed82ee4153ceb47707381e5852b473fb77eb8632e06e8bb8");
+		strictEqual(core.crypt.SHA256.hmac("other secret", "hello world"), "02113759509b1c7ae0deaee8f022d84f828e7d46ae9255044c3d801ad2b09a39");
+		strictEqual(core.crypt.SHA256.hmac("other secret", "hello karl"), "17f71ee9084ade98ed82ee4153ceb47707381e5852b473fb77eb8632e06e8bb8");
 
 	});
 	

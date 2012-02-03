@@ -22,9 +22,9 @@
 			var output = "";
 			var code;
 
-			for (var i = 0, l = this.length; i < l; i++)
+			for (var i = 0, l = input.length; i < l; i++)
 			{
-				code = this.charCodeAt(i);
+				code = input.charCodeAt(i);
 				output += hexTable[(code >>> 4) & 0x0F] + hexTable[code & 0x0F];
 			}
 

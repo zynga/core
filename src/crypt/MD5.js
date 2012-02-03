@@ -26,7 +26,7 @@
 			str = Util.strToUtf8(str);
 			var md5 = binl_md5(Util.rawStringToLittleEndian(str), str.length * 8);
 			
-			return Util.littleEndianToRawString(md5);
+			return Util.strToHex(Util.littleEndianToRawString(md5));
 		},
 
 
@@ -59,7 +59,7 @@
 			}
 
 			var hash = binl_md5(ipad.concat(Util.rawStringToLittleEndian(str)), 512 + str.length * 8);
-			return Util.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128));
+			return Util.strToHex(Util.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128)));
 			
 		}
 	});
