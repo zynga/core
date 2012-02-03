@@ -12,6 +12,8 @@
 
 /**
  * Adds support for extra parameters for setInterval/setTimeout for browsers (IE, ...) missing it
+ *
+ * #require(core.Bootstrap)
  */
 (function(global, undef) 
 {

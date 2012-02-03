@@ -7,6 +7,8 @@
 
 /**
  * Fixes missing `Date.now()` in older browser engines.
+ *
+ * #require(core.Bootstrap)
  */
 Object.addStatics("Date", 
 {

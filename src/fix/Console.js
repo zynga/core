@@ -12,6 +12,7 @@
  * to `console.log` automatically.
  *
  * #custom(console)
+ * #require(core.Bootstrap)
  */
 (function(global)
 {

@@ -10,6 +10,7 @@ def build():
     resolver.addClassName("qunit")
     resolver.addClassName("tests")
     classes = Sorter(resolver).getSortedClasses()
+    print(classes)
     
     storeCompressed("build.js", classes, formatting=Formatting("semicolon", "comma"))
     
