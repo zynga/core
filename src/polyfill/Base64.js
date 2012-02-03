@@ -94,6 +94,6 @@
 
 			return chars.join("");
 		}
-	});
+	}, true);
 
 }(this));
