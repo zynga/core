@@ -69,7 +69,7 @@
 			/**
 			 * @require {core.ext.String}
 			 */
-			return core.crypt.SHA1.checksum(key.join(";")).hex();
+			return core.crypt.SHA1.checksum(key.join(";"));
 		})();
 	}
 	else
