@@ -15,6 +15,24 @@
 	core.Module("core.crypt.Util", 
 	{
 		/**
+		 * {String} Convert the @input {String} to a hex string
+		 */
+		strToHex: function(input) 
+		{
+			var output = "";
+			var code;
+
+			for (var i = 0, l = this.length; i < l; i++)
+			{
+				code = this.charCodeAt(i);
+				output += hexTable[(code >>> 4) & 0x0F] + hexTable[code & 0x0F];
+			}
+
+			return output;
+		},
+		
+		
+		/**
 		 * {String} Encodes @input {String} as utf-8.
 		 *
 		 * For efficiency, this assumes the input is valid utf-16.

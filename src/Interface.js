@@ -202,9 +202,7 @@
 
 
 		/**
-		 * Whether the given object is a @iface {Interface}.
-		 *
-		 * @return {Boolean} Whether the given argument is an valid Interface.
+		 * {Boolean} Whether the given object is a @iface {Interface}.
 		 */
 		isInterface : function(iface) {
 			return !!(iface && typeof iface == "object" && iface.__isInterface);

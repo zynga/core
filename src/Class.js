@@ -374,8 +374,6 @@
 	
 	/**
 	 * {Boolean} Returns whether the given @object {Object} is a class.
-	 *
-	 * @return  Whether the given argument is an valid Class.
 	 */
 	var isClass = function(object) {
 		return !!(object && typeof object == "function" && object.__isClass);

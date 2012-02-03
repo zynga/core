@@ -17,30 +17,7 @@
 	Object.addMembers("String",
 	{
 		/**
-		 * Convert a string to a hex string
-		 * 
-		 * @return {String} A hex representation of the string
-		 */
-		hex : function()
-		{
-			
-			var output = "";
-			var code;
-
-			for (var i = 0, l = this.length; i < l; i++)
-			{
-				code = this.charCodeAt(i);
-				output += hexTable[(code >>> 4) & 0x0F] + hexTable[code & 0x0F];
-			}
-
-			return output;
-		},
-		
-
-		/**
-		 * Converts a string to a base64 string 
-		 * 
-		 * @return {String} A base64 representation of the string
+		 * {String} Converts a string to a base64 string 
 		 */
 		base64: function() {
 			return btoa(this);
