@@ -27,11 +27,16 @@
 			
 	var cache = {};
 		
-			
+	
+	/**
+	 * This is a compiler for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
+	 * For information on Mustache, see the [manpage](http://mustache.github.com/mustache.5.html) and the [spec](https://github.com/mustache/spec).
+	 *
+	 */
 	core.Module("core.template.Compiler",
 	{
 		/**
-		 *
+		 * {String[]} Tokenizer for template @text {String} using the defined @delimiters {String}. Returns an array of tokens.
 		 */
 		scan : function scan(text, delimiters) {
 			var len = text.length,
@@ -164,7 +169,9 @@
 		
 		
 		/**
-		 *
+		 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
+		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
+		 * the original @text {String} for template construction. Configuration happens using @options {Map}.
 		 */
 		generate : function (code, text, options) {
 			if (options.asString) {
@@ -176,15 +183,20 @@
 		
 		
 		/**
-		 *
+		 * {Array} Processes the @tokens {String[]} from {#scan} to create and return a tree.
+		 * Configuration happens using @options {Map}.
 		 */
 		parse : function(tokens, text, options) {
 			options = options || {};
 			return buildTree(tokens, '', [], options.sectionTags || []);
 		},
 		
+		
 		/**
-		 *
+		 * {core.template.Template} Translates the tree from {#parse} into actual JavaScript 
+		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields.
+		 * Configuration happens using @options {Map}. Uses a caching mechanism to prevent
+		 * re-compiling identication templates.
 		 */
 		compile : function(text, options) {
 			// options
@@ -211,7 +223,6 @@
 			t = this.generate(writeCode(this.parse(this.scan(text, options.delimiters), text, options)), text, options);
 			return cache[key] = t;
 		}
-		
 		
 	});
 	
