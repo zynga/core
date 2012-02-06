@@ -25,6 +25,8 @@
 				'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
 			};
 			
+	var cache = {};
+		
 			
 	core.Module("core.template.Compiler",
 	{
@@ -168,8 +170,8 @@
 			if (options.asString) {
 				return 'function(c,p,i){' + code + ';}';
 			}
-
-			return new core.template.Template(new Function('c', 'p', 'i', code), text, Hogan, options);
+			
+			return new core.template.Template(new Function('c', 'p', 'i', code), text, this, options);
 		},
 		
 		
@@ -200,14 +202,14 @@
 
 			var key = text + '||' + !!options.asString;
 
-			var t = this.cache[key];
+			var t = cache[key];
 
 			if (t) {
 				return t;
 			}
 
 			t = this.generate(writeCode(this.parse(this.scan(text, options.delimiters), text, options)), text, options);
-			return this.cache[key] = t;
+			return cache[key] = t;
 		}
 		
 		

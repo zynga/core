@@ -363,6 +363,29 @@ $(function() {
 	
 	
 	
+	/*
+	---------------------------------------------------------------------------
+		TEMPLATE
+	---------------------------------------------------------------------------
+	*/
+	
+	module("Template");
+	
+	test("Template", function() {
+		
+		var template = core.template.Compiler.compile("Follow @{{screenName}}.");
+		
+		ok(template instanceof core.template.Template)
+
+		var output = template.render({
+		  screenName: "dhg",
+		});
+		
+		equal(output, "Follow @dhg.")
+		
+	});
+	
+	
 	
 	/*
 	---------------------------------------------------------------------------
