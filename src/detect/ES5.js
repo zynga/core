@@ -9,6 +9,7 @@
  * Checks whether the ES5 extensions should be loaded to fix missing engine functions.
  *
  * - Array.isArray
+ * 
  * - Array.prototype.forEach
  * - Array.prototype.map
  * - Array.prototype.filter

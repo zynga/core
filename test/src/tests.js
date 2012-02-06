@@ -371,11 +371,10 @@ $(function() {
 	
 	module("Template");
 	
-	test("Template", function() {
+	test("Basic", function() {
 		
 		var template = core.template.Compiler.compile("Follow @{{screenName}}.");
-		
-		ok(template instanceof core.template.Template)
+		ok(template instanceof core.template.Template);
 
 		var output = template.render({
 		  screenName: "dhg",
@@ -387,9 +386,58 @@ $(function() {
 		  screenName: "wpbasti",
 		});
 		
-		equal(output, "Follow @wpbasti.")		
+		equal(output, "Follow @wpbasti.");
 		
 	});
+	
+	test("Lists", function() {
+
+		var template = core.template.Compiler.compile("{{#repo}}<b>{{name}}</b>{{/repo}}")
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "repo": [
+		    { "name": "resque" },
+		    { "name": "hub" },
+		    { "name": "rip" },
+		  ]
+		});
+		
+		equal(output, "<b>resque</b><b>hub</b><b>rip</b>");
+		
+	});
+	
+	test("Lambdas", function() {
+
+		var template = core.template.Compiler.compile("{{#wrapped}}{{name}} is awesome.{{/wrapped}}")
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "name": "Willy",
+		  "wrapped": function() {
+		    return function(text) {
+		      return "<b>" + text + "</b>"
+		    }
+		  }
+		});
+		
+		equal(output, "<b>Willy is awesome.</b>");
+		
+	});
+	
+	test("Non False", function() {
+
+		var template = core.template.Compiler.compile("{{#person?}}Hi {{name}}!{{/person?}}")
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "person?": { "name": "Jon" }
+		});
+		
+		equal(output, "Hi Jon!");
+		
+	});	
+
 	
 	test("Parser", function() {
 		
