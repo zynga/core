@@ -7,6 +7,12 @@ Version 0.5-Beta1
 - Cleanup of some old modules and classes
 
 
+Version 0.3.1
+=============
+
+- Minor bugfixes
+
+
 Version 0.3
 ===========
 
