@@ -1,5 +1,5 @@
-Version 0.5-Beta1
-=================
+0.5-Beta1
+=========
 
 - Reworked polyfills, ES5 fixes etc. to work with new Jasy API documentation support.
 - Changed structure of bootstrap/kernel. Splitted out some core features into Bootstrap.js
@@ -7,13 +7,13 @@ Version 0.5-Beta1
 - Cleanup of some old modules and classes
 
 
-Version 0.3.1
-=============
+0.3.1
+=====
 
 - Minor bugfixes
 
 
-Version 0.3
-===========
+0.3
+===
 
 - Initial Public Release
