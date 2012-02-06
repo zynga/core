@@ -381,7 +381,25 @@ $(function() {
 		  screenName: "dhg",
 		});
 		
-		equal(output, "Follow @dhg.")
+		equal(output, "Follow @dhg.");
+		
+		var output = template.render({
+		  screenName: "wpbasti",
+		});
+		
+		equal(output, "Follow @wpbasti.")		
+		
+	});
+	
+	test("Parser", function() {
+		
+		var text = "{{^check}}No{{/check}}{{#check}}Yes{{/check}}";
+		var tree = core.template.Compiler.parse(core.template.Compiler.scan(text));
+
+		equals(tree[0].tag, "^");
+		equals(tree[0].n, "check");
+		equals(tree[1].tag, "#");
+		equals(tree[1].n, "check");
 		
 	});
 	
