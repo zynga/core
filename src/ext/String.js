@@ -19,8 +19,36 @@
 		/**
 		 * {String} Converts a string to a base64 string 
 		 */
-		base64: function() {
+		encodeBase64: function() {
 			return btoa(this);
+		},
+		
+
+		/**
+		 * {String} Converts a string to a base64 string 
+		 */
+		decodeBase64: function() {
+			return atob(this);
+		},
+
+		
+		/**
+		 * {String} Encodes the string as UTF-8.
+		 *
+		 * Via: http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html
+		 */
+		encodeUtf8: function() {
+			return unescape(encodeURIComponent(this));
+		},
+		
+		
+		/**
+		 * {String} Decodes the string from UTF-8.
+		 *
+		 * Via: http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html
+		 */
+		decodeUtf8: function() {
+			return decodeURIComponent(escape(this));
 		},
 
 
