@@ -19,19 +19,19 @@
 	core.Module("core.crypt.MD5", 
 	{
 		/**
-		 * {String} Returns the MD5 checksum of the given @str {String}.
+		 * {String} Returns the MD5 checksum of the given @str {String} as a raw string.
 		 */
 		checksum : function(str) { 
 			
 			str = str.encodeUtf8();
 			var md5 = binl_md5(Util.rawStringToLittleEndian(str), str.length * 8);
 			
-			return Util.strToHex(Util.littleEndianToRawString(md5));
+			return Util.littleEndianToRawString(md5);
 		},
 
 
 		/**
-		 * {String} Returns a HMAC (Hash-based Message Authentication Code) using the MD5 hash function. 
+		 * {String} Returns a HMAC (Hash-based Message Authentication Code) using the MD5 hash function as a raw string.
 		 *
 		 * HMAC is a specific construction for calculating a message authentication code (MAC) involving a 
 		 * cryptographic hash function in combination with a secret key.
@@ -59,7 +59,7 @@
 			}
 
 			var hash = binl_md5(ipad.concat(Util.rawStringToLittleEndian(str)), 512 + str.length * 8);
-			return Util.strToHex(Util.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128)));
+			return Util.littleEndianToRawString(binl_md5(opad.concat(hash), 512 + 128));
 			
 		}
 	});
@@ -68,7 +68,7 @@
 	/*
 	 * Calculate the MD5 of an array of little-endian words, and a bit length.
 	 */
-	function binl_md5(x, len)
+	var binl_md5 = function(x, len)
 	{
 		/* append padding */
 		x[len >> 5] |= 0x80 << ((len) % 32);
@@ -161,48 +161,48 @@
 		}
 		
 		return Array(a, b, c, d);
-	}
+	};
 
 	/*
 	 * These functions implement the four basic operations the algorithm uses.
 	 */
-	function md5_cmn(q, a, b, x, s, t) {
+	var md5_cmn = function(q, a, b, x, s, t) {
 		return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s),b);
-	}
+	};
 
-	function md5_ff(a, b, c, d, x, s, t) {
+	var md5_ff = function(a, b, c, d, x, s, t) {
 		return md5_cmn((b & c) | ((~b) & d), a, b, x, s, t);
-	}
+	};
 	
-	function md5_gg(a, b, c, d, x, s, t) {
+	var md5_gg = function(a, b, c, d, x, s, t) {
 		return md5_cmn((b & d) | (c & (~d)), a, b, x, s, t);
-	}
+	};
 	
-	function md5_hh(a, b, c, d, x, s, t) {
+	var md5_hh = function(a, b, c, d, x, s, t) {
 		return md5_cmn(b ^ c ^ d, a, b, x, s, t);
-	}
+	};
 	
-	function md5_ii(a, b, c, d, x, s, t) {
+	var md5_ii = function(a, b, c, d, x, s, t) {
 		return md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
-	}
+	};
 
 	/*
 	 * Add integers, wrapping at 2^32. This uses 16-bit operations internally
 	 * to work around bugs in some JS interpreters.
 	 */
-	function safe_add(x, y)
+	var safe_add = function(x, y)
 	{
 		var lsw = (x & 0xFFFF) + (y & 0xFFFF);
 		var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
 		
 		return (msw << 16) | (lsw & 0xFFFF);
-	}
+	};
 
 	/*
 	 * Bitwise rotate a 32-bit number to the left.
 	 */
-	function bit_rol(num, cnt) {
+	var bit_rol = function(num, cnt) {
 		return (num << cnt) | (num >>> (32 - cnt));
-	}
+	};
 	
 })(core.crypt.Util);

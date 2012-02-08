@@ -19,19 +19,19 @@
 	core.Module("core.crypt.SHA1", 
 	{
 		/**
-		 * {String} Returns the SHA1 checksum of the given @str {String}.
+		 * {String} Returns the SHA1 checksum of the given @str {String} as a raw string.
 		 */
 		checksum : function(str) { 
 
 			str = str.encodeUtf8();
 			
-			return Util.strToHex(Util.bigEndianToRawString(binb_sha1(Util.rawStringToBigEndian(str), str.length * 8)));
+			return Util.bigEndianToRawString(binb_sha1(Util.rawStringToBigEndian(str), str.length * 8));
 
 		},
 
 
 		/**
-		 * {String} Returns a HMAC (Hash-based Message Authentication Code) using the SHA1 hash function. 
+		 * {String} Returns a HMAC (Hash-based Message Authentication Code) using the SHA1 hash function as a raw string.
 		 *
 		 * HMAC is a specific construction for calculating a message authentication code (MAC) involving a 
 		 * cryptographic hash function in combination with a secret key.
@@ -59,7 +59,7 @@
 			}
 
 			var hash = binb_sha1(ipad.concat(Util.rawStringToBigEndian(str)), 512 + str.length * 8);
-			return Util.strToHex(Util.bigEndianToRawString(binb_sha1(opad.concat(hash), 512 + 160)));
+			return Util.bigEndianToRawString(binb_sha1(opad.concat(hash), 512 + 160));
 
 		}
 	});
