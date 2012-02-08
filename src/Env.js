@@ -67,9 +67,9 @@
 			}
 
 			/**
-			 * @require {core.ext.String}
+			 * #require(core.ext.String)
 			 */
-			return core.crypt.SHA1.checksum(key.join(";"));
+			return core.crypt.SHA1.checksum(key.join(";")).toHex();
 		})();
 	}
 	else

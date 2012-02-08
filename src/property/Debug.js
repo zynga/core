@@ -10,8 +10,6 @@
  * generic property checks defined using the property configuration.
  *
  * It's used by both standard property system: core.property.Simple and core.property.Multi.
- *
- * @require {core.fix.Console}
  */
 core.Module("core.property.Debug",
 {

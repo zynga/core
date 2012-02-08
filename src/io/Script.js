@@ -5,9 +5,6 @@
 ==================================================================================================
 */
 
-/**
- * @require {core.fix.DocumentHead}
- */
 (function(global)
 {
 	var doc = global.document;

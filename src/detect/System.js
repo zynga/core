@@ -169,9 +169,7 @@
 	 * The listed constants are automatically filled on the initialization
 	 * phase of the class. The defaults listed in the API viewer need not
 	 * to be identical to the values at runtime.
-	 *
-	 * @require {core.detect.Platform}
-	 */	
+	 */
 	core.Module("core.detect.System", {
 		
 		/** System identification */

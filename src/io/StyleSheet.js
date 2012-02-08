@@ -7,9 +7,6 @@
 ==================================================================================================
 */
 
-/**
- * @require {core.fix.DocumentHead}
- */
 (function(global, doc) 
 {
 	// Dynamic URI can be shared because we do not support reloading files
