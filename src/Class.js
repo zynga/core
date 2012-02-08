@@ -78,7 +78,7 @@
 
 						// If both included classes define this key as a function check whether 
 						// the members section has a function as well (which might call both of them).
-						if (key in members && members[key] instanceof Function && includedClass.prototype[key] instanceof Function && allIncludeMembers[key].prototype[key] instanceof Function) {
+						if (key in members && members[key] instanceof Function && includedClass.prototype[key] instanceof Function && allIncludeMembers[key] instanceof Function) {
 							// pass
 						} else {
 							throw new Error("Included class " + includedClass.className + " overwrites member " + key + " of other included class " + allIncludeMembers[key].className + " in class " + name);
