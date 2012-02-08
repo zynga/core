@@ -1244,6 +1244,7 @@ $(function() {
 		{
 			properties : 
 			{
+				/** #require(core.property.Multi) */
 				fontSize : {
 					type : "Integer",
 					inheritable : true
