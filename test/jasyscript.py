@@ -56,7 +56,7 @@ def build():
     formatting = Formatting("semicolon", "comma")
 
     # Write kernel script
-    includedByKernel = storeKernel("build/script/kernel.js", session, assets=assets, debug=False, formatting=formatting)
+    includedByKernel = storeKernel("build/script/kernel.js", session, assets=assets, debug=True, formatting=formatting)
 
     # Copy files from source
     for staticFile in ["index.html", "qunit.css"]:
