@@ -152,7 +152,9 @@
 				}
 
 				// Execute callback
-				context ? callback.call(context, cache) : callback(cache);
+				if (callback) {
+					context ? callback.call(context, cache) : callback(cache);
+				}
 			};
 			
 			var executeDirectly = !!callback;
