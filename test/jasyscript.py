@@ -15,7 +15,9 @@ def source():
     assets = Asset(session, resolver.getIncludedClasses()).exportSource()
 
     # Store kernel script
-    includedByKernel = storeKernel("source/script/kernel.js", session, assets=assets)
+    formatting = Formatting("semicolon", "comma")
+    includedByKernel = storeKernel("source/script/kernel.js", session, assets=assets, debug=True, formatting=formatting)
+    print("KERNEL: %s" % includedByKernel)
     
     # Process every possible permutation
     for permutation in session.getPermutations():
@@ -49,16 +51,16 @@ def build():
     resolver.addClassName("tests")
     assets = Asset(session, resolver.getIncludedClasses()).exportBuild()
 
+    # Compiler configuration
+    optimization = Optimization("variables", "declarations", "blocks")
+    formatting = Formatting("semicolon", "comma")
+
     # Write kernel script
-    includedByKernel = storeKernel("build/script/kernel.js", session, assets=assets)
+    includedByKernel = storeKernel("build/script/kernel.js", session, assets=assets, debug=False, formatting=formatting)
 
     # Copy files from source
     for staticFile in ["index.html", "qunit.css"]:
         updateFile("source/%s" % staticFile, "build/%s" % staticFile)
-
-    # Compiler configuration
-    optimization = Optimization("variables", "declarations", "blocks")
-    formatting = Formatting()
 
     # Process every possible permutation
     for permutation in session.getPermutations():
