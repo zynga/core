@@ -53,7 +53,7 @@ def build():
     includedByKernel = storeKernel("build/script/kernel.js", session, assets=assets)
 
     # Copy files from source
-    for staticFile in ["index.html"]:
+    for staticFile in ["index.html", "qunit.css"]:
         updateFile("source/%s" % staticFile, "build/%s" % staticFile)
 
     # Compiler configuration
