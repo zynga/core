@@ -275,7 +275,8 @@
 			// Create members via specific property implementation 
 			if (propertyConfig.group) {
 				var propertyMembers = core.property.Group.create(propertyConfig);
-			} else if (propertyConfig.themeable || propertyConfig.inheritable) {	
+			} else if (propertyConfig.themeable || propertyConfig.inheritable) {
+				/** #optional(core.property.Multi) */
 				var propertyMembers = core.property.Multi.create(propertyConfig);
 			} else {
 				var propertyMembers = core.property.Simple.create(propertyConfig);
