@@ -7,7 +7,7 @@ def source():
     
     # Configure fields
     session.permutateField("es5")
-    session.permutateField("debug")
+    session.setField("debug", True)
 
     # Include all game relevant assets
     resolver = Resolver(session.getProjects())
@@ -44,7 +44,7 @@ def build():
 
     # Configure permutations
     session.permutateField("es5")
-    session.permutateField("debug")
+    session.setField("debug", True)
 
     # Prepare assets
     resolver = Resolver(session.getProjects())
