@@ -23,7 +23,7 @@
 		 */
 		checksum : function(str) { 
 			
-			str = Util.strToUtf8(str);
+			str = str.encodeUtf8();
 			var md5 = binl_md5(Util.rawStringToLittleEndian(str), str.length * 8);
 			
 			return Util.strToHex(Util.littleEndianToRawString(md5));
@@ -41,8 +41,8 @@
 		 */
 		hmac : function(key, str) { 
 			
-			key = Util.strToUtf8(key);
-			str = Util.strToUtf8(str);
+			key = key.encodeUtf8();
+			str = str.encodeUtf8();
 			
 			var bkey = Util.rawStringToLittleEndian(key);
 			if (bkey.length > 16) {

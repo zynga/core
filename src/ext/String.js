@@ -17,18 +17,36 @@
 	Object.addMembers("String",
 	{
 		/**
-		 * {String} Converts a string to a base64 string 
+		 * {String} Encodes the string as Base64.
 		 */
-		encodeBase64: function() {
+		encodeBase64 : function() {
 			return btoa(this);
 		},
 		
 
 		/**
-		 * {String} Converts a string to a base64 string 
+		 * {String} Decodes the string from Base64.
 		 */
-		decodeBase64: function() {
+		decodeBase64 : function() {
 			return atob(this);
+		},
+		
+		
+		/**
+		 * {String} Converts the string into a hex string
+		 */
+		toHex : function() 
+		{
+			var output = "";
+			var code;
+
+			for (var i = 0, l = this.length; i < l; i++)
+			{
+				code = this.charCodeAt(i);
+				output += hexTable[(code >>> 4) & 0x0F] + hexTable[code & 0x0F];
+			}
+
+			return output;
 		},
 
 		
@@ -37,7 +55,7 @@
 		 *
 		 * Via: http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html
 		 */
-		encodeUtf8: function() {
+		encodeUtf8 : function() {
 			return unescape(encodeURIComponent(this));
 		},
 		
@@ -47,7 +65,7 @@
 		 *
 		 * Via: http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html
 		 */
-		decodeUtf8: function() {
+		decodeUtf8 : function() {
 			return decodeURIComponent(escape(this));
 		},
 
@@ -100,7 +118,7 @@
 		/**
 		 * {String} Camelizes this string.
 		 */
-		camelize: function ()
+		camelize : function ()
 		{
 			return this.replace(/\-+(\S)?/g, function(match, chr) {
 				return chr ? chr.toUpperCase() : '';
