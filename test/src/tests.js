@@ -1,3 +1,5 @@
+/** #require(jquery) #require(qunit) */
+
 var global = this;
 $(function() {
 	
