@@ -465,7 +465,7 @@ $(function() {
 		
 		strictEqual(core.crypt.Adler32.checksum("hello world"), 436929629);
 		strictEqual(core.crypt.Adler32.checksum("hello world!"), 512296062);
-		strictEqual(core.crypt.Adler32.checksum("günthér falit°@"), 1027999529);
+		strictEqual(core.crypt.Adler32.checksum("günthér falit°@"), 1479674097);
 		
 	});
 	
@@ -473,7 +473,7 @@ $(function() {
 		
 		strictEqual(core.crypt.CRC32.checksum("hello world"), 222957957);
 		strictEqual(core.crypt.CRC32.checksum("hello world!"), 62177901);
-		strictEqual(core.crypt.CRC32.checksum("günthér falit°@"), 1750898803);
+		strictEqual(core.crypt.CRC32.checksum("günthér falit°@"), 1047403603);
 
 	});
 	
