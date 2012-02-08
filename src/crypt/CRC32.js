@@ -10,7 +10,7 @@
 */
 
 /**
- * Implements the CRC32 checksum for ASCII strings (non unicode)
+ * Implements the CRC32 checksum
  * 
  * See also: http://en.wikipedia.org/wiki/CRC-32
  */
@@ -25,6 +25,8 @@ core.Module("core.crypt.CRC32",
 		 */
 		return function(str)
 		{
+			str = str.encodeUtf8();
+			
 			var crc = -1;
 			for(var i=0, l=str.length; i<l; i++) {
 				crc = (crc >>> 8) ^ table[(crc ^ str.charCodeAt(i)) & 0xFF];
