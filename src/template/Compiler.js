@@ -32,9 +32,9 @@
 	core.Module("core.template.Compiler",
 	{
 		/**
-		 * {String[]} Tokenizer for template @text {String} using the defined @delimiters {String}. Returns an array of tokens.
+		 * {String[]} Tokenizer for template @text {String}. Returns an array of tokens.
 		 */
-		scan : function scan(text, delimiters) {
+		scan : function scan(text) {
 			var len = text.length,
 					IN_TEXT = 0,
 					IN_TAG_TYPE = 1,
@@ -92,23 +92,6 @@
 				lineStart = tokens.length;
 			}
 
-			function changeDelimiters(text, index) {
-				var close = '=' + ctag,
-						closeIndex = text.indexOf(close, index),
-						delimiters = text.substring(text.indexOf('=', index) + 1, closeIndex).trim().split(' ');
-
-				otag = delimiters[0];
-				ctag = delimiters[1];
-
-				return closeIndex + close.length - 1;
-			}
-
-			if (delimiters) {
-				delimiters = delimiters.split(' ');
-				otag = delimiters[0];
-				ctag = delimiters[1];
-			}
-
 			for (i = 0; i < len; i++) {
 				if (state == IN_TEXT) {
 					if (tagChange(otag, text, i)) {
@@ -126,15 +109,10 @@
 					i += otag.length - 1;
 					tag = tagTypes[text.charAt(i + 1)];
 					tagType = tag ? text.charAt(i + 1) : '_v';
-					if (tagType == '=') {
-						i = changeDelimiters(text, i);
-						state = IN_TEXT;
-					} else {
-						if (tag) {
-							i++;
-						}
-						state = IN_TAG;
+					if (tag) {
+						i++;
 					}
+					state = IN_TAG;
 					seenTag = i;
 				} else {
 					if (tagChange(ctag, text, i)) {
