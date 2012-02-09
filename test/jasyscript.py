@@ -47,8 +47,7 @@ def build():
     includedByKernel = storeKernel("build/script/kernel.js", session, assets=assets, debug=True, formatting=formatting)
 
     # Copy files from source
-    for staticFile in ["index.html", "qunit.css"]:
-        updateFile("source/%s" % staticFile, "build/%s" % staticFile)
+    updateFile("source/index.html", "build/index.html")
 
     # Process every possible permutation
     for permutation in session.getPermutations():
