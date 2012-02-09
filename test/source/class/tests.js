@@ -756,7 +756,7 @@ $(function() {
 	---------------------------------------------------------------------------
 	*/
 	
-	module("ClassesCore", {
+	module("Classes Core", {
 		teardown : function() {
 			Object.clearNamespace("abc.Class1");
 			Object.clearNamespace("abc.Class2");
@@ -800,7 +800,7 @@ $(function() {
 	---------------------------------------------------------------------------
 	*/	
 	
-	module("ClassesMembers", {
+	module("Classes Members", {
 		teardown : function() {
 			Object.clearNamespace("members.Class1");
 			Object.clearNamespace("members.Include1");
@@ -966,7 +966,7 @@ $(function() {
 	---------------------------------------------------------------------------
 	*/
 	
-	module("ClassesEvents", {
+	module("Classes Events", {
 		teardown : function() {
 			Object.clearNamespace("events.Keyboard");
 			Object.clearNamespace("events.Mouse");
@@ -1113,7 +1113,7 @@ $(function() {
 	---------------------------------------------------------------------------
 	*/
 	
-	module("ClassesProperties", {
+	module("Classes Properties", {
 		teardown : function() {
 			Object.clearNamespace("properties.Text");
 			Object.clearNamespace("properties.Dimension");
