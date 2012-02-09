@@ -11,7 +11,7 @@
 ==================================================================================================
 */
 
-(function (useArrayBuffer) 
+(function () 
 {
 	var rAmp = /&/g,
 			rLt = /</g,
@@ -37,18 +37,13 @@
 			str;
 	}
 
-	var isArray = Array.isArray || function(a) {
-		return Object.prototype.toString.call(a) === '[object Array]';
-	};
-	
 	core.Class("core.template.Template",
 	{
-		construct: function (renderFunc, text, compiler, options) {
+		construct: function (renderFunc, text, compiler) {
 			this.r = renderFunc || this.r;
 			this.c = compiler;
-			this.options = options;
 			this.text = text || '';
-			this.buf = (useArrayBuffer) ? [] : '';
+			this.buf = '';
 		},
 		
 		members: {
@@ -66,12 +61,12 @@
 				return this.ri([context], partials || {}, indent);
 			},
 
-			// render internal -- a hook for overrides that catches partials too
+			/** render internal -- a hook for overrides that catches partials too */
 			ri: function (context, partials, indent) {
 				return this.r(context, partials, indent);
 			},
 
-			// tries to find a partial in the curent scope and render it
+			/** tries to find a partial in the curent scope and render it */
 			rp: function(name, context, partials, indent) {
 				var partial = partials[name];
 
@@ -80,17 +75,17 @@
 				}
 
 				if (this.c && typeof partial == 'string') {
-					partial = this.c.compile(partial, this.options);
+					partial = this.c.compile(partial);
 				}
 
 				return partial.ri(context, partials, indent);
 			},
 
-			// render a section
+			/** render a section */
 			rs: function(context, partials, section) {
 				var tail = context[context.length - 1];
 
-				if (!isArray(tail)) {
+				if (!Array.isArray(tail)) {
 					section(context, partials, this);
 					return;
 				}
@@ -102,11 +97,11 @@
 				}
 			},
 
-			// maybe start a section
+			/** maybe start a section */
 			s: function(val, ctx, partials, inverted, start, end, tags) {
 				var pass;
 
-				if (isArray(val) && val.length === 0) {
+				if (Array.isArray(val) && val.length === 0) {
 					return false;
 				}
 
@@ -123,13 +118,13 @@
 				return pass;
 			},
 
-			// find values with dotted names
+			/** find values with dotted names */
 			d: function(key, ctx, partials, returnFound) {
 				var names = key.split('.'),
 						val = this.f(names[0], ctx, partials, returnFound),
 						cx = null;
 
-				if (key === '.' && isArray(ctx[ctx.length - 2])) {
+				if (key === '.' && Array.isArray(ctx[ctx.length - 2])) {
 					return ctx[ctx.length - 1];
 				}
 
@@ -155,7 +150,7 @@
 				return val;
 			},
 
-			// find values with normal names
+			/* find values with normal names **/
 			f: function(key, ctx, partials, returnFound) {
 				var val = false,
 						v = null,
@@ -181,25 +176,21 @@
 				return val;
 			},
 
-			// higher order templates
-			ho: function(val, cx, partials, text, tags) {
+			/** higher order templates */
+			ho: function(val, cx, partials, text) {
 				var compiler = this.c;
-				var options = this.options;
-				options.delimiters = tags;
 				var t = val.call(cx, text, function(t) {
-					return compiler.compile(t, options).render(cx, partials);
+					return compiler.compile(t).render(cx, partials);
 				});
-				this.b(compiler.compile(t.toString(), options).render(cx, partials));
+				this.b(compiler.compile(t.toString()).render(cx, partials));
 				return false;
 			},
 
 			// template result buffering
-			b: (useArrayBuffer) ? function(s) { this.buf.push(s); } :
-														function(s) { this.buf += s; },
-			fl: (useArrayBuffer) ? function() { var r = this.buf.join(''); this.buf = []; return r; } :
-														 function() { var r = this.buf; this.buf = ''; return r; },
+			b: function(s) { this.buf += s; },
+			fl: function() { var r = this.buf; this.buf = ''; return r; },
 
-			// lambda replace section
+			/** lambda replace section */
 			ls: function(val, ctx, partials, inverted, start, end, tags) {
 				var cx = ctx[ctx.length - 1],
 						t = null;
@@ -221,7 +212,7 @@
 				return t;
 			},
 
-			// lambda replace variable
+			/** lambda replace variable */
 			lv: function(val, ctx, partials) {
 				var cx = ctx[ctx.length - 1];
 				var result = val.call(cx);
@@ -231,7 +222,7 @@
 				result = coerceToString(result);
 
 				if (this.c && ~result.indexOf("{\u007B")) {
-					return this.c.compile(result, this.options).render(cx, partials);
+					return this.c.compile(result).render(cx, partials);
 				}
 
 				return result;

@@ -25,13 +25,9 @@
 				'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
 			};
 			
-	var cache = {};
-		
-	
 	/**
 	 * This is a compiler for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
 	 * For information on Mustache, see the [manpage](http://mustache.github.com/mustache.5.html) and the [spec](https://github.com/mustache/spec).
-	 *
 	 */
 	core.Module("core.template.Compiler",
 	{
@@ -99,9 +95,7 @@
 			function changeDelimiters(text, index) {
 				var close = '=' + ctag,
 						closeIndex = text.indexOf(close, index),
-						delimiters = trim(
-							text.substring(text.indexOf('=', index) + 1, closeIndex)
-						).split(' ');
+						delimiters = text.substring(text.indexOf('=', index) + 1, closeIndex).trim().split(' ');
 
 				otag = delimiters[0];
 				ctag = delimiters[1];
@@ -144,8 +138,7 @@
 					seenTag = i;
 				} else {
 					if (tagChange(ctag, text, i)) {
-						tokens.push({tag: tagType, n: trim(buf), otag: otag, ctag: ctag,
-												 i: (tagType == '/') ? seenTag - ctag.length : i + otag.length});
+						tokens.push({tag: tagType, n: buf.trim(), otag: otag, ctag: ctag, i: (tagType == '/') ? seenTag - ctag.length : i + otag.length});
 						buf = '';
 						i += ctag.length - 1;
 						state = IN_TEXT;
@@ -171,78 +164,27 @@
 		/**
 		 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
 		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
-		 * the original @text {String} for template construction. Configuration happens using @options {Map}.
+		 * the original @text {String} for template construction.
 		 */
-		generate : function (code, text, options) {
-			if (options.asString) {
-				return 'function(c,p,i){' + code + ';}';
-			}
-			
-			return new core.template.Template(new Function('c', 'p', 'i', code), text, this, options);
+		compile : function(text) {
+			var code = writeCode(this.parse(this.scan(text), text));
+			return new core.template.Template(new Function('c', 'p', 'i', code), text, this);
 		},
 		
 		
 		/**
 		 * {Array} Processes the @tokens {String[]} from {#scan} to create and return a tree.
-		 * Configuration happens using @options {Map}.
 		 */
-		parse : function(tokens, text, options) {
-			options = options || {};
-			return buildTree(tokens, '', [], options.sectionTags || []);
-		},
-		
-		
-		/**
-		 * {core.template.Template} Translates the tree from {#parse} into actual JavaScript 
-		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields.
-		 * Configuration happens using @options {Map}. Uses a caching mechanism to prevent
-		 * re-compiling identication templates.
-		 */
-		compile : function(text, options) {
-			// options
-			//
-			// asString: false (default)
-			//
-			// sectionTags: [{o: '_foo', c: 'foo'}]
-			// An array of object with o and c fields that indicate names for custom
-			// section tags. The example above allows parsing of {{_foo}}{{/foo}}.
-			//
-			// delimiters: A string that overrides the default delimiters.
-			// Example: "<% %>"
-			//
-			options = options || {};
-
-			var key = text + '||' + !!options.asString;
-
-			var t = cache[key];
-
-			if (t) {
-				return t;
-			}
-
-			t = this.generate(writeCode(this.parse(this.scan(text, options.delimiters), text, options)), text, options);
-			return cache[key] = t;
+		parse : function(tokens, text) {
+			return buildTree(tokens, '', []);
 		}
 		
 	});
 	
-	
-	
-	
-	
-
 	function cleanTripleStache(token) {
 		if (token.n.substr(token.n.length - 1) === '}') {
 			token.n = token.n.substring(0, token.n.length - 1);
 		}
-	}
-
-	function trim(s) {
-		if (s.trim) {
-			return s.trim();
-		}
-
-		return s.replace(/^\s*|\s*$/g, '');
 	}
 
 	function tagChange(tag, text, index) {
@@ -259,23 +201,23 @@
 		return true;
 	}
 
-	function buildTree(tokens, kind, stack, customTags) {
+	function buildTree(tokens, kind, stack) {
 		var instructions = [],
 				opener = null,
 				token = null;
 
 		while (tokens.length > 0) {
 			token = tokens.shift();
-			if (token.tag == '#' || token.tag == '^' || isOpener(token, customTags)) {
+			if (token.tag == '#' || token.tag == '^') {
 				stack.push(token);
-				token.nodes = buildTree(tokens, token.tag, stack, customTags);
+				token.nodes = buildTree(tokens, token.tag, stack);
 				instructions.push(token);
 			} else if (token.tag == '/') {
 				if (stack.length === 0) {
 					throw new Error('Closing tag without opener: /' + token.n);
 				}
 				opener = stack.pop();
-				if (token.n != opener.n && !isCloser(token.n, opener.n, customTags)) {
+				if (token.n != opener.n) {
 					throw new Error('Nesting error: ' + opener.n + ' vs. ' + token.n);
 				}
 				opener.end = token.i;
@@ -290,23 +232,6 @@
 		}
 
 		return instructions;
-	}
-
-	function isOpener(token, tags) {
-		for (var i = 0, l = tags.length; i < l; i++) {
-			if (tags[i].o == token.n) {
-				token.tag = '#';
-				return true;
-			}
-		}
-	}
-
-	function isCloser(close, open, tags) {
-		for (var i = 0, l = tags.length; i < l; i++) {
-			if (tags[i].c == close && tags[i].o == open) {
-				return true;
-			}
-		}
 	}
 
 	function writeCode(tree) {
@@ -329,11 +254,9 @@
 		for (var i = 0, l = tree.length; i < l; i++) {
 			var tag = tree[i].tag;
 			if (tag == '#') {
-				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n),
-												tree[i].i, tree[i].end, tree[i].otag + " " + tree[i].ctag);
+				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n), tree[i].i, tree[i].end, tree[i].otag + " " + tree[i].ctag);
 			} else if (tag == '^') {
-				code += invertedSection(tree[i].nodes, tree[i].n,
-																chooseMethod(tree[i].n));
+				code += invertedSection(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n));
 			} else if (tag == '<' || tag == '>') {
 				code += partial(tree[i]);
 			} else if (tag == '{' || tag == '&') {
