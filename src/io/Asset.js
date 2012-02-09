@@ -19,29 +19,32 @@
 			core.Assert.isType(id, "String", "Invalid asset identifier: " + id);
 		}
 
-		var entry = entryCache[id];
-		if (entry != null) {
-			return entry;
+		var lastSlash = id.lastIndexOf("/");
+		if (lastSlash == -1)
+		{
+			var dirName = "";
+			var fileName = id;
+		}
+		else
+		{
+			var dirName = id.slice(0, lastSlash);
+			var fileName = id.slice(lastSlash+1);
 		}
 
-		var lastSlash = id.lastIndexOf("/");
-		var dirName = id.slice(0, lastSlash);
-		var fileName = id.slice(lastSlash+1);
-
 		var images = assets.images;
-		if (images && images[dirName]) {
+		if (images && dirName in images) {
 			var entry = images[dirName][fileName];
 		}
 
 		if (!entry)
 		{
 			var files = assets.files;
-			if (files && files[dirName]) {
+			if (files && dirName in files) {
 				var entry = files[dirName][fileName];
 			}
 		}
 
-		if (entry) {
+		if (entry != null) {
 			return entryCache[id] = entry;
 		}
 	};
@@ -155,7 +158,7 @@
 			}
 
 			var entry = entryCache[id] || getEntry(id);
-			if (core.Env.isSet("debug") && !entry) {
+			if (core.Env.isSet("debug") && entry == null) {
 				throw new Error("Could not figure out URL for asset: " + id);
 			}
 
@@ -163,7 +166,10 @@
 			var root = assets.roots[typeof entry == "number" ? entry : entry[0]];
 
 			// Merge to full qualified URI
-			return root + id.slice(id.indexOf("/"));
+			var pos = id.indexOf("/");
+			var path = pos == -1 ? "/" + id : id.slice(pos);
+			
+			return root + path;
 		}
 	});
 })(this);
