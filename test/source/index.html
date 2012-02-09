@@ -2,7 +2,6 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Core - Test Suite</title>
-		<link rel="stylesheet" href="qunit.css"/>
 	</head>
 	<body>
 		<h1 id="qunit-header">Core - Test Suite</h1>
@@ -12,6 +11,9 @@
 		<ol id="qunit-tests"></ol>
 
 		<script src="script/kernel.js"></script>
-		<script>core.io.Script.load("script/test-" + core.Env.CHECKSUM + ".js");</script>
+		<script>
+			core.io.StyleSheet.load(core.io.Asset.toUri("qunit.css"));
+			core.io.Script.load("script/test-" + core.Env.CHECKSUM + ".js");
+		</script>
 	</body>
 </html>

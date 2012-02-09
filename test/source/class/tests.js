@@ -1,5 +1,6 @@
-/** #require(jquery) #require(qunit) */
-
+/** 
+ * #require(jquery) #require(qunit) #asset(qunit.css) 
+ */
 var global = this;
 $(function() {
 	
