@@ -395,7 +395,7 @@ $(function() {
 	
 	test("Lists", function() {
 
-		var template = core.template.Compiler.compile("{{#repo}}<b>{{name}}</b>{{/repo}}")
+		var template = core.template.Compiler.compile("{{#repo}}<b>{{name}}</b>{{/repo}}");
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
@@ -412,7 +412,7 @@ $(function() {
 	
 	test("Lambdas", function() {
 
-		var template = core.template.Compiler.compile("{{#wrapped}}{{name}} is awesome.{{/wrapped}}")
+		var template = core.template.Compiler.compile("{{#wrapped}}{{name}} is awesome.{{/wrapped}}");
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
@@ -430,7 +430,7 @@ $(function() {
 	
 	test("Non False", function() {
 
-		var template = core.template.Compiler.compile("{{#person?}}Hi {{name}}!{{/person?}}")
+		var template = core.template.Compiler.compile("{{#person?}}Hi {{name}}!{{/person?}}");
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
@@ -439,9 +439,67 @@ $(function() {
 		
 		equal(output, "Hi Jon!");
 		
-	});	
-
+	});
 	
+	test("Inverted Sections", function() {
+
+		var template = core.template.Compiler.compile("{{#repo}}<b>{{.}}</b>{{/repo}}{{^repo}}No repos :({{/repo}}");
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "repo": []
+		});
+		
+		equal(output, "No repos :(");
+		
+		var output = template.render({
+		  "repo": [1,2,3]
+		});
+		
+		equal(output, "<b>1</b><b>2</b><b>3</b>");		
+		
+	});
+	
+	test("Comments", function() {
+
+		var template = core.template.Compiler.compile("<h1>Today{{! ignore me }}.</h1>");
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "repo": []
+		});
+		
+		equal(output, "<h1>Today.</h1>");
+		
+	});
+	
+	test("Partials", function() {
+
+		var template = core.template.Compiler.compile("{{#tweets}}{{> tweet}}{{/tweets}}");
+		ok(template instanceof core.template.Template);
+
+		var tweetTemplate = core.template.Compiler.compile('<p data-id="{{id}}">{{text}}</p>');
+		ok(tweetTemplate instanceof core.template.Template);
+		
+		var output = template.render({
+		  "tweets": [{
+				text: "hello world",
+				id: 1
+			}, {
+				text: "this is a test tweet",
+				id: 2
+			}, {
+				text: "to impress you",
+				id: 3
+			}]
+		}, {
+			tweet: tweetTemplate
+		});
+		
+		equal(output, "<p data-id=\"1\">hello world</p><p data-id=\"2\">this is a test tweet</p><p data-id=\"3\">to impress you</p>");
+		
+	});
+
 	test("Parser", function() {
 		
 		var text = "{{^check}}No{{/check}}{{#check}}Yes{{/check}}";
@@ -453,6 +511,10 @@ $(function() {
 		equals(tree[1].n, "check");
 		
 	});
+	
+	
+	
+	
 	
 	
 	
