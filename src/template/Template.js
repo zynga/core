@@ -20,34 +20,27 @@
 			rQuot = /\"/g,
 			hChars =/[&<>\"\']/;
 
-
 	function coerceToString(val) {
-		return String((val === null || val === undefined) ? '' : val);
+		return val == null ? "" : "" + val;
 	}
 
 	function hoganEscape(str) {
 		str = coerceToString(str);
-		return hChars.test(str) ?
-			str
-				.replace(rAmp,'&amp;')
-				.replace(rLt,'&lt;')
-				.replace(rGt,'&gt;')
-				.replace(rApos,'&#39;')
-				.replace(rQuot, '&quot;') :
-			str;
+		return hChars.test(str) ? str.replace(rAmp,'&amp;').replace(rLt,'&lt;').replace(rGt,'&gt;').replace(rApos,'&#39;').replace(rQuot, '&quot;') : str;
 	}
 
 	core.Class("core.template.Template",
 	{
-		construct: function (renderFunc, text, compiler) {
+		construct: function (renderFunc, text, compiler) 
+		{
 			this.r = renderFunc || this.r;
 			this.c = compiler;
 			this.text = text || '';
 			this.buf = '';
 		},
 		
-		members: {
-			
+		members: 
+		{
 			// render: replaced by generated code.
 			r: function (context, partials, indent) { return ''; },
 

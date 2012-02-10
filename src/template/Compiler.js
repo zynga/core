@@ -25,6 +25,135 @@
 				'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
 			};
 			
+	function cleanTripleStache(token) {
+		if (token.n.substr(token.n.length - 1) === '}') {
+			token.n = token.n.substring(0, token.n.length - 1);
+		}
+	}
+
+	function tagChange(tag, text, index) 
+	{
+		if (text.charAt(index) != tag.charAt(0)) {
+			return false;
+		}
+
+		for (var i = 1, l = tag.length; i < l; i++) 
+		{
+			if (text.charAt(index + i) != tag.charAt(i)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	function buildTree(tokens, kind, stack) {
+		var instructions = [],
+				opener = null,
+				token = null;
+
+		while (tokens.length > 0) 
+		{
+			token = tokens.shift();
+			if (token.tag == '#' || token.tag == '^') 
+			{
+				stack.push(token);
+				token.nodes = buildTree(tokens, token.tag, stack);
+				instructions.push(token);
+			}
+			else if (token.tag == '/') 
+			{
+				if (stack.length === 0) {
+					throw new Error('Closing tag without opener: /' + token.n);
+				}
+				
+				opener = stack.pop();
+				if (token.n != opener.n) {
+					throw new Error('Nesting error: ' + opener.n + ' vs. ' + token.n);
+				}
+				
+				opener.end = token.i;
+				return instructions;
+			} 
+			else 
+			{
+				instructions.push(token);
+			}
+		}
+
+		if (stack.length > 0) {
+			throw new Error('missing closing tag: ' + stack.pop().n);
+		}
+
+		return instructions;
+	}
+
+	function writeCode(tree) {
+		return 'var _=this;_.b(i=i||"");' + walk(tree) + 'return _.fl();';
+	}
+
+	function esc(s) {
+		return s.replace(rSlash, '\\\\').replace(rQuot, '\\\"').replace(rNewline, '\\n').replace(rCr, '\\r');
+	}
+
+	function chooseMethod(s) {
+		return (~s.indexOf('.')) ? 'd' : 'f';
+	}
+
+	function walk(tree) {
+		var code = '';
+		for (var i = 0, l = tree.length; i < l; i++) {
+			var tag = tree[i].tag;
+			if (tag == '#') {
+				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n), tree[i].i, tree[i].end, tree[i].otag + " " + tree[i].ctag);
+			} else if (tag == '^') {
+				code += invertedSection(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n));
+			} else if (tag == '<' || tag == '>') {
+				code += partial(tree[i]);
+			} else if (tag == '{' || tag == '&') {
+				code += tripleStache(tree[i].n, chooseMethod(tree[i].n));
+			} else if (tag == '\n') {
+				code += text('"\\n"' + (tree.length-1 == i ? '' : ' + i'));
+			} else if (tag == '_v') {
+				code += variable(tree[i].n, chooseMethod(tree[i].n));
+			} else if (tag === undefined) {
+				code += text('"' + esc(tree[i]) + '"');
+			}
+		}
+		return code;
+	}
+
+	function section(nodes, id, method, start, end, tags) {
+		return 'if(_.s(_.' + method + '("' + esc(id) + '",c,p,1),' +
+					 'c,p,0,' + start + ',' + end + ',"' + tags + '")){' +
+					 '_.rs(c,p,' +
+					 'function(c,p,_){' +
+					 walk(nodes) +
+					 '});c.pop();}';
+	}
+
+	function invertedSection(nodes, id, method) {
+		return 'if(!_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,1,0,0,"")){' +
+					 walk(nodes) +
+					 '};';
+	}
+
+	function partial(tok) {
+		return '_.b(_.rp("' +	 esc(tok.n) + '",c,p,"' + (tok.indent || '') + '"));';
+	}
+
+	function tripleStache(id, method) {
+		return '_.b(_.t(_.' + method + '("' + esc(id) + '",c,p,0)));';
+	}
+
+	function variable(id, method) {
+		return '_.b(_.v(_.' + method + '("' + esc(id) + '",c,p,0)));';
+	}
+
+	function text(id) {
+		return '_.b(' + id + ');';
+	}
+			
 	/**
 	 * This is a compiler for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
 	 * For information on Mustache, see the [manpage](http://mustache.github.com/mustache.5.html) and the [spec](https://github.com/mustache/spec).
@@ -159,126 +288,4 @@
 		
 	});
 	
-	function cleanTripleStache(token) {
-		if (token.n.substr(token.n.length - 1) === '}') {
-			token.n = token.n.substring(0, token.n.length - 1);
-		}
-	}
-
-	function tagChange(tag, text, index) {
-		if (text.charAt(index) != tag.charAt(0)) {
-			return false;
-		}
-
-		for (var i = 1, l = tag.length; i < l; i++) {
-			if (text.charAt(index + i) != tag.charAt(i)) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	function buildTree(tokens, kind, stack) {
-		var instructions = [],
-				opener = null,
-				token = null;
-
-		while (tokens.length > 0) {
-			token = tokens.shift();
-			if (token.tag == '#' || token.tag == '^') {
-				stack.push(token);
-				token.nodes = buildTree(tokens, token.tag, stack);
-				instructions.push(token);
-			} else if (token.tag == '/') {
-				if (stack.length === 0) {
-					throw new Error('Closing tag without opener: /' + token.n);
-				}
-				opener = stack.pop();
-				if (token.n != opener.n) {
-					throw new Error('Nesting error: ' + opener.n + ' vs. ' + token.n);
-				}
-				opener.end = token.i;
-				return instructions;
-			} else {
-				instructions.push(token);
-			}
-		}
-
-		if (stack.length > 0) {
-			throw new Error('missing closing tag: ' + stack.pop().n);
-		}
-
-		return instructions;
-	}
-
-	function writeCode(tree) {
-		return 'var _=this;_.b(i=i||"");' + walk(tree) + 'return _.fl();';
-	}
-
-	function esc(s) {
-		return s.replace(rSlash, '\\\\')
-						.replace(rQuot, '\\\"')
-						.replace(rNewline, '\\n')
-						.replace(rCr, '\\r');
-	}
-
-	function chooseMethod(s) {
-		return (~s.indexOf('.')) ? 'd' : 'f';
-	}
-
-	function walk(tree) {
-		var code = '';
-		for (var i = 0, l = tree.length; i < l; i++) {
-			var tag = tree[i].tag;
-			if (tag == '#') {
-				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n), tree[i].i, tree[i].end, tree[i].otag + " " + tree[i].ctag);
-			} else if (tag == '^') {
-				code += invertedSection(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n));
-			} else if (tag == '<' || tag == '>') {
-				code += partial(tree[i]);
-			} else if (tag == '{' || tag == '&') {
-				code += tripleStache(tree[i].n, chooseMethod(tree[i].n));
-			} else if (tag == '\n') {
-				code += text('"\\n"' + (tree.length-1 == i ? '' : ' + i'));
-			} else if (tag == '_v') {
-				code += variable(tree[i].n, chooseMethod(tree[i].n));
-			} else if (tag === undefined) {
-				code += text('"' + esc(tree[i]) + '"');
-			}
-		}
-		return code;
-	}
-
-	function section(nodes, id, method, start, end, tags) {
-		return 'if(_.s(_.' + method + '("' + esc(id) + '",c,p,1),' +
-					 'c,p,0,' + start + ',' + end + ',"' + tags + '")){' +
-					 '_.rs(c,p,' +
-					 'function(c,p,_){' +
-					 walk(nodes) +
-					 '});c.pop();}';
-	}
-
-	function invertedSection(nodes, id, method) {
-		return 'if(!_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,1,0,0,"")){' +
-					 walk(nodes) +
-					 '};';
-	}
-
-	function partial(tok) {
-		return '_.b(_.rp("' +	 esc(tok.n) + '",c,p,"' + (tok.indent || '') + '"));';
-	}
-
-	function tripleStache(id, method) {
-		return '_.b(_.t(_.' + method + '("' + esc(id) + '",c,p,0)));';
-	}
-
-	function variable(id, method) {
-		return '_.b(_.v(_.' + method + '("' + esc(id) + '",c,p,0)));';
-	}
-
-	function text(id) {
-		return '_.b(' + id + ');';
-	}
-
 })();
