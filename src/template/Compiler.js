@@ -48,7 +48,8 @@
 		return true;
 	}
 
-	function buildTree(tokens, stack) {
+	function buildTree(tokens, stack) 
+	{
 		var instructions = [],
 				opener = null,
 				token = null;
@@ -178,6 +179,7 @@
 				buf = '';
 			}
 		}
+		
 
 		function lineIsWhitespace() 
 		{
@@ -190,6 +192,7 @@
 
 			return true;
 		}
+		
 
 		function filterLine(haveSeenTag, noNewLine) 
 		{
@@ -281,6 +284,7 @@
 		return tokens;
 	}
 	
+	
 	/**
 	 * {Array} Processes a list of @tokens {String[]} to create a tree.
 	 */
@@ -297,7 +301,7 @@
 	function compile(text) 
 	{
 		/** #break(core.template.Template) */
-		return new core.template.Template(new Function('c', 'p', 'i', writeCode(parse(text))), text, this);
+		return new core.template.Template(new Function('c', 'p', 'i', writeCode(parse(text))), text);
 	}
 	
 	
