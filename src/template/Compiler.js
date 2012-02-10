@@ -36,7 +36,7 @@
 			var tag = tree[i].tag;
 			
 			if (tag == '#') {
-				code += section(tree[i].nodes, tree[i].name, chooseFieldAccessMethod(tree[i].name), tree[i].i, tree[i].end);
+				code += section(tree[i].nodes, tree[i].name, chooseFieldAccessMethod(tree[i].name), tree[i].start, tree[i].end);
 			} else if (tag == '^') {
 				code += invertedSection(tree[i].nodes, tree[i].name, chooseFieldAccessMethod(tree[i].name));
 			} else if (tag == '<' || tag == '>') {

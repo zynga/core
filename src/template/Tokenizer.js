@@ -131,7 +131,7 @@
 					tokens.push({
 						tag: tagType, 
 						name: buf.trim(), 
-						i: (tagType == '/') ? seenTag - ctag.length : i + otag.length
+						start: (tagType == '/') ? seenTag - ctag.length : i + otag.length
 					});
 					
 					buf = '';
