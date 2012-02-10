@@ -8,20 +8,8 @@
 		'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
 	};
 	
-	function tagChange(tag, text, index) 
-	{
-		if (text.charAt(index) != tag.charAt(0)) {
-			return false;
-		}
-
-		for (var i = 1, l = tag.length; i < l; i++) 
-		{
-			if (text.charAt(index + i) != tag.charAt(i)) {
-				return false;
-			}
-		}
-
-		return true;
+	function tagChange(tag, text, index) {
+		return text.slice(index, index+tag.length) == tag;
 	}
 	
 	/**
