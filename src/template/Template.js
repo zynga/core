@@ -175,17 +175,6 @@
 				return val;
 			},
 
-			/** higher order templates */
-			ho: function(val, cx, partials, text) 
-			{
-				var t = val.call(cx, text, function(t) {
-					return core.template.Compiler.compile(t).render(cx, partials);
-				});
-				
-				this.buf += core.template.Compiler.compile(t.toString()).render(cx, partials);
-				return false;
-			},
-
 			// template result buffering
 			finish: function() 
 			{
@@ -193,44 +182,6 @@
 				this.buf = '';
 				
 				return result; 
-			},
-
-			/** lambda replace section */
-			ls: function(val, ctx, partials, inverted, start, end) {
-				var cx = ctx[ctx.length - 1],
-						t = null;
-
-				if (!inverted && val.length > 0) {
-					return this.ho(val, cx, partials, this.text.substring(start, end));
-				}
-
-				t = val.call(cx);
-
-				if (typeof t == 'function') {
-					if (inverted) {
-						return true;
-					} else {
-						return this.ho(t, cx, partials, this.text.substring(start, end));
-					}
-				}
-
-				return t;
-			},
-
-			/** lambda replace variable */
-			lv: function(val, ctx, partials) {
-				var cx = ctx[ctx.length - 1];
-				var result = val.call(cx);
-				if (typeof result == 'function') {
-					result = result.call(cx);
-				}
-				result = coerceToString(result);
-
-				if (~result.indexOf("{\u007B")) {
-					return core.template.Compiler.compile(result).render(cx, partials);
-				}
-
-				return result;
 			}
 		}
 	});
