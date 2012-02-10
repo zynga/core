@@ -2,12 +2,12 @@
 	
 	// Setup regexassignments
 	// remove whitespace according to Mustache spec
-	var rIsWhitespace = /\S/,
-			tagTypes = {
-				'#': 1, '^': 2, '/': 3,	 '!': 4, '>': 5,
-				'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
-			};
-			
+	var rIsWhitespace = /\S/;
+	var tagTypes = {
+		'#': 1, '^': 2, '/': 3,	 '!': 4, '>': 5,
+		'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
+	};
+	
 	function tagChange(tag, text, index) 
 	{
 		if (text.charAt(index) != tag.charAt(0)) {
@@ -64,7 +64,7 @@
 		{
 			for (var j = lineStart; j < tokens.length; j++) 
 			{
-				if (!((tokens[j].tag && tagTypes[tokens[j].tag] < tagTypes['_v']) || (!tokens[j].tag && tokens[j].match(rIsWhitespace) === null))) {
+				if (!((tokens[j].tag && tagTypes[tokens[j].tag] < tagTypes['_v']) || (!tokens[j].tag && tokens[j].match(rIsWhitespace) == null))) {
 					return false;
 				}
 			}
@@ -143,8 +143,6 @@
 					tokens.push({
 						tag: tagType, 
 						n: buf.trim(), 
-						otag: otag, 
-						ctag: ctag, 
 						i: (tagType == '/') ? seenTag - ctag.length : i + otag.length
 					});
 					

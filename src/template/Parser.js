@@ -9,24 +9,27 @@
 		while (tokens.length > 0) 
 		{
 			token = tokens.shift();
-			if (token.tag == '#' || token.tag == '^') 
+			
+			if (token.tag == "#" || token.tag == "^") 
 			{
 				stack.push(token);
 				token.nodes = buildTree(tokens, stack);
 				instructions.push(token);
 			}
-			else if (token.tag == '/') 
+			else if (token.tag == "/") 
 			{
-				if (stack.length === 0) {
-					throw new Error('Closing tag without opener: /' + token.n);
+				if (core.Env.isSet("debug") && stack.length === 0) {
+					throw new Error("Closing tag without opener: /" + token.n);
 				}
 				
 				opener = stack.pop();
-				if (token.n != opener.n) {
-					throw new Error('Nesting error: ' + opener.n + ' vs. ' + token.n);
+				
+				if (core.Env.isSet("debug") && token.n != opener.n) {
+					throw new Error("Nesting error: " + opener.n + " vs. " + token.n);
 				}
 				
 				opener.end = token.i;
+				
 				return instructions;
 			} 
 			else 
@@ -35,8 +38,8 @@
 			}
 		}
 
-		if (stack.length > 0) {
-			throw new Error('missing closing tag: ' + stack.pop().n);
+		if (core.Env.isSet("debug") && stack.length > 0) {
+			throw new Error("Missing closing tag: " + stack.pop().n);
 		}
 
 		return instructions;
@@ -53,8 +56,11 @@
 		/**
 		 * {Array} Processes a list of @tokens {String[]} to create a tree.
 		 */
-		parse: function parse(text) {
-			return buildTree(core.template.Tokenizer.tokenize(text), []);
+		parse: function(text) 
+		{
+			var tokens = core.template.Tokenizer.tokenize(text);
+			console.debug(JSON.stringify(tokens))
+			return buildTree(tokens, []);
 		}
 
 	});

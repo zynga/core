@@ -94,7 +94,7 @@
 			},
 
 			/** maybe start a section */
-			s: function(val, ctx, partials, inverted, start, end, tags) {
+			s: function(val, ctx, partials, inverted, start, end) {
 				var pass;
 
 				if (Array.isArray(val) && val.length === 0) {
@@ -102,7 +102,7 @@
 				}
 
 				if (typeof val == 'function') {
-					val = this.ls(val, ctx, partials, inverted, start, end, tags);
+					val = this.ls(val, ctx, partials, inverted, start, end);
 				}
 
 				pass = (val === '') || !!val;
@@ -186,12 +186,12 @@
 			fl: function() { var r = this.buf; this.buf = ''; return r; },
 
 			/** lambda replace section */
-			ls: function(val, ctx, partials, inverted, start, end, tags) {
+			ls: function(val, ctx, partials, inverted, start, end) {
 				var cx = ctx[ctx.length - 1],
 						t = null;
 
 				if (!inverted && val.length > 0) {
-					return this.ho(val, cx, partials, this.text.substring(start, end), tags);
+					return this.ho(val, cx, partials, this.text.substring(start, end));
 				}
 
 				t = val.call(cx);
@@ -200,7 +200,7 @@
 					if (inverted) {
 						return true;
 					} else {
-						return this.ho(t, cx, partials, this.text.substring(start, end), tags);
+						return this.ho(t, cx, partials, this.text.substring(start, end));
 					}
 				}
 

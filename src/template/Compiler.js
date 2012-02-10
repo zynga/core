@@ -39,7 +39,7 @@
 		{
 			var tag = tree[i].tag;
 			if (tag == '#') {
-				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n), tree[i].i, tree[i].end, tree[i].otag + " " + tree[i].ctag);
+				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n), tree[i].i, tree[i].end);
 			} else if (tag == '^') {
 				code += invertedSection(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n));
 			} else if (tag == '<' || tag == '>') {
@@ -58,8 +58,8 @@
 		return code;
 	}
 
-	function section(nodes, id, method, start, end, tags) {
-		return 'if(_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,0,' + start + ',' + end + ',"' + tags + '")){_.rs(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
+	function section(nodes, id, method, start, end) {
+		return 'if(_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,0,' + start + ',' + end + ')){_.rs(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
 	}
 
 	function invertedSection(nodes, id, method) {
