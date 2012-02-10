@@ -101,10 +101,6 @@
 					return false;
 				}
 
-				if (typeof val == 'function') {
-					val = this.ls(val, ctx, partials, inverted, start, end);
-				}
-
 				pass = (val === '') || !!val;
 
 				if (!inverted && pass && ctx) {

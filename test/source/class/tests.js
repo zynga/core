@@ -410,24 +410,6 @@ $(function() {
 		
 	});
 	
-	test("Lambdas", function() {
-
-		var template = core.template.Compiler.compile("{{#wrapped}}{{name}} is awesome.{{/wrapped}}");
-		ok(template instanceof core.template.Template);
-		
-		var output = template.render({
-		  "name": "Willy",
-		  "wrapped": function() {
-		    return function(text) {
-		      return "<b>" + text + "</b>"
-		    }
-		  }
-		});
-		
-		equal(output, "<b>Willy is awesome.</b>");
-		
-	});
-	
 	test("Non False", function() {
 
 		var template = core.template.Compiler.compile("{{#person?}}Hi {{name}}!{{/person?}}");
