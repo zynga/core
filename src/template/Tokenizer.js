@@ -3,16 +3,16 @@
 	// Setup regexassignments
 	// remove whitespace according to Mustache spec
 	var tagTypes = {
-		'#': 1, 
-		'^': 2, 
-		'/': 3,	 
-		'!': 4, 
-		'>': 5, 
-		'<': 6, 
-		'=': 7, 
-		'$': 8, 
-		'{': 9, 
-		'&': 10
+		'#' : 1, 
+		'^' : 2, 
+		'/' : 3,	 
+		'!' : 4, 
+		'>' : 5, 
+		'<' : 6, 
+		'=' : 7, 
+		'$' : 8, 
+		'{' : 9, 
+		'&' : 10
 	};
 	
 	function tagChange(tag, text, index) {
@@ -84,7 +84,7 @@
 			else if (!noNewLine) 
 			{
 				tokens.push({
-					tag:'\n'
+					tag : '\n'
 				});
 			}
 
@@ -130,7 +130,7 @@
 				{
 					tokens.push({
 						tag: tagType, 
-						n: buf.trim(), 
+						name: buf.trim(), 
 						i: (tagType == '/') ? seenTag - ctag.length : i + otag.length
 					});
 					

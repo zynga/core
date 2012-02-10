@@ -27,7 +27,7 @@
 		return s.replace(rSlash, '\\\\').replace(rQuot, '\\\"').replace(rNewline, '\\n').replace(rCr, '\\r');
 	}
 
-	function chooseMethod(s) {
+	function chooseFieldAccessMethod(s) {
 		return (~s.indexOf('.')) ? 'd' : 'f';
 	}
 
@@ -39,17 +39,17 @@
 		{
 			var tag = tree[i].tag;
 			if (tag == '#') {
-				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n), tree[i].i, tree[i].end);
+				code += section(tree[i].nodes, tree[i].name, chooseFieldAccessMethod(tree[i].name), tree[i].i, tree[i].end);
 			} else if (tag == '^') {
-				code += invertedSection(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n));
+				code += invertedSection(tree[i].nodes, tree[i].name, chooseFieldAccessMethod(tree[i].name));
 			} else if (tag == '<' || tag == '>') {
 				code += partial(tree[i]);
 			} else if (tag == '{' || tag == '&') {
-				code += tripleStache(tree[i].n, chooseMethod(tree[i].n));
+				code += tripleStache(tree[i].name, chooseFieldAccessMethod(tree[i].name));
 			} else if (tag == '\n') {
 				code += text('"\\n"' + (tree.length-1 == i ? '' : ' + i'));
 			} else if (tag == '$') {
-				code += variable(tree[i].n, chooseMethod(tree[i].n));
+				code += variable(tree[i].name, chooseFieldAccessMethod(tree[i].name));
 			} else if (tag == null) {
 				code += text('"' + esc(tree[i]) + '"');
 			}
@@ -67,7 +67,7 @@
 	}
 
 	function partial(tok) {
-		return '_.b(_.rp("' +	 esc(tok.n) + '",c,p,"' + (tok.indent || '') + '"));';
+		return '_.b(_.rp("' +	 esc(tok.name) + '",c,p,"' + (tok.indent || '') + '"));';
 	}
 
 	function tripleStache(id, method) {

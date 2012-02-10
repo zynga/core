@@ -529,11 +529,38 @@ $(function() {
 		var tree = core.template.Parser.parse(text);
 
 		equals(tree[0].tag, "^");
-		equals(tree[0].n, "check");
+		equals(tree[0].name, "check");
 		equals(tree[1].tag, "#");
-		equals(tree[1].n, "check");
+		equals(tree[1].name, "check");
 		
 	});
+	
+	
+	test("Dots", function() {
+		
+		var template = core.template.Compiler.compile("{{#tweets}}{{author.name}}[{{author.id}}]{{/tweets}}");
+		var output = template.render({
+			"tweets": [{
+				author: {
+					name : "Sascha",
+					id : 0
+				}
+			}, {
+				author: {
+					name : "Christoph",
+					id : 1
+				}
+			}, {
+				author: {
+					name : "Ivo",
+					id : 2
+				}
+			}]
+		});
+		
+		equals(output, "Sascha[0]Christoph[1]Ivo[2]");
+		
+	});	
 	
 	
 	

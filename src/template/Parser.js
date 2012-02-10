@@ -19,13 +19,13 @@
 			else if (token.tag == "/") 
 			{
 				if (core.Env.isSet("debug") && stack.length === 0) {
-					throw new Error("Closing tag without opener: /" + token.n);
+					throw new Error("Closing tag without opener: /" + token.name);
 				}
 				
 				opener = stack.pop();
 				
-				if (core.Env.isSet("debug") && token.n != opener.n) {
-					throw new Error("Nesting error: " + opener.n + " vs. " + token.n);
+				if (core.Env.isSet("debug") && token.name != opener.name) {
+					throw new Error("Nesting error: " + opener.name + " vs. " + token.name);
 				}
 				
 				opener.end = token.i;
@@ -39,7 +39,7 @@
 		}
 
 		if (core.Env.isSet("debug") && stack.length > 0) {
-			throw new Error("Missing closing tag: " + stack.pop().n);
+			throw new Error("Missing closing tag: " + stack.pop().name);
 		}
 
 		return instructions;
