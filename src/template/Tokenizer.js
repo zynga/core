@@ -24,13 +24,6 @@
 		return true;
 	}
 	
-	function cleanTripleStache(token) 
-	{
-		if (token.n.substr(token.n.length - 1) === '}') {
-			token.n = token.n.substring(0, token.n.length - 1);
-		}
-	}
-
 	/**
 	 * {String[]} Tokenizer for template @text {String}. Returns an array of tokens.
 	 */
@@ -150,13 +143,8 @@
 					i += ctag.length - 1;
 					state = IN_TEXT;
 					
-					if (tagType == '{') 
-					{
-						if (ctag == '}}') {
-							i++;
-						} else {
-							cleanTripleStache(tokens[tokens.length - 1]);
-						}
+					if (tagType == '{') {
+						i++;
 					}
 				}
 				else 

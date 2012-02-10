@@ -2,9 +2,9 @@
 {
 	function buildTree(tokens, stack) 
 	{
-		var instructions = [],
-				opener = null,
-				token = null;
+		var instructions = [];
+		var opener = null;
+		var token = null;
 				
 		while (tokens.length > 0) 
 		{
