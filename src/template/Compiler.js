@@ -46,6 +46,7 @@
 				var name = current.name;
 				
 				if (tag == '#') {
+					// start and end are passed to the section renderer for supporting lambdas and their requirement to extract the content to process
 					code += section(current.nodes, name, chooseAccessMethod(name), current.start, current.end);
 				} else if (tag == '^') {
 					code += invertedSection(current.nodes, name, chooseAccessMethod(name));
@@ -97,7 +98,11 @@
 	function compile(text) {
 		
 		var tree = core.template.Parser.parse(text);
-		var wrapped = 'var _=this;_.buf+=(i=i||"");' + walk(tree) + 'return _.finish();';
+		var code = walk(tree);
+		var wrapped = 'var _=this;_.buf+=(i=i||"");' + code + 'return _.finish();';
+		
+		console.debug(text);
+		console.debug(code);
 		
 		return new core.template.Template(new Function('c', 'p', 'i', wrapped), text);
 	}

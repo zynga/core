@@ -152,9 +152,12 @@
 						v = null,
 						found = false;
 
-				for (var i = ctx.length - 1; i >= 0; i--) {
+				for (var i = ctx.length - 1; i >= 0; i--) 
+				{
 					v = ctx[i];
-					if (v && typeof v == 'object' && key in v) {
+					
+					if (v && typeof v == 'object' && key in v) 
+					{
 						val = v[key];
 						found = true;
 						break;
@@ -162,7 +165,7 @@
 				}
 
 				if (!found) {
-					return (returnFound) ? false : "";
+					return returnFound ? false : "";
 				}
 
 				if (!returnFound && typeof val == 'function') {
@@ -173,7 +176,8 @@
 			},
 
 			/** higher order templates */
-			ho: function(val, cx, partials, text) {
+			ho: function(val, cx, partials, text) 
+			{
 				var t = val.call(cx, text, function(t) {
 					return core.template.Compiler.compile(t).render(cx, partials);
 				});
