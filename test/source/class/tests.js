@@ -526,7 +526,7 @@ $(function() {
 	test("Parser", function() {
 		
 		var text = "{{^check}}No{{/check}}{{#check}}Yes{{/check}}";
-		var tree = core.template.Compiler.parse(core.template.Compiler.scan(text));
+		var tree = core.template.Compiler.parse(text);
 
 		equals(tree[0].tag, "^");
 		equals(tree[0].n, "check");

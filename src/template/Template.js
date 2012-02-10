@@ -31,10 +31,9 @@
 
 	core.Class("core.template.Template",
 	{
-		construct: function (renderFunc, text, compiler) 
+		construct: function (renderFunc, text) 
 		{
 			this.r = renderFunc || this.r;
-			this.c = compiler;
 			this.text = text || '';
 			this.buf = '';
 		},
@@ -67,8 +66,8 @@
 					return '';
 				}
 
-				if (this.c && typeof partial == 'string') {
-					partial = this.c.compile(partial);
+				if (typeof partial == 'string') {
+					partial = core.template.Compiler.compile(partial);
 				}
 
 				return partial.ri(context, partials, indent);
@@ -171,11 +170,10 @@
 
 			/** higher order templates */
 			ho: function(val, cx, partials, text) {
-				var compiler = this.c;
 				var t = val.call(cx, text, function(t) {
-					return compiler.compile(t).render(cx, partials);
+					return core.template.Compiler.compile(t).render(cx, partials);
 				});
-				this.b(compiler.compile(t.toString()).render(cx, partials));
+				this.b(core.template.Compiler.compile(t.toString()).render(cx, partials));
 				return false;
 			},
 
@@ -188,7 +186,7 @@
 				var cx = ctx[ctx.length - 1],
 						t = null;
 
-				if (!inverted && this.c && val.length > 0) {
+				if (!inverted && val.length > 0) {
 					return this.ho(val, cx, partials, this.text.substring(start, end), tags);
 				}
 
@@ -197,7 +195,7 @@
 				if (typeof t == 'function') {
 					if (inverted) {
 						return true;
-					} else if (this.c) {
+					} else {
 						return this.ho(t, cx, partials, this.text.substring(start, end), tags);
 					}
 				}
@@ -214,8 +212,8 @@
 				}
 				result = coerceToString(result);
 
-				if (this.c && ~result.indexOf("{\u007B")) {
-					return this.c.compile(result).render(cx, partials);
+				if (~result.indexOf("{\u007B")) {
+					return core.template.Compiler.compile(result).render(cx, partials);
 				}
 
 				return result;

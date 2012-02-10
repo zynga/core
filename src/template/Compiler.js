@@ -47,18 +47,18 @@
 		return true;
 	}
 
-	function buildTree(tokens, kind, stack) {
+	function buildTree(tokens, stack) {
 		var instructions = [],
 				opener = null,
 				token = null;
-
+				
 		while (tokens.length > 0) 
 		{
 			token = tokens.shift();
 			if (token.tag == '#' || token.tag == '^') 
 			{
 				stack.push(token);
-				token.nodes = buildTree(tokens, token.tag, stack);
+				token.nodes = buildTree(tokens, stack);
 				instructions.push(token);
 			}
 			else if (token.tag == '/') 
@@ -100,9 +100,12 @@
 		return (~s.indexOf('.')) ? 'd' : 'f';
 	}
 
-	function walk(tree) {
+	function walk(tree) 
+	{
 		var code = '';
-		for (var i = 0, l = tree.length; i < l; i++) {
+		
+		for (var i = 0, l = tree.length; i < l; i++) 
+		{
 			var tag = tree[i].tag;
 			if (tag == '#') {
 				code += section(tree[i].nodes, tree[i].n, chooseMethod(tree[i].n), tree[i].i, tree[i].end, tree[i].otag + " " + tree[i].ctag);
@@ -116,10 +119,11 @@
 				code += text('"\\n"' + (tree.length-1 == i ? '' : ' + i'));
 			} else if (tag == '_v') {
 				code += variable(tree[i].n, chooseMethod(tree[i].n));
-			} else if (tag === undefined) {
+			} else if (tag == null) {
 				code += text('"' + esc(tree[i]) + '"');
 			}
 		}
+		
 		return code;
 	}
 
@@ -153,119 +157,129 @@
 	function text(id) {
 		return '_.b(' + id + ');';
 	}
-			
+	
+	/**
+	 * {String[]} Tokenizer for template @text {String}. Returns an array of tokens.
+	 */
+	function tokenize(text) {
+		var len = text.length,
+				IN_TEXT = 0,
+				IN_TAG_TYPE = 1,
+				IN_TAG = 2,
+				state = IN_TEXT,
+				tagType = null,
+				tag = null,
+				buf = '',
+				tokens = [],
+				seenTag = false,
+				i = 0,
+				lineStart = 0,
+				otag = '{{',
+				ctag = '}}';
+
+		function addBuf() 
+		{
+			if (buf.length > 0) {
+				tokens.push(new String(buf));
+				buf = '';
+			}
+		}
+
+		function lineIsWhitespace() 
+		{
+			for (var j = lineStart; j < tokens.length; j++) 
+			{
+				if (!((tokens[j].tag && tagTypes[tokens[j].tag] < tagTypes['_v']) || (!tokens[j].tag && tokens[j].match(rIsWhitespace) === null))) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		function filterLine(haveSeenTag, noNewLine) {
+			addBuf();
+
+			if (haveSeenTag && lineIsWhitespace()) {
+				for (var j = lineStart, next; j < tokens.length; j++) {
+					if (!tokens[j].tag) {
+						if ((next = tokens[j+1]) && next.tag == '>') {
+							// set indent to token value
+							next.indent = tokens[j].toString()
+						}
+						tokens.splice(j, 1);
+					}
+				}
+			} else if (!noNewLine) {
+				tokens.push({tag:'\n'});
+			}
+
+			seenTag = false;
+			lineStart = tokens.length;
+		}
+
+		for (i = 0; i < len; i++) {
+			if (state == IN_TEXT) {
+				if (tagChange(otag, text, i)) {
+					--i;
+					addBuf();
+					state = IN_TAG_TYPE;
+				} else {
+					if (text.charAt(i) == '\n') {
+						filterLine(seenTag);
+					} else {
+						buf += text.charAt(i);
+					}
+				}
+			} else if (state == IN_TAG_TYPE) {
+				i += otag.length - 1;
+				tag = tagTypes[text.charAt(i + 1)];
+				tagType = tag ? text.charAt(i + 1) : '_v';
+				if (tag) {
+					i++;
+				}
+				state = IN_TAG;
+				seenTag = i;
+			} else {
+				if (tagChange(ctag, text, i)) {
+					tokens.push({tag: tagType, n: buf.trim(), otag: otag, ctag: ctag, i: (tagType == '/') ? seenTag - ctag.length : i + otag.length});
+					buf = '';
+					i += ctag.length - 1;
+					state = IN_TEXT;
+					if (tagType == '{') {
+						if (ctag == '}}') {
+							i++;
+						} else {
+							cleanTripleStache(tokens[tokens.length - 1]);
+						}
+					}
+				} else {
+					buf += text.charAt(i);
+				}
+			}
+		}
+
+		filterLine(seenTag, true);
+
+		return tokens;
+	}
+	
+	/**
+	 * {Array} Processes a list of @tokens {String[]} to create a tree.
+	 */
+	function parse(text) {
+		return buildTree(tokenize(text), []);
+	}
+	
+	
 	/**
 	 * This is a compiler for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
 	 * For information on Mustache, see the [manpage](http://mustache.github.com/mustache.5.html) and the [spec](https://github.com/mustache/spec).
 	 */
 	core.Module("core.template.Compiler",
 	{
-		/**
-		 * {String[]} Tokenizer for template @text {String}. Returns an array of tokens.
-		 */
-		scan : function scan(text) {
-			var len = text.length,
-					IN_TEXT = 0,
-					IN_TAG_TYPE = 1,
-					IN_TAG = 2,
-					state = IN_TEXT,
-					tagType = null,
-					tag = null,
-					buf = '',
-					tokens = [],
-					seenTag = false,
-					i = 0,
-					lineStart = 0,
-					otag = '{{',
-					ctag = '}}';
-
-			function addBuf() {
-				if (buf.length > 0) {
-					tokens.push(new String(buf));
-					buf = '';
-				}
-			}
-
-			function lineIsWhitespace() {
-				var isAllWhitespace = true;
-				for (var j = lineStart; j < tokens.length; j++) {
-					isAllWhitespace =
-						(tokens[j].tag && tagTypes[tokens[j].tag] < tagTypes['_v']) ||
-						(!tokens[j].tag && tokens[j].match(rIsWhitespace) === null);
-					if (!isAllWhitespace) {
-						return false;
-					}
-				}
-
-				return isAllWhitespace;
-			}
-
-			function filterLine(haveSeenTag, noNewLine) {
-				addBuf();
-
-				if (haveSeenTag && lineIsWhitespace()) {
-					for (var j = lineStart, next; j < tokens.length; j++) {
-						if (!tokens[j].tag) {
-							if ((next = tokens[j+1]) && next.tag == '>') {
-								// set indent to token value
-								next.indent = tokens[j].toString()
-							}
-							tokens.splice(j, 1);
-						}
-					}
-				} else if (!noNewLine) {
-					tokens.push({tag:'\n'});
-				}
-
-				seenTag = false;
-				lineStart = tokens.length;
-			}
-
-			for (i = 0; i < len; i++) {
-				if (state == IN_TEXT) {
-					if (tagChange(otag, text, i)) {
-						--i;
-						addBuf();
-						state = IN_TAG_TYPE;
-					} else {
-						if (text.charAt(i) == '\n') {
-							filterLine(seenTag);
-						} else {
-							buf += text.charAt(i);
-						}
-					}
-				} else if (state == IN_TAG_TYPE) {
-					i += otag.length - 1;
-					tag = tagTypes[text.charAt(i + 1)];
-					tagType = tag ? text.charAt(i + 1) : '_v';
-					if (tag) {
-						i++;
-					}
-					state = IN_TAG;
-					seenTag = i;
-				} else {
-					if (tagChange(ctag, text, i)) {
-						tokens.push({tag: tagType, n: buf.trim(), otag: otag, ctag: ctag, i: (tagType == '/') ? seenTag - ctag.length : i + otag.length});
-						buf = '';
-						i += ctag.length - 1;
-						state = IN_TEXT;
-						if (tagType == '{') {
-							if (ctag == '}}') {
-								i++;
-							} else {
-								cleanTripleStache(tokens[tokens.length - 1]);
-							}
-						}
-					} else {
-						buf += text.charAt(i);
-					}
-				}
-			}
-
-			filterLine(seenTag, true);
-
-			return tokens;
-		},
+		tokenize: tokenize,
+		parse: parse,
 		
 		
 		/**
@@ -273,19 +287,11 @@
 		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
 		 * the original @text {String} for template construction.
 		 */
-		compile : function(text) {
-			var code = writeCode(this.parse(this.scan(text), text));
-			return new core.template.Template(new Function('c', 'p', 'i', code), text, this);
-		},
-		
-		
-		/**
-		 * {Array} Processes the @tokens {String[]} from {#scan} to create and return a tree.
-		 */
-		parse : function(tokens, text) {
-			return buildTree(tokens, '', []);
+		compile : function(text) 
+		{
+			/** #break(core.template.Template) */
+			return new core.template.Template(new Function('c', 'p', 'i', writeCode(parse(text))), text, this);
 		}
-		
 	});
 	
 })();
