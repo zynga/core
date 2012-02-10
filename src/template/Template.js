@@ -26,7 +26,7 @@
 
 	function hoganEscape(str) {
 		str = coerceToString(str);
-		return hChars.test(str) ? str.replace(rAmp,'&amp;').replace(rLt,'&lt;').replace(rGt,'&gt;').replace(rApos,'&#39;').replace(rQuot, '&quot;') : str;
+		return hChars.test(str) ? str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;') : str;
 	}
 
 	/**
@@ -115,9 +115,9 @@
 			},
 
 			/** find values with dotted names */
-			d: function(key, ctx, partials, returnFound) {
+			getDotted: function(key, ctx, partials, returnFound) {
 				var names = key.split('.'),
-						val = this.f(names[0], ctx, partials, returnFound),
+						val = this.get(names[0], ctx, partials, returnFound),
 						cx = null;
 
 				if (key === '.' && Array.isArray(ctx[ctx.length - 2])) {
@@ -147,7 +147,7 @@
 			},
 
 			/* find values with normal names **/
-			f: function(key, ctx, partials, returnFound) {
+			get: function(key, ctx, partials, returnFound) {
 				var val = false,
 						v = null,
 						found = false;

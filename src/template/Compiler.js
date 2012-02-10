@@ -19,16 +19,12 @@
 	var rNewline =	/\n/g;
 	var rCr = /\r/g;
 
-	function writeCode(tree) {
-		return 'var _=this;_.b(i=i||"");' + walk(tree) + 'return _.fl();';
-	}
-
 	function esc(s) {
 		return s.replace(rSlash, '\\\\').replace(rQuot, '\\\"').replace(rNewline, '\\n').replace(rCr, '\\r');
 	}
 
-	function chooseFieldAccessMethod(s) {
-		return (~s.indexOf('.')) ? 'd' : 'f';
+	function chooseFieldAccessMethod(str) {
+		return ~str.indexOf('.') ? 'getDotted' : 'get';
 	}
 
 	function walk(tree) 
@@ -38,6 +34,7 @@
 		for (var i = 0, l = tree.length; i < l; i++) 
 		{
 			var tag = tree[i].tag;
+			
 			if (tag == '#') {
 				code += section(tree[i].nodes, tree[i].name, chooseFieldAccessMethod(tree[i].name), tree[i].i, tree[i].end);
 			} else if (tag == '^') {
@@ -89,7 +86,11 @@
 	 * the original @text {String} for template construction.
 	 */
 	function compile(text) {
-		return new core.template.Template(new Function('c', 'p', 'i', writeCode(core.template.Parser.parse(text))), text);
+		
+		var tree = core.template.Parser.parse(text);
+		var wrapped = 'var _=this;_.b(i=i||"");' + walk(tree) + 'return _.fl();';
+		
+		return new core.template.Template(new Function('c', 'p', 'i', wrapped), text);
 	}
 	
 	
