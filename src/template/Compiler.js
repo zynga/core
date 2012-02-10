@@ -39,25 +39,24 @@
 			
 			if (tag == null) 
 			{
-				code += text('"' + esc(current) + '"');
+				code += '_.buf+="' + esc(current) + '";';
 			}
 			else
 			{
 				var name = current.name;
 				
 				if (tag == '#') {
-					// start and end are passed to the section renderer for supporting lambdas and their requirement to extract the content to process
-					code += section(current.nodes, name, chooseAccessMethod(name), current.start, current.end);
+					code += section(current.nodes, name, chooseAccessMethod(name));
 				} else if (tag == '^') {
 					code += invertedSection(current.nodes, name, chooseAccessMethod(name));
 				} else if (tag == '<' || tag == '>') {
 					code += partial(current);
 				} else if (tag == '{' || tag == '&') {
 					code += tripleStache(name, chooseAccessMethod(name));
-				} else if (tag == '\n') {
-					code += text('"\\n"' + (node.length-1 == i ? '' : ' + i'));
 				} else if (tag == '$') {
 					code += variable(name, chooseAccessMethod(name));
+				} else if (tag == '\n') {
+					code += '_.buf+="\\n";';
 				}
 			}
 		}
@@ -85,10 +84,6 @@
 		return '_.buf+=_.v(_.' + accessMethod + '("' + esc(id) + '",c,p,0));';
 	}
 
-	function text(id) {
-		return '_.buf+=' + id + ';';
-	}
-	
 
 	/**
 	 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 

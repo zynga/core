@@ -393,6 +393,19 @@ $(function() {
 		
 	});
 	
+	test("Line Breaks", function() {
+		
+		var template = core.template.Compiler.compile("Break\nHere {{value}}.");
+		ok(template instanceof core.template.Template);
+
+		var output = template.render({
+		  value: "xxx",
+		});
+		
+		equal(output, "Break\nHere xxx.");
+		
+	});
+	
 	test("Lists", function() {
 
 		var template = core.template.Compiler.compile("{{#repo}}<b>{{name}}</b>{{/repo}}");
