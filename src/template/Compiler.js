@@ -25,7 +25,8 @@
 				'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
 			};
 			
-	function cleanTripleStache(token) {
+	function cleanTripleStache(token) 
+	{
 		if (token.n.substr(token.n.length - 1) === '}') {
 			token.n = token.n.substring(0, token.n.length - 1);
 		}
@@ -128,18 +129,11 @@
 	}
 
 	function section(nodes, id, method, start, end, tags) {
-		return 'if(_.s(_.' + method + '("' + esc(id) + '",c,p,1),' +
-					 'c,p,0,' + start + ',' + end + ',"' + tags + '")){' +
-					 '_.rs(c,p,' +
-					 'function(c,p,_){' +
-					 walk(nodes) +
-					 '});c.pop();}';
+		return 'if(_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,0,' + start + ',' + end + ',"' + tags + '")){_.rs(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
 	}
 
 	function invertedSection(nodes, id, method) {
-		return 'if(!_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,1,0,0,"")){' +
-					 walk(nodes) +
-					 '};';
+		return 'if(!_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,1,0,0,"")){' + walk(nodes) + '};';
 	}
 
 	function partial(tok) {
@@ -197,20 +191,27 @@
 			return true;
 		}
 
-		function filterLine(haveSeenTag, noNewLine) {
+		function filterLine(haveSeenTag, noNewLine) 
+		{
 			addBuf();
 
-			if (haveSeenTag && lineIsWhitespace()) {
-				for (var j = lineStart, next; j < tokens.length; j++) {
-					if (!tokens[j].tag) {
-						if ((next = tokens[j+1]) && next.tag == '>') {
+			if (haveSeenTag && lineIsWhitespace()) 
+			{
+				for (var j = lineStart, next; j < tokens.length; j++) 
+				{
+					if (!tokens[j].tag) 
+					{
+						if ((next = tokens[j+1]) && next.tag == '>') 
+						{
 							// set indent to token value
 							next.indent = tokens[j].toString()
 						}
+						
 						tokens.splice(j, 1);
 					}
 				}
-			} else if (!noNewLine) {
+			}
+			else if (!noNewLine) {
 				tokens.push({tag:'\n'});
 			}
 
@@ -218,42 +219,58 @@
 			lineStart = tokens.length;
 		}
 
-		for (i = 0; i < len; i++) {
-			if (state == IN_TEXT) {
-				if (tagChange(otag, text, i)) {
+		for (i = 0; i < len; i++) 
+		{
+			if (state == IN_TEXT) 
+			{
+				if (tagChange(otag, text, i)) 
+				{
 					--i;
 					addBuf();
 					state = IN_TAG_TYPE;
-				} else {
+				}
+				else
+				{
 					if (text.charAt(i) == '\n') {
 						filterLine(seenTag);
 					} else {
 						buf += text.charAt(i);
 					}
 				}
-			} else if (state == IN_TAG_TYPE) {
+			}
+			else if (state == IN_TAG_TYPE) 
+			{
 				i += otag.length - 1;
 				tag = tagTypes[text.charAt(i + 1)];
 				tagType = tag ? text.charAt(i + 1) : '_v';
+				
 				if (tag) {
 					i++;
 				}
+				
 				state = IN_TAG;
 				seenTag = i;
-			} else {
-				if (tagChange(ctag, text, i)) {
+			}
+			else
+			{
+				if (tagChange(ctag, text, i)) 
+				{
 					tokens.push({tag: tagType, n: buf.trim(), otag: otag, ctag: ctag, i: (tagType == '/') ? seenTag - ctag.length : i + otag.length});
 					buf = '';
 					i += ctag.length - 1;
 					state = IN_TEXT;
-					if (tagType == '{') {
+					
+					if (tagType == '{') 
+					{
 						if (ctag == '}}') {
 							i++;
 						} else {
 							cleanTripleStache(tokens[tokens.length - 1]);
 						}
 					}
-				} else {
+				}
+				else 
+				{
 					buf += text.charAt(i);
 				}
 			}
@@ -271,6 +288,18 @@
 		return buildTree(tokenize(text), []);
 	}
 	
+
+	/**
+	 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
+	 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
+	 * the original @text {String} for template construction.
+	 */
+	function compile(text) 
+	{
+		/** #break(core.template.Template) */
+		return new core.template.Template(new Function('c', 'p', 'i', writeCode(parse(text))), text, this);
+	}
+	
 	
 	/**
 	 * This is a compiler for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
@@ -280,18 +309,7 @@
 	{
 		tokenize: tokenize,
 		parse: parse,
-		
-		
-		/**
-		 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
-		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
-		 * the original @text {String} for template construction.
-		 */
-		compile : function(text) 
-		{
-			/** #break(core.template.Template) */
-			return new core.template.Template(new Function('c', 'p', 'i', writeCode(parse(text))), text, this);
-		}
+		compile : compile
 	});
 	
 })();
