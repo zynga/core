@@ -64,19 +64,19 @@
 	}
 
 	function partial(tok) {
-		return '_.b(_.rp("' +	 esc(tok.name) + '",c,p,"' + (tok.indent || '') + '"));';
+		return '_.buf+=_.rp("' +	 esc(tok.name) + '",c,p,"' + (tok.indent || '') + '");';
 	}
 
 	function tripleStache(id, method) {
-		return '_.b(_.t(_.' + method + '("' + esc(id) + '",c,p,0)));';
+		return '_.buf+=_.t(_.' + method + '("' + esc(id) + '",c,p,0));';
 	}
 
 	function variable(id, method) {
-		return '_.b(_.v(_.' + method + '("' + esc(id) + '",c,p,0)));';
+		return '_.buf+=_.v(_.' + method + '("' + esc(id) + '",c,p,0));';
 	}
 
 	function text(id) {
-		return '_.b(' + id + ');';
+		return '_.buf+=' + id + ';';
 	}
 	
 
@@ -88,7 +88,7 @@
 	function compile(text) {
 		
 		var tree = core.template.Parser.parse(text);
-		var wrapped = 'var _=this;_.b(i=i||"");' + walk(tree) + 'return _.fl();';
+		var wrapped = 'var _=this;_.buf+=(i=i||"");' + walk(tree) + 'return _.fl();';
 		
 		return new core.template.Template(new Function('c', 'p', 'i', wrapped), text);
 	}

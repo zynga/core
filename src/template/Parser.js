@@ -59,7 +59,6 @@
 		parse: function(text) 
 		{
 			var tokens = core.template.Tokenizer.tokenize(text);
-			console.debug(JSON.stringify(tokens))
 			return buildTree(tokens, []);
 		}
 

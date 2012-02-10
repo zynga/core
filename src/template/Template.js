@@ -177,12 +177,12 @@
 				var t = val.call(cx, text, function(t) {
 					return core.template.Compiler.compile(t).render(cx, partials);
 				});
-				this.b(core.template.Compiler.compile(t.toString()).render(cx, partials));
+				
+				this.buf += core.template.Compiler.compile(t.toString()).render(cx, partials);
 				return false;
 			},
 
 			// template result buffering
-			b: function(s) { this.buf += s; },
 			fl: function() { var r = this.buf; this.buf = ''; return r; },
 
 			/** lambda replace section */
