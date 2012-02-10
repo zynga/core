@@ -130,8 +130,7 @@
 				{
 					tokens.push({
 						tag: tagType, 
-						name: buf.trim(), 
-						start: (tagType == '/') ? seenTag - ctag.length : i + otag.length
+						name: buf.trim()
 					});
 					
 					buf = '';

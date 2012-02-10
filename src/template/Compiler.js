@@ -65,24 +65,24 @@
 		return code;
 	}
 
-	function section(nodes, id, method, start, end) {
-		return 'if(_.section(_.' + method + '("' + esc(id) + '",c,p,1),c,p,0,' + start + ',' + end + ')){_.rs(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
+	function section(nodes, id, accessMethod, start, end) {
+		return 'if(_.section(_.' + accessMethod + '("' + esc(id) + '",c,p,1),c,p,0)){_.renderSection(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
 	}
 
-	function invertedSection(nodes, id, method) {
-		return 'if(!_.section(_.' + method + '("' + esc(id) + '",c,p,1),c,p,1,0,0,"")){' + walk(nodes) + '};';
+	function invertedSection(nodes, id, accessMethod) {
+		return 'if(!_.section(_.' + accessMethod + '("' + esc(id) + '",c,p,1),c,p,1)){' + walk(nodes) + '};';
 	}
 
 	function partial(tok) {
-		return '_.buf+=_.rp("' +	 esc(tok.name) + '",c,p,"' + (tok.indent || '') + '");';
+		return '_.buf+=_.renderPartial("' +	 esc(tok.name) + '",c,p,"' + (tok.indent || '') + '");';
 	}
 
-	function tripleStache(id, method) {
-		return '_.buf+=_.t(_.' + method + '("' + esc(id) + '",c,p,0));';
+	function tripleStache(id, accessMethod) {
+		return '_.buf+=_.t(_.' + accessMethod + '("' + esc(id) + '",c,p,0));';
 	}
 
-	function variable(id, method) {
-		return '_.buf+=_.v(_.' + method + '("' + esc(id) + '",c,p,0));';
+	function variable(id, accessMethod) {
+		return '_.buf+=_.v(_.' + accessMethod + '("' + esc(id) + '",c,p,0));';
 	}
 
 	function text(id) {
@@ -100,7 +100,8 @@
 		var tree = core.template.Parser.parse(text);
 		var code = walk(tree);
 		var wrapped = 'var _=this;_.buf+=(i=i||"");' + code + 'return _.finish();';
-		
+
+		console.debug("------------")
 		console.debug(text);
 		console.debug(code);
 		

@@ -28,8 +28,6 @@
 					throw new Error("Nesting error: " + opener.name + " vs. " + token.name);
 				}
 				
-				opener.end = token.start;
-				
 				return instructions;
 			} 
 			else 

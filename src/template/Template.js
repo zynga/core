@@ -53,32 +53,19 @@
 			// triple stache
 			t: coerceToString,
 
-			render: function render(context, partials, indent) {
-				return this.ri([context], partials || {}, indent);
-			},
-
-			/** render internal -- a hook for overrides that catches partials too */
-			ri: function (context, partials, indent) {
-				return this.r(context, partials, indent);
+			render: function(context, partials, indent) {
+				return this.r([context], partials || {}, indent);
 			},
 
 			/** tries to find a partial in the current scope and render it */
-			rp: function(name, context, partials, indent) {
+			renderPartial: function(name, context, partials, indent) 
+			{
 				var partial = partials[name];
-
-				if (!partial) {
-					return '';
-				}
-
-				if (typeof partial == 'string') {
-					partial = core.template.Compiler.compile(partial);
-				}
-
-				return partial.ri(context, partials, indent);
+				return partial ? partial.r(context, partials, indent) : "";
 			},
 
 			/** render a section */
-			rs: function(context, partials, section) {
+			renderSection: function(context, partials, section) {
 				var tail = context[context.length - 1];
 
 				if (!Array.isArray(tail)) {
@@ -94,8 +81,10 @@
 			},
 
 			/** maybe start a section */
-			section: function(val, ctx, partials, inverted, start, end) {
+			section: function(val, ctx, partials, inverted) {
 				var pass;
+				
+				console.debug("CTX: ", ctx)
 
 				if (Array.isArray(val) && val.length === 0) {
 					return false;
