@@ -54,7 +54,7 @@
 		{
 			if (buf.length > 0) 
 			{
-				tokens.push(new String(buf));
+				tokens.push("" + buf);
 				buf = '';
 			}
 		}
@@ -93,8 +93,11 @@
 					}
 				}
 			}
-			else if (!noNewLine) {
-				tokens.push({tag:'\n'});
+			else if (!noNewLine) 
+			{
+				tokens.push({
+					tag:'\n'
+				});
 			}
 
 			seenTag = false;
@@ -137,7 +140,14 @@
 			{
 				if (tagChange(ctag, text, i)) 
 				{
-					tokens.push({tag: tagType, n: buf.trim(), otag: otag, ctag: ctag, i: (tagType == '/') ? seenTag - ctag.length : i + otag.length});
+					tokens.push({
+						tag: tagType, 
+						n: buf.trim(), 
+						otag: otag, 
+						ctag: ctag, 
+						i: (tagType == '/') ? seenTag - ctag.length : i + otag.length
+					});
+					
 					buf = '';
 					i += ctag.length - 1;
 					state = IN_TEXT;

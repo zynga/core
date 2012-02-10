@@ -29,6 +29,10 @@
 		return hChars.test(str) ? str.replace(rAmp,'&amp;').replace(rLt,'&lt;').replace(rGt,'&gt;').replace(rApos,'&#39;').replace(rQuot, '&quot;') : str;
 	}
 
+	/**
+	 *
+	 * #break(core.template.Compiler)
+	 */
 	core.Class("core.template.Template",
 	{
 		construct: function (renderFunc, text) 

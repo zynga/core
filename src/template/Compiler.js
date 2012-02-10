@@ -88,9 +88,7 @@
 	 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
 	 * the original @text {String} for template construction.
 	 */
-	function compile(text) 
-	{
-		/** #break(core.template.Template) */
+	function compile(text) {
 		return new core.template.Template(new Function('c', 'p', 'i', writeCode(core.template.Parser.parse(text))), text);
 	}
 	
@@ -99,8 +97,7 @@
 	 * This is a compiler for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
 	 * For information on Mustache, see the [manpage](http://mustache.github.com/mustache.5.html) and the [spec](https://github.com/mustache/spec).
 	 */
-	core.Module("core.template.Compiler",
-	{
+	core.Module("core.template.Compiler", {
 		compile : compile
 	});
 	
