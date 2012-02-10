@@ -16,15 +16,23 @@
 	
 	var rSlash = /\\/g;
 	var rQuot = /\"/g;
-	var rNewline =	/\n/g;
+	var rNewline = /\n/g;
 	var rCr = /\r/g;
+	
+	var accessTags = {
+		"#" : 1,
+		"^" : 1,
+		"{" : 1,
+		"&" : 1,
+		"$" : 1
+	};
 
 	function esc(s) {
 		return s.replace(rSlash, '\\\\').replace(rQuot, '\\\"').replace(rNewline, '\\n').replace(rCr, '\\r');
 	}
 
 	function chooseAccessMethod(str) {
-		return ~str.indexOf('.') ? 'getDotted' : 'get';
+		return 
 	}
 
 	function walk(node) 
@@ -45,16 +53,20 @@
 			{
 				var name = current.name;
 				
+				if (accessTags[tag]) {
+					var accessMethod = ~name.indexOf('.') ? 'getDotted' : 'get';
+				}
+				
 				if (tag == '#') {
-					code += section(current.nodes, name, chooseAccessMethod(name));
+					code += section(current.nodes, name, accessMethod);
 				} else if (tag == '^') {
-					code += invertedSection(current.nodes, name, chooseAccessMethod(name));
+					code += invertedSection(current.nodes, name, accessMethod);
+				} else if (tag == '{' || tag == '&') {
+					code += tripleStache(name, accessMethod);
+				} else if (tag == '$') {
+					code += variable(name, accessMethod);
 				} else if (tag == '<' || tag == '>') {
 					code += partial(current);
-				} else if (tag == '{' || tag == '&') {
-					code += tripleStache(name, chooseAccessMethod(name));
-				} else if (tag == '$') {
-					code += variable(name, chooseAccessMethod(name));
 				} else if (tag == '\n') {
 					code += '_.buf+="\\n";';
 				}
