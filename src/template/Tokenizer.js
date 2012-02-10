@@ -10,7 +10,7 @@
 		'>': 5, 
 		'<': 6, 
 		'=': 7, 
-		'_v': 8, 
+		'$': 8, 
 		'{': 9, 
 		'&': 10
 	};
@@ -52,7 +52,7 @@
 		{
 			for (var j = lineStart; j < tokens.length; j++) 
 			{
-				if (!((tokens[j].tag && tagTypes[tokens[j].tag] < tagTypes['_v']) || (!tokens[j].tag && tokens[j].match(/\S/) == null))) {
+				if (!((tokens[j].tag && tagTypes[tokens[j].tag] < tagTypes['$']) || (!tokens[j].tag && tokens[j].match(/\S/) == null))) {
 					return false;
 				}
 			}
@@ -115,7 +115,7 @@
 			{
 				i += otag.length - 1;
 				tag = tagTypes[text.charAt(i + 1)];
-				tagType = tag ? text.charAt(i + 1) : '_v';
+				tagType = tag ? text.charAt(i + 1) : '$';
 				
 				if (tag) {
 					i++;

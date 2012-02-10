@@ -48,7 +48,7 @@
 				code += tripleStache(tree[i].n, chooseMethod(tree[i].n));
 			} else if (tag == '\n') {
 				code += text('"\\n"' + (tree.length-1 == i ? '' : ' + i'));
-			} else if (tag == '_v') {
+			} else if (tag == '$') {
 				code += variable(tree[i].n, chooseMethod(tree[i].n));
 			} else if (tag == null) {
 				code += text('"' + esc(tree[i]) + '"');
