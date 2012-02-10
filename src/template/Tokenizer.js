@@ -4,8 +4,7 @@
 	// remove whitespace according to Mustache spec
 	var rIsWhitespace = /\S/;
 	var tagTypes = {
-		'#': 1, '^': 2, '/': 3,	 '!': 4, '>': 5,
-		'<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
+		'#': 1, '^': 2, '/': 3,	 '!': 4, '>': 5, '<': 6, '=': 7, '_v': 8, '{': 9, '&': 10
 	};
 	
 	function tagChange(tag, text, index) {
