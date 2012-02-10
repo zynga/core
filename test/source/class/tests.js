@@ -473,6 +473,29 @@ $(function() {
 		
 	});
 	
+	
+	test("Triple", function() {
+
+		var template = core.template.Compiler.compile("{{code}}");
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "code": "<b>Foo</b>"
+		});
+		
+		equal(output, "&lt;b&gt;Foo&lt;/b&gt;");
+
+		var template = core.template.Compiler.compile("{{{code}}}");
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "code": "<b>Foo</b>"
+		});
+		
+		equal(output, "<b>Foo</b>");
+		
+	});	
+	
 	test("Partials", function() {
 
 		var template = core.template.Compiler.compile("{{#tweets}}{{> tweet}}{{/tweets}}");
