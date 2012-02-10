@@ -62,7 +62,7 @@
 				return this.r(context, partials, indent);
 			},
 
-			/** tries to find a partial in the curent scope and render it */
+			/** tries to find a partial in the current scope and render it */
 			rp: function(name, context, partials, indent) {
 				var partial = partials[name];
 
@@ -94,7 +94,7 @@
 			},
 
 			/** maybe start a section */
-			s: function(val, ctx, partials, inverted, start, end) {
+			section: function(val, ctx, partials, inverted, start, end) {
 				var pass;
 
 				if (Array.isArray(val) && val.length === 0) {
@@ -183,7 +183,13 @@
 			},
 
 			// template result buffering
-			fl: function() { var r = this.buf; this.buf = ''; return r; },
+			finish: function() 
+			{
+				var result = this.buf; 
+				this.buf = '';
+				
+				return result; 
+			},
 
 			/** lambda replace section */
 			ls: function(val, ctx, partials, inverted, start, end) {

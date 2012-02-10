@@ -56,11 +56,11 @@
 	}
 
 	function section(nodes, id, method, start, end) {
-		return 'if(_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,0,' + start + ',' + end + ')){_.rs(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
+		return 'if(_.section(_.' + method + '("' + esc(id) + '",c,p,1),c,p,0,' + start + ',' + end + ')){_.rs(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
 	}
 
 	function invertedSection(nodes, id, method) {
-		return 'if(!_.s(_.' + method + '("' + esc(id) + '",c,p,1),c,p,1,0,0,"")){' + walk(nodes) + '};';
+		return 'if(!_.section(_.' + method + '("' + esc(id) + '",c,p,1),c,p,1,0,0,"")){' + walk(nodes) + '};';
 	}
 
 	function partial(tok) {
@@ -88,7 +88,7 @@
 	function compile(text) {
 		
 		var tree = core.template.Parser.parse(text);
-		var wrapped = 'var _=this;_.buf+=(i=i||"");' + walk(tree) + 'return _.fl();';
+		var wrapped = 'var _=this;_.buf+=(i=i||"");' + walk(tree) + 'return _.finish();';
 		
 		return new core.template.Template(new Function('c', 'p', 'i', wrapped), text);
 	}
