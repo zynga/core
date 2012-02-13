@@ -46,11 +46,11 @@ def oo():
 def sugar():
     for permutation in session.getPermutations():
         resolver = Resolver(session.getProjects(), permutation)
-        resolver.addClassName("ext.Array")
-        resolver.addClassName("ext.Function")
-        resolver.addClassName("ext.Number")
-        resolver.addClassName("ext.Object")
-        resolver.addClassName("ext.String")
+        resolver.addClassName("ext.sugar.Array")
+        resolver.addClassName("ext.sugar.Function")
+        resolver.addClassName("ext.sugar.Number")
+        resolver.addClassName("ext.sugar.Object")
+        resolver.addClassName("ext.sugar.String")
         classes = Sorter(resolver, permutation).getSortedClasses()
 
         print("Classes: %s" % classes)

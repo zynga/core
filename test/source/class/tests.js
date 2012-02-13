@@ -14,7 +14,7 @@ $(function() {
 	
 	asyncTest("setTimeout with arguments", 1, function() 
 	{
-		/** #require(core.fix.SetTimeoutArgs) */
+		/** #require(ext.TimeoutArgs) */
 		setTimeout(function(arg)
 		{
 			equals(arg, "hello");
@@ -24,7 +24,7 @@ $(function() {
 
 	asyncTest("setImmediate", 1, function() 
 	{
-		/** #require(core.polyfill.setImmediate) */
+		/** #require(ext.Immediate) */
 		setImmediate(function() {
 			ok(true, "always fine");
 			start();
@@ -33,7 +33,7 @@ $(function() {
 
 	asyncTest("requestAnimationFrame", 1, function() 
 	{
-		/** #require(core.polyfill.requestAnimationFrame) */
+		/** #require(ext.RequestAnimationFrame) */
 		requestAnimationFrame(function() {
 			ok(true, "always fine");
 			start();
@@ -53,7 +53,7 @@ $(function() {
 
 	test("Object.empty", function() 
 	{
-		/** #require(core.fix.ObjectKeys) */
+		/** #require(ext.ObjectKeys) */
 		
 		// toString etc. are special in IE because these are built-in keys
 		ok(Object.empty({}));
@@ -72,7 +72,7 @@ $(function() {
 	
 	module("Ext");
 
-	/** #require(ext.addon.Array) */
+	/** #require(ext.sugar.Array) */
 
 	test("Array.prototype.max", function() 
 	{
@@ -249,7 +249,7 @@ $(function() {
 		equals([["a"],[],"b","c"].flatten().toString(), ["a","b","c"].toString());
 	});
 	
-	/** #require(ext.addon.Function) */
+	/** #require(ext.sugar.Function) */
 	
 	asyncTest("Function.prototype.debounce - END", 1, function() 
 	{
@@ -288,7 +288,7 @@ $(function() {
 		equals(counter, 1);
 	});
 	
-	/** #require(ext.addon.Object) */
+	/** #require(ext.sugar.Object) */
 		
 	test("Object.values", function() 
 	{
@@ -296,7 +296,7 @@ $(function() {
 		equals(values, "1,2,3");
 	});
 	
-	/** #require(ext.addon.Number) */
+	/** #require(ext.sugar.Number) */
 
 	test("Number.prototype.pad", function() 
 	{
@@ -306,7 +306,7 @@ $(function() {
 		equals((0).pad(6), "000000");
 	});
 	
-	/** #require(ext.addon.String) */
+	/** #require(ext.sugar.String) */
 	
 	test("String.prototype.contains", function() 
 	{
