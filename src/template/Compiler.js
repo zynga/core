@@ -47,7 +47,7 @@
 			
 			if (tag == null) 
 			{
-				code += '_.buf+="' + esc(current) + '";';
+				code += 'buf+="' + esc(current) + '";';
 			}
 			else
 			{
@@ -62,13 +62,13 @@
 				} else if (tag == '^') {
 					code += invertedSection(current.nodes, name, accessMethod);
 				} else if (tag == '{' || tag == '&') {
-					code += tripleStache(name, accessMethod);
+					code += data(name, accessMethod);
 				} else if (tag == '$') {
 					code += variable(name, accessMethod);
 				} else if (tag == '<' || tag == '>') {
 					code += partial(current);
 				} else if (tag == '\n') {
-					code += '_.buf+="\\n";';
+					code += 'buf+="\\n";';
 				}
 			}
 		}
@@ -77,51 +77,45 @@
 	}
 
 	function section(nodes, id, accessMethod, start, end) {
-		return 'if(_.section(_.' + accessMethod + '("' + esc(id) + '",c,p,1),c,p,0)){_.renderSection(c,p,function(c,p,_){' + walk(nodes) + '});c.pop();}';
+		return 'if(this.section(this.' + accessMethod + '("' + esc(id) + '",context,partials,true),context,partials,false)){this.renderSection(context,partials,function(context,partials){' + walk(nodes) + '});context.pop();}';
 	}
 
 	function invertedSection(nodes, id, accessMethod) {
-		return 'if(!_.section(_.' + accessMethod + '("' + esc(id) + '",c,p,1),c,p,1)){' + walk(nodes) + '};';
+		return 'if(!this.section(this.' + accessMethod + '("' + esc(id) + '",context,partials,true),context,partials,true)){' + walk(nodes) + '};';
 	}
 
 	function partial(tok) {
-		return '_.buf+=_.renderPartial("' + esc(tok.name) + '",c,p,"");';
+		return 'buf+=this.renderPartial("' + esc(tok.name) + '",context,partials,false);';
 	}
 
-	function tripleStache(id, accessMethod) {
-		return '_.buf+=_.t(_.' + accessMethod + '("' + esc(id) + '",c,p,0));';
+	function data(id, accessMethod) {
+		return 'buf+=this.data(this.' + accessMethod + '("' + esc(id) + '",context,partials,false));';
 	}
 
 	function variable(id, accessMethod) {
-		return '_.buf+=_.v(_.' + accessMethod + '("' + esc(id) + '",c,p,0));';
+		return 'buf+=this.variable(this.' + accessMethod + '("' + esc(id) + '",context,partials,false));';
 	}
 
 
-	/**
-	 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
-	 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
-	 * the original @text {String} for template construction.
-	 */
-	function compile(text) {
-		
-		var tree = core.template.Parser.parse(text);
-		var code = walk(tree);
-		var wrapped = 'var _=this;_.buf+=(i=i||"");' + code + 'return _.finish();';
-
-		console.debug("------------")
-		console.debug(text);
-		console.debug(code);
-		
-		return new core.template.Template(new Function('c', 'p', 'i', wrapped), text);
-	}
-	
-	
 	/**
 	 * This is a compiler for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
 	 * For information on Mustache, see the [manpage](http://mustache.github.com/mustache.5.html) and the [spec](https://github.com/mustache/spec).
 	 */
-	core.Module("core.template.Compiler", {
-		compile : compile
+	core.Module("core.template.Compiler", 
+	{
+		/**
+		 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
+		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
+		 * the original @text {String} for template construction.
+		 */
+		compile : function(text) {
+
+			var tree = core.template.Parser.parse(text);
+			var code = walk(tree);
+			var wrapped = 'var buf="";' + code + 'return buf;';
+
+			return new core.template.Template(new Function('context', 'partials', wrapped), text);
+		}
 	});
 	
 })();

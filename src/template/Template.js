@@ -13,12 +13,12 @@
 
 (function () 
 {
-	var rAmp = /&/g,
-			rLt = /</g,
-			rGt = />/g,
-			rApos =/\'/g,
-			rQuot = /\"/g,
-			hChars =/[&<>\"\']/;
+	var rAmp = /&/g;
+	var rLt = /</g;
+	var rGt = />/g;
+	var rApos = /\'/g;
+	var rQuot = /\"/g;
+	var hChars = /[&<>\"\']/;
 
 	function coerceToString(val) {
 		return val == null ? "" : "" + val;
@@ -41,7 +41,10 @@
 	{
 		construct: function (renderFunc, text) 
 		{
-			this.r = renderFunc || this.r;
+			if (renderFunc) {
+				this.__render = renderFunc;
+			}
+			
 			this.text = text || '';
 			this.buf = '';
 		},
@@ -49,23 +52,24 @@
 		members: 
 		{
 			// render: replaced by generated code.
-			r: function (context, partials) { return ''; },
+			__render: function (context, partials) { 
+				return ''; 
+			},
+			
+			render: null,
 
-			// variable escaping
-			v: hoganEscape,
-
-			// triple stache
-			t: coerceToString,
+			variable: hoganEscape,
+			data: coerceToString,
 
 			render: function(context, partials) {
-				return this.r([context], partials || {});
+				return this.__render([context], partials || {});
 			},
 
 			/** tries to find a partial in the current scope and render it */
 			renderPartial: function(name, context, partials) 
 			{
 				var partial = partials[name];
-				return partial ? partial.r(context, partials) : "";
+				return partial ? partial.__render(context, partials) : "";
 			},
 
 			/** render a section */
@@ -73,44 +77,44 @@
 				var tail = context[context.length - 1];
 
 				if (!Array.isArray(tail)) {
-					section(context, partials, this);
+					section.call(this, context, partials);
 					return;
 				}
 
 				for (var i = 0; i < tail.length; i++) {
 					context.push(tail[i]);
-					section(context, partials, this);
+					section.call(this, context, partials);
 					context.pop();
 				}
 			},
 
 			/** maybe start a section */
-			section: function(val, ctx, partials, inverted) {
+			section: function(val, data, partials, inverted) 
+			{
 				var pass;
 				
-				console.debug("CTX: ", ctx)
-
 				if (Array.isArray(val) && val.length === 0) {
 					return false;
 				}
 
 				pass = (val === '') || !!val;
 
-				if (!inverted && pass && ctx) {
-					ctx.push((typeof val == 'object') ? val : ctx[ctx.length - 1]);
+				if (!inverted && pass && data) {
+					data.push((typeof val == 'object') ? val : data[data.length - 1]);
 				}
 
 				return pass;
 			},
 
 			/** find values with dotted names */
-			getDotted: function(key, ctx, partials, returnFound) {
+			getDotted: function(key, data, partials, returnFound) 
+			{
 				var names = key.split('.'),
-						val = this.get(names[0], ctx, partials, returnFound),
+						val = this.get(names[0], data, partials, returnFound),
 						cx = null;
 
-				if (key === '.' && Array.isArray(ctx[ctx.length - 2])) {
-					return ctx[ctx.length - 1];
+				if (key === '.' && Array.isArray(data[data.length - 2])) {
+					return data[data.length - 1];
 				}
 
 				for (var i = 1; i < names.length; i++) {
@@ -126,24 +130,19 @@
 					return false;
 				}
 
-				if (!returnFound && typeof val == 'function') {
-					ctx.push(cx);
-					val = this.lv(val, ctx, partials);
-					ctx.pop();
-				}
-
 				return val;
 			},
 
 			/* find values with normal names **/
-			get: function(key, ctx, partials, returnFound) {
-				var val = false,
-						v = null,
-						found = false;
+			get: function(key, data, partials, returnFound) 
+			{
+				var val = false;
+				var v = null;
+				var found = false;
 
-				for (var i = ctx.length - 1; i >= 0; i--) 
+				for (var i = data.length - 1; i >= 0; i--) 
 				{
-					v = ctx[i];
+					v = data[i];
 					
 					if (v && typeof v == 'object' && key in v) 
 					{
@@ -157,20 +156,7 @@
 					return returnFound ? false : "";
 				}
 
-				if (!returnFound && typeof val == 'function') {
-					val = this.lv(val, ctx, partials);
-				}
-
 				return val;
-			},
-
-			// template result buffering
-			finish: function() 
-			{
-				var result = this.buf; 
-				this.buf = '';
-				
-				return result; 
 			}
 		}
 	});
