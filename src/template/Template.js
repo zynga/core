@@ -30,11 +30,7 @@
 	}
 
 	/**
-	 * A template engine based on HoganJS/Mustache with a few modifications:
-	 *
-	 * - No support to lambdas in data
-	 * - No support for triple '{{{xxx}}}' unescaped values. Use `{{&xxx}}` instead
-	 * - No support for dynamic template controllable delimiters
+	 * This is the template class which is typically initialized and configured using the {core.template.Compiler#compile} method.
 	 */
 	core.Class("core.template.Template",
 	{
@@ -45,7 +41,7 @@
 		construct: function(render) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.assertType(render, "Function");
+				core.Assert.isType(render, "Function");
 			}
 			
 			this.__render = render;
