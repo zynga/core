@@ -72,7 +72,7 @@ $(function() {
 	
 	module("Ext");
 
-	/** #require(core.ext.Array) */
+	/** #require(ext.addon.Array) */
 
 	test("Array.prototype.max", function() 
 	{
@@ -249,7 +249,7 @@ $(function() {
 		equals([["a"],[],"b","c"].flatten().toString(), ["a","b","c"].toString());
 	});
 	
-	/** #require(core.ext.Function) */
+	/** #require(ext.addon.Function) */
 	
 	asyncTest("Function.prototype.debounce - END", 1, function() 
 	{
@@ -288,7 +288,7 @@ $(function() {
 		equals(counter, 1);
 	});
 	
-	/** #require(core.ext.Object) */
+	/** #require(ext.addon.Object) */
 		
 	test("Object.values", function() 
 	{
@@ -296,7 +296,7 @@ $(function() {
 		equals(values, "1,2,3");
 	});
 	
-	/** #require(core.ext.Number) */
+	/** #require(ext.addon.Number) */
 
 	test("Number.prototype.pad", function() 
 	{
@@ -306,7 +306,7 @@ $(function() {
 		equals((0).pad(6), "000000");
 	});
 	
-	/** #require(core.ext.String) */
+	/** #require(ext.addon.String) */
 	
 	test("String.prototype.contains", function() 
 	{

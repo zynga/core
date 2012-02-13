@@ -6,13 +6,12 @@
 */
 
 /**
- * #load(core.fix.Console)
- * #load(core.fix.DateNow)
- * #load(core.fix.DocumentHead)
- * #load(core.fix.FunctionBind)
- * #load(core.fix.HTML5Markup)
- * #load(core.fix.ObjectKeys)
- * #load(core.fix.TimeoutArgs)
+ * #load(ext.Console)
+ * #load(ext.DocumentHead)
+ * #load(ext.FunctionBind)
+ * #load(ext.HTML5Markup)
+ * #load(ext.ObjectKeys)
+ * #load(ext.TimeoutArgs)
  */
 (function(global, toString, undef) 
 {
@@ -28,10 +27,10 @@
 		if (!core.Env.isSet("es5")) 
 		{
 			/**
-			 * #load(core.es5.Array)
-			 * #load(core.es5.Date)
-			 * #load(core.es5.String)
-			 * #load(core.es5.JSON)
+			 * #load(ext.es5.Array)
+			 * #load(ext.es5.Date)
+			 * #load(ext.es5.String)
+			 * #load(ext.es5.JSON)
 			 */
 			0;
 		}
