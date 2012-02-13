@@ -1,5 +1,9 @@
 (function() 
 {
+	/**
+	 * {Array} Processes a list of @tokens {String[]} to create a tree. 
+	 * Optional @stack {Array?} is used internally during recursion.
+	 */
 	function buildTree(tokens, stack) 
 	{
 		var instructions = [];
@@ -50,9 +54,15 @@
 	 */
 	core.Module("core.template.Parser", 
 	{
-
 		/**
-		 * {Array} Processes a list of @tokens {String[]} to create a tree.
+		 * Returns the token tree of the given template @text {String}.
+		 *
+		 * A token holds the following information:
+		 *
+		 * - `tag`: tag of the token
+		 * - `name`: name of the token
+		 * - `nodes`: children of the node
+		 *
 		 */
 		parse: function(text) 
 		{
