@@ -13,7 +13,7 @@
 		var instructions = [];
 		var opener = null;
 		var token = null;
-				
+		
 		while (tokens.length > 0) 
 		{
 			token = tokens.shift();
