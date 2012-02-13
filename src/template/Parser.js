@@ -14,6 +14,7 @@
 		{
 			token = tokens.shift();
 			
+			// Sections (and inverted sections) are stored structured in the tree
 			if (token.tag == "#" || token.tag == "^") 
 			{
 				stack.push(token);
@@ -33,7 +34,9 @@
 				}
 				
 				return instructions;
-			} 
+			}
+			
+			// All other tokens are just copied into the structure
 			else 
 			{
 				instructions.push(token);
@@ -47,6 +50,9 @@
 		return instructions;
 	}
 	
+	var tagSplitter = /(\{\{[^\{\}}]*\}\})/;
+	var tagMatcher = /^\{\{\s*([#\^\/\!\<\>\=\$\&]?)\s*([^\{\}}]*?)\s*\}\}$/;
+	
 	
 	/**
 	 * This is a parser for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
@@ -54,6 +60,44 @@
 	 */
 	core.Module("core.template.Parser", 
 	{
+		/**
+		 * {String[]} Tokenizer for template @text {String}. Returns an array of tokens
+		 * where tags are returned as an object with the keys `tag` and `name` while
+		 * normal strings are kept as strings.
+		 */
+		tokenize: function(text) 
+		{
+			var tokens = [];
+			var splitted = text.split(tagSplitter);
+			var matched;
+
+			for (var i=0, l=splitted.length; i<l; i++) 
+			{
+				var segment = splitted[i];
+				if (segment.charAt(0) == "{" && (matched = tagMatcher.exec(segment))) 
+				{
+					var tag = matched[1] || "$";
+
+					// Ignore comment types
+					if (tag != "!") 
+					{
+						tokens.push({
+							tag: tag,
+							name: matched[2]
+						});
+					}
+				}
+				else if (segment != "")
+				{
+					// Only add non-empty strings
+					tokens.push(segment);
+				}
+			}
+
+			return tokens;
+		},
+		
+		
 		/**
 		 * Returns the token tree of the given template @text {String}.
 		 *
@@ -64,12 +108,10 @@
 		 * - `nodes`: children of the node
 		 *
 		 */
-		parse: function(text) 
-		{
-			var tokens = core.template.Tokenizer.tokenize(text);
-			return buildTree(tokens, []);
+		parse: function(text) {
+			return buildTree(this.tokenize(text), []);
 		}
-
+		
 	});
 })();
 

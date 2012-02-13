@@ -30,6 +30,10 @@
 	}
 
 	/**
+	 * A template engine based on HoganJS/Mustache with a few modifications:
+	 *
+	 * - No support to lambdas
+	 * - No support for triple '{{{xxx}}}' unescaped values. Use `{{&xxx}}` instead
 	 *
 	 * #break(core.template.Compiler)
 	 */
