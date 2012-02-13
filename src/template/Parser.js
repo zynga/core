@@ -1,5 +1,9 @@
 (function() 
 {
+	var tagSplitter = /(\{\{[^\{\}}]*\}\})/;
+	var tagMatcher = /^\{\{\s*([#\^\/\!\<\>\=\$\&]?)\s*([^\{\}}]*?)\s*\}\}$/;
+	
+	
 	/**
 	 * {Array} Processes a list of @tokens {String[]} to create a tree. 
 	 * Optional @stack {Array?} is used internally during recursion.
@@ -50,9 +54,6 @@
 		return instructions;
 	}
 	
-	var tagSplitter = /(\{\{[^\{\}}]*\}\})/;
-	var tagMatcher = /^\{\{\s*([#\^\/\!\<\>\=\$\&]?)\s*([^\{\}}]*?)\s*\}\}$/;
-	
 	
 	/**
 	 * This is a parser for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
@@ -99,14 +100,13 @@
 		
 		
 		/**
-		 * Returns the token tree of the given template @text {String}.
+		 * {String[]} Returns the token tree of the given template @text {String}.
 		 *
 		 * A token holds the following information:
 		 *
 		 * - `tag`: tag of the token
 		 * - `name`: name of the token
 		 * - `nodes`: children of the node
-		 *
 		 */
 		parse: function(text) {
 			return buildTree(this.tokenize(text), []);
