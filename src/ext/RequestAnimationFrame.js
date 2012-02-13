@@ -9,7 +9,7 @@
 
 (function(global) 
 {
-	if(global.requestAnimationFrame) {
+	if (global.requestAnimationFrame) {
 		return;
 	}
 	
