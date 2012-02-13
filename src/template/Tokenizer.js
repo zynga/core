@@ -19,6 +19,7 @@
 		{
 			var tokens = [];
 			var splitted = text.split(tagSplitter);
+			var matched;
 
 			for (var i=0, l=splitted.length; i<l; i++) 
 			{
