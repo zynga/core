@@ -85,7 +85,7 @@
 	}
 
 	function partial(tok) {
-		return '_.buf+=_.renderPartial("' +	 esc(tok.name) + '",c,p,"' + (tok.indent || '') + '");';
+		return '_.buf+=_.renderPartial("' + esc(tok.name) + '",c,p,"");';
 	}
 
 	function tripleStache(id, accessMethod) {

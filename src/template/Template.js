@@ -45,7 +45,7 @@
 		members: 
 		{
 			// render: replaced by generated code.
-			r: function (context, partials, indent) { return ''; },
+			r: function (context, partials) { return ''; },
 
 			// variable escaping
 			v: hoganEscape,
@@ -53,15 +53,15 @@
 			// triple stache
 			t: coerceToString,
 
-			render: function(context, partials, indent) {
-				return this.r([context], partials || {}, indent);
+			render: function(context, partials) {
+				return this.r([context], partials || {});
 			},
 
 			/** tries to find a partial in the current scope and render it */
-			renderPartial: function(name, context, partials, indent) 
+			renderPartial: function(name, context, partials) 
 			{
 				var partial = partials[name];
-				return partial ? partial.r(context, partials, indent) : "";
+				return partial ? partial.r(context, partials) : "";
 			},
 
 			/** render a section */
