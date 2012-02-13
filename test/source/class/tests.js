@@ -469,7 +469,7 @@ $(function() {
 	});
 	
 	
-	test("Triple", function() {
+	test("Unescaped", function() {
 
 		var template = core.template.Compiler.compile("{{code}}");
 		ok(template instanceof core.template.Template);
@@ -480,7 +480,7 @@ $(function() {
 		
 		equal(output, "&lt;b&gt;Foo&lt;/b&gt;");
 
-		var template = core.template.Compiler.compile("{{{code}}}");
+		var template = core.template.Compiler.compile("{{&code}}");
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
