@@ -56,8 +56,7 @@
 	
 	
 	/**
-	 * This is a parser for the [Mustache](http://mustache.github.com/) templating language which is based on [Hogan.js](http://twitter.github.com/hogan.js/). 
-	 * For information on Mustache, see the [manpage](http://mustache.github.com/mustache.5.html) and the [spec](https://github.com/mustache/spec).
+	 * This is the Parser of the template engine and transforms the template text into a tree of tokens.
 	 */
 	core.Module("core.template.Parser", 
 	{
