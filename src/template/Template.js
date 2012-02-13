@@ -20,8 +20,8 @@
 	var rQuot = /\"/g;
 	var hChars = /[&<>\"\']/;
 
-	function coerceToString(val) {
-		return val == null ? "" : "" + val;
+	function coerceToString(value) {
+		return value == null ? "" : "" + value;
 	}
 
 	function escapeString(str) {
@@ -35,83 +35,96 @@
 	 * - No support to lambdas in data
 	 * - No support for triple '{{{xxx}}}' unescaped values. Use `{{&xxx}}` instead
 	 * - No support for dynamic template controllable delimiters
-	 *
-	 * #break(core.template.Compiler)
 	 */
 	core.Class("core.template.Template",
 	{
-		construct: function (renderFunc, text) 
+		/**
+		 * Creates a template instance with the given @render {Function} method. Best way to work with
+		 * the template class is to create one using the {core.template.Compiler#compile} method.
+		 */
+		construct: function(render) 
 		{
-			if (renderFunc) {
-				this.__render = renderFunc;
+			if (core.Env.isSet("debug")) {
+				core.Assert.assertType(render, "Function");
 			}
 			
-			this.text = text || '';
-			this.buf = '';
+			this.__render = render;
 		},
 		
 		members: 
 		{
+			/**
+			 * {String} Public render method which transforms the stored template text using the @data {Map}
+			 * and runtime specific @partials {Map?null}.
+			 */
+			render: function(data, partials) {
+				return this.__render([data], partials || {});
+			},
+
+			_variable: escapeString,
+			_data: coerceToString,
+
 			// render: replaced by generated code.
-			__render: function (context, partials) { 
-				return ''; 
-			},
+			__render: null,
 			
-			render: null,
-
-			variable: escapeString,
-			data: coerceToString,
-
-			render: function(context, partials) {
-				return this.__render([context], partials || {});
-			},
-
-			/** tries to find a partial in the current scope and render it */
-			renderPartial: function(name, context, partials) 
+			/** 
+			 * Tries to find a partial in the current scope and render it 
+			 */
+			_renderPartial: function(name, context, partials) 
 			{
 				var partial = partials[name];
 				return partial ? partial.__render(context, partials) : "";
 			},
 
-			/** render a section */
-			renderSection: function(context, partials, section) {
+			/** 
+			 * Renders a section using the given @context {var} data, user
+			 * defined @partials {Map} and a @section {Function} specific renderer.
+			 */
+			_renderSection: function(context, partials, section) 
+			{
 				var tail = context[context.length - 1];
 
-				if (!Array.isArray(tail)) {
+				if (!Array.isArray(tail)) 
+				{
 					section.call(this, context, partials);
 					return;
 				}
 
-				for (var i = 0; i < tail.length; i++) {
+				for (var i = 0; i < tail.length; i++) 
+				{
 					context.push(tail[i]);
 					section.call(this, context, partials);
 					context.pop();
 				}
 			},
 
-			/** maybe start a section */
-			section: function(val, data, partials, inverted) 
+			/** 
+			 * Maybe start a section 
+			 */
+			_section: function(value, data, partials, inverted) 
 			{
 				var pass;
 				
-				if (Array.isArray(val) && val.length === 0) {
+				if (Array.isArray(value) && value.length === 0) {
 					return false;
 				}
 
-				pass = (val === '') || !!val;
+				pass = (value === '') || !!value;
 
 				if (!inverted && pass && data) {
-					data.push((typeof val == 'object') ? val : data[data.length - 1]);
+					data.push((typeof value == 'object') ? value : data[data.length - 1]);
 				}
 
 				return pass;
 			},
 
-			/** find values with dotted names */
-			getDotted: function(key, data, partials, returnFound) 
+			/** 
+			 * Find values with dotted names 
+			 */
+			_getDotted: function(key, data, partials, returnFound) 
 			{
 				var names = key.split('.'),
-						val = this.get(names[0], data, partials, returnFound),
+						value = this._get(names[0], data, partials, returnFound),
 						cx = null;
 
 				if (key === '.' && Array.isArray(data[data.length - 2])) {
@@ -119,35 +132,35 @@
 				}
 
 				for (var i = 1; i < names.length; i++) {
-					if (val && typeof val == 'object' && names[i] in val) {
-						cx = val;
-						val = val[names[i]];
+					if (value && typeof value == 'object' && names[i] in value) {
+						cx = value;
+						value = value[names[i]];
 					} else {
-						val = '';
+						value = '';
 					}
 				}
 
-				if (returnFound && !val) {
+				if (returnFound && !value) {
 					return false;
 				}
 
-				return val;
+				return value;
 			},
 
-			/* find values with normal names **/
-			get: function(key, data, partials, returnFound) 
+			/** 
+			 * Find values with non-dotted @key {String}
+			 */
+			_get: function(key, data, partials, returnFound) 
 			{
-				var val = false;
-				var v = null;
+				var value = false;
 				var found = false;
 
-				for (var i = data.length - 1; i >= 0; i--) 
+				for (var i=data.length-1; i>=0; i--) 
 				{
-					v = data[i];
-					
-					if (v && typeof v == 'object' && key in v) 
+					var current = data[i];
+					if (current && typeof current == 'object' && key in current) 
 					{
-						val = v[key];
+						value = current[key];
 						found = true;
 						break;
 					}
@@ -157,7 +170,7 @@
 					return returnFound ? false : "";
 				}
 
-				return val;
+				return value;
 			}
 		}
 	});

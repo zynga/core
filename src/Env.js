@@ -19,6 +19,7 @@
 		/** Currently selected fields from Env data */
 		var selected = {};
 
+		/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
 		var checksum = (function()
 		{
 			// Process entries
@@ -92,8 +93,6 @@
 	core.Module("core.Env",
 	{
 		SELECTED : selected,
-
-		/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
 		CHECKSUM : checksum,
 
 
