@@ -13,7 +13,6 @@
 
 (function () 
 {
-	
 	var rSlash = /\\/g;
 	var rQuot = /\"/g;
 	var rNewline = /\n/g;
@@ -77,23 +76,23 @@
 	}
 
 	function section(nodes, id, accessMethod, start, end) {
-		return 'if(this.section(this.' + accessMethod + '("' + esc(id) + '",context,partials,true),context,partials,false)){this.renderSection(context,partials,function(context,partials){' + walk(nodes) + '});context.pop();}';
+		return 'if(this.section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,false)){this.renderSection(ctx,partials,function(ctx,partials){' + walk(nodes) + '});ctx.pop();}';
 	}
 
 	function invertedSection(nodes, id, accessMethod) {
-		return 'if(!this.section(this.' + accessMethod + '("' + esc(id) + '",context,partials,true),context,partials,true)){' + walk(nodes) + '};';
+		return 'if(!this.section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,true)){' + walk(nodes) + '};';
 	}
 
 	function partial(tok) {
-		return 'buf+=this.renderPartial("' + esc(tok.name) + '",context,partials,false);';
+		return 'buf+=this.renderPartial("' + esc(tok.name) + '",ctx,partials,false);';
 	}
 
 	function data(id, accessMethod) {
-		return 'buf+=this.data(this.' + accessMethod + '("' + esc(id) + '",context,partials,false));';
+		return 'buf+=this.data(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,false));';
 	}
 
 	function variable(id, accessMethod) {
-		return 'buf+=this.variable(this.' + accessMethod + '("' + esc(id) + '",context,partials,false));';
+		return 'buf+=this.variable(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,false));';
 	}
 
 
@@ -111,10 +110,9 @@
 		compile : function(text) {
 
 			var tree = core.template.Parser.parse(text);
-			var code = walk(tree);
-			var wrapped = 'var buf="";' + code + 'return buf;';
+			var wrapped = 'var buf="";' + walk(tree) + 'return buf;';
 
-			return new core.template.Template(new Function('context', 'partials', wrapped), text);
+			return new core.template.Template(new Function('ctx', 'partials', wrapped), text);
 		}
 	});
 	
