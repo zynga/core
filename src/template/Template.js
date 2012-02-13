@@ -24,7 +24,7 @@
 		return val == null ? "" : "" + val;
 	}
 
-	function hoganEscape(str) {
+	function escapeString(str) {
 		str = coerceToString(str);
 		return hChars.test(str) ? str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;') : str;
 	}
@@ -32,8 +32,9 @@
 	/**
 	 * A template engine based on HoganJS/Mustache with a few modifications:
 	 *
-	 * - No support to lambdas
+	 * - No support to lambdas in data
 	 * - No support for triple '{{{xxx}}}' unescaped values. Use `{{&xxx}}` instead
+	 * - No support for dynamic template controllable delimiters
 	 *
 	 * #break(core.template.Compiler)
 	 */
@@ -58,7 +59,7 @@
 			
 			render: null,
 
-			variable: hoganEscape,
+			variable: escapeString,
 			data: coerceToString,
 
 			render: function(context, partials) {

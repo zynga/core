@@ -60,7 +60,7 @@
 					code += section(current.nodes, name, accessMethod);
 				} else if (tag == '^') {
 					code += invertedSection(current.nodes, name, accessMethod);
-				} else if (tag == '{' || tag == '&') {
+				} else if (tag == '&') {
 					code += data(name, accessMethod);
 				} else if (tag == '$') {
 					code += variable(name, accessMethod);
