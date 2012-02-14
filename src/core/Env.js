@@ -14,6 +14,17 @@
 		fields = core.Env.getValue("fields");
 	} catch (ex) {}
 	
+	// At this level Array.prototype.indexOf might not be support, so we implement a custom logic for a contains check
+	var contains = function(array, value) 
+	{
+		for (var i=0, l=array.length; i<l; i++) 
+		{
+			if (array[i] == value) {
+				return true;
+			}
+		}
+	}
+	
 	if (fields)
 	{
 		/** Currently selected fields from Env data */
@@ -41,7 +52,7 @@
 					var third = entry[3];
 
 					// Fallback to first value if test results in unsupported value
-					if (type == 1 && third.indexOf(value) == -1) {
+					if (type == 1 && !contains(third, value)) {
 						value = third[0];
 					}
 

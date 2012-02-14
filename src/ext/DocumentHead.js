@@ -10,8 +10,9 @@
  *
  * #custom
  */
-(function(doc) {
+(function(doc) 
+{
 	if (doc && !doc.head) {
 		doc.head = doc.getElementsByTagName('head')[0];
 	}
-})(document);
+})(this.document);
