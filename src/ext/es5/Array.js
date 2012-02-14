@@ -8,23 +8,6 @@
 ==================================================================================================
 */
 
-/**
- * Adds ES5 Array methods if these are not implemented by the engine.
- *
- * #require(core.Bootstrap)
- */
-Object.addStatics("Array",
-{
-	/**
-	 * Implements ES5 `isArray` method to verify whether @value {var} is an `Array`.
-	 * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/isArray
-	 */
-	isArray : function(value) {
-		return value != null && Object.prototype.toString.call(value) == "[object Array]";
-	}
-}, true);
-
-
 (function() {
 	
 	// ES5 9.4
@@ -58,6 +41,11 @@ Object.addStatics("Array",
 		return Object(o);
 	};
 	
+	/**
+	 * Adds ES5 Array methods if these are not implemented by the engine.
+	 *
+	 * #require(core.Bootstrap)
+	 */
 	Object.addMembers("Array",
 	{
 		/**
