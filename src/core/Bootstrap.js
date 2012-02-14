@@ -8,35 +8,14 @@
 /**
  * #load(ext.Console)
  * #load(ext.DocumentHead)
+ * #load(ext.IsArray)
  * #load(ext.FunctionBind)
  * #load(ext.HTML5Markup)
- * #load(ext.ObjectKeys)
+ * #load(ext.StringTrim)
  * #load(ext.TimeoutArgs)
  */
 (function(global, toString, undef) 
 {
-
-	// Try catch to prevent access error to core.Env which is not yet existend
-	if (global.core)
-	{ 
-		/**
-		 * Include ES5 support if not natively supported
-		 *
-		 * #break(core.Env)
-		 */
-		if (!core.Env.isSet("es5")) 
-		{
-			/**
-			 * #load(ext.es5.Object)
-			 * #load(ext.es5.Array)
-			 * #load(ext.es5.Date)
-			 * #load(ext.es5.String)
-			 * #load(ext.es5.JSON)
-			 */
-			0;
-		}
-	}
-	
 	// defineProperty exists in IE8 but will error when trying to define a property on
 	// native objects. IE8 does not have defineProperies, however, so this check saves a try/catch block.
 	if(Object.defineProperty && Object.defineProperties)
@@ -124,6 +103,8 @@
 	
 	/**
 	 * Useful root methods to add members to objects
+	 *
+	 * Loading this class also adds a few essential fixes for different engines.
 	 */
 	Object.addStatics("Object", 
 	{

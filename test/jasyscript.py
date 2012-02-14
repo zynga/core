@@ -32,6 +32,9 @@ def source():
         # Writing source loader
         destination = "source/script/test-%s.js" % permutation.getChecksum()
         classes = Sorter(resolver).getSortedClasses()
+        
+        print(classes)
+        
         storeSourceLoader(destination, classes, session)
     
 
