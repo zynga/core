@@ -15,50 +15,48 @@
  *
  * #require(core.Bootstrap)
  */
-(function(global, undef) 
+if (core.Env.isSet("engine", "trident"))
 {
-	// Only fix where support is missing
-	if (global.setTimeout.length !== undef) {
-		return;
-	}
-	
-	// trap original versions
-	var origTimeout = global.setTimeout;
-	var origInterval = global.setInterval;
-	
-	// create a delegate
-	var delegate = function(callback, args) 
+	(function(global, undef) 
 	{
-		args = Array.prototype.slice.call(args, 2);
-		return function() {
-			callback.apply(null, args);
+		// trap original versions
+		var origTimeout = global.setTimeout;
+		var origInterval = global.setInterval;
+
+		// create a delegate
+		var delegate = function(callback, args) 
+		{
+			args = Array.prototype.slice.call(args, 2);
+			return function() {
+				callback.apply(null, args);
+			};
 		};
-	};
-	
-	/**
-	 * Overrides global `setTimeout` and `setInterval` with implementations which supports
-	 * extra parameters - a feature already supported by most JavaScript engines.
-	 */
-	Object.addStatics("global", 
-	{
-		/**
-		 * Executes the @callback {Function} after specified @delay {Number}.
-		 * 
-		 * See also: https://developer.mozilla.org/en/DOM/window.setTimeout
-		 */
-		setTimeout : function(callback, delay) {
-			return origTimeout(delegate(callback, arguments), delay);
-		},
 
 		/**
-		 * Executes the @callback {Function} repeatedly, with a fixed time @delay {Number} between each call to that function.
-		 *
-		 * See also: https://developer.mozilla.org/en/DOM/window.setTimeout
+		 * Overrides global `setTimeout` and `setInterval` with implementations which supports
+		 * extra parameters - a feature already supported by most JavaScript engines.
 		 */
-		setInterval : function(callback, delay) {
-			return origInterval(delegate(callback, arguments), delay);
-		}
-		
-	});
-	
-})(this);
+		Object.addStatics("global", 
+		{
+			/**
+			 * Executes the @callback {Function} after specified @delay {Number}.
+			 * 
+			 * See also: https://developer.mozilla.org/en/DOM/window.setTimeout
+			 */
+			setTimeout : function(callback, delay) {
+				return origTimeout(delegate(callback, arguments), delay);
+			},
+
+			/**
+			 * Executes the @callback {Function} repeatedly, with a fixed time @delay {Number} between each call to that function.
+			 *
+			 * See also: https://developer.mozilla.org/en/DOM/window.setTimeout
+			 */
+			setInterval : function(callback, delay) {
+				return origInterval(delegate(callback, arguments), delay);
+			}
+
+		});
+
+	})(this);
+}

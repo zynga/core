@@ -20,7 +20,6 @@ def source():
 
     # Store kernel script
     includedByKernel = storeKernel("source/script/kernel.js", session, assets=assets, debug=True, formatting=formatting)
-    print(includedByKernel)
     
     # Process every possible permutation
     for permutation in session.getPermutations():
@@ -33,10 +32,7 @@ def source():
         # Writing source loader
         destination = "source/script/test-%s.js" % permutation.getChecksum()
         classes = Sorter(resolver, permutation).getSortedClasses()
-        
-        print(classes)
-        
-        storeSourceLoader(destination, classes, session)
+        storeSourceLoader(destination, classes, session, bootCode="QUnit.load();")
     
 
 
@@ -64,7 +60,7 @@ def build():
         # Compressing classes
         classes = Sorter(resolver, permutation).getSortedClasses()
         compressedCode = storeCompressed("build/script/test-%s.js" % permutation.getChecksum(), classes, 
-            permutation=permutation, optimization=optimization, formatting=formatting)
+            permutation=permutation, optimization=optimization, formatting=formatting, bootCode="QUnit.load();")
 
     
     
