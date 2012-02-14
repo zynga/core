@@ -7,13 +7,6 @@
 
 (function(global, undef) 
 {
-	// Enforce loading of ES5 array fixes if required
-	if (!core.Env.isSet("es5")) 
-	{
-		/** #require(ext.es5.Array) #require(ext.es5.Date) #require(ext.es5.JSON) #require(ext.es5.Object) */
-		0;
-	}
-
 	var genericToString = function() {
 		return "[class " + this.className + "]";
 	};
@@ -397,6 +390,13 @@
 		}
 	};
 
+
+	// Enforce loading of ES5 array fixes if required
+	if (!core.Env.isSet("es5")) 
+	{
+		/** #require(ext.es5.Array) #require(ext.es5.Date) #require(ext.es5.JSON) #require(ext.es5.Object) */
+		0;
+	}
 
 	Object.addStatics("core.Class", 
 	{

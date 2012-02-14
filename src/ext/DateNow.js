@@ -5,6 +5,7 @@
 ==================================================================================================
 */
 
+/** Adds the pretty essential `Date.now()` method from ES5 if it is missing. */
 Object.addMembers("Date",
 {
 	/** 
