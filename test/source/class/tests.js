@@ -390,13 +390,13 @@ $(function() {
 		ok(template instanceof core.template.Template);
 
 		var output = template.render({
-		  screenName: "dhg",
+		  screenName: "dhg"
 		});
 		
 		equal(output, "Follow @dhg.");
 		
 		var output = template.render({
-		  screenName: "wpbasti",
+		  screenName: "wpbasti"
 		});
 		
 		equal(output, "Follow @wpbasti.");
@@ -409,7 +409,7 @@ $(function() {
 		ok(template instanceof core.template.Template);
 
 		var output = template.render({
-		  value: "xxx",
+		  value: "xxx"
 		});
 		
 		equal(output, "Break\nHere xxx.");
@@ -1125,7 +1125,7 @@ $(function() {
 		core.Class("events.Keyboard", {
 			events : {
 				keydown : KeyEvent,
-				keyup : KeyEvent,
+				keyup : KeyEvent
 			}
 		});
 		
@@ -1161,7 +1161,7 @@ $(function() {
 		core.Class("events.Keyboard", {
 			events : {
 				keydown : KeyEvent,
-				keyup : KeyEvent,
+				keyup : KeyEvent
 			}
 		});
 		
@@ -1491,7 +1491,7 @@ $(function() {
 					type : "String",
 					apply : function(value, old) {
 						this.__textElement.style.color = value;
-					},
+					}
 				},
 				
 				fontFamily : 
@@ -1529,11 +1529,11 @@ $(function() {
 			properties : 
 			{
 				width : {
-					type : "integer"
+					type : "Integer"
 				},
 				
 				height : {
-					type : "integer"
+					type : "Integer"
 				}
 			}
 		});
