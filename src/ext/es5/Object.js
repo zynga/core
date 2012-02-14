@@ -40,10 +40,11 @@
 		 * - ES5 15.2.3.14
 		 * - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys
 		 */
-		keys : function keys(object) 
+		keys : function(object) 
 		{
 			var keys = [];
-			for (var name in object) {
+			for (var name in object) 
+			{
 				if (Object.hasOwnProperty(object, name)) {
 					keys.push(name);
 				}
@@ -61,30 +62,6 @@
 			}
 
 			return keys;
-		},
-
-		/**
-		 * {Boolean} Tests whether the given @object {Object} is empty
-		 *
-		 * Non standard extension (because it's easier here than anywhere else)
-		 */
-		empty : function(object) 
-		{
-			for (var name in object) {
-				return false;
-			}
-
-			if (hasDontEnumBug) 
-			{
-				for (var i=0; i<dontEnumsLength; i++) 
-				{
-					if (Object.hasOwnProperty(object, dontEnums[i])) {
-						return false;
-					}
-				}
-			}
-
-			return true;
 		}
 		
 	}, true);

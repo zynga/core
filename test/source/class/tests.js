@@ -51,15 +51,7 @@ $(function() {
 		equals(keys, "foo,hello,toString");
 	});
 
-	test("Object.empty", function() 
-	{
-		/** #require(ext.ObjectKeys) */
-		
-		// toString etc. are special in IE because these are built-in keys
-		ok(Object.empty({}));
-		ok(!Object.empty({toString:null}));
-		ok(!Object.empty({toString:null, hello:null, foo:1}));
-	});
+
 	
 	
 	
@@ -71,6 +63,32 @@ $(function() {
 	*/
 	
 	module("Ext");
+
+	/** #require(ext.sugar.Object) */
+
+	test("Object.empty", function() 
+	{
+		// toString etc. are special in IE because these are built-in keys
+		ok(Object.isEmpty({}));
+		ok(!Object.isEmpty({toString:null}));
+		ok(!Object.isEmpty({toString:null, hello:null, foo:1}));
+	});
+	
+	test("Object.values", function() 
+	{
+		var values = Object.values({x:1, y:2, z:3}).sort().join(",");
+		equals(values, "1,2,3");
+	});
+	
+	test("Object.fromArray", function() 
+	{
+		equals(Object.keys(Object.fromArray(["foo","bar","baz"])).join(","), "foo,bar,baz");
+		equals(Object.values(Object.fromArray(["foo","bar","baz"])).join(","), "true,true,true");
+
+		equals(Object.keys(Object.fromArray(["foo","bar","baz"], "hello")).join(","), "foo,bar,baz");
+		equals(Object.values(Object.fromArray(["foo","bar","baz"], "hello")).join(","), "hello,hello,hello");
+	});
+	
 
 	/** #require(ext.sugar.Array) */
 
@@ -286,14 +304,6 @@ $(function() {
 		debounced();
 		
 		equals(counter, 1);
-	});
-	
-	/** #require(ext.sugar.Object) */
-		
-	test("Object.values", function() 
-	{
-		var values = Object.values({x:1, y:2, z:3}).sort().join(",");
-		equals(values, "1,2,3");
 	});
 	
 	/** #require(ext.sugar.Number) */

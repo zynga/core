@@ -27,6 +27,7 @@
 		if (!core.Env.isSet("es5")) 
 		{
 			/**
+			 * #load(ext.es5.Object)
 			 * #load(ext.es5.Array)
 			 * #load(ext.es5.Date)
 			 * #load(ext.es5.String)

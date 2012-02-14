@@ -96,7 +96,7 @@
 			delete requests[handle];
 
 			// Stop timeout if all where removed
-			if (Object.empty(requests)) 
+			if (Object.isEmpty(requests)) 
 			{
 				clearTimeout(timeoutHandle);
 				timeoutHandle = null;

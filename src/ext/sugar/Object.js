@@ -30,6 +30,20 @@ Object.addStatics("Object",
 		return obj;
 	},
 	
+
+	/**
+	 * {Boolean} Tests whether the given @object {Object} is empty
+	 */
+	isEmpty: function(object) 
+	{
+		for (var key in object) {
+			return false;
+		}
+		
+		// Another check required for buggy browsers (wrong enum handling)
+		return Object.keys(object).length == 0;
+	},
+	
 	
 	/**
 	 * {Array} Returns all the values of the given @object {Map}.
