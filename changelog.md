@@ -1,3 +1,11 @@
+0.5-Beta2
+=========
+
+- Reworked polyfills and extensions to be less dependend and finer grained for good browsers.
+- Introduced core.template a Hogan.JS based template engine which is further optimized for performance and size.
+- Reworked build script for unit tests to use Jasy and added a full blown source and build version to it.
+
+
 0.5-Beta1
 =========
 
