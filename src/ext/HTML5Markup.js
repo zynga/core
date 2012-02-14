@@ -14,14 +14,14 @@
  * #custom
  * #require(core.Bootstrap)
  */
-(function(global) 
+(function(doc) 
 {
 	// Verify browser environment
-	if (global.document) 
+	if (doc) 
 	{
 		var tags = 'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary time video';
 		tags.replace(/\w+/g, function(tagName) {
-			document.createElement(tagName); 
+			doc.createElement(tagName); 
 		});
 	}
-})(this);
+})(this.document);
