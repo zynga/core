@@ -787,7 +787,8 @@ QUnit.load = function() {
 	}
 };
 
-addEvent(window, "load", QUnit.load);
+// Core modification. Disable auto loading
+// addEvent(window, "load", QUnit.load);
 
 // addEvent(window, "error") gives us a useless event object
 window.onerror = function( message, file, line ) {
