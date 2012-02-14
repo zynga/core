@@ -7,6 +7,7 @@
 
 /**
  * #load(ext.Console)
+ * #load(ext.DateNow)
  * #load(ext.DocumentHead)
  * #load(ext.IsArray)
  * #load(ext.FunctionBind)

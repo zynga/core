@@ -7,6 +7,13 @@
 ==================================================================================================
 */
 
+// Enforce loading of ES5 array fixes if required
+if (!core.Env.isSet("es5")) 
+{
+	/** #require(ext.es5.Array) */
+	0;
+}
+
 /**
  * Adds useful non-standard extensions to the `Array.prototype` like {#min}, {#contains} and {#remove}.
  *

@@ -25,6 +25,7 @@
  * These ES5 methods are fixed outside the {ext.es5} package via:
  *
  * - Array.isArray: {ext.IsArray}
+ * - Date.now(): {ext.DateNow}
  * - Function.prototype.bind: {ext.FunctionBind}
  * - String.prototype.trim: {ext.StringTrim}
  *

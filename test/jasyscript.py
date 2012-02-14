@@ -26,13 +26,13 @@ def source():
     for permutation in session.getPermutations():
 
         # Resolving dependencies
-        resolver = Resolver(session.getProjects())
+        resolver = Resolver(session.getProjects(), permutation)
         resolver.addClassName("tests")
         resolver.excludeClasses(includedByKernel)
         
         # Writing source loader
         destination = "source/script/test-%s.js" % permutation.getChecksum()
-        classes = Sorter(resolver).getSortedClasses()
+        classes = Sorter(resolver, permutation).getSortedClasses()
         
         print(classes)
         
