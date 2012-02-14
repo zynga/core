@@ -20,6 +20,7 @@ def source():
 
     # Store kernel script
     includedByKernel = storeKernel("source/script/kernel.js", session, assets=assets, debug=True, formatting=formatting)
+    print(includedByKernel)
     
     # Process every possible permutation
     for permutation in session.getPermutations():
