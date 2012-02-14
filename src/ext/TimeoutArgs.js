@@ -12,8 +12,6 @@
 
 /**
  * Adds support for extra parameters for setInterval/setTimeout for browsers (IE, ...) missing it
- *
- * #require(core.Bootstrap)
  */
 if (core.Env.isSet("engine", "trident"))
 {
@@ -36,7 +34,7 @@ if (core.Env.isSet("engine", "trident"))
 		 * Overrides global `setTimeout` and `setInterval` with implementations which supports
 		 * extra parameters - a feature already supported by most JavaScript engines.
 		 */
-		Object.addStatics("global", 
+		core.Main.addStatics("global", 
 		{
 			/**
 			 * Executes the @callback {Function} after specified @delay {Number}.

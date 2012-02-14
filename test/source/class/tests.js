@@ -786,12 +786,12 @@ $(function() {
 	});
 	
 	test("Creating global", function() {
-		Object.declareNamespace("foo", 3);
+		core.Main.declareNamespace("foo", 3);
 		equals(global.foo, 3);
 	});
 
 	test("Creating namespace", function() {
-		Object.declareNamespace("abc.def", 5);
+		core.Main.declareNamespace("abc.def", 5);
 		equals(global.abc.def, 5);
 	});
 
@@ -876,9 +876,9 @@ $(function() {
 	
 	module("Classes Core", {
 		teardown : function() {
-			Object.clearNamespace("abc.Class1");
-			Object.clearNamespace("abc.Class2");
-			Object.clearNamespace("abc.Class3");
+			core.Main.clearNamespace("abc.Class1");
+			core.Main.clearNamespace("abc.Class2");
+			core.Main.clearNamespace("abc.Class3");
 		}
 	});
 
@@ -920,9 +920,9 @@ $(function() {
 	
 	module("Classes Members", {
 		teardown : function() {
-			Object.clearNamespace("members.Class1");
-			Object.clearNamespace("members.Include1");
-			Object.clearNamespace("members.Include2");
+			core.Main.clearNamespace("members.Class1");
+			core.Main.clearNamespace("members.Include1");
+			core.Main.clearNamespace("members.Include2");
 		}
 	});
 	
@@ -1086,10 +1086,10 @@ $(function() {
 	
 	module("Classes Events", {
 		teardown : function() {
-			Object.clearNamespace("events.Keyboard");
-			Object.clearNamespace("events.Mouse");
-			Object.clearNamespace("events.Widget");
-			Object.clearNamespace("events.Widget2");
+			core.Main.clearNamespace("events.Keyboard");
+			core.Main.clearNamespace("events.Mouse");
+			core.Main.clearNamespace("events.Widget");
+			core.Main.clearNamespace("events.Widget2");
 		}
 	});
 	
@@ -1233,17 +1233,17 @@ $(function() {
 	
 	module("Classes Properties", {
 		teardown : function() {
-			Object.clearNamespace("properties.Text");
-			Object.clearNamespace("properties.Dimension");
-			Object.clearNamespace("properties.Label");
-			Object.clearNamespace("properties.Simple");
-			Object.clearNamespace("properties.IColor");
-			Object.clearNamespace("properties.IFontSize");
-			Object.clearNamespace("properties.ColorImplementer");
-			Object.clearNamespace("properties.ColorWrongImplementer");
-			Object.clearNamespace("properties.FontSizeImplementer");
-			Object.clearNamespace("properties.FontSizeMissing");
-			Object.clearNamespace("properties.FontSizeWrongImplementer");
+			core.Main.clearNamespace("properties.Text");
+			core.Main.clearNamespace("properties.Dimension");
+			core.Main.clearNamespace("properties.Label");
+			core.Main.clearNamespace("properties.Simple");
+			core.Main.clearNamespace("properties.IColor");
+			core.Main.clearNamespace("properties.IFontSize");
+			core.Main.clearNamespace("properties.ColorImplementer");
+			core.Main.clearNamespace("properties.ColorWrongImplementer");
+			core.Main.clearNamespace("properties.FontSizeImplementer");
+			core.Main.clearNamespace("properties.FontSizeMissing");
+			core.Main.clearNamespace("properties.FontSizeWrongImplementer");
 		}
 	});	
 	

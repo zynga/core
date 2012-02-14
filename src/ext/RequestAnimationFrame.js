@@ -43,10 +43,8 @@
 	
 	/**
 	 * Adds new style `requestAnimationFrame` API to browser engines which are missing it.
-	 *
-	 * #require(core.Bootstrap)
 	 */
-	Object.addStatics("global", 
+	core.Main.addStatics("global", 
 	{
 		/** 
 		 * {var} Tells the browser that you wish to perform an animation; this requests that the browser schedule a 

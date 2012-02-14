@@ -140,10 +140,8 @@
 	 * features and unifies all features under a simple declarative API which can be easily processed by 3rd party tools.
 	 *
 	 * Defines a new class with @name {String} using the given @config {Map}.
-	 *
-	 * #require(core.Bootstrap)
 	 */
-	Object.declareNamespace("core.Class", function(name, config) 
+	core.Main.declareNamespace("core.Class", function(name, config) 
 	{
 		if (core.Env.isSet("debug")) 
 		{
@@ -364,7 +362,7 @@
 		// ------------------------------------
 		
 		// Attach to namespace
-		Object.declareNamespace(name, construct);
+		core.Main.declareNamespace(name, construct);
 	});
 
 	
@@ -398,7 +396,7 @@
 		0;
 	}
 
-	Object.addStatics("core.Class", 
+	core.Main.addStatics("core.Class", 
 	{
 		isClass : isClass,
 		assertIsClass: assertIsClass,

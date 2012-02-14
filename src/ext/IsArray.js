@@ -6,7 +6,7 @@
 */
 
 /** Adds the pretty essential `Array.isArray()` method from ES5 if it is missing. */
-Object.addStatics("Array",
+core.Main.addStatics("Array",
 {
 	/**
 	 * Implements ES5 `isArray` method to verify whether @value {var} is an `Array`.

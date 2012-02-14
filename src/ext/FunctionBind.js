@@ -12,10 +12,8 @@
 
 /**
  * Adds missing ES5 `Function.prototype.bind` when not implemented natively by the browser engine.
- *
- * #require(core.Bootstrap)
  */
-Object.addMembers("Function",
+core.Main.addMembers("Function",
 {
 	/**
 	 * {Function} Binds the function to the specific @context {Object} with optionally bound arbitrary number of @varargs {var...?}.

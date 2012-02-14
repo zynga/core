@@ -11,14 +11,13 @@
 
 	/**
 	 * Adds useful non-standard extensions to the `String.prototype` like {#hyphenate}, {#startsWith} and {#contains}.
-	 *
-	 * #require(core.Bootstrap)
-	 * #require(ext.Base64)
 	 */
-	Object.addMembers("String",
+	core.Main.addMembers("String",
 	{
 		/**
 		 * {String} Encodes the string as Base64.
+		 *
+		 * #require(ext.Base64)
 		 */
 		encodeBase64 : function() {
 			return btoa(this);
@@ -27,6 +26,8 @@
 
 		/**
 		 * {String} Decodes the string from Base64.
+		 * 
+		 * #require(ext.Base64)
 		 */
 		decodeBase64 : function() {
 			return atob(this);

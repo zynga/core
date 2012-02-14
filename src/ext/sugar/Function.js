@@ -7,10 +7,8 @@
 
 /**
  * Adds useful non-standard extensions to the `Function.prototype` like {#debounce}.
- *
- * #require(core.Bootstrap)
  */
-Object.addMembers("Function",
+core.Main.addMembers("Function",
 {
 	/**
 	 * {Function} Debounces the given method.

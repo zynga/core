@@ -43,10 +43,8 @@
 	
 	/**
 	 * Adds ES5 Array methods if these are not implemented by the engine.
-	 *
-	 * #require(core.Bootstrap)
 	 */
-	Object.addMembers("Array",
+	core.Main.addMembers("Array",
 	{
 		/**
 		 * Executes a provided function @fun {Function} once per array element.

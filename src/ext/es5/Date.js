@@ -10,10 +10,8 @@
 
 /**
  * Adds ES5 Date methods if these are not implemented by the engine.
- *
- * #require(core.Bootstrap)
  */
-Object.addMembers("Date",
+core.Main.addMembers("Date",
 {
 	/**
 	 * Converts the `Date` instance to an ISO string representation.

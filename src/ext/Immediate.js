@@ -40,10 +40,8 @@
 		
 		/** 
 		 * Adds non-standard methods `setImmediate` and `clearImmediate` which were introduced by Firefox to the global object.
-		 *
-		 * #require(core.Bootstrap)
 		 */
-		Object.addStatics("global",
+		core.Main.addStatics("global",
 		{
 			/**
 			 * This method is used to break-up long running operations and run a callback @func {Function} immediately after the browser 
@@ -74,7 +72,7 @@
 	}
 	else
 	{
-		Object.addStatics("global",
+		core.Main.addStatics("global",
 		{
 			setImmediate : function(func) {
 				return setTimeout(func, 0);

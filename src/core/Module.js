@@ -7,8 +7,6 @@
 
 /**
  * Declarations of simple modules with static members
- *
- * #require(core.Bootstrap)
  */
 (function(global, undef)
 {
@@ -20,13 +18,13 @@
 	/**
 	 * Define a module with the given @name {String} with static @members {Map} being attached.
 	 */
-	Object.declareNamespace("core.Module", function(name, members)
+	core.Main.declareNamespace("core.Module", function(name, members)
 	{
 		if (!core.Module.isModuleName(name)) {
 			throw new Error("Invalid module name " + name + "!");
 		}
 		
-		if (!Object.isTypeOf(members, "Map")) {
+		if (!core.Main.isTypeOf(members, "Map")) {
 			throw new Error("Invalid map as module configuration in " + name + "!");
 		}
 
@@ -60,7 +58,7 @@
 		members.__isModule = true;
 
 		// Attach to name
-		Object.declareNamespace(name, members);
+		core.Main.declareNamespace(name, members);
 	});
 	
 	
@@ -88,7 +86,7 @@
 	}
 	
 	
-	Object.addStatics("core.Module", 
+	core.Main.addStatics("core.Module", 
 	{
 
 		getByName : getByName,

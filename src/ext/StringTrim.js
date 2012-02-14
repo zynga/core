@@ -21,10 +21,8 @@
 	 * - trim() (ES5)
 	 * - trimLeft() (JavaScript 1.8.1)
 	 * - trimRight() (JavaScript 1.8.1)
-	 *
-	 * #require(core.Bootstrap)
 	 */
-	Object.addMembers("String", 
+	core.Main.addMembers("String", 
 	{
 		/**
 		 * Implements `trim` according to // ES5 15.5.4.20 (http://es5.github.com/#x15.5.4.20)

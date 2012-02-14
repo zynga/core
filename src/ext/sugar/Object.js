@@ -7,10 +7,8 @@
 
 /**
  * Adds useful non-standard extensions to the Object class like {#fromArray} and {#values}.
- *
- * #require(core.Bootstrap)
  */
-Object.addStatics("Object", 
+core.Main.addStatics("Object", 
 {
 	/**
 	 * {Map} Creates a new object with prefilled content from the @keys {Array} list.

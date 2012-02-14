@@ -31,10 +31,8 @@
 	{
 		/**
 		 * Adds a method for executing aribritary script content in global context. 
-		 *
-		 * #require(core.Bootstrap)
 		 */
-		Object.addStatics("global", 
+		core.Main.addStatics("global", 
 		{
 			/**
 			 * {null} Executes the specified script @expression {String} in global context.

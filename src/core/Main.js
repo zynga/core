@@ -47,51 +47,29 @@
 
 
 	/**
-	 * Add @statics {Map} to the object found under the given @name {String}.
-	 * It is possible to control whether to @keep {Boolean?false} existing statics.
+	 * {Object} Declares the given @name {String} and stores the given @object {Object|Function} onto it.
 	 */
-	var addStatics = function(name, statics, keep) 
+	var declareNamespace = function(name, object)
 	{
-		var object = global[name] || cache[name];
-		var prefix = name + ".";
-		for (var staticName in statics) 
-		{
-			if (!keep || object[staticName] === undef) 
-			{
-				var item = statics[staticName];
-				if (item instanceof Function) {
-					item.displayName = prefix + name;
-				}
+		var splits = name.split(".");
+		var current = global;
+		var length = splits.length-1;
+		var segment;
+		var i = 0;
 
-				add(object, staticName, item);
+		while(i<length)
+		{
+			segment = splits[i++];
+			if (current[segment] == null) {
+				current = current[segment] = {};
+			} else {
+				current = current[segment];
 			}
 		}
-	}
 
+		return cache[name] = current[splits[i]] = object;
+	};
 
-	/**
-	 * Add @members {Map} to the prototype of the object found under the given @name {String}.
-	 * It is possible to control whether to @keep {Boolean?false} existing members.
-	 */
-	var addMembers = function(name, members, keep) 
-	{
-		var object = global[name] || cache[name];
-		var proto = object.prototype;
-		var prefix = name + ".prototype.";
-		for (var memberName in members) 
-		{
-			if (!keep || proto[memberName] === undef) 
-			{
-				var item = members[memberName];
-				if (item instanceof Function) {
-					item.displayName = prefix + name;
-				}
-
-				add(proto, memberName, item);
-			}
-		}
-	}
-	
 	// Prefill cache
 	var toStringMap = {};
 	var classes = "Array Function RegExp Object Date Number String Boolean";
@@ -100,15 +78,18 @@
 	});
 	
 	// Temporary hack to make next statement workable
-	Object.addStatics = addStatics;
+	declareNamespace("core.Main.declareNamespace", declareNamespace);
 	
 	/**
 	 * Useful root methods to add members to objects
 	 *
 	 * Loading this class also adds a few essential fixes for different engines.
 	 */
-	Object.addStatics("Object", 
+	core.Main.declareNamespace("core.Main", 
 	{
+		declareNamespace : declareNamespace,
+		
+
 		/** {=Array} Set of types which are supported */
 		TYPES: (classes + " Null Native Map Integer Primitive").split(" "),
 		
@@ -157,31 +138,6 @@
 			}
 
 			return result;
-		},
-		
-
-		/**
-		 * {Object} Declares the given @name {String} and stores the given @object {Object|Function} onto it.
-		 */
-		declareNamespace : function (name, object)
-		{
-			var splits = name.split(".");
-			var current = global;
-			var length = splits.length-1;
-			var segment;
-			var i = 0;
-
-			while(i<length)
-			{
-				segment = splits[i++];
-				if (current[segment] == null) {
-					current = current[segment] = {};
-				} else {
-					current = current[segment];
-				}
-			}
-
-			return cache[name] = current[splits[i]] = object;
 		},
 		
 
@@ -241,8 +197,51 @@
 			return current;
 		},
 
-		addStatics : addStatics,
-		addMembers : addMembers
+
+		/**
+		 * Add @statics {Map} to the object found under the given @name {String}.
+		 * It is possible to control whether to @keep {Boolean?false} existing statics.
+		 */
+		addStatics : function(name, statics, keep) 
+		{
+			var object = global[name] || cache[name];
+			var prefix = name + ".";
+			for (var staticName in statics) 
+			{
+				if (!keep || object[staticName] === undef) 
+				{
+					var item = statics[staticName];
+					if (item instanceof Function) {
+						item.displayName = prefix + name;
+					}
+
+					add(object, staticName, item);
+				}
+			}
+		},
+
+
+		/**
+		 * Add @members {Map} to the prototype of the object found under the given @name {String}.
+		 * It is possible to control whether to @keep {Boolean?false} existing members.
+		 */
+		addMembers : function(name, members, keep) 
+		{
+			var object = global[name] || cache[name];
+			var proto = object.prototype;
+			var prefix = name + ".prototype.";
+			for (var memberName in members) 
+			{
+				if (!keep || proto[memberName] === undef) 
+				{
+					var item = members[memberName];
+					if (item instanceof Function) {
+						item.displayName = prefix + name;
+					}
+
+					add(proto, memberName, item);
+				}
+			}
+		}
 	});
-	
 })(this, Object.prototype.toString);

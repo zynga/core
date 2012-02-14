@@ -25,10 +25,8 @@
 
 	/**
 	 * Polyfill for Base64 support which is natively implemented in most recent browsers.
-	 *
-	 * #require(core.Bootstrap)
 	 */
-	Object.addStatics("global",
+	core.Main.addStatics("global",
 	{
 		/**
 		 * {String} Creates a base-64 encoded ASCII string from a @string {String} of binary data.

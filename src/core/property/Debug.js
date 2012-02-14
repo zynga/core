@@ -64,13 +64,13 @@ core.Module("core.property.Debug",
 					{
 						core.Interface.assert(value, type);
 					} 
-					else if (Object.TYPES.indexOf(type) != -1)
+					else if (core.Main.TYPES.indexOf(type) != -1)
 					{
 						core.Assert.isType(value, type);
 					}
 					else
 					{
-						console.warn("Unsupported property type: " + type + " in " + name + "! Property types are equal to documentation types. See also: core.Bootstrap#isTypeOf().");
+						console.warn("Unsupported property type: " + type + " in " + name + "! Property types are equal to documentation types. See also: core.Main#isTypeOf().");
 					}
 				}
 				catch(ex) {

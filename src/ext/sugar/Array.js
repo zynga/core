@@ -16,10 +16,8 @@ if (!core.Env.isSet("es5"))
 
 /**
  * Adds useful non-standard extensions to the `Array.prototype` like {#min}, {#contains} and {#remove}.
- *
- * #require(core.Bootstrap)
  */
-Object.addStatics("Array", 
+core.Main.addStatics("Array", 
 {
 	/**
 	 * {Array} Converts the given @args {arguments} into an array.
@@ -30,7 +28,7 @@ Object.addStatics("Array",
 	}
 });
 
-Object.addMembers("Array", 
+core.Main.addMembers("Array", 
 {
 	/**
 	 * {Number} Returns the maximum number in the array.

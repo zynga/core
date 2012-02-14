@@ -15,10 +15,8 @@
 	
 	/**
 	 * Emulation for `localStorage` object to store text data on the browser.
-	 *
-	 * #require(core.Bootstrap)
 	 */
-	Object.declareNamespace("localStorage",
+	core.Main.declareNamespace("localStorage",
 	{
 
 		// TODO:

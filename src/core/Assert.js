@@ -151,23 +151,23 @@
 		},
 		
 		/**
-		 * Raises an exception when the value @a {var} is not of @type {String} (checked via {core.Bootstrap#isType})
+		 * Raises an exception when the value @a {var} is not of @type {String} (checked via {core.Main#isType})
 		 * Customizable with a custom @message {String?} for the exception text.
 		 */
 		isType: function(a, type, message) 
 		{
-			if (!Object.isTypeOf(a, type)) {
+			if (!core.Main.isTypeOf(a, type)) {
 				raise(message || "Value " + a + " must match type: " + type);
 			}
 		},
 
 		/**
-		 * Raises an exception when the value @a {var} is of @type {String} (checked via {core.Bootstrap#isType})
+		 * Raises an exception when the value @a {var} is of @type {String} (checked via {core.Main#isType})
 		 * Customizable with a custom @message {String?} for the exception text.
 		 */
 		isNotType: function(a, type, message) 
 		{
-			if (Object.isTypeOf(a, type)) {
+			if (core.Main.isTypeOf(a, type)) {
 				raise(message || "Value " + a + " must not match type: " + type);
 			}
 		}

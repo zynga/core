@@ -20,10 +20,9 @@
 	/**
 	 * Define an interface with @name {String} using @config {Map} which can be used for validation of class instances.
 	 *
-	 * #require(core.Bootstrap)
 	 * #break(core.Class)
 	 */
-	Object.declareNamespace("core.Interface", function(name, config)
+	core.Main.declareNamespace("core.Interface", function(name, config)
 	{
 		if (core.Env.isSet("debug"))
 		{
@@ -50,10 +49,10 @@
 		};
 
 		// Attach to namespace
-		Object.declareNamespace(name, iface);
+		core.Main.declareNamespace(name, iface);
 	});
 
-	Object.addStatics("core.Interface", 
+	core.Main.addStatics("core.Interface", 
 	{
 		/**
 		 * {Interface} Resolves a given @interfaceName {String}.

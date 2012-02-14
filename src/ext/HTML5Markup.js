@@ -12,7 +12,6 @@
  * Adds HTML5 tag support to Internet Explorer 
  *
  * #custom
- * #require(core.Bootstrap)
  */
 (function(doc) 
 {
