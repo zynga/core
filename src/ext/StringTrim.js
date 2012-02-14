@@ -18,6 +18,10 @@
 	/**
 	 * Adds ES5 String methods if these are not implemented by the engine.
 	 *
+	 * - trim() (ES5)
+	 * - trimLeft() (JavaScript 1.8.1)
+	 * - trimRight() (JavaScript 1.8.1)
+	 *
 	 * #require(core.Bootstrap)
 	 */
 	Object.addMembers("String", 
@@ -26,7 +30,21 @@
 		 * Implements `trim` according to // ES5 15.5.4.20 (http://es5.github.com/#x15.5.4.20)
 		 */
 		trim: function() {
-			return String(this).replace(trimBeginRegexp, '').replace(trimEndRegexp, '');
+			return (""+this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+		},
+		
+		/**
+		 * Trims whitespace from the left side of the string. Non standard extension of JavaScript 1.8.1.
+		 */
+		trimLeft: function() {
+			return (""+this).replace(trimBeginRegexp, "");
+		},
+		
+		/**
+		 * Trims whitespace from the right side of the string. Non standard extension of JavaScript 1.8.1.
+		 */
+		trimRight: function() {
+			return (""+this).replace(trimEndRegexp, "");
 		}
 	});
 
