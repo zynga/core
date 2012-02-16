@@ -1,3 +1,10 @@
+0.5-Beta3
+=========
+
+- Renamed core.Bootstrap to core.Main and changed attach all methods previously added to the native {Object} to the class itself.
+- Added trimLeft/trimRight
+
+
 0.5-Beta2
 =========
 
