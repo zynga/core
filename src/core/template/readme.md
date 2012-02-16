@@ -10,4 +10,4 @@ The template engine is based on [Hogan.js](http://twitter.github.com/hogan.js/)/
 See also:
 
 - [Mustache Manpage](http://mustache.github.com/mustache.5.html)
-* [Mustache Spec](https://github.com/mustache/spec)
+- [Mustache Spec](https://github.com/mustache/spec)
