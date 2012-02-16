@@ -1,6 +1,3 @@
-Core Template Engine
-====================
-
 The template engine is based on [Hogan.js](http://twitter.github.com/hogan.js/)/Mustache with a few modifications:
 
 - No support to lambdas in data
