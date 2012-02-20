@@ -390,13 +390,13 @@ $(function() {
 		ok(template instanceof core.template.Template);
 
 		var output = template.render({
-		  screenName: "dhg"
+			screenName: "dhg"
 		});
 		
 		equal(output, "Follow @dhg.");
 		
 		var output = template.render({
-		  screenName: "wpbasti"
+			screenName: "wpbasti"
 		});
 		
 		equal(output, "Follow @wpbasti.");
@@ -409,7 +409,7 @@ $(function() {
 		ok(template instanceof core.template.Template);
 
 		var output = template.render({
-		  value: "xxx"
+			value: "xxx"
 		});
 		
 		equal(output, "Break\nHere xxx.");
@@ -422,11 +422,11 @@ $(function() {
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
-		  "repo": [
-		    { "name": "resque" },
-		    { "name": "hub" },
-		    { "name": "rip" },
-		  ]
+			"repo": [
+				{ "name": "resque" },
+				{ "name": "hub" },
+				{ "name": "rip" }
+			]
 		});
 		
 		equal(output, "<b>resque</b><b>hub</b><b>rip</b>");
@@ -439,22 +439,53 @@ $(function() {
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
-		  "repo": [
-		    { "name": "resque" },
-		    { "name": "hub" },
-		    { "name": "rip" },
-		  ]
+			"repo": [
+				{ "name": "resque" },
+				{ "name": "hub" },
+				{ "name": "rip" }
+			]
 		});
 		
 		equal(output, "Repos<br/><b>resque</b><b>hub</b><b>rip</b>");
 		
 		var output = template.render({
-		  "repo": []
+			"repo": []
 		});
 		
 		equal(output, "");
 		
-	});	
+		
+		
+		var template = core.template.Compiler.compile("{{#other}}<em>{{name}}</em>{{/other}}{{?repo}}Repos<br/>{{#repo}}<b>{{name}}</b>{{/repo}}{{/repo}}");
+
+		var output = template.render({
+			"repo": [],
+			"other": [
+				{ "name": "resque" },
+				{ "name": "hub" },
+				{ "name": "rip" }
+			]
+		});
+
+		equal(output, "<em>resque</em><em>hub</em><em>rip</em>");
+		
+		
+		var template = core.template.Compiler.compile("{{#other}}<em>{{foo}}</em>{{/other}}{{?repo}}Repos<br/>{{#repo}}<b>{{name}}</b>{{/repo}}{{/repo}}");
+
+		var output = template.render({
+			"repo": [
+				{ "name": "resque" },
+				{ "name": "hub" },
+				{ "name": "rip" }
+			],
+			"other": {
+				"foo" : "bar"
+			}
+		});
+
+		equal(output, "<em>resque</em><em>hub</em><em>rip</em>");		
+		
+	}); 
 	
 	test("Non False", function() {
 
@@ -462,7 +493,7 @@ $(function() {
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
-		  "person?": { "name": "Jon" }
+			"person?": { "name": "Jon" }
 		});
 		
 		equal(output, "Hi Jon!");
@@ -475,13 +506,13 @@ $(function() {
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
-		  "repo": []
+			"repo": []
 		});
 		
 		equal(output, "No repos :(");
 		
 		var output = template.render({
-		  "repo": [1,2,3]
+			"repo": [1,2,3]
 		});
 		
 		equal(output, "<b>1</b><b>2</b><b>3</b>");		
@@ -494,7 +525,7 @@ $(function() {
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
-		  "repo": []
+			"repo": []
 		});
 		
 		equal(output, "<h1>Today.</h1>");
@@ -508,7 +539,7 @@ $(function() {
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
-		  "code": "<b>Foo</b>"
+			"code": "<b>Foo</b>"
 		});
 		
 		equal(output, "&lt;b&gt;Foo&lt;/b&gt;");
@@ -517,12 +548,12 @@ $(function() {
 		ok(template instanceof core.template.Template);
 		
 		var output = template.render({
-		  "code": "<b>Foo</b>"
+			"code": "<b>Foo</b>"
 		});
 		
 		equal(output, "<b>Foo</b>");
 		
-	});	
+	}); 
 	
 	test("Partials", function() {
 
@@ -533,7 +564,7 @@ $(function() {
 		ok(tweetTemplate instanceof core.template.Template);
 		
 		var output = template.render({
-		  "tweets": [{
+			"tweets": [{
 				text: "hello world",
 				id: 1
 			}, {
@@ -588,7 +619,7 @@ $(function() {
 		
 		equals(output, "Sascha[0]Christoph[1]Ivo[2]");
 		
-	});	
+	}); 
 	
 	
 	
@@ -995,7 +1026,7 @@ $(function() {
 				include : [members.Include1, members.Include2]
 			});
 		});
-	});	
+	}); 
 	
 	
 	/**
@@ -1062,7 +1093,7 @@ $(function() {
 				}
 			});
 		});
-	});	
+	}); 
 	
 	
 	/**
@@ -1097,7 +1128,7 @@ $(function() {
 				}
 			});
 		});
-	});	
+	}); 
 	
 
 
@@ -1268,7 +1299,7 @@ $(function() {
 			core.Main.clearNamespace("properties.FontSizeMissing");
 			core.Main.clearNamespace("properties.FontSizeWrongImplementer");
 		}
-	});	
+	}); 
 	
 	test("Creating Properties", function() 
 	{
