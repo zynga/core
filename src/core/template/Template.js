@@ -128,7 +128,7 @@
 				}
 
 				for (var i = 1; i < names.length; i++) {
-					if (value && typeof value == 'object' && names[i] in value) {
+					if (value && typeof value == 'object' && value.hasOwnProperty(names[i])) {
 						cx = value;
 						value = value[names[i]];
 					} else {
@@ -154,7 +154,7 @@
 				for (var i=data.length-1; i>=0; i--) 
 				{
 					var current = data[i];
-					if (current && typeof current == 'object' && key in current) 
+					if (current && typeof current == 'object' && current.hasOwnProperty(key)) 
 					{
 						value = current[key];
 						found = true;
