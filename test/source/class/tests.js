@@ -483,7 +483,7 @@ $(function() {
 			}
 		});
 
-		equal(output, "<em>resque</em><em>hub</em><em>rip</em>");		
+		equal(output, "<em>bar</em>Repos<br/><b>resque</b><b>hub</b><b>rip</b>");		
 		
 	}); 
 	
