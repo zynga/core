@@ -21,9 +21,9 @@
 	var accessTags = {
 		"#" : 1,
 		"^" : 1,
-		"{" : 1,
 		"&" : 1,
-		"$" : 1
+		"$" : 1,
+		"?" : 1
 	};
 
 	function esc(s) {
@@ -56,7 +56,9 @@
 					var accessMethod = ~name.indexOf('.') ? '_getDotted' : '_get';
 				}
 				
-				if (tag == '#') {
+				if (tag == '?') {
+					code += has(current.nodes, name, accessMethod);
+				} else if (tag == '#') {
 					code += section(current.nodes, name, accessMethod);
 				} else if (tag == '^') {
 					code += invertedSection(current.nodes, name, accessMethod);
@@ -73,6 +75,10 @@
 		}
 		
 		return code;
+	}
+
+	function has(nodes, id, accessMethod) {
+		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,false)){' + walk(nodes) + '};';
 	}
 
 	function section(nodes, id, accessMethod, start, end) {

@@ -1,7 +1,7 @@
 (function() 
 {
 	var tagSplitter = /(\{\{[^\{\}}]*\}\})/;
-	var tagMatcher = /^\{\{\s*([#\^\/\!\<\>\=\$\&]?)\s*([^\{\}}]*?)\s*\}\}$/;
+	var tagMatcher = /^\{\{\s*([#\^\/\?\!\<\>\$\&]?)\s*([^\{\}}]*?)\s*\}\}$/;
 	
 	
 	/**
@@ -19,7 +19,7 @@
 			token = tokens.shift();
 			
 			// Sections (and inverted sections) are stored structured in the tree
-			if (token.tag == "#" || token.tag == "^") 
+			if (token.tag == "#" || token.tag == "^" || token.tag == "?")
 			{
 				stack.push(token);
 				token.nodes = buildTree(tokens, stack);

@@ -433,6 +433,29 @@ $(function() {
 		
 	});
 	
+	test("Conditional Lists", function() {
+
+		var template = core.template.Compiler.compile("{{?repo}}Repos<br/>{{#repo}}<b>{{name}}</b>{{/repo}}{{/repo}}");
+		ok(template instanceof core.template.Template);
+		
+		var output = template.render({
+		  "repo": [
+		    { "name": "resque" },
+		    { "name": "hub" },
+		    { "name": "rip" },
+		  ]
+		});
+		
+		equal(output, "Repos<br/><b>resque</b><b>hub</b><b>rip</b>");
+		
+		var output = template.render({
+		  "repo": []
+		});
+		
+		equal(output, "");
+		
+	});	
+	
 	test("Non False", function() {
 
 		var template = core.template.Compiler.compile("{{#person?}}Hi {{name}}!{{/person?}}");
