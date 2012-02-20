@@ -30,10 +30,6 @@
 		return s.replace(rSlash, '\\\\').replace(rQuot, '\\\"').replace(rNewline, '\\n').replace(rCr, '\\r');
 	}
 
-	function chooseAccessMethod(str) {
-		return 
-	}
-
 	function walk(node) 
 	{
 		var code = '';
@@ -78,7 +74,7 @@
 	}
 
 	function has(nodes, id, accessMethod) {
-		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,false)){' + walk(nodes) + '};';
+		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,true)){' + walk(nodes) + '};';
 	}
 
 	function section(nodes, id, accessMethod, start, end) {
