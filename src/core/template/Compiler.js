@@ -57,7 +57,7 @@
 				} else if (tag == '#') {
 					code += section(current.nodes, name, accessMethod);
 				} else if (tag == '^') {
-					code += invertedSection(current.nodes, name, accessMethod);
+					code += hasNot(current.nodes, name, accessMethod);
 				} else if (tag == '&') {
 					code += data(name, accessMethod);
 				} else if (tag == '$') {
@@ -81,7 +81,7 @@
 		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,false)){this._renderSection(ctx,partials,function(ctx,partials){' + walk(nodes) + '});ctx.pop();}';
 	}
 
-	function invertedSection(nodes, id, accessMethod) {
+	function hasNot(nodes, id, accessMethod) {
 		return 'if(!this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,true)){' + walk(nodes) + '};';
 	}
 
