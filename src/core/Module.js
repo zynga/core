@@ -14,6 +14,32 @@
 		return "[module " + this.moduleName + "]";
 	};
 	
+	var cache = {};
+	
+	var resolveName = function(name)
+	{
+		var current = cache[name];
+		if (!current)
+		{
+			current = global;
+			if (name)
+			{
+				var splitted = name.split(".");
+				for (var i=0, l=splitted.length; i<l; i++)
+				{
+					current = current[splitted[i]];
+					if (!current)
+					{
+						current = null;
+						break;
+					}
+				}
+			}
+		}
+
+		return current;
+	};
+	
 
 	/**
 	 * Define a module with the given @name {String} with static @members {Map} being attached.
@@ -53,7 +79,7 @@
 		if (!members.hasOwnProperty("valueOf")) {
 			members.valueOf = genericToString;
 		}
-
+		
 		// Mark as module
 		members.__isModule = true;
 
@@ -92,6 +118,7 @@
 		getByName : getByName,
 		isModuleName : isModuleName,
 		isModule : isModule,
+		resolveName: resolveName
 	});
 
 })(this);
