@@ -106,11 +106,12 @@
 		/**
 		 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
 		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
-		 * the original @text {String} for template construction.
+		 * the original @text {String} for template construction. Optionally you can remove white spaces (line breaks,
+		 * leading, trailing, etc.) by enabling @strip {Boolean?false}.
 		 */
-		compile : function(text) {
+		compile : function(text, strip) {
 
-			var tree = core.template.Parser.parse(text);
+			var tree = core.template.Parser.parse(text, strip);
 			var wrapped = 'var buf="";' + walk(tree) + 'return buf;';
 
 			return new core.template.Template(new Function('ctx', 'partials', wrapped), text);

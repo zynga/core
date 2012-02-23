@@ -64,9 +64,22 @@
 		 * {String[]} Tokenizer for template @text {String}. Returns an array of tokens
 		 * where tags are returned as an object with the keys `tag` and `name` while
 		 * normal strings are kept as strings.
+		 *
+		 * Optionally you can remove white spaces (line breaks,
+		 * leading, trailing, etc.) by enabling @strip {Boolean?false}.
 		 */
-		tokenize: function(text) 
+		tokenize: function(text, strip) 
 		{
+			if (strip) 
+			{
+				var splits = text.split("\n");
+				for (var i=0, l=splits.length; i<l; i++) {
+					splits[i] = splits[i].trim();
+				}
+				
+				text = splits.join("");
+			}
+			
 			var tokens = [];
 			var splitted = text.split(tagSplitter);
 			var matched;
@@ -106,9 +119,12 @@
 		 * - `tag`: tag of the token
 		 * - `name`: name of the token
 		 * - `nodes`: children of the node
+		 *
+		 * Optionally you can remove white spaces (line breaks,
+		 * leading, trailing, etc.) by enabling @strip {Boolean?false}.
 		 */
-		parse: function(text) {
-			return buildTree(this.tokenize(text), []);
+		parse: function(text, strip) {
+			return buildTree(this.tokenize(text, strip), []);
 		}
 		
 	});
