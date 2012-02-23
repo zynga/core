@@ -45,7 +45,7 @@
 		construct: function(render) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.isType(render, "Function");
+				core.Assert.isType(render, "Function", "Missing valid render method!");
 			}
 			
 			this.render = render;
@@ -139,7 +139,6 @@
 				} else {
 					return returnFound ? false : "";
 				}
-
 			}
 		}
 	});
