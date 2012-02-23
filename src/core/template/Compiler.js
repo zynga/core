@@ -55,24 +55,25 @@
 				var name = current.name;
 				var escaped = esc(name);
 				
-				if (accessTags[tag]) {
-					var accessMethod = ~name.indexOf('.') ? '_getDotted' : '_get';
+				// select best query method during compilation
+				if (tag in accessTags) {
+					var accessor = name == "." ? 2 : ~name.indexOf('.') ? 1 : 0;
 				}
 				
-				if (innerTags[tag]) {
+				if (tag in innerTags) {
 					var innerCode = walk(current.nodes);
 				}
 				
 				if (tag == '?') {
-					code += 'if(this._is(this.' + accessMethod + '("' + escaped + '",data,true))){' + innerCode + '};';
+					code += 'if(this._is("' + escaped + '",' + accessor + ',data)){' + innerCode + '};';
 				} else if (tag == '^') {
-					code += 'if(!this._is(this.' + accessMethod + '("' + escaped + '",data,true))){' + innerCode + '};';
+					code += 'if(!this._is("' + escaped + '",' + accessor + ',data)){' + innerCode + '};';
 				} else if (tag == '#') {
-					code += 'this._section(this.' + accessMethod + '("' + escaped + '",data,true),partials,function(data,partials){' + innerCode + '});';
+					code += 'this._section("' + escaped + '",' + accessor + ',data,partials,function(data,partials){' + innerCode + '});';
 				} else if (tag == '&') {
-					code += 'buf+=this._data(this.' + accessMethod + '("' + escaped + '",data));';
+					code += 'buf+=this._data("' + escaped + '",' + accessor + ',data);';
 				} else if (tag == '$') {
-					code += 'buf+=this._variable(this.' + accessMethod + '("' + escaped + '",data));';
+					code += 'buf+=this._variable("' + escaped + '",' + accessor + ',data);';
 				} else if (tag == '>') {
 					code += 'buf+=this._partial("' + escaped + '",data,partials);';
 				} else if (tag == '\n') {

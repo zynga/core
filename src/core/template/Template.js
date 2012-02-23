@@ -21,6 +21,7 @@
 	var hChars = /[&<>\"\']/;
 	
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var undef;
 
 	function coerceToString(value) {
 		return value == null ? "" : "" + value;
@@ -31,6 +32,41 @@
 		str = coerceToString(str);
 		return hChars.test(str) ? str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;') : str;
 	}
+	
+	var accessor = {
+		
+		2: function(key, data) {
+			return data;
+		},
+		
+		1: function(key, data) 
+		{
+			if (key == ".") {
+				return data;
+			}
+
+			var splits = key.split(".");
+			for (var i=0, l=splits.length; i<l; i++) 
+			{
+				var sub = splits[i];
+				if (!hasOwnProperty.call(data, sub)) {
+					return;
+				}
+
+				data = data[sub];
+			}
+
+			return data;
+		},
+		
+		0: function(key, data) 
+		{
+			if (hasOwnProperty.call(data, key)) {
+				return data[key];
+			}
+		}
+		
+	};
 	
 
 	/**
@@ -61,8 +97,13 @@
 				// pass
 			},
 
-			_variable: escapeString,
-			_data: coerceToString,
+			_variable: function(key, method, data) {
+				return escapeString(accessor[method](key, data));
+			},
+
+			_data: function(key, method, data) {
+				return coerceToString(accessor[method](key, data));
+			},
 
 			/** 
 			 * Tries to find a partial in the current scope and render it 
@@ -80,64 +121,31 @@
 			 * Renders a section using the given @data {var}, user
 			 * defined @partials {Map} and a @section {Function} specific renderer.
 			 */
-			_section: function(data, partials, section) 
+			_section: function(key, method, data, partials, section) 
 			{
-				if (data instanceof Array) 
+				var value = accessor[method](key, data);
+				if (value instanceof Array) 
 				{
-					for (var i=0, l=data.length; i<data.length; i++) {
-						section.call(this, data[i], partials);
+					for (var i=0, l=value.length; i<value.length; i++) {
+						section.call(this, value[i], partials);
 					}
 				}
-				else 
+				else if (value !== undef)
 				{
-					section.call(this, data, partials);
+					section.call(this, value, partials);
 				}
 			},
 
 			/** 
 			 * Maybe start a section 
 			 */
-			_is: function(value) 
+			_is: function(key, method, data) 
 			{
+				var value = accessor[method](key, data);
 				if (value instanceof Array) {
 					return value.length > 0;
 				} else {
 					return value === '' || !!value
-				}
-			},
-
-			/** 
-			 * Find values with dotted names 
-			 */
-			_getDotted: function(key, data, returnFound) 
-			{
-				if (key == ".") {
-					return data;
-				}
-				
-				var splits = key.split(".");
-				for (var i=0, l=splits.length; i<l; i++) 
-				{
-					var sub = splits[i];
-					if (!hasOwnProperty.call(data, sub)) {
-						return returnFound ? false : "";
-					}
-					
-					data = data[sub];
-				}
-				
-				return data;
-			},
-
-			/** 
-			 * Find values with non-dotted @key {String}
-			 */
-			_get: function(key, data, returnFound) 
-			{
-				if (hasOwnProperty.call(data, key)) {
-					return data[key];
-				} else {
-					return returnFound ? false : "";
 				}
 			}
 		}
