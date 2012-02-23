@@ -55,34 +55,37 @@
 				var name = current.name;
 				var escaped = esc(name);
 				
-				// select best query method during compilation
-				if (tag in accessTags) {
+				if (tag in accessTags) 
+				{
 					var accessor = name == "." ? 2 : ~name.indexOf('.') ? 1 : 0;
-				}
-				
-				if (tag in innerTags) {
-					var innerCode = walk(current.nodes);
-				}
-				
-				if (tag == '?') {
-					code += 'if(this._is("' + escaped + '",' + accessor + ',data)){' + innerCode + '};';
-				} else if (tag == '^') {
-					code += 'if(!this._is("' + escaped + '",' + accessor + ',data)){' + innerCode + '};';
-				} else if (tag == '#') {
-					code += 'this._section("' + escaped + '",' + accessor + ',data,partials,function(data,partials){' + innerCode + '});';
-				} else if (tag == '&') {
-					code += 'buf+=this._data("' + escaped + '",' + accessor + ',data);';
-				} else if (tag == '$') {
-					code += 'buf+=this._variable("' + escaped + '",' + accessor + ',data);';
-				} else if (tag == '>') {
+					var accessorCode = '"' + escaped + '",' + accessor + ',data';
+
+					if (tag in innerTags) {
+						var innerCode = walk(current.nodes);
+					}
+					
+					if (tag == '?') {
+						code += 'if(this._is(' + accessorCode + ')){' + innerCode + '};';
+					} else if (tag == '^') {
+						code += 'if(!this._is(' + accessorCode + ')){' + innerCode + '};';
+					} else if (tag == '#') {
+						code += 'this._section(' + accessorCode + ',partials,function(data,partials){' + innerCode + '});';
+					} else if (tag == '&') {
+						code += 'buf+=this._data(' + accessorCode + ');';
+					} else if (tag == '$') {
+						code += 'buf+=this._variable(' + accessorCode + ');';
+					}
+				} 
+				else if (tag == '>') 
+				{
 					code += 'buf+=this._partial("' + escaped + '",data,partials);';
-				} else if (tag == '\n') {
+				}
+				else if (tag == '\n')
+				{
 					code += 'buf+="\\n";';
 				}
 			}
 		}
-		
-		console.debug("CODE: ", code);
 		
 		return code;
 	}
