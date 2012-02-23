@@ -50,11 +50,11 @@
 		members: 
 		{
 			/**
-			 * {String} Public render method which transforms the stored template text using the @data {Map}
+			 * {String} Public render method which transforms the stored template text using the @context {Map}
 			 * and runtime specific @partials {Map?null}.
 			 */
-			render: function(data, partials) {
-				return this.__render([data], partials || {});
+			render: function(context, partials) {
+				return this.__render([context], partials || {});
 			},
 
 			_variable: escapeString,
@@ -97,7 +97,7 @@
 			/** 
 			 * Maybe start a section 
 			 */
-			_section: function(value, data, partials, inverted) 
+			_section: function(value, context, partials, inverted) 
 			{
 				var pass;
 				
@@ -107,8 +107,8 @@
 
 				pass = (value === '') || !!value;
 
-				if (!inverted && pass && data) {
-					data.push((typeof value == 'object') ? value : data[data.length - 1]);
+				if (!inverted && pass && context) {
+					context.push((typeof value == 'object') ? value : context[context.length - 1]);
 				}
 
 				return pass;
@@ -117,14 +117,14 @@
 			/** 
 			 * Find values with dotted names 
 			 */
-			_getDotted: function(key, data, returnFound) 
+			_getDotted: function(key, context, returnFound) 
 			{
 				var names = key.split('.'),
-						value = this._get(names[0], data, returnFound),
+						value = this._get(names[0], context, returnFound),
 						cx = null;
 
-				if (key === '.' && Array.isArray(data[data.length - 2])) {
-					return data[data.length - 1];
+				if (key === '.' && Array.isArray(context[context.length - 2])) {
+					return context[context.length - 1];
 				}
 
 				for (var i = 1; i < names.length; i++) 
@@ -150,14 +150,14 @@
 			/** 
 			 * Find values with non-dotted @key {String}
 			 */
-			_get: function(key, data, returnFound) 
+			_get: function(key, context, returnFound) 
 			{
 				var value = false;
 				var found = false;
 				
-				for (var i=data.length-1; i>=0; i--) 
+				for (var i=context.length-1; i>=0; i--) 
 				{
-					var current = data[i];
+					var current = context[i];
 					if (current && typeof current == 'object' && current.hasOwnProperty(key)) 
 					{
 						value = current[key];
