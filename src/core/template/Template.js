@@ -27,12 +27,6 @@
 		return value == null ? "" : "" + value;
 	}
 
-	function escapeString(str) 
-	{
-		str = coerceToString(str);
-		return hChars.test(str) ? str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;') : str;
-	}
-	
 	var accessor = {
 		
 		2: function(key, data) {
@@ -98,7 +92,8 @@
 			},
 
 			_variable: function(key, method, data) {
-				return escapeString(accessor[method](key, data));
+				var str = coerceToString(accessor[method](key, data));
+				return hChars.test(str) ? str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;') : str;
 			},
 
 			_data: function(key, method, data) {
@@ -124,9 +119,10 @@
 			_section: function(key, method, data, partials, section) 
 			{
 				var value = accessor[method](key, data);
+				
 				if (value instanceof Array) 
 				{
-					for (var i=0, l=value.length; i<value.length; i++) {
+					for (var i=0, l=value.length; i<l; i++) {
 						section.call(this, value[i], partials);
 					}
 				}
