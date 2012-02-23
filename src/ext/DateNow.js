@@ -6,7 +6,7 @@
 */
 
 /** Adds the pretty essential `Date.now()` method from ES5 if it is missing. */
-core.Main.addMembers("Date",
+core.Main.addStatics("Date",
 {
 	/** 
 	 * {Number} Returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC. 
