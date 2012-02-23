@@ -74,15 +74,15 @@
 	}
 
 	function has(nodes, id, accessMethod) {
-		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,true)){' + walk(nodes) + '};';
+		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,true),ctx,partials,true)){' + walk(nodes) + '};';
 	}
 
 	function section(nodes, id, accessMethod, start, end) {
-		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,false)){this._renderSection(ctx,partials,function(ctx,partials){' + walk(nodes) + '});ctx.pop();}';
+		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,true),ctx,partials,false)){this._renderSection(ctx,partials,function(ctx,partials){' + walk(nodes) + '});ctx.pop();}';
 	}
 
 	function hasNot(nodes, id, accessMethod) {
-		return 'if(!this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,true),ctx,partials,true)){' + walk(nodes) + '};';
+		return 'if(!this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,true),ctx,true)){' + walk(nodes) + '};';
 	}
 
 	function partial(tok) {
@@ -90,11 +90,11 @@
 	}
 
 	function data(id, accessMethod) {
-		return 'buf+=this._data(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,false));';
+		return 'buf+=this._data(this.' + accessMethod + '("' + esc(id) + '",ctx,false));';
 	}
 
 	function variable(id, accessMethod) {
-		return 'buf+=this._variable(this.' + accessMethod + '("' + esc(id) + '",ctx,partials,false));';
+		return 'buf+=this._variable(this.' + accessMethod + '("' + esc(id) + '",ctx,false));';
 	}
 
 

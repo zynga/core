@@ -117,21 +117,25 @@
 			/** 
 			 * Find values with dotted names 
 			 */
-			_getDotted: function(key, data, partials, returnFound) 
+			_getDotted: function(key, data, returnFound) 
 			{
 				var names = key.split('.'),
-						value = this._get(names[0], data, partials, returnFound),
+						value = this._get(names[0], data, returnFound),
 						cx = null;
 
 				if (key === '.' && Array.isArray(data[data.length - 2])) {
 					return data[data.length - 1];
 				}
 
-				for (var i = 1; i < names.length; i++) {
-					if (value && typeof value == 'object' && value.hasOwnProperty(names[i])) {
+				for (var i = 1; i < names.length; i++) 
+				{
+					if (value && typeof value == 'object' && value.hasOwnProperty(names[i])) 
+					{
 						cx = value;
 						value = value[names[i]];
-					} else {
+					}
+					else 
+					{
 						value = '';
 					}
 				}
@@ -146,11 +150,11 @@
 			/** 
 			 * Find values with non-dotted @key {String}
 			 */
-			_get: function(key, data, partials, returnFound) 
+			_get: function(key, data, returnFound) 
 			{
 				var value = false;
 				var found = false;
-
+				
 				for (var i=data.length-1; i>=0; i--) 
 				{
 					var current = data[i];
