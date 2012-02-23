@@ -39,9 +39,8 @@
 	function walk(node) 
 	{
 		var code = '';
-		var tag, name;
 		
-		for (var i = 0, l = node.length; i < l; i++) 
+		for (var i=0, l=node.length; i<l; i++) 
 		{
 			var current = node[i];
 			var tag = current.tag;
