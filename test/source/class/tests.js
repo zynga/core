@@ -515,7 +515,7 @@ $(function() {
 			"repo": [1,2,3]
 		});
 		
-		equal(output, "<b>1</b><b>2</b><b>3</b>");		
+		equal(output, "<b>1</b><b>2</b><b>3</b>");
 		
 	});
 	

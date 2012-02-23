@@ -19,15 +19,19 @@
 	var rApos = /\'/g;
 	var rQuot = /\"/g;
 	var hChars = /[&<>\"\']/;
+	
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 	function coerceToString(value) {
 		return value == null ? "" : "" + value;
 	}
 
-	function escapeString(str) {
+	function escapeString(str) 
+	{
 		str = coerceToString(str);
 		return hChars.test(str) ? str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;') : str;
 	}
+	
 
 	/**
 	 * This is the template class which is typically initialized and configured using the {core.template.Compiler#compile} method.
@@ -44,133 +48,98 @@
 				core.Assert.isType(render, "Function");
 			}
 			
-			this.__render = render;
+			this.render = render;
 		},
 		
 		members: 
 		{
 			/**
-			 * {String} Public render method which transforms the stored template text using the @context {Map}
+			 * {String} Public render method which transforms the stored template text using the @data {Map}
 			 * and runtime specific @partials {Map?null}.
 			 */
-			render: function(context, partials) {
-				return this.__render([context], partials || {});
+			render: function(data, partials) {
+				// pass
 			},
 
 			_variable: escapeString,
 			_data: coerceToString,
 
-			// render: replaced by generated code.
-			__render: null,
-			
 			/** 
 			 * Tries to find a partial in the current scope and render it 
 			 */
-			_renderPartial: function(name, context, partials) 
+			_partial: function(name, data, partials) 
 			{
-				var partial = partials[name];
-				return partial ? partial.__render(context, partials) : "";
+				if (partials && hasOwnProperty.call(partials, name)) {
+					return partials[name].render(data, partials);
+				} else {
+					return "";
+				}
 			},
 
 			/** 
-			 * Renders a section using the given @context {var} data, user
+			 * Renders a section using the given @data {var}, user
 			 * defined @partials {Map} and a @section {Function} specific renderer.
 			 */
-			_renderSection: function(context, partials, section) 
+			_section: function(data, partials, section) 
 			{
-				var tail = context[context.length - 1];
-
-				if (!Array.isArray(tail)) 
+				if (data instanceof Array) 
 				{
-					section.call(this, context, partials);
-					return;
+					for (var i=0, l=data.length; i<data.length; i++) {
+						section.call(this, data[i], partials);
+					}
 				}
-
-				for (var i = 0; i < tail.length; i++) 
+				else 
 				{
-					context.push(tail[i]);
-					section.call(this, context, partials);
-					context.pop();
+					section.call(this, data, partials);
 				}
 			},
 
 			/** 
 			 * Maybe start a section 
 			 */
-			_section: function(value, context, partials, inverted) 
+			_is: function(value) 
 			{
-				var pass;
-				
-				if (Array.isArray(value) && value.length === 0) {
-					return false;
+				if (value instanceof Array) {
+					return value.length > 0;
+				} else {
+					return value === '' || !!value
 				}
-
-				pass = (value === '') || !!value;
-
-				if (!inverted && pass && context) {
-					context.push((typeof value == 'object') ? value : context[context.length - 1]);
-				}
-
-				return pass;
 			},
 
 			/** 
 			 * Find values with dotted names 
 			 */
-			_getDotted: function(key, context, returnFound) 
+			_getDotted: function(key, data, returnFound) 
 			{
-				var names = key.split('.'),
-						value = this._get(names[0], context, returnFound),
-						cx = null;
-
-				if (key === '.' && Array.isArray(context[context.length - 2])) {
-					return context[context.length - 1];
+				if (key == ".") {
+					return data;
 				}
-
-				for (var i = 1; i < names.length; i++) 
+				
+				var splits = key.split(".");
+				for (var i=0, l=splits.length; i<l; i++) 
 				{
-					if (value && typeof value == 'object' && value.hasOwnProperty(names[i])) 
-					{
-						cx = value;
-						value = value[names[i]];
+					var sub = splits[i];
+					if (!hasOwnProperty.call(data, sub)) {
+						return returnFound ? false : "";
 					}
-					else 
-					{
-						value = '';
-					}
+					
+					data = data[sub];
 				}
-
-				if (returnFound && !value) {
-					return false;
-				}
-
-				return value;
+				
+				return data;
 			},
 
 			/** 
 			 * Find values with non-dotted @key {String}
 			 */
-			_get: function(key, context, returnFound) 
+			_get: function(key, data, returnFound) 
 			{
-				var value = false;
-				var found = false;
-				
-				for (var i=context.length-1; i>=0; i--) 
-				{
-					var current = context[i];
-					if (current && typeof current == 'object' && current.hasOwnProperty(key)) 
-					{
-						value = current[key];
-						found = true;
-						break;
-					}
-				}
-
-				if (!found) {
+				if (hasOwnProperty.call(data, key)) {
+					return data[key];
+				} else {
 					return returnFound ? false : "";
 				}
 
-				return value;
 			}
 		}
 	});

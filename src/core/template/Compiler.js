@@ -20,10 +20,16 @@
 	
 	var accessTags = {
 		"#" : 1,
+		"?" : 1,
 		"^" : 1,
 		"&" : 1,
-		"$" : 1,
-		"?" : 1
+		"$" : 1
+	};
+	
+	var innerTags = {
+		"#" : 1,
+		"?" : 1,
+		"^" : 1
 	};
 
 	function esc(s) {
@@ -47,54 +53,37 @@
 			else
 			{
 				var name = current.name;
+				var escaped = esc(name);
 				
 				if (accessTags[tag]) {
 					var accessMethod = ~name.indexOf('.') ? '_getDotted' : '_get';
 				}
 				
+				if (innerTags[tag]) {
+					var innerCode = walk(current.nodes);
+				}
+				
 				if (tag == '?') {
-					code += has(current.nodes, name, accessMethod);
-				} else if (tag == '#') {
-					code += section(current.nodes, name, accessMethod);
+					code += 'if(this._is(this.' + accessMethod + '("' + escaped + '",data,true))){' + innerCode + '};';
 				} else if (tag == '^') {
-					code += hasNot(current.nodes, name, accessMethod);
+					code += 'if(!this._is(this.' + accessMethod + '("' + escaped + '",data,true))){' + innerCode + '};';
+				} else if (tag == '#') {
+					code += 'this._section(this.' + accessMethod + '("' + escaped + '",data,true),partials,function(data,partials){' + innerCode + '});';
 				} else if (tag == '&') {
-					code += data(name, accessMethod);
+					code += 'buf+=this._data(this.' + accessMethod + '("' + escaped + '",data));';
 				} else if (tag == '$') {
-					code += variable(name, accessMethod);
-				} else if (tag == '<' || tag == '>') {
-					code += partial(current);
+					code += 'buf+=this._variable(this.' + accessMethod + '("' + escaped + '",data));';
+				} else if (tag == '>') {
+					code += 'buf+=this._partial("' + escaped + '",data,partials);';
 				} else if (tag == '\n') {
 					code += 'buf+="\\n";';
 				}
 			}
 		}
 		
+		console.debug("CODE: ", code);
+		
 		return code;
-	}
-
-	function has(nodes, id, accessMethod) {
-		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,true),ctx,partials,true)){' + walk(nodes) + '};';
-	}
-
-	function section(nodes, id, accessMethod, start, end) {
-		return 'if(this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,true),ctx,partials,false)){this._renderSection(ctx,partials,function(ctx,partials){' + walk(nodes) + '});ctx.pop();}';
-	}
-
-	function hasNot(nodes, id, accessMethod) {
-		return 'if(!this._section(this.' + accessMethod + '("' + esc(id) + '",ctx,true),ctx,true)){' + walk(nodes) + '};';
-	}
-
-	function partial(tok) {
-		return 'buf+=this._renderPartial("' + esc(tok.name) + '",ctx,partials,false);';
-	}
-
-	function data(id, accessMethod) {
-		return 'buf+=this._data(this.' + accessMethod + '("' + esc(id) + '",ctx,false));';
-	}
-
-	function variable(id, accessMethod) {
-		return 'buf+=this._variable(this.' + accessMethod + '("' + esc(id) + '",ctx,false));';
 	}
 
 
@@ -114,7 +103,7 @@
 			var tree = core.template.Parser.parse(text, strip);
 			var wrapped = 'var buf="";' + walk(tree) + 'return buf;';
 
-			return new core.template.Template(new Function('ctx', 'partials', wrapped), text);
+			return new core.template.Template(new Function('data', 'partials', wrapped), text);
 		}
 	});
 	
