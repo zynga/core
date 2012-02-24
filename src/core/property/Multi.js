@@ -189,22 +189,19 @@
 	 * Multi-level property which support multiple values per property with integrated priorization. The following fields
 	 * are available for properties depending on their configuration:
 	 *
-	 * # Inheritable
-	 * # Theme
-	 * # User
-	 * # Override
+	 * * `inherited`
+	 * * `theme`
+	 * * `user`
+	 * * `override`
 	 *
 	 * Higher values mean higher priority e.g. user values override themed values. There is an additional value
 	 * which is the init value and is stored property-wide (read: class specific - not instance specific).
 	 *
 	 * Additional configuration flags (compared to simple properties):
 	 *
-	 * <ul>
-	 * <li><strong>inheritable</strong>: Whether the property value should be inheritable. If the property does not have a
-	 * user defined or an init value, the property will try to get the value from the parent of the current object.</li>
-	 * <li><strong>themeable</strong>: Whether the property allows a themable value read dynamically from a theming system.
-	 * The object containing this property needs to implement a method <code>getThemedValue</code>.</li>
-	 * </ul>
+	 * * `inheritable`: Whether the property value should be inheritable. If the property does not have a user defined or an init value, the property will try to get the value from the parent of the current object.
+	 * * `themeable`: Whether the property allows a themable value read dynamically from a theming system.
+	 * The object containing this property needs to implement a method `getThemedValue`.
 	 *
 	 * #break(core.property.Debug)
 	 */

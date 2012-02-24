@@ -65,8 +65,8 @@
 
 
 		/**
-		 * Loads the given asset @ids {String[]} and optionally executes the given @callback {Function?} (in the given @context {Object}) after all are completed.
-		 * The behavior is tweakable by enabling @nocache {Boolean?false} to append a dynamic `GET` parameter and @type {String} to enforce a specific loader class.
+		 * Loads the given asset @ids {String[]} and optionally executes the given @callback {Function?} (in the given @context {Object?global}) after all are completed.
+		 * The behavior is tweakable by enabling @nocache {Boolean?false} to append a dynamic `GET` parameter and @type {String?} to enforce a specific loader class.
 		 */
 		load: function(ids, callback, context, nocache, type) {
 
