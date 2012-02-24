@@ -13,6 +13,9 @@
 
 (function () 
 {
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var undef;
+
 	var htmlChars = /[&<>\"\']/g;
 	var htmlMap = {
 		'&': '&amp;',
@@ -25,12 +28,8 @@
 		return htmlMap[str];
 	};
 	
-	
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var undef;
-
-	var accessor = {
-		
+	var accessor = 
+	{
 		2: function(key, data) {
 			return data;
 		},
@@ -61,7 +60,6 @@
 				return data[key];
 			}
 		}
-		
 	};
 	
 
