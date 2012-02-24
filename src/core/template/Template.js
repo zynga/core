@@ -13,12 +13,18 @@
 
 (function () 
 {
-	var rAmp = /&/g;
-	var rLt = /</g;
-	var rGt = />/g;
-	var rApos = /\'/g;
-	var rQuot = /\"/g;
-	var hChars = /[&<>\"\']/;
+	var htmlChars = /[&<>\"\']/g;
+	var htmlMap = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		"'": '&#39;',
+		'"': '&quot;'
+	};
+	var htmlEscape = function(str) {
+		return htmlMap[str];
+	};
+	
 	
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var undef;
@@ -74,7 +80,7 @@
 				core.Assert.isType(render, "Function", "Missing valid render method!");
 			}
 			
-			this.render = render;
+			this.__render = render;
 		},
 		
 		members: 
@@ -83,8 +89,18 @@
 			 * {String} Public render method which transforms the stored template text using the @data {Map}
 			 * and runtime specific @partials {Map?null}.
 			 */
-			render: function(data, partials) {
-				// pass
+			render: function(data, partials) 
+			{
+				if (core.Env.isSet("debug")) 
+				{
+					core.Assert.isType(data, "Map", "Invalid data to render");
+					
+					if (arguments.length > 1) {
+						core.Assert.isType(partials, "Map", "Invalid partials");
+					}
+				}
+				
+				return this.__render(data, partials);
 			},
 
 			/** 
@@ -96,11 +112,8 @@
 			{
 				var value = accessor[method](key, data);
 				var str = value == null ? "" : "" + value;
-				if (escape && hChars.test(str)) {
-					str = str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;');
-				}
 				
-				return str;
+				return escape ? str.replace(htmlChars, htmlEscape) : str;
 			},
 
 			/** 
@@ -109,7 +122,7 @@
 			_partial: function(name, data, partials) 
 			{
 				if (partials && hasOwnProperty.call(partials, name)) {
-					return partials[name].render(data, partials);
+					return partials[name].__render(data, partials);
 				} else {
 					return "";
 				}

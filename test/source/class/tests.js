@@ -543,6 +543,12 @@ $(function() {
 		});
 		
 		equal(output, "&lt;b&gt;Foo&lt;/b&gt;");
+		
+		var output = template.render({
+			"code": "Bert & Ernie"
+		});
+		
+		equal(output, "Bert &amp; Ernie");
 
 		var template = core.template.Compiler.compile("{{&code}}");
 		ok(template instanceof core.template.Template);
