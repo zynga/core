@@ -1,8 +1,9 @@
 The template engine is based on [Hogan.js](http://twitter.github.com/hogan.js/)/Mustache with a few modifications:
 
-- No support to lambdas in data
-- No support for triple '{{{xxx}}}' unescaped values. Use `{{&xxx}}` instead
-- No support for dynamic template controllable delimiters
+- No support for automatic parent lookup of locally unavailable keys.
+- No support to lambdas in data to dynamically process data.
+- No support for triple '{{{xxx}}}' unescaped values. Use `{{&xxx}}` instead.
+- No support for dynamic template controllable delimiters using `{{=delim}}`.
 
 See also:
 
