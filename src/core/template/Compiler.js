@@ -13,10 +13,16 @@
 
 (function () 
 {
-	var rSlash = /\\/g;
-	var rQuot = /\"/g;
-	var rNewline = /\n/g;
-	var rCr = /\r/g;
+	var escapeMatcher = /[\\\"\n\r]/g;
+	var escapeMap = {
+		"\\" : '\\\\',
+		"\"" : '\\\"',
+		"\n" : '\\n',
+		"\r" : '\\r'
+	};
+	var escapeReplacer = function(str) {
+		return escapeMap[str];
+	};
 	
 	var accessTags = {
 		"#" : 1,
@@ -32,10 +38,6 @@
 		"^" : 1
 	};
 
-	function esc(s) {
-		return s.replace(rSlash, '\\\\').replace(rQuot, '\\\"').replace(rNewline, '\\n').replace(rCr, '\\r');
-	}
-
 	function walk(node) 
 	{
 		var code = '';
@@ -47,12 +49,12 @@
 			
 			if (tag == null) 
 			{
-				code += 'buf+="' + esc(current) + '";';
+				code += 'buf+="' + current.replace(escapeMatcher, escapeReplacer) + '";';
 			}
 			else
 			{
 				var name = current.name;
-				var escaped = esc(name);
+				var escaped = name.replace(escapeMatcher, escapeReplacer);
 				
 				if (tag in accessTags) 
 				{
