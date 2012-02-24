@@ -64,15 +64,15 @@
 					}
 					
 					if (tag == '?') {
-						code += 'if(this._is(' + accessorCode + ')){' + innerCode + '}';
+						code += 'if(this._has(' + accessorCode + ')){' + innerCode + '}';
 					} else if (tag == '^') {
-						code += 'if(!this._is(' + accessorCode + ')){' + innerCode + '}';
+						code += 'if(!this._has(' + accessorCode + ')){' + innerCode + '}';
 					} else if (tag == '#') {
 						code += 'this._section(' + accessorCode + ',partials,function(data,partials){' + innerCode + '});';
 					} else if (tag == '&') {
 						code += 'buf+=this._data(' + accessorCode + ');';
 					} else if (tag == '$') {
-						code += 'buf+=this._variable(' + accessorCode + ');';
+						code += 'buf+=this._data(' + accessorCode + ', true);';
 					}
 				} 
 				else if (tag == '>') 

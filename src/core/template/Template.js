@@ -23,10 +23,6 @@
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var undef;
 
-	function coerceToString(value) {
-		return value == null ? "" : "" + value;
-	}
-
 	var accessor = {
 		
 		2: function(key, data) {
@@ -91,17 +87,24 @@
 				// pass
 			},
 
-			_variable: function(key, method, data) {
-				var str = coerceToString(accessor[method](key, data));
-				return hChars.test(str) ? str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;') : str;
-			},
-
-			_data: function(key, method, data) {
-				return coerceToString(accessor[method](key, data));
+			/** 
+			 * {String} Outputs the @key {String} of @data {Map} 
+			 * using the given accessor @method {Integer} as pure data or
+			 * via enabling @escape {Boolean?false} as HTML escaped.
+			 */
+			_data: function(key, method, data, escape) 
+			{
+				var value = accessor[method](key, data);
+				var str = value == null ? "" : "" + value;
+				if (escape && hChars.test(str)) {
+					str = str.replace(rAmp, '&amp;').replace(rLt, '&lt;').replace(rGt, '&gt;').replace(rApos, '&#39;').replace(rQuot, '&quot;');
+				}
+				
+				return str;
 			},
 
 			/** 
-			 * Tries to find a partial in the current scope and render it 
+			 * {String} Tries to find a partial in the current scope and render it 
 			 */
 			_partial: function(name, data, partials) 
 			{
@@ -133,9 +136,10 @@
 			},
 
 			/** 
-			 * Maybe start a section 
+			 * {Boolean} Whether the given @key {String} has valid content inside @data {Map} 
+			 * using the given accessor @method {Integer}.
 			 */
-			_is: function(key, method, data) 
+			_has: function(key, method, data) 
 			{
 				var value = accessor[method](key, data);
 				if (value instanceof Array) {
