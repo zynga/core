@@ -25,21 +25,21 @@
 	core.Main.addMembers("String", 
 	{
 		/**
-		 * Implements `trim` according to // ES5 15.5.4.20 (http://es5.github.com/#x15.5.4.20)
+		 * {String} Implements `trim` according to // ES5 15.5.4.20 (http://es5.github.com/#x15.5.4.20)
 		 */
 		trim: function() {
 			return (""+this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
 		},
 		
 		/**
-		 * Trims whitespace from the left side of the string. Non standard extension of JavaScript 1.8.1.
+		 * {String} Trims whitespace from the left side of the string. Non standard extension of JavaScript 1.8.1.
 		 */
 		trimLeft: function() {
 			return (""+this).replace(trimBeginRegexp, "");
 		},
 		
 		/**
-		 * Trims whitespace from the right side of the string. Non standard extension of JavaScript 1.8.1.
+		 * {String} Trims whitespace from the right side of the string. Non standard extension of JavaScript 1.8.1.
 		 */
 		trimRight: function() {
 			return (""+this).replace(trimEndRegexp, "");
