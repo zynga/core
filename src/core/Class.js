@@ -240,11 +240,25 @@
 				for (var key in includeMembers) {
 					proto[key] = includeMembers[key];
 				}
-				
+
 				// Just copy over the property data. Methods are already in member section.
 				var includeProperties = includedClass.__properties;
 				for (var key in includeProperties) {
-					properties[key] = includeProperties[key];
+					var property = {};
+					
+					var includeProperty = includeProperties[key];
+					for (var key2 in includeProperty) {
+						property[key2] = includeProperty[key2];
+					}
+					
+					var ownProperty = properties && properties[key];
+					if (ownProperty) {
+						for (var key2 in ownProperty) {
+							property[key2] = ownProperty[key2];
+						}
+					}
+					
+					properties[key] = property;
 				}
 
 				// Events is just data to copy over.

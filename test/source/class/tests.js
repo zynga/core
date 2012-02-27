@@ -1304,6 +1304,9 @@ $(function() {
 			core.Main.clearNamespace("properties.FontSizeImplementer");
 			core.Main.clearNamespace("properties.FontSizeMissing");
 			core.Main.clearNamespace("properties.FontSizeWrongImplementer");
+			core.Main.clearNamespace("properties.Parent");
+			core.Main.clearNamespace("properties.Child1");
+			core.Main.clearNamespace("properties.Child2");
 		}
 	}); 
 	
@@ -1636,6 +1639,37 @@ $(function() {
 		equals(ll.getLineHeight(), 2);
 	});
 	
+	
+	test("Overwrite properties", function() 
+	{
+		core.Class("properties.Parent",
+		{
+			properties : {
+				prop : {
+					init: "Parent"
+				}
+			}
+		});
+		core.Class("properties.Child1",
+		{
+			include : [properties.Parent],
+			properties : {
+				prop : {
+					init: "Child1"
+				}
+			}
+		});
+		core.Class("properties.Child2",
+		{
+			include : [properties.Parent]
+		});
+		
+		var child1 = new properties.Child1();
+		var child2 = new properties.Child2();
+		
+		equals("Child1", child1.getProp());
+		equals("Parent", child2.getProp());
+	});
 	
 	
 });
