@@ -63,7 +63,7 @@
 				core.Assert.isType(interfaceName, "String");
 			}
 
-			var obj = core.Module.resolveName(interfaceName);
+			var obj = core.Main.resolveNamespace(interfaceName);
 			return core.Interface.isInterface(obj) ? obj : null;
 		},
 

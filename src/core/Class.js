@@ -411,7 +411,7 @@
 				core.Assert.isType(className, "String");
 			}
 
-			var obj = core.Module.resolveName(className);
+			var obj = core.Main.resolveNamespace(className);
 			return isClass(obj) ? obj : null;
 		},
 
