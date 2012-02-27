@@ -18,9 +18,9 @@
 	/**
 	 * Adds ES5 String methods if these are not implemented by the engine.
 	 *
-	 * - trim() (ES5)
-	 * - trimLeft() (JavaScript 1.8.1)
-	 * - trimRight() (JavaScript 1.8.1)
+	 * - `trim()` (ES5)
+	 * - `trimLeft()` (JavaScript 1.8.1)
+	 * - `trimRight()` (JavaScript 1.8.1)
 	 */
 	core.Main.addMembers("String", 
 	{
