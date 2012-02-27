@@ -20,7 +20,7 @@
 		var validate = function(args) 
 		{
 			core.Assert.equal(args.length, 2);
-			core.Assert.isType(args[0], "Object");
+			core.Assert.isNotNull(args[0], "No element");
 			core.Assert.isTrue(args[0].nodeType == 1);
 			core.Assert.isTrue(isValid(args[1], "Invalid CSS class name!"));
 		};
