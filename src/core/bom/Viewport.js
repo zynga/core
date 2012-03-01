@@ -7,22 +7,22 @@
 ==================================================================================================
 */
 
-(function(global) 
+(function(window) 
 {
-	
 	/**
-	 * Utility module for dealing with the browser viewport. Contains methods
+	 * Support for the browsers viewport. Also contains methods
 	 * specifically interesting for mobile devices like smartphones/tablets (orientation, etc.)
 	 */
 	core.Module("core.bom.Viewport", 
 	{
-		
+		/** {Integer} Returns the viewport width */
 		getWidth: function() {
-			return global.innerWidth;
+			return window.innerWidth;
 		},
 		
+		/** {Integer} Returns the viewport height */
 		getHeight: function() {
-			return global.innerHeight;
+			return window.innerHeight;
 		},
 		
 		/** {Boolean} Whether the viewport is in landscape orientation */

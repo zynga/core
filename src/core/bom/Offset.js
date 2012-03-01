@@ -1,21 +1,27 @@
-(function(win) 
+/*
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2012 Sebastian Werner
+==================================================================================================
+*/
+
+(function(window) 
 {
 	/**
-	 *
-	 *
+	 * Querying element positions inside the document
 	 */
 	core.Module("core.bom.Offset", 
 	{
 		/**
-		 *
-		 *
+		 * {Map} Returns the absolute position of the @element {DOMElement} (from document perspective)
+		 * with the keys `top`, `left`, `right`, `bottom`, `width` and `height`.
 		 */
-		get: function(elem) 
+		get: function(element) 
 		{
-			var obj = elem.getBoundingClientRect();
+			var obj = element.getBoundingClientRect();
 			
-			var x = win.pageXOffset;
-			var y = win.pageYOffset;
+			var x = window.pageXOffset;
+			var y = window.pageYOffset;
 			
 			obj.left += x;
 			obj.top += y;
