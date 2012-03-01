@@ -17,6 +17,14 @@
 	core.Module("core.bom.Viewport", 
 	{
 		
+		getWidth: function() {
+			return global.innerWidth;
+		},
+		
+		getHeight: function() {
+			return global.innerHeight;
+		},
+		
 		/** {Boolean} Whether the viewport is in landscape orientation */
 		isLandscape: function() {
 			return global.outerWidth > global.outerHeight;
