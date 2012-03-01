@@ -11,13 +11,10 @@
 core.Module("core.bom.ScrollInto", 
 {
   /**
-   * The method scrolls the element into view (x-axis only).
-   *
-   * @param element {Element} DOM element to scroll into view
-   * @param align {String?null} Alignment of the element. Allowed values:
-   *   <code>left</code> or <code>right</code>. Could also be null.
-   *   Without a given alignment the method tries to scroll the widget
-   *   with the minimum effort needed.
+   * Scrolls the @element {DOMElement} into view (x-axis only).
+   * The optional @align {String?} could be configured with
+   * `left` or `right` to enforce alignment. The default behavior 
+   * is to scroll with the minimum effort to make the element visible.
    */
   scrollX : function(element, align)
   {
@@ -80,27 +77,20 @@ core.Module("core.bom.ScrollInto",
         scrollDiff = 0;
 
         // be sure that element is on left edge
-        if (alignLeft)
-        {
+        if (alignLeft) {
           scrollDiff = leftOffset;
         }
-
         // be sure that element is on right edge
-        else if (alignRight)
-        {
+        else if (alignRight) {
           scrollDiff = rightOffset + parentScrollBarWidth;
         }
-
         // element must go down when current left offset is smaller than 0 or 
         // when width is bigger than the inner width of the parent
-        else if (leftOffset < 0 || elementWidth > parentClientWidth)
-        {
+        else if (leftOffset < 0 || elementWidth > parentClientWidth) {
           scrollDiff = leftOffset;
         }
-
         // element must go up when current right offset is bigger than 0
-        else if (rightOffset > 0)
-        {
+        else if (rightOffset > 0) {
           scrollDiff = rightOffset + parentScrollBarWidth;
         }
 
@@ -113,13 +103,10 @@ core.Module("core.bom.ScrollInto",
 
 
   /**
-   * The method scrolls the element into view (y-axis only).
-   *
-   * @param element {Element} DOM element to scroll into view
-   * @param align {String?null} Alignment of the element. Allowed values:
-   *   <code>top</code> or <code>bottom</code>. Could also be null.
-   *   Without a given alignment the method tries to scroll the widget
-   *   with the minimum effort needed.
+   * Scrolls the @element {DOMElement} into view (y-axis only).
+   * The optional @align {String?} could be configured with
+   * `top` or `bottom` to enforce alignment. The default behavior 
+   * is to scroll with the minimum effort to make the element visible.
    */
   scrollY : function(element, align)
   {
@@ -182,28 +169,21 @@ core.Module("core.bom.ScrollInto",
         scrollDiff = 0;
 
         // be sure that element is on top edge
-        if (alignTop)
-        {
+        if (alignTop) {
           scrollDiff = topOffset;
         }
-
         // be sure that element is on bottom edge
-        else if (alignBottom)
-        {
+        else if (alignBottom) {
           scrollDiff = bottomOffset + parentScrollBarHeight;
         }
-
         // element must go down when current top offset is smaller than 0
         // when height is bigger than the inner height of the parent
-        else if (topOffset < 0 || elementHeight > parentClientHeight)
-        {
+        else if (topOffset < 0 || elementHeight > parentClientHeight) {
           scrollDiff = topOffset;
         }
-
         // element must go up
         // * when current bottom offset is bigger than 0
-        else if (bottomOffset > 0)
-        {
+        else if (bottomOffset > 0) {
           scrollDiff = bottomOffset + parentScrollBarHeight;
         }
 
@@ -218,20 +198,13 @@ core.Module("core.bom.ScrollInto",
   /**
    * The method scrolls the element into view.
    *
-   * @param element {Element} DOM element to scroll into view
-   * @param alignX {String} Alignment of the element. Allowed values:
-   *   <code>left</code> or <code>right</code>. Could also be undefined.
-   *   Without a given alignment the method tries to scroll the widget
-   *   with the minimum effort needed.
-   * @param alignY {String} Alignment of the element. Allowed values:
-   *   <code>top</code> or <code>bottom</code>. Could also be undefined.
-   *   Without a given alignment the method tries to scroll the widget
-   *   with the minimum effort needed.
+   * @param element {DOMElement} DOM element to scroll into view
+   * @param alignX {String?} Horizontal alignment of the element.
+   * @param alignY {String?} Vertical alignment of the element.
    */
   scroll : function(element, alignX, alignY)
   {
     this.scrollX(element, alignX);
     this.scrollY(element, alignY);
   }
-	
 })
