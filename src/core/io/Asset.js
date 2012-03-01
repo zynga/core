@@ -60,22 +60,25 @@
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
 		 */
 		has : function(id) {
-			return entryCache[id] || getEntry(id) != null;
+			return id in entryCache || getEntry(id) != null;
 		},
 
 
 		/**
-		 * Loads the given asset @ids {String[]} and optionally executes the given @callback {Function?} (in the given @context {Object?global}) after all are completed.
-		 * The behavior is tweakable by enabling @nocache {Boolean?false} to append a dynamic `GET` parameter and @type {String?} to enforce a specific loader class.
+		 * Loads the given asset @ids {String[]} and optionally executes the given 
+		 * @callback {Function?} (in the given @context {Object?global}) after all are completed.
+		 * The behavior is tweakable by enabling @nocache {Boolean?false} to append a dynamic 
+		 * `GET` parameter and @type {String?} to enforce a specific loader class.
 		 */
-		load: function(ids, callback, context, nocache, type) {
-
+		load: function(ids, callback, context, nocache, type) 
+		{
 			var id, uri;
 
 			var uris = [];
 			var uriToId = {};
 
-			for (var i=0, l=ids.length; i<l; i++) {
+			for (var i=0, l=ids.length; i<l; i++) 
+			{
 				id = ids[i];
 				uri = this.toUri(id);
 
@@ -94,7 +97,6 @@
 			}
 
 			return core.io.Queue.load(uris, localCallback, null, nocache, type);
-
 		},
 
 
