@@ -21,7 +21,28 @@ core.Module("core.dom.Node",
 		}
 	},
 	
+
+	/**
+	 * {DOMElement} Finds the closest parent of @start {DOMElement} which is 
+	 * successfully tested against the given @test {Function}.
+	 */
+	closest: function(start, test) 
+	{
+		while (start && start.nodeType != 9) 
+		{
+			if (test(start)) {
+				return start;
+			}
+
+			start = start.parentNode;
+		}
+	},
 	
+	
+	/**
+	 * {Boolean} Returns whether the given @parent {DOMElement} contains the
+	 * given @child {DOMElement}.
+	 */
 	contains: function(parent, child) 
 	{
 		if (parent.nodeType == 9) {
@@ -42,42 +63,5 @@ core.Module("core.dom.Node",
 		}
 
 		return false;
-	},
-	
-	
-	/**
-	 * Returns the DOM index of the given node
-	 *
-	 * @param node {Node} Node to look for
-	 * @return {Integer} The DOM index
-	 */
-	getNodeIndex : function(node)
-	{
-		var index = 0;
-		while (node && (node = node.previousSibling)) {
-			index++;
-		}
-
-		return index;
-	},
-
-
-	/**
-	 * Returns the DOM index of the given element (ignoring non-elements)
-	 *
-	 * @param element {Element} Element to look for
-	 * @return {Integer} The DOM index
-	 */
-	getElementIndex : function(element)
-	{
-		var index = 0;
-		while (element && (element = element.previousSibling))
-		{
-			if (element.nodeType == 1) {
-				index++;
-			}
-		}
-
-		return index;
-	},
+	}
 });
