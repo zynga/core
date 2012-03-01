@@ -10,25 +10,16 @@
  */
 core.Module("core.bom.ScrollInto", 
 {
-	
-  /*
-  ---------------------------------------------------------------------------
-    SCROLL INTO VIEW
-  ---------------------------------------------------------------------------
-  */
-
   /**
    * The method scrolls the element into view (x-axis only).
    *
    * @param element {Element} DOM element to scroll into view
-   * @param stop {Element?null} Any parent element which functions as
-   *   outest element to scroll. Default is the HTML document.
    * @param align {String?null} Alignment of the element. Allowed values:
    *   <code>left</code> or <code>right</code>. Could also be null.
    *   Without a given alignment the method tries to scroll the widget
    *   with the minimum effort needed.
    */
-  scrollX : function(element, stop, align)
+  scrollX : function(element, align)
   {
     var parent = element.parentNode;
     var doc = element.ownerDocument;
@@ -43,11 +34,8 @@ core.Module("core.bom.ScrollInto",
     var alignLeft = align === "left";
     var alignRight = align === "right";
 
-    // Correcting stop position
-    stop = stop ? stop.parentNode : doc;
-
     // Go up the parent chain
-    while (parent && parent != stop)
+    while (parent && parent.nodeType != 9)
     {
       // "overflow" is always visible for both: document.body and document.documentElement
       if (parent.scrollWidth > parent.clientWidth && (parent === body || core.bom.Style.get(parent, "overflowX", true) != "visible"))
@@ -57,8 +45,8 @@ core.Module("core.bom.ScrollInto",
         if (parent === body)
         {
           parentLeft = parent.scrollLeft;
-          parentRight = parentLeft + core.bom.Viewport.getWidth();
           parentOuterWidth = core.bom.Viewport.getWidth();
+          parentRight = parentLeft + parentOuterWidth;
           parentClientWidth = parent.clientWidth;
           parentScrollWidth = parent.scrollWidth;
           parentLeftBorder = 0;
@@ -73,8 +61,8 @@ core.Module("core.bom.ScrollInto",
           parentOuterWidth = parent.offsetWidth;
           parentClientWidth = parent.clientWidth;
           parentScrollWidth = parent.scrollWidth;
-          parentLeftBorder = parseInt(core.bom.Style.get(parent, "borderLeftWidth", true), 10) || 0;
-          parentRightBorder = parseInt(core.bom.Style.get(parent, "borderRightWidth", true), 10) || 0;
+          parentLeftBorder = core.bom.Style.getInteger(parent, "borderLeftWidth", true);
+          parentRightBorder = core.bom.Style.getInteger(parent, "borderRightWidth", true);
           parentScrollBarWidth = parentOuterWidth - parentClientWidth - parentLeftBorder - parentRightBorder;
         }
 
@@ -103,26 +91,20 @@ core.Module("core.bom.ScrollInto",
           scrollDiff = rightOffset + parentScrollBarWidth;
         }
 
-        // element must go down
-        // * when current left offset is smaller than 0
-        // * when width is bigger than the inner width of the parent
+        // element must go down when current left offset is smaller than 0 or 
+        // when width is bigger than the inner width of the parent
         else if (leftOffset < 0 || elementWidth > parentClientWidth)
         {
           scrollDiff = leftOffset;
         }
 
-        // element must go up
-        // * when current right offset is bigger than 0
+        // element must go up when current right offset is bigger than 0
         else if (rightOffset > 0)
         {
           scrollDiff = rightOffset + parentScrollBarWidth;
         }
 
         parent.scrollLeft += scrollDiff;
-      }
-
-      if (parent === body) {
-        break;
       }
 
       parent = parent.parentNode;
@@ -134,14 +116,12 @@ core.Module("core.bom.ScrollInto",
    * The method scrolls the element into view (y-axis only).
    *
    * @param element {Element} DOM element to scroll into view
-   * @param stop {Element?null} Any parent element which functions as
-   *   outest element to scroll. Default is the HTML document.
    * @param align {String?null} Alignment of the element. Allowed values:
    *   <code>top</code> or <code>bottom</code>. Could also be null.
    *   Without a given alignment the method tries to scroll the widget
    *   with the minimum effort needed.
    */
-  scrollY : function(element, stop, align)
+  scrollY : function(element, align)
   {
     var parent = element.parentNode;
     var doc = element.ownerDocument;
@@ -156,11 +136,8 @@ core.Module("core.bom.ScrollInto",
     var alignTop = align === "top";
     var alignBottom = align === "bottom";
 
-    // Correcting stop position
-    stop = stop ? stop.parentNode : doc;
-
     // Go up the parent chain
-    while (parent && parent != stop)
+    while (parent && parent.nodeType != 9)
     {
       // "overflow" is always visible for both: document.body and document.documentElement
       if (parent.scrollHeight > parent.clientHeight && (parent === body || core.bom.Style.get(parent, "overflowY", true) != "visible"))
@@ -170,8 +147,8 @@ core.Module("core.bom.ScrollInto",
         if (parent === body)
         {
           parentTop = parent.scrollTop;
-          parentBottom = parentTop + core.bom.Viewport.getHeight();
           parentOuterHeight = core.bom.Viewport.getHeight();
+          parentBottom = parentTop + parentOuterHeight;
           parentClientHeight = parent.clientHeight;
           parentScrollHeight = parent.scrollHeight;
           parentTopBorder = 0;
@@ -186,8 +163,8 @@ core.Module("core.bom.ScrollInto",
           parentOuterHeight = parent.offsetHeight;
           parentClientHeight = parent.clientHeight;
           parentScrollHeight = parent.scrollHeight;
-          parentTopBorder = parseInt(core.bom.Style.get(parent, "borderTopWidth", true), 10) || 0;
-          parentBottomBorder = parseInt(core.bom.Style.get(parent, "borderBottomWidth", true), 10) || 0;
+          parentTopBorder = core.bom.Style.getInteger(parent, "borderTopWidth", true);
+          parentBottomBorder = core.bom.Style.getInteger(parent, "borderBottomWidth", true);
           parentScrollBarHeight = parentOuterHeight - parentClientHeight - parentTopBorder - parentBottomBorder;
         }
 
@@ -216,9 +193,8 @@ core.Module("core.bom.ScrollInto",
           scrollDiff = bottomOffset + parentScrollBarHeight;
         }
 
-        // element must go down
-        // * when current top offset is smaller than 0
-        // * when height is bigger than the inner height of the parent
+        // element must go down when current top offset is smaller than 0
+        // when height is bigger than the inner height of the parent
         else if (topOffset < 0 || elementHeight > parentClientHeight)
         {
           scrollDiff = topOffset;
@@ -234,10 +210,6 @@ core.Module("core.bom.ScrollInto",
         parent.scrollTop += scrollDiff;
       }
 
-      if (parent === body) {
-        break;
-      }
-
       parent = parent.parentNode;
     }
   },
@@ -247,8 +219,6 @@ core.Module("core.bom.ScrollInto",
    * The method scrolls the element into view.
    *
    * @param element {Element} DOM element to scroll into view
-   * @param stop {Element?null} Any parent element which functions as
-   *   outest element to scroll. Default is the HTML document.
    * @param alignX {String} Alignment of the element. Allowed values:
    *   <code>left</code> or <code>right</code>. Could also be undefined.
    *   Without a given alignment the method tries to scroll the widget
@@ -258,10 +228,10 @@ core.Module("core.bom.ScrollInto",
    *   Without a given alignment the method tries to scroll the widget
    *   with the minimum effort needed.
    */
-  scroll : function(element, stop, alignX, alignY)
+  scroll : function(element, alignX, alignY)
   {
-    this.scrollX(element, stop, alignX);
-    this.scrollY(element, stop, alignY);
+    this.scrollX(element, alignX);
+    this.scrollY(element, alignY);
   }
 	
 })
