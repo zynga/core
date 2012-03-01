@@ -6,7 +6,9 @@
 */
 
 /**
- *
+ * Offers a cross browser solution for `scrollIntoView` with good support
+ * for doing a minimum effort scrolling which is not supported by native
+ * methods.
  */
 core.Module("core.bom.ScrollInto", 
 {
@@ -196,11 +198,9 @@ core.Module("core.bom.ScrollInto",
 
 
   /**
-   * The method scrolls the element into view.
-   *
-   * @param element {DOMElement} DOM element to scroll into view
-   * @param alignX {String?} Horizontal alignment of the element.
-   * @param alignY {String?} Vertical alignment of the element.
+   * The method scrolls the @element {DOMElement} into view with
+   * optionally configured enforced alignments using @alignX {String?}
+   * and @alignY {String?}.
    */
   scroll : function(element, alignX, alignY)
   {
