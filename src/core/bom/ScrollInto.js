@@ -1,4 +1,15 @@
-core.Module("core.bom.ScrollInto", {
+/*
+==================================================================================================
+  Core - JavaScript Foundation
+  Copyright 2010-2012 Sebastian Werner
+==================================================================================================
+*/
+
+/**
+ *
+ */
+core.Module("core.bom.ScrollInto", 
+{
 	
   /*
   ---------------------------------------------------------------------------
@@ -41,8 +52,6 @@ core.Module("core.bom.ScrollInto", {
       // "overflow" is always visible for both: document.body and document.documentElement
       if (parent.scrollWidth > parent.clientWidth && (parent === body || core.bom.Style.get(parent, "overflowX", true) != "visible"))
       {
-        // console.debug("Process: " + parent.$$hash);
-
         // Calculate parent data
         // Special handling for body element
         if (parent === body)
@@ -85,14 +94,12 @@ core.Module("core.bom.ScrollInto", {
         // be sure that element is on left edge
         if (alignLeft)
         {
-          // console.debug("Align left...");
           scrollDiff = leftOffset;
         }
 
         // be sure that element is on right edge
         else if (alignRight)
         {
-          // console.debug("Align right...");
           scrollDiff = rightOffset + parentScrollBarWidth;
         }
 
@@ -101,7 +108,6 @@ core.Module("core.bom.ScrollInto", {
         // * when width is bigger than the inner width of the parent
         else if (leftOffset < 0 || elementWidth > parentClientWidth)
         {
-          // console.debug("Go Down...");
           scrollDiff = leftOffset;
         }
 
@@ -109,11 +115,9 @@ core.Module("core.bom.ScrollInto", {
         // * when current right offset is bigger than 0
         else if (rightOffset > 0)
         {
-          // console.debug("Go Up...");
           scrollDiff = rightOffset + parentScrollBarWidth;
         }
 
-        // console.log("Scroll by: " + scrollDiff);
         parent.scrollLeft += scrollDiff;
       }
 
@@ -161,8 +165,6 @@ core.Module("core.bom.ScrollInto", {
       // "overflow" is always visible for both: document.body and document.documentElement
       if (parent.scrollHeight > parent.clientHeight && (parent === body || core.bom.Style.get(parent, "overflowY", true) != "visible"))
       {
-        // console.debug("Process: " + parent.$$hash);
-
         // Calculate parent data
         // Special handling for body element
         if (parent === body)
@@ -205,14 +207,12 @@ core.Module("core.bom.ScrollInto", {
         // be sure that element is on top edge
         if (alignTop)
         {
-          // console.debug("Align top...");
           scrollDiff = topOffset;
         }
 
         // be sure that element is on bottom edge
         else if (alignBottom)
         {
-          // console.debug("Align bottom...");
           scrollDiff = bottomOffset + parentScrollBarHeight;
         }
 
@@ -221,7 +221,6 @@ core.Module("core.bom.ScrollInto", {
         // * when height is bigger than the inner height of the parent
         else if (topOffset < 0 || elementHeight > parentClientHeight)
         {
-          // console.debug("Go Down...");
           scrollDiff = topOffset;
         }
 
@@ -229,7 +228,6 @@ core.Module("core.bom.ScrollInto", {
         // * when current bottom offset is bigger than 0
         else if (bottomOffset > 0)
         {
-          // console.debug("Go Up...");
           scrollDiff = bottomOffset + parentScrollBarHeight;
         }
 
