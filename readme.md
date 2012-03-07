@@ -3,7 +3,7 @@ Core - A Fine Foundation for JavaScript Projects
 
 Core prepares the ground for JavaScript projects. It fills what is missing, fixes what is wrong, adds what is useful. While doing this it is still a pretty lightweight framework which is a good start for all kind of JavaScript projects.
 
-Core was designed to work together with the JavaScript tooling project [Jasy](https://github.com/wpbasti/jasy).
+Core was designed to work together with the JavaScript tooling project [Jasy](https://github.com/zynga/jasy).
 
 
 ## License
