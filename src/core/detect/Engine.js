@@ -18,6 +18,8 @@ core.Module("core.detect.Engine",
 		var doc = global.document;
 		var nav = global.navigator;
 		var docStyle = doc && doc.documentElement.style;
+		
+		// isOldIE = '\v' == 'v'
 
 		// Priority based detection
 		// Omit possibility to fake user agent string by using object based detection first

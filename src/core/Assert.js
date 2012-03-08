@@ -151,7 +151,7 @@
 		},
 		
 		/**
-		 * Raises an exception when the value @a {var} is not of @type {String} (checked via {core.Main#isType})
+		 * Raises an exception when the value @a {var} is not of @type {String} (checked via {core.Main#isTypeOf})
 		 * Customizable with a custom @message {String?} for the exception text.
 		 */
 		isType: function(a, type, message) 
@@ -162,7 +162,7 @@
 		},
 
 		/**
-		 * Raises an exception when the value @a {var} is of @type {String} (checked via {core.Main#isType})
+		 * Raises an exception when the value @a {var} is of @type {String} (checked via {core.Main#isTypeOf})
 		 * Customizable with a custom @message {String?} for the exception text.
 		 */
 		isNotType: function(a, type, message) 
