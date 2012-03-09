@@ -22,7 +22,7 @@
 	 */
 	core.Main.declareNamespace("localStorage",
 	{
-		/** {=Integer} Number of items in local storage */
+		/** {=Integer} Number of items in local storage. */
 		length : 0,
 		
 		/** Stores @value {String} under the given @key {String}. */
@@ -35,12 +35,12 @@
 			
 		},
 		
-		/** Removes the given @key {String} from local storage */
+		/** Removes the given @key {String} from local storage. */
 		removeItem : function(key) {
 			
 		},
 		
-		/** Clears all data from local storage */
+		/** Clears all data from local storage. */
 		clear: function() {
 			
 		}
