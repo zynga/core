@@ -98,7 +98,7 @@
 	core.Module("core.template.Compiler", 
 	{
 		/**
-		 * {core.template.Template} Translates the @code {Array} tree from {#parse} into actual JavaScript 
+		 * {core.template.Template} Translates the @code {Array} tree from {core.template.Parser#parse} into actual JavaScript 
 		 * code (in form of a {core.template.Template} instance) to insert dynamic data fields. It uses
 		 * the original @text {String} for template construction. Optionally you can remove white spaces (line breaks,
 		 * leading, trailing, etc.) by enabling @strip {Boolean?false}.
