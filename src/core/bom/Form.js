@@ -11,7 +11,7 @@
 core.Module("core.bom.Form",
 {
 	/**
-	 * {String} Serializes a HTML @form {DOMElement}.
+	 * {String} Serializes a HTML @form {Element}.
 	 */
 	serialize: function(form) 
 	{

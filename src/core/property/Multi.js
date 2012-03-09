@@ -722,7 +722,7 @@
 		*/
 
 		/**
-		 * {Map} Returns a list (a map type for faster lookup) of all inheritable properties supported by the given @clazz {Class}.
+		 * {Map} Returns a list (a map type for faster lookup) of all inheritable properties supported by the given @clazz {core.Class}.
 		 *
 		 * You may choose to access inheritable properties via:
 		 * `obj.__inheritables || core.property.Multi.getInheritableProperties(obj)`

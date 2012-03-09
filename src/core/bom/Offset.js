@@ -13,7 +13,7 @@
 	core.Module("core.bom.Offset", 
 	{
 		/**
-		 * {Map} Returns the absolute position of the @element {DOMElement} (from document perspective)
+		 * {Map} Returns the absolute position of the @element {Element} (from document perspective)
 		 * with the keys `top`, `left`, `right`, `bottom`, `width` and `height`.
 		 */
 		get: function(element) 

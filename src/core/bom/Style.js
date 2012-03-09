@@ -59,7 +59,7 @@
 		
 
 		/**
-		 * {String} Returns the value of the given property @name {String} on the given @element {DOMElement}. By
+		 * {String} Returns the value of the given property @name {String} on the given @element {Element}. By
 		 * default the method returns the locally applied property value but there is also support for figuring
 		 * out the @computed {Boolean?false} value by triggering the corresponding flag.
 		 *
@@ -92,7 +92,7 @@
 
 		/**
 		 * {Integer} Returns an integer representation of the given style property @name {String} on the 
-		 * given @element {DOMElement}. By default the method returns the locally applied property value 
+		 * given @element {Element}. By default the method returns the locally applied property value 
 		 * but there is also support for figuring out the @computed {Boolean?false} value by triggering 
 		 * the corresponding flag.
 		 */
@@ -102,7 +102,7 @@
 		
 
 		/**
-		 * Sets one or multiple style properties on the given @element {DOMElement}. If @name {String|Map} is a `String`
+		 * Sets one or multiple style properties on the given @element {Element}. If @name {String|Map} is a `String`
 		 * the third parameter @value defines the value to apply. Alternatively @name can be a `Map` which defines
 		 * all properties to set.
 		 */

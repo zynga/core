@@ -13,7 +13,7 @@
 core.Module("core.bom.ScrollInto", 
 {
   /**
-   * Scrolls the @element {DOMElement} into view (x-axis only).
+   * Scrolls the @element {Element} into view (x-axis only).
    * The optional @align {String?} could be configured with
    * `left` or `right` to enforce alignment. The default behavior 
    * is to scroll with the minimum effort to make the element visible.
@@ -105,7 +105,7 @@ core.Module("core.bom.ScrollInto",
 
 
   /**
-   * Scrolls the @element {DOMElement} into view (y-axis only).
+   * Scrolls the @element {Element} into view (y-axis only).
    * The optional @align {String?} could be configured with
    * `top` or `bottom` to enforce alignment. The default behavior 
    * is to scroll with the minimum effort to make the element visible.
@@ -198,7 +198,7 @@ core.Module("core.bom.ScrollInto",
 
 
   /**
-   * The method scrolls the @element {DOMElement} into view with
+   * The method scrolls the @element {Element} into view with
    * optionally configured enforced alignments using @alignX {String?}
    * and @alignY {String?}.
    */

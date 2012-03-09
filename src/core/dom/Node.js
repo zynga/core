@@ -23,7 +23,7 @@ core.Module("core.dom.Node",
 	
 
 	/**
-	 * {DOMElement} Finds the closest parent of @start {DOMElement} which is 
+	 * {Element} Finds the closest parent of @start {Element} which is 
 	 * successfully tested against the given @test {Function}.
 	 */
 	closest: function(start, test) 
@@ -40,8 +40,8 @@ core.Module("core.dom.Node",
 	
 	
 	/**
-	 * {Boolean} Returns whether the given @parent {DOMElement} contains the
-	 * given @child {DOMElement}.
+	 * {Boolean} Returns whether the given @parent {Element} contains the
+	 * given @child {Element}.
 	 */
 	contains: function(parent, child) 
 	{

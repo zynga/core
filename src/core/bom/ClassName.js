@@ -70,7 +70,7 @@
 		var space = " ";
 		
 		/**
-		 * Adds the @className {CSSClassName} to the given @elem {DOMElement}.
+		 * Adds the @className {CSSClassName} to the given @elem {Element}.
 		 */
 		var addClass = function(elem, className) 
 		{
@@ -84,7 +84,7 @@
 		};
 
 		/**
-		 * Removes the @className {CSSClassName} from the given @elem {DOMElement}.
+		 * Removes the @className {CSSClassName} from the given @elem {Element}.
 		 */
 		var removeClass = function(elem, className) 
 		{
@@ -96,7 +96,7 @@
 		};
 
 		/**
-		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {DOMElement}.
+		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {Element}.
 		 */
 		var containsClass = function(elem, className) 
 		{
@@ -108,7 +108,7 @@
 		};
 
 		/**
-		 * Toggles the @className {CSSClassName} for the given @elem {DOMElement}.
+		 * Toggles the @className {CSSClassName} for the given @elem {Element}.
 		 */
 		var toggleClass = function(elem, className) 
 		{

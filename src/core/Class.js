@@ -417,7 +417,7 @@
 		
 		
 		/**
-		 * {Class} Resolves a given @className {String}
+		 * {core.Class} Resolves a given @className {String}
 		 */
 		getByName : function(className) 
 		{
@@ -431,7 +431,7 @@
 
 
 		/**
-		 * {Map} Returns a map of all events and their type of the given class (@cls {Class}).
+		 * {Map} Returns a map of all events and their type of the given class (@cls {core.Class}).
 		 */
 		getEvents : function(cls) 
 		{
@@ -444,7 +444,7 @@
 
 
 		/**
-		 * {Map} Returns a map of all properties and their configuration supported by the given class (@cls {Class}).
+		 * {Map} Returns a map of all properties and their configuration supported by the given class (@cls {core.Class}).
 		 */
 		getProperties : function(cls) 
 		{
@@ -457,7 +457,7 @@
 
 
 		/**
-		 * {Map} Returns all property features used in the given class (@cls {Class}).
+		 * {Map} Returns all property features used in the given class (@cls {core.Class}).
 		 */
 		getPropertyFeatures : function(cls) 
 		{
@@ -478,8 +478,8 @@
 		/**
 		 * {Boolean} Whether the first class includes the second one.
 		 *
-		 * - @cls {Class} Class to check for including other class.
-		 * - @inc {Class} Class for checking if being included into first one.
+		 * - @cls {core.Class} Class to check for including other class.
+		 * - @inc {core.Class} Class for checking if being included into first one.
 		 */
 		includesClass : function(cls, inc) 
 		{
