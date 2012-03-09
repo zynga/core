@@ -13,16 +13,37 @@
 		return;
 	}
 	
+	// TODO:
+	// - Emulate localStorage using userData behavior (see: lawnchair)
+	// - Emulate sessionStorage using window.name + rc4 crypt (+ cookies) (see: webreflection sessionstorage)
+	
 	/**
 	 * Emulation for `localStorage` object to store text data on the browser.
 	 */
 	core.Main.declareNamespace("localStorage",
 	{
-
-		// TODO:
-		// - Emulate localStorage using userData behavior (see: lawnchair)
-		// - Emulate sessionStorage using window.name + rc4 crypt (+ cookies) (see: webreflection sessionstorage)
-
+		/** {=Integer} Number of items in local storage */
+		length : 0,
+		
+		/** Stores @value {String} under the given @key {String}. */
+		setItem : function(key, value) {
+			
+		},
+		
+		/** {String} Returns the value stored under the given @key {String}. */
+		getItem : function(key) {
+			
+		},
+		
+		/** Removes the given @key {String} from local storage */
+		removeItem : function(key) {
+			
+		},
+		
+		/** Clears all data from local storage */
+		clear: function() {
+			
+		}
 	});
 	
 })(this);
