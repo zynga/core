@@ -4,7 +4,6 @@ optimization = Optimization("blocks", "declarations", "variables", "privates")
 formatting = Formatting()
 
 session = Session()
-session.addProject(Project("."))
 session.permutateField("es5")
 session.permutateField("debug")
 
