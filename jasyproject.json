@@ -6,7 +6,7 @@
 		"../qunit",
 		"../jquery",
 		"../scroller",
-		"../fusejs",
+		"../fusejs"
 	],
 
 	"fields" :
