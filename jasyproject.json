@@ -1,6 +1,13 @@
 {
 	"name" : "core",
 	"package" : "",
+	
+	"requires" : [
+		"../qunit",
+		"../jquery",
+		"../scroller",
+		"../fusejs",
+	],
 
 	"fields" :
 	{
