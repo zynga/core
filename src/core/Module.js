@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -63,32 +63,31 @@
 	
 	
 	/**
-	 * {Module} Resolves a given @name {String} and returns the stored module.
+	 * {core.Module} Resolves a given @name {String} and returns the stored module.
 	 */
 	var getByName = function(name)
 	{
-		var obj = Module.resolveName(name);
+		var obj = core.Main.resolveNamespace(name);
 		return isModule(obj) ? obj : null;
-	}
+	};
 
 	/**
 	 * {Boolean} Returns whether the given @name {String} is a valid module name.
 	 */
 	var isModuleName = function(name) {
 		return /^(([a-z][a-z0-9]*\.)*)([A-Z][a-zA-Z0-9]*)$/.test(name);
-	}
+	};
 	
 	/**
 	 * {Boolean} Whether the given object is a valid @module {Object}.
 	 */
 	var isModule = function(module) {
 		return !!(module && typeof module == "object" && module.__isModule);
-	}
+	};
 	
 	
 	core.Main.addStatics("core.Module", 
 	{
-
 		getByName : getByName,
 		isModuleName : isModuleName,
 		isModule : isModule,

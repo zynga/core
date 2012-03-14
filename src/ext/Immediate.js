@@ -1,7 +1,7 @@
 /* 
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 --------------------------------------------------------------------------------------------------
   Inspired by http://mathiasbynens.be/notes/settimeout-onload and 
   http://dbaron.org/log/20100309-faster-timeouts

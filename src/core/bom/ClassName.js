@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -20,8 +20,7 @@
 		var validate = function(args) 
 		{
 			core.Assert.equal(args.length, 2);
-			core.Assert.isType(args[0], "Object");
-			core.Assert.isTrue(args[0].nodeType == 1);
+			core.dom.Node.assertIsNode(args[0]);
 			core.Assert.isTrue(isValid(args[1], "Invalid CSS class name!"));
 		};
 	}
@@ -71,7 +70,7 @@
 		var space = " ";
 		
 		/**
-		 * Adds the @className {CSSClassName} to the given @elem {DOMElement}.
+		 * Adds the @className {CSSClassName} to the given @elem {Element}.
 		 */
 		var addClass = function(elem, className) 
 		{
@@ -85,7 +84,7 @@
 		};
 
 		/**
-		 * Removes the @className {CSSClassName} from the given @elem {DOMElement}.
+		 * Removes the @className {CSSClassName} from the given @elem {Element}.
 		 */
 		var removeClass = function(elem, className) 
 		{
@@ -97,7 +96,7 @@
 		};
 
 		/**
-		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {DOMElement}.
+		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {Element}.
 		 */
 		var containsClass = function(elem, className) 
 		{
@@ -109,7 +108,7 @@
 		};
 
 		/**
-		 * Toggles the @className {CSSClassName} for the given @elem {DOMElement}.
+		 * Toggles the @className {CSSClassName} for the given @elem {Element}.
 		 */
 		var toggleClass = function(elem, className) 
 		{

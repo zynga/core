@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 --------------------------------------------------------------------------------------------------
   Based on the work of:
   Version 2.2 Copyright (C) Paul Johnston 1999 - 2009

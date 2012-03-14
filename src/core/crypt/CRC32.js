@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 --------------------------------------------------------------------------------------------------
   Inspired by: http://www.webtoolkit.info/javascript-crc32.html
   Removed unicode support

@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2011 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -14,7 +14,7 @@
 	if (root.requestFullScreen) 
 	{
 		/**
-		 * Requests full screen mode for given @element {DOMElement?document.documentElement}.
+		 * Requests full screen mode for given @element {Element?document.documentElement}.
 		 */
 		request = function(element) {
 			(element||root).requestFullScreen();

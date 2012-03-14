@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -11,7 +11,7 @@
 core.Module("core.bom.FormItem",
 {
 	/**
-	 * {Boolean} Returns whether the form @item {DOMElement} is successful (should be submitted to the server)
+	 * {Boolean} Returns whether the form @item {Element} is successful (should be submitted to the server)
 	 */
 	isSuccessful: function(item)
 	{
@@ -45,7 +45,7 @@ core.Module("core.bom.FormItem",
 
 
 	/**
-	 * {String} Returns the serialized representation of the given form @item {DOMElement}.
+	 * {String} Returns the serialized representation of the given form @item {Element}.
 	 */
 	serialize: function(item) 
 	{

@@ -1,7 +1,7 @@
 /* 
 ==================================================================================================
 	Core - JavaScript Foundation
-	Copyright 2010-2012 Sebastian Werner
+	Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -240,11 +240,25 @@
 				for (var key in includeMembers) {
 					proto[key] = includeMembers[key];
 				}
-				
+
 				// Just copy over the property data. Methods are already in member section.
 				var includeProperties = includedClass.__properties;
 				for (var key in includeProperties) {
-					properties[key] = includeProperties[key];
+					var property = {};
+					
+					var includeProperty = includeProperties[key];
+					for (var key2 in includeProperty) {
+						property[key2] = includeProperty[key2];
+					}
+					
+					var ownProperty = properties && properties[key];
+					if (ownProperty) {
+						for (var key2 in ownProperty) {
+							property[key2] = ownProperty[key2];
+						}
+					}
+					
+					properties[key] = property;
 				}
 
 				// Events is just data to copy over.
@@ -403,7 +417,7 @@
 		
 		
 		/**
-		 * {Class} Resolves a given @className {String}
+		 * {core.Class} Resolves a given @className {String}
 		 */
 		getByName : function(className) 
 		{
@@ -411,13 +425,13 @@
 				core.Assert.isType(className, "String");
 			}
 
-			var obj = core.Module.resolveName(className);
+			var obj = core.Main.resolveNamespace(className);
 			return isClass(obj) ? obj : null;
 		},
 
 
 		/**
-		 * {Map} Returns a map of all events and their type of the given class (@cls {Class}).
+		 * {Map} Returns a map of all events and their type of the given class (@cls {core.Class}).
 		 */
 		getEvents : function(cls) 
 		{
@@ -430,7 +444,7 @@
 
 
 		/**
-		 * {Map} Returns a map of all properties and their configuration supported by the given class (@cls {Class}).
+		 * {Map} Returns a map of all properties and their configuration supported by the given class (@cls {core.Class}).
 		 */
 		getProperties : function(cls) 
 		{
@@ -443,7 +457,7 @@
 
 
 		/**
-		 * {Map} Returns all property features used in the given class (@cls {Class}).
+		 * {Map} Returns all property features used in the given class (@cls {core.Class}).
 		 */
 		getPropertyFeatures : function(cls) 
 		{
@@ -464,8 +478,8 @@
 		/**
 		 * {Boolean} Whether the first class includes the second one.
 		 *
-		 * - @cls {Class} Class to check for including other class.
-		 * - @inc {Class} Class for checking if being included into first one.
+		 * - @cls {core.Class} Class to check for including other class.
+		 * - @inc {core.Class} Class for checking if being included into first one.
 		 */
 		includesClass : function(cls, inc) 
 		{

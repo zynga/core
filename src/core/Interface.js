@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -55,7 +55,7 @@
 	core.Main.addStatics("core.Interface", 
 	{
 		/**
-		 * {Interface} Resolves a given @interfaceName {String}.
+		 * {core.Interface} Resolves a given @interfaceName {String}.
 		 */
 		getByName : function(interfaceName)
 		{
@@ -63,13 +63,13 @@
 				core.Assert.isType(interfaceName, "String");
 			}
 
-			var obj = core.Module.resolveName(interfaceName);
+			var obj = core.Main.resolveNamespace(interfaceName);
 			return core.Interface.isInterface(obj) ? obj : null;
 		},
 
 
 		/**
-		 * Verifies whether the given @objectOrClass {Object|Class} implements the given @iface {Interface?this}.
+		 * Verifies whether the given @objectOrClass {Object|core.Class} implements the given @iface {core.Interface?this}.
 		 *
 		 * - Tests all members of being defined and being the same type (based on Object.toString).
 		 * - Tests all properties regarding existance. Also checks whether the outer visible aspects: events, group, themeable and inheritable are identical.
@@ -201,7 +201,7 @@
 
 
 		/**
-		 * {Boolean} Whether the given object is a @iface {Interface}.
+		 * {Boolean} Whether the given object is a @iface {core.Interface}.
 		 */
 		isInterface : function(iface) {
 			return !!(iface && typeof iface == "object" && iface.__isInterface);

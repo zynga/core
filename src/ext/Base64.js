@@ -1,7 +1,7 @@
 /* 
 ==================================================================================================
   Core - JavaScript Foundation 
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 --------------------------------------------------------------------------------------------------
   Based on base64 implementation by: 
   https://bitbucket.org/davidchambers/base64.js

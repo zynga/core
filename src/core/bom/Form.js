@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -11,7 +11,7 @@
 core.Module("core.bom.Form",
 {
 	/**
-	 * {String} Serializes a HTML @form {DOMElement}.
+	 * {String} Serializes a HTML @form {Element}.
 	 */
 	serialize: function(form) 
 	{

@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
   Core - JavaScript Foundation
-  Copyright 2010-2012 Sebastian Werner
+  Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -114,7 +114,7 @@
 	else 
 	{
 		/**
-		 * Positions the given @element {DOMElement} on coordinates @x {Number}, @y {Number} and @z {Integer?null}.
+		 * Positions the given @element {Element} on coordinates @x {Number}, @y {Number} and @z {Integer?null}.
 		 * Optionally supports zooming using the @zoom {Number?1} parameter as well.
 		 */
 		var set = function(element, x, y, z, zoom) 
@@ -137,7 +137,7 @@
 		};
 
 		/**
-		 * Resets the position of the given @element {DOMElement}.
+		 * Resets the position of the given @element {Element}.
 		 */
 		var reset = function(element) 
 		{
