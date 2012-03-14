@@ -2,13 +2,32 @@
 	"name" : "core",
 	"package" : "",
 	
-	"requires" : [
+	"requires" : 
+	[
 		"../qunit",
-		"../jquery",
-		"../scroller",
-		"../fusejs"
+		"../XRegExp",
+		
+		{
+			"source" : "../history.js",
+			"config" :
+			{
+				"files" :
+				{
+					"scripts/uncompressed/history.adapter.jquery.js" : "History.jQuery",
+					"scripts/uncompressed/history.adapter.mootools.js" : "History.Mootools",
+					"scripts/uncompressed/history.adapter.native.js" : "History.Native",
+					"scripts/uncompressed/history.adapter.right.js" : "History.Right",
+					"scripts/uncompressed/history.adapter.zepto.js" : "History.Zepto",
+					"scripts/uncompressed/history.html4.js" : "History.HTML4",
+					"scripts/uncompressed/history.js" : "History",
+					"scripts/uncompressed/json2.js" : "JSON"
+				}
+			}
+		},
+		
+		"../underscore"
 	],
-
+	
 	"fields" :
 	{
 		"debug" : 
