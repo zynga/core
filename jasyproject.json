@@ -40,6 +40,23 @@
 		},
 		
 		{
+			"source" : "../qunit",
+			"config" :
+			{
+				"content" :
+				{
+					"qunit" : [
+						"qunit/qunit.js"
+					],
+
+					"qunit.css" : [
+						"qunit/qunit.css"
+					]
+				}
+			}
+		},		
+		
+		{
 			"source" : "../XRegExp",
 			"config" :
 			{
