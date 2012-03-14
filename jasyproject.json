@@ -1,72 +1,7 @@
 {
 	"name" : "core",
 	"package" : "",
-	
-	"requires" : 
-	[
-		{
-			"source" : "../qunit",
-			"config" :
-			{
-				"content" :
-				{
-					"qunit" : [
-						"qunit/qunit.js"
-					],
 
-					"qunit.css" : [
-						"qunit/qunit.css"
-					]
-				}
-			}
-		},
-		
-		{
-			"source" : "../XRegExp",
-			"config" :
-			{
-				"name" : "xregexp",
-				"content" :
-				{
-					"XRegExp" : [
-						"src/xregexp.js"
-					]
-				}
-			}
-		},
-		
-		{
-			"source" : "../history.js",
-			"config" :
-			{
-				"name" : "history",
-				"content" :
-				{
-					"History" : 
-					[
-						"scripts/uncompressed/history.js",
-						"scripts/uncompressed/history.html4.js",
-						"scripts/uncompressed/history.adapter.jquery.js"
-					]
-				}
-			}
-		},
-
-		{
-			"source" : "../underscore",
-			"config" :
-			{
-				"name" : "underscore",
-				"content" :
-				{
-					"_" : [
-						"underscore.js"
-					]
-				}
-			}
-		}
-	],
-	
 	"fields" :
 	{
 		"debug" : 
