@@ -11,32 +11,30 @@
 				"content" :
 				{
 					"$" : 
-					{
-						"files" : [
-							"src/intro.js",
-							"src/core.js",
-							"src/callbacks.js",
-							"src/deferred.js",
-							"src/support.js",
-							"src/data.js",
-							"src/queue.js",
-							"src/attributes.js",
-							"src/event.js",
-							"src/selector.js",
-							"src/traversing.js",
-							"src/manipulation.js",
-							"src/css.js",
-							"src/ajax.js",
-							"src/ajax/jsonp.js",
-							"src/ajax/script.js",
-							"src/ajax/xhr.js",
-							"src/effects.js",
-							"src/offset.js",
-							"src/dimensions.js",
-							"src/exports.js",
-							"src/outro.js"
-						]
-					}
+					[
+						"src/intro.js",
+						"src/core.js",
+						"src/callbacks.js",
+						"src/deferred.js",
+						"src/support.js",
+						"src/data.js",
+						"src/queue.js",
+						"src/attributes.js",
+						"src/event.js",
+						"src/selector.js",
+						"src/traversing.js",
+						"src/manipulation.js",
+						"src/css.js",
+						"src/ajax.js",
+						"src/ajax/jsonp.js",
+						"src/ajax/script.js",
+						"src/ajax/xhr.js",
+						"src/effects.js",
+						"src/offset.js",
+						"src/dimensions.js",
+						"src/exports.js",
+						"src/outro.js"
+					]
 				}
 			}
 		},
@@ -45,14 +43,12 @@
 			"source" : "../XRegExp",
 			"config" :
 			{
+				"name" : "xregexp",
 				"content" :
 				{
-					"XRegExp" : 
-					{
-						"files" : [
-							"src/xregexp.js"
-						]
-					}
+					"XRegExp" : [
+						"src/xregexp.js"
+					]
 				}
 			}
 		},
@@ -61,16 +57,15 @@
 			"source" : "../history.js",
 			"config" :
 			{
+				"name" : "history",
 				"content" :
 				{
 					"History" : 
-					{
-						"files" : [
-							"scripts/uncompressed/history.js",
-							"scripts/uncompressed/history.html4.js",
-							"scripts/uncompressed/history.adapter.jquery.js"
-						]
-					}
+					[
+						"scripts/uncompressed/history.js",
+						"scripts/uncompressed/history.html4.js",
+						"scripts/uncompressed/history.adapter.jquery.js"
+					]
 				}
 			}
 		},
@@ -79,14 +74,12 @@
 			"source" : "../underscore",
 			"config" :
 			{
+				"name" : "underscore",
 				"content" :
 				{
-					"_" : 
-					{
-						"files" : [
-							"underscore.js"
-						]
-					}
+					"_" : [
+						"underscore.js"
+					]
 				}
 			}
 		}
