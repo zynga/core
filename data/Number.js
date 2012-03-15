@@ -13,7 +13,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.Number~35", 
       "summary": "Converts the number to a hex string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Converts the number to a hex string.</p>\n", 
       "type": "Function"
@@ -25,13 +29,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Pads the number to reach the given length.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "length"
         }
@@ -49,13 +60,17 @@ apibrowser.callback({
       "isFunction": true, 
       "from": "ext.sugar.Number", 
       "name": "times", 
-      "doc": "<p>Executes the given <code class=\"param\">func</code> x-times.\nSupport an optional <code class=\"param\">context</code> for execution.</p>\n", 
+      "sourceLink": "source:ext.sugar.Number~25", 
       "summary": "Executes the given func x-times.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "func"
         }, 
@@ -64,11 +79,15 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }
       ], 
-      "sourceLink": "source:ext.sugar.Number~25", 
+      "doc": "<p>Executes the given <code class=\"param\">func</code> x-times.\nSupport an optional <code class=\"param\">context</code> for execution.</p>\n", 
       "type": "Function"
     }
   ], 

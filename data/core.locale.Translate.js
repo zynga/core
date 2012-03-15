@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Applies the plural rule to the given n of the current locale and returns the field index on the translation data (0-6).", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "n"
         }
@@ -28,20 +35,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Quick and easy string templating using %1, %2, etc.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "message"
         }, 
         {
           "position": 1, 
           "type": [
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "data"
         }, 
@@ -51,7 +70,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "start", 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ]
         }
       ], 
@@ -66,13 +88,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Translates the given message and replaces any numeric placeholders (%[0-9]) with the corresponding number arguments passed via varargs.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "message"
         }, 
@@ -82,7 +112,10 @@ apibrowser.callback({
           "name": "varargs", 
           "optional": true, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -97,20 +130,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Translates the given message und while choosing the one which matches the given hint and replaces any numeric placeholders (%[0-9]) with the corresponding number arguments passed via varargs.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "hint"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "message"
         }, 
@@ -120,7 +165,10 @@ apibrowser.callback({
           "name": "varargs", 
           "optional": true, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -131,10 +179,10 @@ apibrowser.callback({
     }, 
     {
       "name": "trn", 
-      "doc": "<p>Translates the given <code class=\"param\">messageSingular</code> or <code class=\"param\">messagePlural</code>\ndepending on the <code class=\"param\">number</code> passed to the method.\nLike the other methods it also supports replacing any numeric placeholders\n(<code>%[0-9]</code>) with the corresponding number arguments passed via <code class=\"param\">varargs</code>.</p>\n", 
+      "sourceLink": "source:core.locale.Translate~101", 
       "visibility": "public", 
       "summary": "Translates the given messageSingular or messagePlural depending on the number passed to the method.", 
-      "sourceLink": "source:core.locale.Translate~101", 
+      "doc": "<p>Translates the given <code class=\"param\">messageSingular</code> or <code class=\"param\">messagePlural</code>\ndepending on the <code class=\"param\">number</code> passed to the method.\nLike the other methods it also supports replacing any numeric placeholders\n(<code>%[0-9]</code>) with the corresponding number arguments passed via <code class=\"param\">varargs</code>.</p>\n", 
       "line": 101, 
       "type": "Boolean"
     }
@@ -150,11 +198,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Developer interface to translation API of Core Library.</p>\n", 
-    "line": 66, 
-    "type": "core.Module", 
     "name": "core.locale.Translate", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Developer interface to translation API of Core Library.</p>\n", 
+    "summary": "Developer interface to translation API of Core Library.", 
+    "line": 66, 
+    "type": "core.Module"
   }, 
   "id": "core.locale.Translate", 
   "size": {

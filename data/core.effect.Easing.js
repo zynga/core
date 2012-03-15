@@ -6,13 +6,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -28,13 +36,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -50,13 +66,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -72,13 +96,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -94,13 +126,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -116,13 +156,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -138,13 +186,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -160,13 +216,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -182,13 +246,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -204,13 +276,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -226,13 +306,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -248,13 +336,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -270,13 +366,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -292,13 +396,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -314,13 +426,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -336,13 +456,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -358,13 +486,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -380,13 +516,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -402,13 +546,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -424,13 +576,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -446,13 +606,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -468,13 +636,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -490,13 +666,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -512,13 +696,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -534,13 +726,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -556,13 +756,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -578,13 +786,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -600,13 +816,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -622,13 +846,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -644,13 +876,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -666,13 +906,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -688,13 +936,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -710,13 +966,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -732,13 +996,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Transforms a position (pos) between 0 (start of effect) and 1 (end of effect) into a effect modified one.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "pos"
         }
@@ -757,11 +1029,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Collection of pretty much standard easing methods. Based on the work of Robert Penner.</p>\n", 
-    "line": 16, 
-    "type": "core.Module", 
     "name": "core.effect.Easing", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Collection of pretty much standard easing methods. Based on the work of Robert Penner.</p>\n", 
+    "summary": "Collection of pretty much standard easing methods.", 
+    "line": 16, 
+    "type": "core.Module"
   }, 
   "id": "core.effect.Easing", 
   "size": {

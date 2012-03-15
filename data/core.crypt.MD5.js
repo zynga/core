@@ -6,13 +6,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the MD5 checksum of the given str as a raw string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "str"
         }
@@ -28,20 +36,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a HMAC (Hash-based Message Authentication Code) using the MD5 hash function as a raw string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "key"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "str"
         }
@@ -61,11 +81,12 @@ apibrowser.callback({
     "core.crypt.Util"
   ], 
   "main": {
-    "doc": "<p>A JavaScript implementation of the RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.</p>\n", 
-    "line": 19, 
-    "type": "core.Module", 
     "name": "core.crypt.MD5", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>A JavaScript implementation of the RSA Data Security, Inc. MD5 Message Digest Algorithm, as defined in RFC 1321.</p>\n", 
+    "summary": "A JavaScript implementation of the RSA Data Security, Inc.", 
+    "line": 19, 
+    "type": "core.Module"
   }, 
   "id": "core.crypt.MD5", 
   "size": {

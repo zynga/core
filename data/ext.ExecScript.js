@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Executes the specified script expression in global context.", 
       "returns": [
-        "null"
+        {
+          "pseudo": true, 
+          "name": "null"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "expression"
         }
@@ -35,6 +42,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds a method for executing aribritary script content in global context.</p>\n", 
+    "summary": "Adds a method for executing aribritary script content in global context.", 
     "line": 35, 
     "type": "core.Main"
   }, 

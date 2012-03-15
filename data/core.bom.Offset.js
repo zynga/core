@@ -6,13 +6,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the absolute position of the element (from document perspective) with the keys top, left, right, bottom, width and height.", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }
@@ -34,11 +40,12 @@ apibrowser.callback({
     "core.bom.ScrollInto"
   ], 
   "main": {
-    "doc": "<p>Querying element positions inside the document</p>\n", 
-    "line": 13, 
-    "type": "core.Module", 
     "name": "core.bom.Offset", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Querying element positions inside the document</p>\n", 
+    "summary": "Querying element positions inside the document.", 
+    "line": 13, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Offset", 
   "size": {

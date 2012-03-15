@@ -13,13 +13,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the themed value of the given property.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "property"
         }
@@ -34,11 +41,12 @@ apibrowser.callback({
     "core.Class"
   ], 
   "main": {
-    "doc": "<p>For classes which use inheritable properties.</p>\n", 
-    "line": 11, 
-    "type": "core.Interface", 
     "name": "core.property.IThemeable", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>For classes which use inheritable properties.</p>\n", 
+    "summary": "For classes which use inheritable properties.", 
+    "line": 11, 
+    "type": "core.Interface"
   }, 
   "id": "core.property.IThemeable", 
   "size": {

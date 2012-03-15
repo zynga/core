@@ -4,14 +4,22 @@ apibrowser.callback({
       "name": "checksum", 
       "doc": "<p>Returns the CRC-32 checksum of <code class=\"param\">str</code></p>\n", 
       "visibility": "public", 
+      "summary": "Returns the CRC-32 checksum of str.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "str"
         }
@@ -30,11 +38,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Implements the CRC32 checksum</p>\n\n<p>See also: <a href=\"http://en.wikipedia.org/wiki/CRC-32\">http://en.wikipedia.org/wiki/CRC-32</a></p>\n", 
-    "line": 17, 
-    "type": "core.Module", 
     "name": "core.crypt.CRC32", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Implements the CRC32 checksum</p>\n\n<p>See also: <a href=\"http://en.wikipedia.org/wiki/CRC-32\">http://en.wikipedia.org/wiki/CRC-32</a></p>\n", 
+    "summary": "Implements the CRC32 checksum  See also: http://en.wikipedia.org/wiki/CRC-32.", 
+    "line": 17, 
+    "type": "core.Module"
   }, 
   "id": "core.crypt.CRC32", 
   "size": {

@@ -13,7 +13,12 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts the Date instance to an ISO string representation.", 
       "returns": [
-        "Plus"
+        {
+          "linkable": true, 
+          "auto": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.es5.Date~27", 
       "line": 27, 
@@ -26,7 +31,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts the Date instance to a JSON representation.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
@@ -48,6 +57,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds ES5 Date methods if these are not implemented by the engine.</p>\n", 
+    "summary": "Adds ES5 Date methods if these are not implemented by the engine.", 
     "line": 14, 
     "type": "core.Main"
   }, 

@@ -3,9 +3,9 @@ apibrowser.callback({
     {
       "from": "ext.LocalStorage", 
       "name": "clear", 
-      "sourceLink": "source:ext.LocalStorage~44", 
-      "fromLink": "static:ext.LocalStorage~clear", 
       "doc": "<p>Clears all data from local storage.</p>\n", 
+      "fromLink": "static:ext.LocalStorage~clear", 
+      "sourceLink": "source:ext.LocalStorage~44", 
       "line": 44, 
       "type": "Function", 
       "isFunction": true, 
@@ -19,13 +19,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the value stored under the given key.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "key"
         }
@@ -38,14 +46,14 @@ apibrowser.callback({
     }, 
     {
       "from": "ext.LocalStorage", 
-      "value": "0", 
+      "visibility": "public", 
       "name": "length", 
       "sourceLink": "source:ext.LocalStorage~26", 
       "fromLink": "static:ext.LocalStorage~length", 
       "doc": "<p>Number of items in local storage.</p>\n", 
       "line": 26, 
       "type": "Integer", 
-      "visibility": "public", 
+      "value": "0", 
       "summary": "Number of items in local storage."
     }, 
     {
@@ -55,18 +63,22 @@ apibrowser.callback({
       "isFunction": true, 
       "from": "ext.LocalStorage", 
       "name": "removeItem", 
-      "doc": "<p>Removes the given <code class=\"param\">key</code> from local storage.</p>\n", 
+      "sourceLink": "source:ext.LocalStorage~39", 
       "summary": "Removes the given key from local storage.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "key"
         }
       ], 
-      "sourceLink": "source:ext.LocalStorage~39", 
+      "doc": "<p>Removes the given <code class=\"param\">key</code> from local storage.</p>\n", 
       "type": "Function"
     }, 
     {
@@ -76,25 +88,33 @@ apibrowser.callback({
       "isFunction": true, 
       "from": "ext.LocalStorage", 
       "name": "setItem", 
-      "doc": "<p>Stores <code class=\"param\">value</code> under the given <code class=\"param\">key</code>.</p>\n", 
+      "sourceLink": "source:ext.LocalStorage~29", 
       "summary": "Stores value under the given key.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "key"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "value"
         }
       ], 
-      "sourceLink": "source:ext.LocalStorage~29", 
+      "doc": "<p>Stores <code class=\"param\">value</code> under the given <code class=\"param\">key</code>.</p>\n", 
       "type": "Function"
     }
   ], 

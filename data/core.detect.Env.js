@@ -3,9 +3,10 @@ apibrowser.callback({
     {
       "constant": true, 
       "name": "BROWSER", 
-      "sourceLink": "source:core.detect.Env~16", 
-      "visibility": "public", 
       "doc": "<p>Whether the script is running inside a typical browser</p>\n", 
+      "visibility": "public", 
+      "summary": "Whether the script is running inside a typical browser.", 
+      "sourceLink": "source:core.detect.Env~16", 
       "line": 16, 
       "type": "Boolean"
     }
@@ -18,11 +19,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Holds basic informations about the environment the script is running in.</p>\n", 
-    "line": 13, 
-    "type": "core.Module", 
     "name": "core.detect.Env", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Holds basic informations about the environment the script is running in.</p>\n", 
+    "summary": "Holds basic informations about the environment the script is running in.", 
+    "line": 13, 
+    "type": "core.Module"
   }, 
   "id": "core.detect.Env", 
   "size": {

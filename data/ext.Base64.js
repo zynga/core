@@ -6,13 +6,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Decodes a string of data which has been encoded using base-64 encoding.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "string"
         }
@@ -28,13 +36,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a base-64 encoded ASCII string from a string of binary data.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "string"
         }
@@ -60,6 +76,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Polyfill for Base64 support which is natively implemented in most recent browsers.</p>\n", 
+    "summary": "Polyfill for Base64 support which is natively implemented in most recent browsers.", 
     "line": 29, 
     "type": "core.Main"
   }, 

@@ -7,13 +7,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Decodes a string of data which has been encoded using base-64 encoding.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "string"
         }
@@ -31,13 +39,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a base-64 encoded ASCII string from a string of binary data.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "string"
         }
@@ -55,18 +71,21 @@ apibrowser.callback({
       "isFunction": true, 
       "from": "ext.RequestAnimationFrame", 
       "name": "cancelRequestAnimationFrame", 
-      "doc": "<p>Stops the animation scheduled under the given <code class=\"param\">handle</code>.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/DOM/window.requestAnimationFrame\">https://developer.mozilla.org/en/DOM/window.requestAnimationFrame</a></p>\n", 
+      "sourceLink": "source:ext.RequestAnimationFrame~92", 
       "summary": "Stops the animation scheduled under the given handle.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "handle"
         }
       ], 
-      "sourceLink": "source:ext.RequestAnimationFrame~92", 
+      "doc": "<p>Stops the animation scheduled under the given <code class=\"param\">handle</code>.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/DOM/window.requestAnimationFrame\">https://developer.mozilla.org/en/DOM/window.requestAnimationFrame</a></p>\n", 
       "type": "Function"
     }, 
     {
@@ -76,18 +95,21 @@ apibrowser.callback({
       "isFunction": true, 
       "from": "ext.Immediate", 
       "name": "clearImmediate", 
-      "doc": "<p>This method clears the action specified by <a href=\"#~setImmediate\"><code>setImmediate</code></a> via the given <code class=\"param\">handle</code>.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/Document_Object_Model_(DOM)/window.clearImmediate\">https://developer.mozilla.org/en/Document_Object_Model_(DOM)/window.clearImmediate</a></p>\n", 
+      "sourceLink": "source:ext.Immediate~64", 
       "summary": "This method clears the action specified by setImmediate via the given handle.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "handle"
         }
       ], 
-      "sourceLink": "source:ext.Immediate~64", 
+      "doc": "<p>This method clears the action specified by <a href=\"#~setImmediate\"><code>setImmediate</code></a> via the given <code class=\"param\">handle</code>.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/Document_Object_Model_(DOM)/window.clearImmediate\">https://developer.mozilla.org/en/Document_Object_Model_(DOM)/window.clearImmediate</a></p>\n", 
       "type": "Function"
     }, 
     {
@@ -97,13 +119,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Executes the specified script expression in global context.", 
       "returns": [
-        "null"
+        {
+          "pseudo": true, 
+          "name": "null"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "expression"
         }
@@ -121,13 +150,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tells the browser that you wish to perform an animation; this requests that the browser schedule a repaint of the window for the next animation frame.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -136,7 +172,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "root", 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ]
         }
       ], 
@@ -153,13 +192,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "This method is used to break-up long running operations and run a callback func immediately after the browser has completed other operations such as events and display updates.", 
       "returns": [
-        "Identifier"
+        {
+          "auto": true, 
+          "name": "Identifier"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "func"
         }
@@ -177,20 +223,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Executes the callback repeatedly, with a fixed time delay between each call to that function.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
         {
           "position": 1, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "delay"
         }
@@ -208,20 +266,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Executes the callback after specified delay.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
         {
           "position": 1, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "delay"
         }

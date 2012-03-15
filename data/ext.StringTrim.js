@@ -11,8 +11,13 @@ apibrowser.callback({
       "name": "trim", 
       "doc": "<p>Implements <code>trim</code> according to // ES5 15.5.4.20 (<a href=\"http://es5.github.com/#x15.5.4.20\">http://es5.github.com/#x15.5.4.20</a>)</p>\n", 
       "visibility": "public", 
+      "summary": "Implements trim according to // ES5 15.5.4.20 (http://es5.github.com/#x15.5.4.20).", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.StringTrim~30", 
       "line": 30, 
@@ -25,7 +30,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Trims whitespace from the left side of the string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.StringTrim~37", 
       "line": 37, 
@@ -38,7 +47,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Trims whitespace from the right side of the string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.StringTrim~44", 
       "line": 44, 
@@ -54,6 +67,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds ES5 String methods if these are not implemented by the engine.</p>\n\n<ul>\n<li><code>trim()</code> (ES5)</li>\n<li><code>trimLeft()</code> (JavaScript 1.8.1)</li>\n<li><code>trimRight()</code> (JavaScript 1.8.1)</li>\n</ul>\n", 
+    "summary": "Adds ES5 String methods if these are not implemented by the engine.", 
     "line": 25, 
     "type": "core.Main"
   }, 

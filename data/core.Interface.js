@@ -2,15 +2,22 @@ apibrowser.callback({
   "statics": [
     {
       "name": "assert", 
-      "sourceLink": "source:core.Interface~80", 
+      "doc": "<p>Verifies whether the given <code class=\"param\">objectOrClass</code> implements the given <code class=\"param\">iface</code>.</p>\n\n<ul>\n<li>Tests all members of being defined and being the same type (based on Object.toString).</li>\n<li>Tests all properties regarding existance. Also checks whether the outer visible aspects: events, group, themeable and inheritable are identical.</li>\n<li>Tests all events regarding existance and whether there EventClass - if defined - is identical.</li>\n</ul>\n\n<p>Throws whenever the object or class does not implements the interface.</p>\n", 
       "visibility": "public", 
       "summary": "Verifies whether the given objectOrClass implements the given iface.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object", 
-            "core.Class"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }, 
+            {
+              "linkable": true, 
+              "name": "core.Class"
+            }
           ], 
           "name": "objectOrClass"
         }, 
@@ -20,11 +27,14 @@ apibrowser.callback({
           "optional": true, 
           "name": "iface", 
           "type": [
-            "core.Interface"
+            {
+              "linkable": true, 
+              "name": "core.Interface"
+            }
           ]
         }
       ], 
-      "doc": "<p>Verifies whether the given <code class=\"param\">objectOrClass</code> implements the given <code class=\"param\">iface</code>.</p>\n\n<ul>\n<li>Tests all members of being defined and being the same type (based on Object.toString).</li>\n<li>Tests all properties regarding existance. Also checks whether the outer visible aspects: events, group, themeable and inheritable are identical.</li>\n<li>Tests all events regarding existance and whether there EventClass - if defined - is identical.</li>\n</ul>\n\n<p>Throws whenever the object or class does not implements the interface.</p>\n", 
+      "sourceLink": "source:core.Interface~80", 
       "line": 80, 
       "type": "Function", 
       "isFunction": true
@@ -35,13 +45,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Resolves a given interfaceName.", 
       "returns": [
-        "core.Interface"
+        {
+          "linkable": true, 
+          "name": "core.Interface"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "interfaceName"
         }
@@ -57,13 +74,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the given object is a iface.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "core.Interface"
+            {
+              "linkable": true, 
+              "name": "core.Interface"
+            }
           ], 
           "name": "iface"
         }
@@ -87,25 +110,31 @@ apibrowser.callback({
         "value": "core.Class"
       }
     ], 
-    "sourceLink": "source:core.Interface~25", 
+    "doc": "<p>Define an interface with <code class=\"param\">name</code> using <code class=\"param\">config</code> which can be used for validation of class instances.</p>\n", 
+    "summary": "Define an interface with name using config which can be used for validation of class instances.", 
     "init": "core.Interface", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "String"
+          {
+            "builtin": true, 
+            "name": "String"
+          }
         ], 
         "name": "name"
       }, 
       {
         "position": 1, 
         "type": [
-          "Map"
+          {
+            "name": "Map"
+          }
         ], 
         "name": "config"
       }
     ], 
-    "doc": "<p>Define an interface with <code class=\"param\">name</code> using <code class=\"param\">config</code> which can be used for validation of class instances.</p>\n", 
+    "sourceLink": "source:core.Interface~25", 
     "line": 25, 
     "isFunction": true
   }, 
@@ -125,11 +154,12 @@ apibrowser.callback({
     "core.property.IThemeable"
   ], 
   "main": {
-    "doc": "<p>Returns a string representing the Interface.</p>\n", 
-    "line": 14, 
-    "type": "core.Main", 
     "name": "core.Interface", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Returns a string representing the Interface.</p>\n", 
+    "summary": "Returns a string representing the Interface.", 
+    "line": 14, 
+    "type": "core.Main"
   }, 
   "id": "core.Interface", 
   "size": {

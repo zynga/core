@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the dimensions of the given image id with the keys width and height.", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "id"
         }
@@ -28,13 +35,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns sprite details for being used for the given image id.", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "id"
         }
@@ -50,13 +64,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the registry has information about the given asset id.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "id"
         }
@@ -72,13 +93,22 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Loads the given asset ids and optionally executes the given callback (in the given context) after all are completed.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String[]"
+            {
+              "linkable": true, 
+              "array": true, 
+              "name": "String", 
+              "builtin": true
+            }
           ], 
           "name": "ids"
         }, 
@@ -87,7 +117,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "callback", 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ]
         }, 
         {
@@ -96,7 +130,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }, 
         {
@@ -105,7 +143,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "nocache", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }, 
         {
@@ -113,7 +154,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "type", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }
       ], 
@@ -128,13 +173,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts the given asset id to a full qualified URI.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "id"
         }
@@ -162,11 +215,12 @@ apibrowser.callback({
     "api.Browser"
   ], 
   "main": {
-    "doc": "<p>Contains information about images (size, format, clipping, &hellip;) and\nother assets like CSS files, local data, &hellip;</p>\n", 
-    "line": 57, 
-    "type": "core.Module", 
     "name": "core.io.Asset", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Contains information about images (size, format, clipping, &hellip;) and\nother assets like CSS files, local data, &hellip;</p>\n", 
+    "summary": "Contains information about images (size, format, clipping, &hellip;) and other assets like CSS files, local data, &hellip;.", 
+    "line": 57, 
+    "type": "core.Module"
   }, 
   "id": "core.io.Asset", 
   "size": {

@@ -4,14 +4,22 @@ apibrowser.callback({
       "name": "checksum", 
       "doc": "<p>Returns the Adler-32 checksum of <code class=\"param\">str</code></p>\n", 
       "visibility": "public", 
+      "summary": "Returns the Adler-32 checksum of str.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "str"
         }
@@ -30,11 +38,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Implements the Adler32 checksum</p>\n\n<p>See also: <a href=\"http://en.wikipedia.org/wiki/Adler-32\">http://en.wikipedia.org/wiki/Adler-32</a></p>\n", 
-    "line": 13, 
-    "type": "core.Module", 
     "name": "core.crypt.Adler32", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Implements the Adler32 checksum</p>\n\n<p>See also: <a href=\"http://en.wikipedia.org/wiki/Adler-32\">http://en.wikipedia.org/wiki/Adler-32</a></p>\n", 
+    "summary": "Implements the Adler32 checksum  See also: http://en.wikipedia.org/wiki/Adler-32.", 
+    "line": 13, 
+    "type": "core.Module"
   }, 
   "id": "core.crypt.Adler32", 
   "size": {

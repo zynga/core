@@ -15,6 +15,7 @@ apibrowser.callback({
       }
     ], 
     "doc": "<p>DOM Node. Interface supported by all DOM types inherit.</p>\n\n<p>See also <a href=\"https://developer.mozilla.org/en/DOM/node\">MDN Documentation</a></p>\n", 
+    "summary": "DOM Node.", 
     "line": 8, 
     "type": "core.Main"
   }, 

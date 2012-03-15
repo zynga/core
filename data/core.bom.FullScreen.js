@@ -2,10 +2,10 @@ apibrowser.callback({
   "statics": [
     {
       "name": "cancel", 
-      "doc": "<p>Cancels full screen mode.</p>\n", 
+      "sourceLink": "source:core.bom.FullScreen~26", 
       "visibility": "public", 
       "summary": "Cancels full screen mode.", 
-      "sourceLink": "source:core.bom.FullScreen~26", 
+      "doc": "<p>Cancels full screen mode.</p>\n", 
       "line": 26, 
       "type": "Function", 
       "isFunction": true
@@ -16,7 +16,10 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns whether the browser is in full screen mode.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "sourceLink": "source:core.bom.FullScreen~33", 
       "line": 33, 
@@ -25,7 +28,7 @@ apibrowser.callback({
     }, 
     {
       "name": "request", 
-      "sourceLink": "source:core.bom.FullScreen~19", 
+      "doc": "<p>Requests full screen mode for given <code class=\"param\">element</code>.</p>\n", 
       "visibility": "public", 
       "summary": "Requests full screen mode for given element.", 
       "params": [
@@ -35,11 +38,14 @@ apibrowser.callback({
           "optional": true, 
           "name": "element", 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ]
         }
       ], 
-      "doc": "<p>Requests full screen mode for given <code class=\"param\">element</code>.</p>\n", 
+      "sourceLink": "source:core.bom.FullScreen~19", 
       "line": 19, 
       "type": "Function", 
       "isFunction": true
@@ -56,11 +62,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Collection of methods to deal with different full screen APIs in browsers.</p>\n", 
-    "line": 79, 
-    "type": "core.Module", 
     "name": "core.bom.FullScreen", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Collection of methods to deal with different full screen APIs in browsers.</p>\n", 
+    "summary": "Collection of methods to deal with different full screen APIs in browsers.", 
+    "line": 79, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.FullScreen", 
   "size": {

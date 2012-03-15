@@ -4,11 +4,13 @@ apibrowser.callback({
   "content": [
     {
       "link": "core.crypt.Adler32", 
-      "name": "Adler32"
+      "name": "Adler32", 
+      "summary": "Implements the Adler32 checksum  See also: http://en.wikipedia.org/wiki/Adler-32."
     }, 
     {
       "link": "core.crypt.CRC32", 
-      "name": "CRC32"
+      "name": "CRC32", 
+      "summary": "Implements the CRC32 checksum  See also: http://en.wikipedia.org/wiki/CRC-32."
     }, 
     {
       "link": "core.crypt.MD5", 
@@ -17,7 +19,8 @@ apibrowser.callback({
     }, 
     {
       "link": "core.crypt.SHA1", 
-      "name": "SHA1"
+      "name": "SHA1", 
+      "summary": "A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined in FIPS 180-1."
     }, 
     {
       "link": "core.crypt.SHA256", 

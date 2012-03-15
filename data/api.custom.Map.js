@@ -18,6 +18,7 @@ apibrowser.callback({
       }
     ], 
     "doc": "<p>Alias for <a href=\"#Object\"><code>Object</code></a> used to define that a simple plain object is meant (typically an object literal).</p>\n", 
+    "summary": "Alias for Object used to define that a simple plain object is meant (typically an object literal).", 
     "line": 6, 
     "type": "core.Main"
   }, 

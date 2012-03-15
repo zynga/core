@@ -19,7 +19,8 @@ apibrowser.callback({
     }, 
     {
       "link": "core.detect.Locale", 
-      "name": "Locale"
+      "name": "Locale", 
+      "summary": "Detects browser language settings."
     }, 
     {
       "link": "core.detect.Object", 

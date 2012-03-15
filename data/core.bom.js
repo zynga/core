@@ -14,11 +14,13 @@ apibrowser.callback({
     }, 
     {
       "link": "core.bom.Form", 
-      "name": "Form"
+      "name": "Form", 
+      "summary": "Utilities to work with HTML form elements."
     }, 
     {
       "link": "core.bom.FormItem", 
-      "name": "FormItem"
+      "name": "FormItem", 
+      "summary": "Collection of serialization methods for form items."
     }, 
     {
       "link": "core.bom.FullScreen", 
@@ -27,15 +29,18 @@ apibrowser.callback({
     }, 
     {
       "link": "core.bom.Offset", 
-      "name": "Offset"
+      "name": "Offset", 
+      "summary": "Querying element positions inside the document."
     }, 
     {
       "link": "core.bom.Position", 
-      "name": "Position"
+      "name": "Position", 
+      "summary": "High performance DOM node positioning with stacking and zooming support."
     }, 
     {
       "link": "core.bom.Ready", 
-      "name": "Ready"
+      "name": "Ready", 
+      "summary": "Easy wrapper on content loaded event registration."
     }, 
     {
       "link": "core.bom.ScrollInto", 

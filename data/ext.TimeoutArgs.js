@@ -6,20 +6,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Executes the callback repeatedly, with a fixed time delay between each call to that function.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
         {
           "position": 1, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "delay"
         }
@@ -35,20 +47,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Executes the callback after specified delay.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
         {
           "position": 1, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "delay"
         }
@@ -77,6 +101,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Overrides global <code>setTimeout</code> and <code>setInterval</code> with implementations which supports\nextra parameters - a feature already supported by most JavaScript engines.</p>\n", 
+    "summary": "Overrides global setTimeout and setInterval with implementations which supports extra parameters - a feature already supported by most JavaScript engines.", 
     "line": 37, 
     "type": "core.Main"
   }, 

@@ -4,7 +4,8 @@ apibrowser.callback({
   "content": [
     {
       "link": "core.dom.Node", 
-      "name": "Node"
+      "name": "Node", 
+      "summary": "DOM utility methods."
     }
   ], 
   "uses": [], 

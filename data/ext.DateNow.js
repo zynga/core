@@ -6,7 +6,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "sourceLink": "source:ext.DateNow~16", 
       "line": 16, 
@@ -29,6 +33,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds the pretty essential <code>Date.now()</code> method from ES5 if it is missing.</p>\n", 
+    "summary": "Adds the pretty essential Date.now() method from ES5 if it is missing.", 
     "line": 9, 
     "type": "core.Main"
   }, 

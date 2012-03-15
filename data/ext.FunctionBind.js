@@ -13,13 +13,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Binds the function to the specific context with optionally bound arbitrary number of varargs.", 
       "returns": [
-        "Function"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Function"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ], 
           "name": "context"
         }, 
@@ -29,7 +37,10 @@ apibrowser.callback({
           "name": "varargs", 
           "optional": true, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -47,6 +58,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds missing ES5 <code>Function.prototype.bind</code> when not implemented natively by the browser engine.</p>\n", 
+    "summary": "Adds missing ES5 Function.prototype.bind when not implemented natively by the browser engine.", 
     "line": 16, 
     "type": "core.Main"
   }, 

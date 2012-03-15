@@ -4,30 +4,38 @@ apibrowser.callback({
       "constant": true, 
       "name": "SUPPORTS_PARALLEL", 
       "doc": "<p>Whether the loader supports parallel requests. Always true for images.</p>\n", 
-      "visibility": "public", 
-      "summary": "Whether the loader supports parallel requests.", 
       "value": "true", 
+      "summary": "Whether the loader supports parallel requests.", 
+      "visibility": "public", 
       "sourceLink": "source:core.io.Jsonp~27", 
       "line": 27, 
       "type": "Boolean"
     }, 
     {
       "name": "load", 
-      "sourceLink": "source:core.io.Jsonp~33", 
+      "doc": "<p>Loads an JSONP via the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in the given <code class=\"param\">context</code>) when the data was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled.</p>\n", 
       "visibility": "public", 
       "summary": "Loads an JSONP via the given uri and fires a callback (in the given context) when the data was loaded.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "uri"
         }, 
         {
           "position": 1, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -36,7 +44,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }, 
         {
@@ -45,11 +57,14 @@ apibrowser.callback({
           "optional": true, 
           "name": "nocache", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
-      "doc": "<p>Loads an JSONP via the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in the given <code class=\"param\">context</code>) when the data was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled.</p>\n", 
+      "sourceLink": "source:core.io.Jsonp~33", 
       "line": 33, 
       "type": "Function", 
       "isFunction": true
@@ -66,11 +81,12 @@ apibrowser.callback({
     "core.io.Queue"
   ], 
   "main": {
-    "doc": "<p>Async JSON-P loader</p>\n", 
-    "line": 24, 
-    "type": "core.Module", 
     "name": "core.io.Jsonp", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Async JSON-P loader</p>\n", 
+    "summary": "Async JSON-P loader.", 
+    "line": 24, 
+    "type": "core.Module"
   }, 
   "id": "core.io.Jsonp", 
   "size": {

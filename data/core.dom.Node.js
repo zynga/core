@@ -2,26 +2,33 @@ apibrowser.callback({
   "statics": [
     {
       "name": "assertIsNode", 
-      "sourceLink": "source:core.dom.Node~17", 
+      "doc": "<p>Throws an exception when <code class=\"param\">node</code> is not a valid DOM node.\nThe exception <code class=\"param\">message</code> can be customized via the parameter.</p>\n", 
       "visibility": "public", 
       "summary": "Throws an exception when node is not a valid DOM node.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "node"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "message"
         }
       ], 
-      "doc": "<p>Throws an exception when <code class=\"param\">node</code> is not a valid DOM node.\nThe exception <code class=\"param\">message</code> can be customized via the parameter.</p>\n", 
+      "sourceLink": "source:core.dom.Node~17", 
       "line": 17, 
       "type": "Function", 
       "isFunction": true
@@ -32,20 +39,30 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Finds the closest parent of start which is successfully tested against the given test.", 
       "returns": [
-        "Element"
+        {
+          "linkable": true, 
+          "name": "Element"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "start"
         }, 
         {
           "position": 1, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "test"
         }
@@ -61,20 +78,29 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns whether the given parent contains the given child.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "parent"
         }, 
         {
           "position": 1, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "child"
         }
@@ -100,11 +126,12 @@ apibrowser.callback({
     "core.bom.Position"
   ], 
   "main": {
-    "doc": "<p>DOM utility methods</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.dom.Node", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>DOM utility methods</p>\n", 
+    "summary": "DOM utility methods.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.dom.Node", 
   "size": {

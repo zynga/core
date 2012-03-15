@@ -17,14 +17,25 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Generic getter for property.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String", 
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }, 
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "property"
         }
@@ -40,14 +51,24 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Generic setter.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String", 
-            "Map"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }, 
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "property"
         }, 
@@ -56,7 +77,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "value", 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -67,11 +91,12 @@ apibrowser.callback({
     }
   ], 
   "main": {
-    "doc": "<p>Generic setter/getter support for property API.</p>\n\n<p>Include this if your class uses properties and want to be able to generically\nset/get them based on the property names</p>\n", 
-    "line": 24, 
-    "type": "core.Class", 
     "name": "core.property.MGeneric", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Generic setter/getter support for property API.</p>\n\n<p>Include this if your class uses properties and want to be able to generically\nset/get them based on the property names</p>\n", 
+    "summary": "Generic setter/getter support for property API.", 
+    "line": 24, 
+    "type": "core.Class"
   }, 
   "id": "core.property.MGeneric", 
   "size": {

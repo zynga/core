@@ -13,13 +13,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Debounces the given method.", 
       "returns": [
-        "Function"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Function"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "threshold"
         }, 
@@ -29,7 +36,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "execAsap", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
@@ -44,6 +54,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds useful non-standard extensions to the <code>Function.prototype</code> like <a href=\"#~debounce\"><code>debounce</code></a>.</p>\n", 
+    "summary": "Adds useful non-standard extensions to the Function.prototype like debounce.", 
     "line": 11, 
     "type": "core.Main"
   }, 

@@ -2,26 +2,32 @@ apibrowser.callback({
   "statics": [
     {
       "name": "add", 
-      "sourceLink": "source:core.bom.ClassName~31", 
+      "doc": "<p>Adds the <code class=\"param\">className</code> to the given <code class=\"param\">elem</code>.</p>\n", 
       "visibility": "public", 
       "summary": "Adds the className to the given elem.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "elem"
         }, 
         {
           "position": 1, 
           "type": [
-            "CSSClassName"
+            {
+              "linkable": true, 
+              "name": "CSSClassName"
+            }
           ], 
           "name": "className"
         }
       ], 
-      "doc": "<p>Adds the <code class=\"param\">className</code> to the given <code class=\"param\">elem</code>.</p>\n", 
+      "sourceLink": "source:core.bom.ClassName~31", 
       "line": 31, 
       "type": "Function", 
       "isFunction": true
@@ -32,20 +38,29 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns whether className is applied to the given elem.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "elem"
         }, 
         {
           "position": 1, 
           "type": [
-            "CSSClassName"
+            {
+              "linkable": true, 
+              "name": "CSSClassName"
+            }
           ], 
           "name": "className"
         }
@@ -61,13 +76,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns whether the given string is a valid CSSClassName.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "string"
         }
@@ -79,52 +101,64 @@ apibrowser.callback({
     }, 
     {
       "name": "remove", 
-      "sourceLink": "source:core.bom.ClassName~40", 
+      "doc": "<p>Removes the <code class=\"param\">className</code> from the given <code class=\"param\">elem</code>.</p>\n", 
       "visibility": "public", 
       "summary": "Removes the className from the given elem.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "elem"
         }, 
         {
           "position": 1, 
           "type": [
-            "CSSClassName"
+            {
+              "linkable": true, 
+              "name": "CSSClassName"
+            }
           ], 
           "name": "className"
         }
       ], 
-      "doc": "<p>Removes the <code class=\"param\">className</code> from the given <code class=\"param\">elem</code>.</p>\n", 
+      "sourceLink": "source:core.bom.ClassName~40", 
       "line": 40, 
       "type": "Function", 
       "isFunction": true
     }, 
     {
       "name": "toggle", 
-      "sourceLink": "source:core.bom.ClassName~58", 
+      "doc": "<p>Toggles the <code class=\"param\">className</code> for the given <code class=\"param\">elem</code>.</p>\n", 
       "visibility": "public", 
       "summary": "Toggles the className for the given elem.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "elem"
         }, 
         {
           "position": 1, 
           "type": [
-            "CSSClassName"
+            {
+              "linkable": true, 
+              "name": "CSSClassName"
+            }
           ], 
           "name": "className"
         }
       ], 
-      "doc": "<p>Toggles the <code class=\"param\">className</code> for the given <code class=\"param\">elem</code>.</p>\n", 
+      "sourceLink": "source:core.bom.ClassName~58", 
       "line": 58, 
       "type": "Function", 
       "isFunction": true
@@ -146,11 +180,12 @@ apibrowser.callback({
     "api.Browser"
   ], 
   "main": {
-    "doc": "<p>Managing class names on DOM nodes the easy way.</p>\n\n<p>Makes use of high-performance <code>classList</code> interface in modern browsers:\n<a href=\"https://developer.mozilla.org/en/DOM/element.classList\">https://developer.mozilla.org/en/DOM/element.classList</a></p>\n", 
-    "line": 135, 
-    "type": "core.Module", 
     "name": "core.bom.ClassName", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Managing class names on DOM nodes the easy way.</p>\n\n<p>Makes use of high-performance <code>classList</code> interface in modern browsers:\n<a href=\"https://developer.mozilla.org/en/DOM/element.classList\">https://developer.mozilla.org/en/DOM/element.classList</a></p>\n", 
+    "summary": "Managing class names on DOM nodes the easy way.", 
+    "line": 135, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.ClassName", 
   "size": {

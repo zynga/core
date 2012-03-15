@@ -10,39 +10,52 @@ apibrowser.callback({
   "basename": "Dog", 
   "permutations": [], 
   "construct": {
-    "doc": "<p>This will create a new Dog for your Tamagochi environment.</p>\n\n<p>The <code class=\"param\">color</code> will set the fur color, the <code class=\"param\">hungry</code>\nflag lets him be hungry or not (hungry is defaulted with <code>true</code>).</p>\n\n<p>The dog has also a <code class=\"param\">weight</code> that you can set. It is used\nto calculate when it&#39;s hungry again if you walk the dog and it\ngets tired or an empty stomach.</p>\n\n<p>The last, optional flag <code class=\"param\">nakedDog</code> lets you have a naked\nugly dog, just like those for VIP females.</p>\n", 
+    "sourceLink": "source:api.test.Dog~38", 
+    "summary": "This will create a new Dog for your Tamagochi environment.", 
     "init": "api.test.Dog", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "String"
+          {
+            "builtin": true, 
+            "name": "String"
+          }
         ], 
         "name": "color"
       }, 
       {
         "position": 1, 
         "type": [
-          "Boolean"
+          {
+            "builtin": true, 
+            "name": "Boolean"
+          }
         ], 
         "name": "hungry"
       }, 
       {
         "position": 2, 
         "type": [
-          "Number"
+          {
+            "builtin": true, 
+            "name": "Number"
+          }
         ], 
         "name": "weight"
       }, 
       {
         "position": 3, 
         "type": [
-          "Boolean"
+          {
+            "builtin": true, 
+            "name": "Boolean"
+          }
         ], 
         "name": "nakedDog"
       }
     ], 
-    "sourceLink": "source:api.test.Dog~38", 
+    "doc": "<p>This will create a new Dog for your Tamagochi environment.</p>\n\n<p>The <code class=\"param\">color</code> will set the fur color, the <code class=\"param\">hungry</code>\nflag lets him be hungry or not (hungry is defaulted with <code>true</code>).</p>\n\n<p>The dog has also a <code class=\"param\">weight</code> that you can set. It is used\nto calculate when it&#39;s hungry again if you walk the dog and it\ngets tired or an empty stomach.</p>\n\n<p>The last, optional flag <code class=\"param\">nakedDog</code> lets you have a naked\nugly dog, just like those for VIP females.</p>\n", 
     "line": 38, 
     "isFunction": true
   }, 
@@ -58,6 +71,7 @@ apibrowser.callback({
       "name": "FAT", 
       "doc": "<p>Enum about a dog being fat</p>\n", 
       "value": "3", 
+      "summary": "Enum about a dog being fat.", 
       "visibility": "public", 
       "sourceLink": "source:api.test.Dog~100", 
       "line": 100, 
@@ -68,6 +82,7 @@ apibrowser.callback({
       "name": "NORMAL", 
       "doc": "<p>Enum about a dog being normal</p>\n", 
       "value": "2", 
+      "summary": "Enum about a dog being normal.", 
       "visibility": "public", 
       "sourceLink": "source:api.test.Dog~102", 
       "line": 102, 
@@ -78,6 +93,7 @@ apibrowser.callback({
       "name": "SLIM", 
       "doc": "<p>Enum about a dog being slim</p>\n", 
       "value": "1", 
+      "summary": "Enum about a dog being slim.", 
       "visibility": "public", 
       "sourceLink": "source:api.test.Dog~104", 
       "line": 104, 
@@ -95,13 +111,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "This method feeds the animal with food.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "api.test.Food"
+            {
+              "linkable": true, 
+              "name": "api.test.Food"
+            }
           ], 
           "name": "food"
         }
@@ -113,33 +135,43 @@ apibrowser.callback({
     }, 
     {
       "name": "fireEvent", 
-      "sourceLink": "source:api.test.Dog~125", 
+      "doc": "<p>This method is required for firing events on the dog itself.</p>\n\n<p>The event <code class=\"param\">type</code>, the <code class=\"param\">value</code> and the <code class=\"param\">old</code> value.</p>\n", 
       "visibility": "public", 
       "summary": "This method is required for firing events on the dog itself.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "type"
         }, 
         {
           "position": 1, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }, 
         {
           "position": 2, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "old"
         }
       ], 
-      "doc": "<p>This method is required for firing events on the dog itself.</p>\n\n<p>The event <code class=\"param\">type</code>, the <code class=\"param\">value</code> and the <code class=\"param\">old</code> value.</p>\n", 
+      "sourceLink": "source:api.test.Dog~125", 
       "line": 125, 
       "type": "Function", 
       "isFunction": true
@@ -152,7 +184,10 @@ apibrowser.callback({
         }
       ], 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "name": "isHungry", 
       "sourceLink": "source:api.test.Animal~49", 
@@ -179,7 +214,11 @@ apibrowser.callback({
           "dynamic": true, 
           "name": "objects", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }
       ], 
@@ -195,10 +234,10 @@ apibrowser.callback({
           "name": "deprecated"
         }
       ], 
-      "sourceLink": "source:api.test.Dog~116", 
+      "doc": "<p>Train the dog.</p>\n", 
       "visibility": "public", 
       "summary": "Train the dog.", 
-      "doc": "<p>Train the dog.</p>\n", 
+      "sourceLink": "source:api.test.Dog~116", 
       "line": 116, 
       "type": "Function", 
       "isFunction": true
@@ -209,13 +248,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "This method will walk the Dog meters  The dog will loose weight, so don&#39;t let it be hungry for a too long time.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "meters"
         }
@@ -227,9 +273,6 @@ apibrowser.callback({
     }
   ], 
   "main": {
-    "doc": "<p>This Dog class lets you create a Dog that you\ncan feed, walk and just do things that you\nare used to while playing Tamagotchi. :)</p>\n\n<p>This example shows how to handle a brown dog that\nis hungry and weights 40kg (and is not naked):</p>\n\n<table class=\"highlighttable\"><tr><td class=\"linenos\"><div class=\"linenodiv\"><pre>1\n2\n3</pre></div></td><td class=\"code\"><div class=\"highlight\"><pre><span class=\"kd\">var</span> <span class=\"nx\">myDog</span> <span class=\"o\">=</span> <span class=\"k\">new</span> <span class=\"nx\">api</span><span class=\"p\">.</span><span class=\"nx\">test</span><span class=\"p\">.</span><span class=\"nx\">Dog</span><span class=\"p\">(</span><span class=\"s1\">&#39;brown&#39;</span><span class=\"p\">,</span> <span class=\"kc\">true</span><span class=\"p\">,</span> <span class=\"mi\">40</span><span class=\"p\">,</span> <span class=\"kc\">false</span><span class=\"p\">);</span>\n<span class=\"nx\">myDog</span><span class=\"p\">.</span><span class=\"nx\">feed</span><span class=\"p\">(</span><span class=\"k\">new</span> <span class=\"nx\">api</span><span class=\"p\">.</span><span class=\"nx\">test</span><span class=\"p\">.</span><span class=\"nx\">Food</span><span class=\"p\">(</span><span class=\"mi\">5</span><span class=\"p\">));</span> <span class=\"c1\">// 5kg, kinda American way!</span>\n<span class=\"nx\">myDog</span><span class=\"p\">.</span><span class=\"nx\">walk</span><span class=\"p\">(</span><span class=\"mi\">200</span><span class=\"p\">);</span> <span class=\"c1\">// lets him walk 200m</span>\n</pre></div>\n</td></tr></table>\n", 
-    "line": 20, 
-    "type": "core.Class", 
     "name": "api.test.Dog", 
     "tags": [
       {
@@ -239,7 +282,11 @@ apibrowser.callback({
         "name": "version", 
         "value": "1.0+1.1"
       }
-    ]
+    ], 
+    "doc": "<p>This Dog class lets you create a Dog that you\ncan feed, walk and just do things that you\nare used to while playing Tamagotchi. :)</p>\n\n<p>This example shows how to handle a brown dog that\nis hungry and weights 40kg (and is not naked):</p>\n\n<table class=\"highlighttable\"><tr><td class=\"linenos\"><div class=\"linenodiv\"><pre>1\n2\n3</pre></div></td><td class=\"code\"><div class=\"highlight\"><pre><span class=\"kd\">var</span> <span class=\"nx\">myDog</span> <span class=\"o\">=</span> <span class=\"k\">new</span> <span class=\"nx\">api</span><span class=\"p\">.</span><span class=\"nx\">test</span><span class=\"p\">.</span><span class=\"nx\">Dog</span><span class=\"p\">(</span><span class=\"s1\">&#39;brown&#39;</span><span class=\"p\">,</span> <span class=\"kc\">true</span><span class=\"p\">,</span> <span class=\"mi\">40</span><span class=\"p\">,</span> <span class=\"kc\">false</span><span class=\"p\">);</span>\n<span class=\"nx\">myDog</span><span class=\"p\">.</span><span class=\"nx\">feed</span><span class=\"p\">(</span><span class=\"k\">new</span> <span class=\"nx\">api</span><span class=\"p\">.</span><span class=\"nx\">test</span><span class=\"p\">.</span><span class=\"nx\">Food</span><span class=\"p\">(</span><span class=\"mi\">5</span><span class=\"p\">));</span> <span class=\"c1\">// 5kg, kinda American way!</span>\n<span class=\"nx\">myDog</span><span class=\"p\">.</span><span class=\"nx\">walk</span><span class=\"p\">(</span><span class=\"mi\">200</span><span class=\"p\">);</span> <span class=\"c1\">// lets him walk 200m</span>\n</pre></div>\n</td></tr></table>\n", 
+    "summary": "This Dog class lets you create a Dog that you can feed, walk and just do things that you are used to while playing Tamagotchi.", 
+    "line": 20, 
+    "type": "core.Class"
   }, 
   "properties": [
     {
@@ -267,14 +314,15 @@ apibrowser.callback({
           "name": "api.test.Animal"
         }
       ], 
-      "sourceLink": "source:api.test.Animal~14", 
-      "type": "String", 
       "name": "color", 
       "nullable": true, 
       "fire": "changeColor", 
       "doc": "<p>This will set the color of the animal</p>\n", 
+      "summary": "This will set the color of the animal.", 
+      "sourceLink": "source:api.test.Animal~14", 
+      "apply": true, 
       "line": 14, 
-      "apply": true
+      "type": "String"
     }, 
     {
       "name": "fur", 
@@ -304,6 +352,7 @@ apibrowser.callback({
       "nullable": false, 
       "fire": "changeHungry", 
       "doc": "<p>This is the holder for the hungry state of the animal</p>\n", 
+      "summary": "This is the holder for the hungry state of the animal.", 
       "init": "true", 
       "sourceLink": "source:api.test.Animal~24", 
       "apply": true, 
@@ -340,14 +389,15 @@ apibrowser.callback({
           "name": "api.test.Animal"
         }
       ], 
-      "sourceLink": "source:api.test.Animal~35", 
-      "type": "Number", 
       "name": "weight", 
       "nullable": true, 
       "fire": "changeWeight", 
       "doc": "<p>This represents the weight in kilograms of the animal</p>\n", 
+      "summary": "This represents the weight in kilograms of the animal.", 
+      "sourceLink": "source:api.test.Animal~35", 
+      "apply": true, 
       "line": 35, 
-      "apply": true
+      "type": "Number"
     }
   ], 
   "size": {

@@ -4,30 +4,38 @@ apibrowser.callback({
       "constant": true, 
       "name": "SUPPORTS_PARALLEL", 
       "doc": "<p>Whether the loader supports parallel requests. Always true for images.</p>\n", 
-      "visibility": "public", 
-      "summary": "Whether the loader supports parallel requests.", 
       "value": "true", 
+      "summary": "Whether the loader supports parallel requests.", 
+      "visibility": "public", 
       "sourceLink": "source:core.io.Image~19", 
       "line": 19, 
       "type": "Boolean"
     }, 
     {
       "name": "load", 
-      "sourceLink": "source:core.io.Image~25", 
+      "doc": "<p>Loads an image with the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in <code class=\"param\">context</code>) when the image was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled.</p>\n", 
       "visibility": "public", 
       "summary": "Loads an image with the given uri and fires a callback (in context) when the image was loaded.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "uri"
         }, 
         {
           "position": 1, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -36,7 +44,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }, 
         {
@@ -45,11 +57,14 @@ apibrowser.callback({
           "optional": true, 
           "name": "nocache", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
-      "doc": "<p>Loads an image with the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in <code class=\"param\">context</code>) when the image was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled.</p>\n", 
+      "sourceLink": "source:core.io.Image~25", 
       "line": 25, 
       "type": "Function", 
       "isFunction": true
@@ -70,11 +85,12 @@ apibrowser.callback({
     "core.io.Queue"
   ], 
   "main": {
-    "doc": "<p>Image loader with support for load callback.</p>\n", 
-    "line": 16, 
-    "type": "core.Module", 
     "name": "core.io.Image", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Image loader with support for load callback.</p>\n", 
+    "summary": "Image loader with support for load callback.", 
+    "line": 16, 
+    "type": "core.Module"
   }, 
   "id": "core.io.Image", 
   "size": {

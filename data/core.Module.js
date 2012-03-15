@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Resolves a given name and returns the stored module.", 
       "returns": [
-        "core.Module"
+        {
+          "linkable": true, 
+          "name": "core.Module"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }
@@ -28,13 +35,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the given object is a valid module.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ], 
           "name": "module"
         }
@@ -50,13 +64,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns whether the given name is a valid module name.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }
@@ -72,25 +93,31 @@ apibrowser.callback({
   "basename": "Module", 
   "permutations": [], 
   "construct": {
-    "doc": "<p>Define a module with the given <code class=\"param\">name</code> with static <code class=\"param\">members</code> being attached.</p>\n", 
+    "sourceLink": "source:core.Module~21", 
+    "summary": "Define a module with the given name with static members being attached.", 
     "init": "core.Module", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "String"
+          {
+            "builtin": true, 
+            "name": "String"
+          }
         ], 
         "name": "name"
       }, 
       {
         "position": 1, 
         "type": [
-          "Map"
+          {
+            "name": "Map"
+          }
         ], 
         "name": "members"
       }
     ], 
-    "sourceLink": "source:core.Module~21", 
+    "doc": "<p>Define a module with the given <code class=\"param\">name</code> with static <code class=\"param\">members</code> being attached.</p>\n", 
     "line": 21, 
     "isFunction": true
   }, 
@@ -151,11 +178,12 @@ apibrowser.callback({
     "core.util.Id"
   ], 
   "main": {
-    "doc": "<p>Declarations of simple modules with static members</p>\n", 
-    "line": 11, 
-    "type": "core.Main", 
     "name": "core.Module", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Declarations of simple modules with static members</p>\n", 
+    "summary": "Declarations of simple modules with static members.", 
+    "line": 11, 
+    "type": "core.Main"
   }, 
   "id": "core.Module", 
   "size": {

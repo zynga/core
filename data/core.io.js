@@ -4,7 +4,8 @@ apibrowser.callback({
   "content": [
     {
       "link": "core.io.Asset", 
-      "name": "Asset"
+      "name": "Asset", 
+      "summary": "Contains information about images (size, format, clipping, &hellip;) and other assets like CSS files, local data, &hellip;."
     }, 
     {
       "link": "core.io.Image", 
@@ -13,11 +14,13 @@ apibrowser.callback({
     }, 
     {
       "link": "core.io.Jsonp", 
-      "name": "Jsonp"
+      "name": "Jsonp", 
+      "summary": "Async JSON-P loader."
     }, 
     {
       "link": "core.io.Network", 
-      "name": "Network"
+      "name": "Network", 
+      "summary": "Generic network monitor and inspection."
     }, 
     {
       "link": "core.io.Queue", 

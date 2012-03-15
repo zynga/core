@@ -6,13 +6,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the value of the given parameter name.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }
@@ -31,11 +39,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Parses the URL of the location at loadtime into parameters and make them easily available via {#get()}.</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.detect.Param", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Parses the URL of the location at loadtime into parameters and make them easily available via {#get()}.</p>\n", 
+    "summary": "Parses the URL of the location at loadtime into parameters and make them easily available via {#get()}.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.detect.Param", 
   "size": {

@@ -4,8 +4,12 @@ apibrowser.callback({
       "name": "isOnline", 
       "doc": "<p>Returns whether the client is online based on the last check</p>\n", 
       "visibility": "public", 
+      "summary": "Returns whether the client is online based on the last check.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "sourceLink": "source:core.io.Network~81", 
       "line": 81, 
@@ -14,7 +18,7 @@ apibrowser.callback({
     }, 
     {
       "name": "startMonitoring", 
-      "sourceLink": "source:core.io.Network~89", 
+      "doc": "<p>Starts the network monitoring with the given <code class=\"param\">interval</code> in milliseconds.</p>\n", 
       "visibility": "public", 
       "summary": "Starts the network monitoring with the given interval in milliseconds.", 
       "params": [
@@ -24,20 +28,25 @@ apibrowser.callback({
           "optional": true, 
           "name": "interval", 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ]
         }
       ], 
-      "doc": "<p>Starts the network monitoring with the given <code class=\"param\">interval</code> in milliseconds.</p>\n", 
+      "sourceLink": "source:core.io.Network~89", 
       "line": 89, 
       "type": "Function", 
       "isFunction": true
     }, 
     {
       "name": "stopMonitoring", 
-      "doc": "<p>Stop network monitoring</p>\n", 
-      "visibility": "public", 
       "sourceLink": "source:core.io.Network~103", 
+      "visibility": "public", 
+      "summary": "Stop network monitoring.", 
+      "doc": "<p>Stop network monitoring</p>\n", 
       "line": 103, 
       "type": "Function", 
       "isFunction": true
@@ -51,11 +60,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Generic network monitor and inspection</p>\n", 
-    "line": 76, 
-    "type": "core.Module", 
     "name": "core.io.Network", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Generic network monitor and inspection</p>\n", 
+    "summary": "Generic network monitor and inspection.", 
+    "line": 76, 
+    "type": "core.Module"
   }, 
   "id": "core.io.Network", 
   "size": {

@@ -6,13 +6,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the given animation via its id is still running.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "id"
         }
@@ -28,41 +34,63 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Start the animation.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "stepCallback"
         }, 
         {
           "position": 1, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "verifyCallback"
         }, 
         {
           "position": 2, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "completedCallback"
         }, 
         {
           "position": 3, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "duration"
         }, 
         {
           "position": 4, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "easingMethod"
         }, 
@@ -72,7 +100,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "root", 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ]
         }
       ], 
@@ -87,13 +118,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Stops the given animation via its id.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "id"
         }
@@ -113,11 +150,12 @@ apibrowser.callback({
     "ext.RequestAnimationFrame"
   ], 
   "main": {
-    "doc": "<p>Generic animation class with support for dropped frames both optional easing and duration.</p>\n\n<p>Optional duration is useful when the lifetime is defined by another condition than time\ne.g. speed of an animating object, etc.</p>\n\n<p>Dropped frame logic allows to keep using the same updater logic independent from the actual\nrendering. This eases a lot of cases where it might be pretty complex to break down a state\nbased on the pure time difference.</p>\n\n<p>Requires <a href=\"#ext.RequestAnimationFrame\"><code>ext.RequestAnimationFrame</code></a> for cross browser support.</p>\n", 
-    "line": 32, 
-    "type": "core.Module", 
     "name": "core.effect.Animate", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Generic animation class with support for dropped frames both optional easing and duration.</p>\n\n<p>Optional duration is useful when the lifetime is defined by another condition than time\ne.g. speed of an animating object, etc.</p>\n\n<p>Dropped frame logic allows to keep using the same updater logic independent from the actual\nrendering. This eases a lot of cases where it might be pretty complex to break down a state\nbased on the pure time difference.</p>\n\n<p>Requires <a href=\"#ext.RequestAnimationFrame\"><code>ext.RequestAnimationFrame</code></a> for cross browser support.</p>\n", 
+    "summary": "Generic animation class with support for dropped frames both optional easing and duration.", 
+    "line": 32, 
+    "type": "core.Module"
   }, 
   "id": "core.effect.Animate", 
   "size": {

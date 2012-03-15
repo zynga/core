@@ -14,7 +14,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Camelizes this string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~123", 
       "line": 123, 
@@ -27,7 +31,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Removes double spaces and line breaks.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~102", 
       "line": 102, 
@@ -40,13 +48,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the string contains the given substring.", 
       "returns": [
-        "Boolean"
+        {
+          "auto": true, 
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "substring"
         }
@@ -68,7 +84,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Decodes the string from Base64.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~32", 
       "line": 32, 
@@ -81,7 +101,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Decodes the string from UTF-8.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~70", 
       "line": 70, 
@@ -100,7 +124,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Encodes the string as Base64.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~22", 
       "line": 22, 
@@ -113,7 +141,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Encodes the string as UTF-8.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~60", 
       "line": 60, 
@@ -124,14 +156,22 @@ apibrowser.callback({
       "name": "endsWith", 
       "doc": "<p>Returns <code>true</code> if this string ends with the given substring <code class=\"param\">end</code></p>\n", 
       "visibility": "public", 
+      "summary": "Returns true if this string ends with the given substring end.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "end"
         }
@@ -147,7 +187,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a hyphenated copy of the original string e.g.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~113", 
       "line": 113, 
@@ -160,7 +204,10 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns true if the string has a length of 0 or contains only whitespace.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~86", 
       "line": 86, 
@@ -173,13 +220,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a new string which is a nr repeated copy of the original one.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "nr"
         }
@@ -193,8 +247,13 @@ apibrowser.callback({
       "name": "reverse", 
       "doc": "<p>Reverses the string</p>\n", 
       "visibility": "public", 
+      "summary": "Reverses the string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~94", 
       "line": 94, 
@@ -205,14 +264,22 @@ apibrowser.callback({
       "name": "startsWith", 
       "doc": "<p>Returns <code>true</code> if this string starts with the given substring <code class=\"param\">begin</code></p>\n", 
       "visibility": "public", 
+      "summary": "Returns true if this string starts with the given substring begin.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "begin"
         }
@@ -226,8 +293,13 @@ apibrowser.callback({
       "name": "toHex", 
       "doc": "<p>Converts the string into a hex string</p>\n", 
       "visibility": "public", 
+      "summary": "Converts the string into a hex string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~40", 
       "line": 40, 
@@ -243,6 +315,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds useful non-standard extensions to the <code>String.prototype</code> like <a href=\"#~hyphenate\"><code>hyphenate</code></a>, <a href=\"#~startsWith\"><code>startsWith</code></a> and <a href=\"#~contains\"><code>contains</code></a>.</p>\n", 
+    "summary": "Adds useful non-standard extensions to the String.prototype like hyphenate, startsWith and contains.", 
     "line": 15, 
     "type": "core.Main"
   }, 

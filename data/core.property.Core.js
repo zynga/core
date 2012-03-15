@@ -4,8 +4,9 @@ apibrowser.callback({
       "constant": true, 
       "name": "ID", 
       "doc": "<p>Internal unique ID for usage in Single/Multi properties</p>\n", 
-      "visibility": "public", 
       "value": "1", 
+      "summary": "Internal unique ID for usage in Single/Multi properties.", 
+      "visibility": "public", 
       "sourceLink": "source:core.property.Core~14", 
       "line": 14, 
       "type": "Number"
@@ -23,11 +24,12 @@ apibrowser.callback({
     "core.property.Simple"
   ], 
   "main": {
-    "doc": "<p>Shared data for property system</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.property.Core", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Shared data for property system</p>\n", 
+    "summary": "Shared data for property system.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.property.Core", 
   "size": {

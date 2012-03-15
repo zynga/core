@@ -10,7 +10,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.DateNow~16", 
       "summary": "Returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "doc": "<p>Returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date/now\">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date/now</a></p>\n", 
       "type": "Function"
@@ -30,7 +34,12 @@ apibrowser.callback({
       "sourceLink": "source:ext.es5.Date~27", 
       "summary": "Converts the Date instance to an ISO string representation.", 
       "returns": [
-        "Plus"
+        {
+          "linkable": true, 
+          "auto": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Converts the <code>Date</code> instance to an ISO string representation.</p>\n\n<ul>\n<li>ES5 15.9.5.43: <a href=\"http://es5.github.com/#x15.9.5.43\">http://es5.github.com/#x15.9.5.43</a></li>\n</ul>\n\n<p>This function returns a String value represent the instance in time\nrepresented by this Date object. The format of the String is the Date Time\nstring format defined in 15.9.1.15. All fields are present in the String.\nThe time zone is always UTC, denoted by the suffix Z. If the time value of\nthis object is not a finite Number a RangeError exception is thrown.</p>\n", 
       "type": "Function"
@@ -42,7 +51,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts the Date instance to a JSON representation.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {

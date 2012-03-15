@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a new object with prefilled content from the keys list.", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "keys"
         }, 
@@ -22,7 +29,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "value", 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -35,14 +45,22 @@ apibrowser.callback({
       "name": "isEmpty", 
       "doc": "<p>Tests whether the given <code class=\"param\">object</code> is empty</p>\n", 
       "visibility": "public", 
+      "summary": "Tests whether the given object is empty.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ], 
           "name": "object"
         }
@@ -58,20 +76,31 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Validates the object to don&#39;t hold other keys than the ones defined by allowed.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "object"
         }, 
         {
           "position": 1, 
           "type": [
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "allowed"
         }
@@ -87,13 +116,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns all the values of the given object.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "object"
         }
@@ -120,6 +156,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds useful non-standard extensions to the Object class like <a href=\"#~fromArray\"><code>fromArray</code></a> and <a href=\"#~values\"><code>values</code></a>.</p>\n", 
+    "summary": "Adds useful non-standard extensions to the Object class like fromArray and values.", 
     "line": 11, 
     "type": "core.Main"
   }, 

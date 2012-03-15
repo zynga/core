@@ -6,14 +6,26 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns whether the given uris were loaded before.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String", 
-            "String[]"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }, 
+            {
+              "linkable": true, 
+              "array": true, 
+              "name": "String", 
+              "builtin": true
+            }
           ], 
           "name": "uris"
         }
@@ -25,21 +37,30 @@ apibrowser.callback({
     }, 
     {
       "name": "load", 
-      "sourceLink": "source:core.io.Queue~96", 
+      "doc": "<p>Loads the given <code class=\"param\">uris</code> and optionally executes the given <code class=\"param\">callback</code> with the <code class=\"param\">context</code> after all are completed.\nOne can optionally disable the browser caching using enforced get parameters via the <code class=\"param\">nocache</code> flag. Typically\nthe matching loader is figured out automatically based on the file extension but can be controlled using the <code class=\"param\">type</code> parameter.</p>\n", 
       "visibility": "public", 
       "summary": "Loads the given uris and optionally executes the given callback with the context after all are completed.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String[]"
+            {
+              "linkable": true, 
+              "array": true, 
+              "name": "String", 
+              "builtin": true
+            }
           ], 
           "name": "uris"
         }, 
         {
           "position": 1, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -49,7 +70,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }, 
         {
@@ -58,7 +83,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "nocache", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }, 
         {
@@ -66,11 +94,15 @@ apibrowser.callback({
           "optional": true, 
           "name": "type", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }
       ], 
-      "doc": "<p>Loads the given <code class=\"param\">uris</code> and optionally executes the given <code class=\"param\">callback</code> with the <code class=\"param\">context</code> after all are completed.\nOne can optionally disable the browser caching using enforced get parameters via the <code class=\"param\">nocache</code> flag. Typically\nthe matching loader is figured out automatically based on the file extension but can be controlled using the <code class=\"param\">type</code> parameter.</p>\n", 
+      "sourceLink": "source:core.io.Queue~96", 
       "line": 96, 
       "type": "Function", 
       "isFunction": true
@@ -97,11 +129,12 @@ apibrowser.callback({
     "core.io.Asset"
   ], 
   "main": {
-    "doc": "<p>Generic URLs loader queue with support for different type &ldquo;backend&rdquo; modules.</p>\n\n<p>Uses parallel loading where available and load all other resources\nsequentially. Sequential loading is done by type so that multiple\ndifferent types are loaded in parallel.</p>\n\n<p>Loader module need to implement the following interface:</p>\n\n<ul>\n<li>method load(uri, callback, context, nocache) which calls the callback like callback.call(context, uri, errornous, data)</li>\n<li>constant <code>SUPPORTS_PARALLEL</code> with a boolean value whether the loader supports parallel loading</li>\n</ul>\n", 
-    "line": 65, 
-    "type": "core.Module", 
     "name": "core.io.Queue", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Generic URLs loader queue with support for different type &ldquo;backend&rdquo; modules.</p>\n\n<p>Uses parallel loading where available and load all other resources\nsequentially. Sequential loading is done by type so that multiple\ndifferent types are loaded in parallel.</p>\n\n<p>Loader module need to implement the following interface:</p>\n\n<ul>\n<li>method load(uri, callback, context, nocache) which calls the callback like callback.call(context, uri, errornous, data)</li>\n<li>constant <code>SUPPORTS_PARALLEL</code> with a boolean value whether the loader supports parallel loading</li>\n</ul>\n", 
+    "summary": "Generic URLs loader queue with support for different type &ldquo;backend&rdquo; modules.", 
+    "line": 65, 
+    "type": "core.Module"
   }, 
   "id": "core.io.Queue", 
   "size": {

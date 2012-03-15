@@ -4,30 +4,38 @@ apibrowser.callback({
       "constant": true, 
       "name": "SUPPORTS_PARALLEL", 
       "doc": "<p>Whether the loader supports parallel requests. Always true for stylesheets (order should, hopefully, not be important).</p>\n", 
-      "visibility": "public", 
-      "summary": "Whether the loader supports parallel requests.", 
       "value": "true", 
+      "summary": "Whether the loader supports parallel requests.", 
+      "visibility": "public", 
       "sourceLink": "source:core.io.StyleSheet~22", 
       "line": 22, 
       "type": "Boolean"
     }, 
     {
       "name": "load", 
-      "sourceLink": "source:core.io.StyleSheet~29", 
+      "doc": "<p>Loads a StyleSheet file from the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in <code class=\"param\">context</code>) when it was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled..</p>\n", 
       "visibility": "public", 
       "summary": "Loads a StyleSheet file from the given uri and fires a callback (in context) when it was loaded.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "uri"
         }, 
         {
           "position": 1, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -36,7 +44,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }, 
         {
@@ -45,11 +57,14 @@ apibrowser.callback({
           "optional": true, 
           "name": "nocache", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
-      "doc": "<p>Loads a StyleSheet file from the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in <code class=\"param\">context</code>) when it was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled..</p>\n", 
+      "sourceLink": "source:core.io.StyleSheet~29", 
       "line": 29, 
       "type": "Function", 
       "isFunction": true
@@ -71,11 +86,12 @@ apibrowser.callback({
     "core.io.Queue"
   ], 
   "main": {
-    "doc": "<p>Stylesheet loader with support for load callback.</p>\n", 
-    "line": 19, 
-    "type": "core.Module", 
     "name": "core.io.StyleSheet", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Stylesheet loader with support for load callback.</p>\n", 
+    "summary": "Stylesheet loader with support for load callback.", 
+    "line": 19, 
+    "type": "core.Module"
   }, 
   "id": "core.io.StyleSheet", 
   "size": {

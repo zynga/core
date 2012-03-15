@@ -6,18 +6,22 @@ apibrowser.callback({
     "debug"
   ], 
   "construct": {
-    "doc": "<p>Creates a template instance with the given <code class=\"param\">render</code> method. Best way to work with\nthe template class is to create one using the <a href=\"#core.template.Compiler~compile\"><code>core.template.Compiler#compile</code></a> method.</p>\n", 
+    "sourceLink": "source:core.template.Template~75", 
+    "summary": "Creates a template instance with the given render method.", 
     "init": "core.template.Template", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "Function"
+          {
+            "builtin": true, 
+            "name": "Function"
+          }
         ], 
         "name": "render"
       }
     ], 
-    "sourceLink": "source:core.template.Template~75", 
+    "doc": "<p>Creates a template instance with the given <code class=\"param\">render</code> method. Best way to work with\nthe template class is to create one using the <a href=\"#core.template.Compiler~compile\"><code>core.template.Compiler#compile</code></a> method.</p>\n", 
     "line": 75, 
     "isFunction": true
   }, 
@@ -33,13 +37,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Public render method which transforms the stored template text using the data and runtime specific partials.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "data"
         }, 
@@ -49,7 +60,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "partials", 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ]
         }
       ], 
@@ -63,11 +77,12 @@ apibrowser.callback({
     "core.template.Compiler"
   ], 
   "main": {
-    "doc": "<p>This is the template class which is typically initialized and configured using the <a href=\"#core.template.Compiler~compile\"><code>core.template.Compiler#compile</code></a> method.</p>\n", 
-    "line": 69, 
-    "type": "core.Class", 
     "name": "core.template.Template", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>This is the template class which is typically initialized and configured using the <a href=\"#core.template.Compiler~compile\"><code>core.template.Compiler#compile</code></a> method.</p>\n", 
+    "summary": "This is the template class which is typically initialized and configured using the core.template.Compiler#compile method.", 
+    "line": 69, 
+    "type": "core.Class"
   }, 
   "id": "core.template.Template", 
   "size": {

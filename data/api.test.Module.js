@@ -6,8 +6,14 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "This method compares data and data2, if it is equals, it returns true.", 
       "returns": [
-        "Boolean", 
-        "null"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }, 
+        {
+          "pseudo": true, 
+          "name": "null"
+        }
       ], 
       "params": [
         {
@@ -30,8 +36,14 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "This method is the opposite to method1 and compares data and data2  It returns false if it is equals and true if both parameters are not equals.", 
       "returns": [
-        "Boolean", 
-        "null"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }, 
+        {
+          "pseudo": true, 
+          "name": "null"
+        }
       ], 
       "params": [
         {
@@ -57,11 +69,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Just a simple test module</p>\n", 
-    "line": 2, 
-    "type": "core.Module", 
     "name": "api.test.Module", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Just a simple test module</p>\n", 
+    "summary": "Just a simple test module.", 
+    "line": 2, 
+    "type": "core.Module"
   }, 
   "id": "api.test.Module", 
   "size": {

@@ -7,13 +7,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a new object with prefilled content from the keys list.", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "keys"
         }, 
@@ -23,7 +30,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "value", 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -34,50 +44,67 @@ apibrowser.callback({
       "isFunction": true
     }, 
     {
-      "visibility": "public", 
-      "fromLink": "static:ext.sugar.Object~isEmpty", 
-      "line": 35, 
-      "isFunction": true, 
       "from": "ext.sugar.Object", 
       "name": "isEmpty", 
-      "sourceLink": "source:ext.sugar.Object~35", 
+      "doc": "<p>Tests whether the given <code class=\"param\">object</code> is empty</p>\n", 
+      "visibility": "public", 
+      "summary": "Tests whether the given object is empty.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ], 
           "name": "object"
         }
       ], 
-      "doc": "<p>Tests whether the given <code class=\"param\">object</code> is empty</p>\n", 
-      "type": "Function"
+      "sourceLink": "source:ext.sugar.Object~35", 
+      "fromLink": "static:ext.sugar.Object~isEmpty", 
+      "line": 35, 
+      "type": "Function", 
+      "isFunction": true
     }, 
     {
-      "visibility": "public", 
-      "fromLink": "static:ext.es5.Object~keys", 
-      "line": 41, 
-      "isFunction": true, 
       "from": "ext.es5.Object", 
       "name": "keys", 
-      "sourceLink": "source:ext.es5.Object~41", 
+      "doc": "<p>Returns an array of all own enumerable properties found upon a given <code class=\"param\">object</code>,\nin the same order as that provided by a for-in loop</p>\n\n<p>See also:</p>\n\n<ul>\n<li>ES5 15.2.3.14</li>\n<li><a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys\">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys</a></li>\n</ul>\n", 
+      "visibility": "public", 
+      "summary": "Returns an array of all own enumerable properties found upon a given object, in the same order as that provided by a for-in loop  See also:   ES5 15.2.3.14 https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ], 
           "name": "object"
         }
       ], 
-      "doc": "<p>Returns an array of all own enumerable properties found upon a given <code class=\"param\">object</code>,\nin the same order as that provided by a for-in loop</p>\n\n<p>See also:</p>\n\n<ul>\n<li>ES5 15.2.3.14</li>\n<li><a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys\">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys</a></li>\n</ul>\n", 
-      "type": "Function"
+      "sourceLink": "source:ext.es5.Object~41", 
+      "fromLink": "static:ext.es5.Object~keys", 
+      "line": 41, 
+      "type": "Function", 
+      "isFunction": true
     }, 
     {
       "from": "ext.sugar.Object", 
@@ -86,20 +113,31 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Validates the object to don&#39;t hold other keys than the ones defined by allowed.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "object"
         }, 
         {
           "position": 1, 
           "type": [
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "allowed"
         }
@@ -117,13 +155,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns all the values of the given object.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "object"
         }

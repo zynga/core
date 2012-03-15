@@ -3,43 +3,52 @@ apibrowser.callback({
     {
       "constant": true, 
       "name": "CHECKSUM", 
-      "sourceLink": "source:core.Env~85", 
-      "visibility": "public", 
       "doc": "<p>Holds the checksum for the current permutation which is auto detected by features or by compiled-in data</p>\n", 
+      "visibility": "public", 
+      "summary": "Holds the checksum for the current permutation which is auto detected by features or by compiled-in data.", 
+      "sourceLink": "source:core.Env~85", 
       "line": 85, 
       "type": "Number"
     }, 
     {
       "constant": true, 
       "name": "SELECTED", 
-      "sourceLink": "source:core.Env~31", 
-      "visibility": "public", 
       "doc": "<p>Currently selected fields from Env data</p>\n", 
+      "visibility": "public", 
+      "summary": "Currently selected fields from Env data.", 
+      "sourceLink": "source:core.Env~31", 
       "line": 31, 
       "type": "Map"
     }, 
     {
       "name": "define", 
-      "sourceLink": "source:core.Env~113", 
+      "doc": "<p>Configure environment data dynamically via setting a field <code class=\"param\">name</code> and its <code class=\"param\">value</code>.</p>\n", 
       "visibility": "public", 
       "summary": "Configure environment data dynamically via setting a field name and its value.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
         {
           "position": 1, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }
       ], 
-      "doc": "<p>Configure environment data dynamically via setting a field <code class=\"param\">name</code> and its <code class=\"param\">value</code>.</p>\n", 
+      "sourceLink": "source:core.Env~113", 
       "line": 113, 
       "type": "Function", 
       "isFunction": true
@@ -50,13 +59,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the value of the field with the given name.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }
@@ -72,13 +88,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the field with the given name was set to the given value.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
@@ -88,7 +111,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "value", 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -103,20 +129,30 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Selects and returns the current value of the field with the given name from the given map.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
         {
           "position": 1, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "map"
         }
@@ -166,11 +202,12 @@ apibrowser.callback({
     "ext.sugar.Array"
   ], 
   "main": {
-    "doc": "<p>This class is the client-side representation for the permutation features of\nJasy and supports features like auto-selecting builds based on specific feature sets.</p>\n", 
-    "line": 104, 
-    "type": "core.Module", 
     "name": "core.Env", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>This class is the client-side representation for the permutation features of\nJasy and supports features like auto-selecting builds based on specific feature sets.</p>\n", 
+    "summary": "This class is the client-side representation for the permutation features of Jasy and supports features like auto-selecting builds based on specific feature sets.", 
+    "line": 104, 
+    "type": "core.Module"
   }, 
   "id": "core.Env", 
   "size": {

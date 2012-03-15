@@ -4,14 +4,21 @@ apibrowser.callback({
       "name": "isSuccessful", 
       "doc": "<p>Returns whether the form <code class=\"param\">item</code> is successful (should be submitted to the server)</p>\n", 
       "visibility": "public", 
+      "summary": "Returns whether the form item is successful (should be submitted to the server).", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "item"
         }
@@ -27,13 +34,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the serialized representation of the given form item.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "item"
         }
@@ -60,11 +74,12 @@ apibrowser.callback({
     "core.bom.Form"
   ], 
   "main": {
-    "doc": "<p>Collection of serialization methods for form items</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.bom.FormItem", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Collection of serialization methods for form items</p>\n", 
+    "summary": "Collection of serialization methods for form items.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.FormItem", 
   "size": {

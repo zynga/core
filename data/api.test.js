@@ -14,7 +14,8 @@ apibrowser.callback({
     }, 
     {
       "link": "api.test.Food", 
-      "name": "Food"
+      "name": "Food", 
+      "summary": "This is the generic Food class  It has only a weight property to let animals get fat while you overfeed them :)  1new api.test.Food(20); // will produce 20kg of food."
     }, 
     {
       "link": "api.test.Mammalian", 
@@ -23,7 +24,8 @@ apibrowser.callback({
     }, 
     {
       "link": "api.test.Module", 
-      "name": "Module"
+      "name": "Module", 
+      "summary": "Just a simple test module."
     }
   ], 
   "uses": [], 

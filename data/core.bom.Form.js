@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Serializes a HTML form.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "form"
         }
@@ -37,11 +44,12 @@ apibrowser.callback({
     "core.dom.Node"
   ], 
   "main": {
-    "doc": "<p>Utilities to work with HTML form elements</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.bom.Form", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Utilities to work with HTML form elements</p>\n", 
+    "summary": "Utilities to work with HTML form elements.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Form", 
   "size": {

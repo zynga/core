@@ -26,8 +26,13 @@ apibrowser.callback({
       "name": "buildHash", 
       "doc": "<p>Returns a hash string from the given input parameters:</p>\n\n<ul>\n<li><code class=\"param\">type</code> Type of item to link to</li>\n<li><code class=\"param\">file</code> File to open (which contains the item)</li>\n<li><code class=\"param\">item</code> Item to open</li>\n</ul>\n", 
       "visibility": "public", 
+      "summary": "Returns a hash string from the given input parameters:   type Type of item to link to file File to open (which contains the item) item Item to open.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
@@ -36,7 +41,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "type", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }, 
         {
@@ -45,7 +54,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "file", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }, 
         {
@@ -53,7 +66,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "item", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }
       ], 
@@ -64,26 +81,33 @@ apibrowser.callback({
     }, 
     {
       "name": "callback", 
-      "sourceLink": "source:api.Browser~135", 
+      "doc": "<p>Callback method which should be used for loading JSONP-like <code class=\"param\">data</code>. The\ndata is identified and processed via the <code class=\"param\">id</code> given.</p>\n", 
       "visibility": "public", 
       "summary": "Callback method which should be used for loading JSONP-like data.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "data"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "id"
         }
       ], 
-      "doc": "<p>Callback method which should be used for loading JSONP-like <code class=\"param\">data</code>. The\ndata is identified and processed via the <code class=\"param\">id</code> given.</p>\n", 
+      "sourceLink": "source:api.Browser~135", 
       "line": 135, 
       "type": "Function", 
       "isFunction": true
@@ -94,13 +118,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Opens the given hash with an optional hint doToggle whether the action should lead to a toggling.", 
       "returns": [
-        "Call"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "hash"
         }, 
@@ -110,7 +142,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "doToggle", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
@@ -125,13 +160,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Parses the given hash and returns a map with the keys type, file and item.", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "hash"
         }
@@ -143,16 +185,17 @@ apibrowser.callback({
     }
   ], 
   "main": {
-    "doc": "<p>The main class of the API Browser.</p>\n", 
-    "line": 6, 
-    "type": "core.Class", 
     "name": "api.Browser", 
     "tags": [
       {
         "name": "asset", 
         "value": "api/*"
       }
-    ]
+    ], 
+    "doc": "<p>The main class of the API Browser.</p>\n", 
+    "summary": "The main class of the API Browser.", 
+    "line": 6, 
+    "type": "core.Class"
   }, 
   "id": "api.Browser", 
   "size": {

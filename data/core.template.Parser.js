@@ -6,13 +6,22 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the token tree of the given template text.", 
       "returns": [
-        "String[]"
+        {
+          "linkable": true, 
+          "array": true, 
+          "name": "String", 
+          "builtin": true
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "text"
         }, 
@@ -22,7 +31,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "strip", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
@@ -37,13 +49,22 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tokenizer for template text.", 
       "returns": [
-        "String[]"
+        {
+          "linkable": true, 
+          "array": true, 
+          "name": "String", 
+          "builtin": true
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "text"
         }, 
@@ -53,7 +74,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "strip", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
@@ -77,11 +101,12 @@ apibrowser.callback({
     "core.template.Compiler"
   ], 
   "main": {
-    "doc": "<p>This is the Parser of the template engine and transforms the template text into a tree of tokens.</p>\n", 
-    "line": 61, 
-    "type": "core.Module", 
     "name": "core.template.Parser", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>This is the Parser of the template engine and transforms the template text into a tree of tokens.</p>\n", 
+    "summary": "This is the Parser of the template engine and transforms the template text into a tree of tokens.", 
+    "line": 61, 
+    "type": "core.Module"
   }, 
   "id": "core.template.Parser", 
   "size": {

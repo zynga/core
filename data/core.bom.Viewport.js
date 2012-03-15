@@ -4,8 +4,12 @@ apibrowser.callback({
       "name": "getHeight", 
       "doc": "<p>Returns the viewport height</p>\n", 
       "visibility": "public", 
+      "summary": "Returns the viewport height.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "sourceLink": "source:core.bom.Viewport~24", 
       "line": 24, 
@@ -18,7 +22,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the viewport orientation.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:core.bom.Viewport~39", 
       "line": 39, 
@@ -29,8 +37,12 @@ apibrowser.callback({
       "name": "getWidth", 
       "doc": "<p>Returns the viewport width</p>\n", 
       "visibility": "public", 
+      "summary": "Returns the viewport width.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "sourceLink": "source:core.bom.Viewport~19", 
       "line": 19, 
@@ -41,8 +53,12 @@ apibrowser.callback({
       "name": "isLandscape", 
       "doc": "<p>Whether the viewport is in landscape orientation</p>\n", 
       "visibility": "public", 
+      "summary": "Whether the viewport is in landscape orientation.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "sourceLink": "source:core.bom.Viewport~29", 
       "line": 29, 
@@ -53,8 +69,12 @@ apibrowser.callback({
       "name": "isPortrait", 
       "doc": "<p>Whether the viewport is in portrait orientation</p>\n", 
       "visibility": "public", 
+      "summary": "Whether the viewport is in portrait orientation.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "sourceLink": "source:core.bom.Viewport~34", 
       "line": 34, 
@@ -73,11 +93,12 @@ apibrowser.callback({
     "core.bom.ScrollInto"
   ], 
   "main": {
-    "doc": "<p>Support for the browsers viewport. Also contains methods\nspecifically interesting for mobile devices like smartphones/tablets (orientation, etc.)</p>\n", 
-    "line": 16, 
-    "type": "core.Module", 
     "name": "core.bom.Viewport", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Support for the browsers viewport. Also contains methods\nspecifically interesting for mobile devices like smartphones/tablets (orientation, etc.)</p>\n", 
+    "summary": "Support for the browsers viewport.", 
+    "line": 16, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Viewport", 
   "size": {

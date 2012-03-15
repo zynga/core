@@ -6,20 +6,30 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the width and height of the given text with the given styles (supports fontFamily, fontSize, fontStyle and lineHeight).", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "text"
         }, 
         {
           "position": 1, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "styles"
         }, 
@@ -29,7 +39,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "width", 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ]
         }
       ], 
@@ -47,11 +61,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Utility class to work with text e.g. measuring, formatting, etc.</p>\n", 
-    "line": 28, 
-    "type": "core.Module", 
     "name": "core.bom.Text", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Utility class to work with text e.g. measuring, formatting, etc.</p>\n", 
+    "summary": "Utility class to work with text e.g.", 
+    "line": 28, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Text", 
   "size": {

@@ -79,7 +79,7 @@ apibrowser.callback({
   "tr": [
     "core.locale.Translate"
   ], 
-  "isBlank": [
+  "hyphenate": [
     "String", 
     "ext.sugar.String"
   ], 
@@ -176,7 +176,7 @@ apibrowser.callback({
     "Array", 
     "ext.sugar.Array"
   ], 
-  "hyphenate": [
+  "isBlank": [
     "String", 
     "ext.sugar.String"
   ], 

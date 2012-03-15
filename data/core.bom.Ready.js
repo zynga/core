@@ -2,14 +2,18 @@ apibrowser.callback({
   "statics": [
     {
       "name": "exec", 
-      "sourceLink": "source:core.bom.Ready~19", 
+      "doc": "<p>Executes the given <code class=\"param\">callback</code> (in given <code class=\"param\">context</code>)\nwhen the document is ready.</p>\n", 
       "visibility": "public", 
       "summary": "Executes the given callback (in given context) when the document is ready.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -18,11 +22,15 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }
       ], 
-      "doc": "<p>Executes the given <code class=\"param\">callback</code> (in given <code class=\"param\">context</code>)\nwhen the document is ready.</p>\n", 
+      "sourceLink": "source:core.bom.Ready~19", 
       "line": 19, 
       "type": "Function", 
       "isFunction": true
@@ -36,11 +44,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Easy wrapper on content loaded event registration</p>\n", 
-    "line": 13, 
-    "type": "core.Module", 
     "name": "core.bom.Ready", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Easy wrapper on content loaded event registration</p>\n", 
+    "summary": "Easy wrapper on content loaded event registration.", 
+    "line": 13, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Ready", 
   "size": {

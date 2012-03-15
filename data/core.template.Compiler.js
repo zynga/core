@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Translates the code tree from core.template.Parser#parse into actual JavaScript code (in form of a core.template.Template instance) to insert dynamic data fields.", 
       "returns": [
-        "core.template.Template"
+        {
+          "linkable": true, 
+          "name": "core.template.Template"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "text"
         }, 
@@ -22,7 +29,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "strip", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
@@ -45,11 +55,12 @@ apibrowser.callback({
     "api.Browser"
   ], 
   "main": {
-    "doc": "<p>This is the Compiler of the template engine and transforms the token tree into a compiled template instance.</p>\n", 
-    "line": 98, 
-    "type": "core.Module", 
     "name": "core.template.Compiler", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>This is the Compiler of the template engine and transforms the token tree into a compiled template instance.</p>\n", 
+    "summary": "This is the Compiler of the template engine and transforms the token tree into a compiled template instance.", 
+    "line": 98, 
+    "type": "core.Module"
   }, 
   "id": "core.template.Compiler", 
   "size": {

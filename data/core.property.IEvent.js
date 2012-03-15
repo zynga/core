@@ -9,33 +9,43 @@ apibrowser.callback({
   "members": [
     {
       "name": "fireEvent", 
-      "sourceLink": "source:core.property.IEvent~19", 
+      "doc": "<p>Fires the given event <code class=\"param\">type</code> with the data of the properties\ncurrent <code class=\"param\">value</code> and <code class=\"param\">old</code> value to the object&#39;s event system.</p>\n", 
       "visibility": "public", 
       "summary": "Fires the given event type with the data of the properties current value and old value to the object&#39;s event system.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "type"
         }, 
         {
           "position": 1, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }, 
         {
           "position": 2, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "old"
         }
       ], 
-      "doc": "<p>Fires the given event <code class=\"param\">type</code> with the data of the properties\ncurrent <code class=\"param\">value</code> and <code class=\"param\">old</code> value to the object&#39;s event system.</p>\n", 
+      "sourceLink": "source:core.property.IEvent~19", 
       "line": 19, 
       "type": "Function", 
       "isFunction": true
@@ -45,11 +55,12 @@ apibrowser.callback({
     "core.Class"
   ], 
   "main": {
-    "doc": "<p>For classes which use event firing properties.</p>\n", 
-    "line": 11, 
-    "type": "core.Interface", 
     "name": "core.property.IEvent", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>For classes which use event firing properties.</p>\n", 
+    "summary": "For classes which use event firing properties.", 
+    "line": 11, 
+    "type": "core.Interface"
   }, 
   "id": "core.property.IEvent", 
   "size": {

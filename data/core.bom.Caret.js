@@ -5,7 +5,11 @@ apibrowser.callback({
       "sourceLink": "source:core.bom.Caret~13", 
       "visibility": "public", 
       "returns": [
-        "Object"
+        {
+          "auto": true, 
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
@@ -14,9 +18,9 @@ apibrowser.callback({
         }
       ], 
       "isFunction": true, 
-      "errornous": true, 
+      "line": 13, 
       "type": "Function", 
-      "line": 13
+      "errornous": true
     }, 
     {
       "name": "setPosition", 
@@ -58,11 +62,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Caret query and manipulation API.</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.bom.Caret", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Caret query and manipulation API.</p>\n", 
+    "summary": "Caret query and manipulation API.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Caret", 
   "size": {

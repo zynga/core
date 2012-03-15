@@ -2,47 +2,61 @@ apibrowser.callback({
   "statics": [
     {
       "name": "reset", 
-      "sourceLink": "source:core.bom.Position~72", 
+      "doc": "<p>Resets the position of the given <code class=\"param\">element</code>.</p>\n", 
       "visibility": "public", 
       "summary": "Resets the position of the given element.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }
       ], 
-      "doc": "<p>Resets the position of the given <code class=\"param\">element</code>.</p>\n", 
+      "sourceLink": "source:core.bom.Position~72", 
       "line": 72, 
       "type": "Function", 
       "isFunction": true
     }, 
     {
       "name": "set", 
-      "sourceLink": "source:core.bom.Position~52", 
+      "doc": "<p>Positions the given <code class=\"param\">element</code> on coordinates <code class=\"param\">x</code>, <code class=\"param\">y</code> and <code class=\"param\">z</code>.\nOptionally supports zooming using the <code class=\"param\">zoom</code> parameter as well.</p>\n", 
       "visibility": "public", 
       "summary": "Positions the given element on coordinates x, y and z.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }, 
         {
           "position": 1, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "x"
         }, 
         {
           "position": 2, 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ], 
           "name": "y"
         }, 
@@ -52,7 +66,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "z", 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ]
         }, 
         {
@@ -61,11 +78,15 @@ apibrowser.callback({
           "optional": true, 
           "name": "zoom", 
           "type": [
-            "Number"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Number"
+            }
           ]
         }
       ], 
-      "doc": "<p>Positions the given <code class=\"param\">element</code> on coordinates <code class=\"param\">x</code>, <code class=\"param\">y</code> and <code class=\"param\">z</code>.\nOptionally supports zooming using the <code class=\"param\">zoom</code> parameter as well.</p>\n", 
+      "sourceLink": "source:core.bom.Position~52", 
       "line": 52, 
       "type": "Function", 
       "isFunction": true
@@ -85,11 +106,12 @@ apibrowser.callback({
     "core.dom.Node"
   ], 
   "main": {
-    "doc": "<p>High performance DOM node positioning with stacking and zooming support</p>\n", 
-    "line": 157, 
-    "type": "core.Module", 
     "name": "core.bom.Position", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>High performance DOM node positioning with stacking and zooming support</p>\n", 
+    "summary": "High performance DOM node positioning with stacking and zooming support.", 
+    "line": 157, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Position", 
   "size": {

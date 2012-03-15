@@ -14,11 +14,12 @@ apibrowser.callback({
     "api.test.Dog"
   ], 
   "main": {
-    "doc": "<p>This is a generic Interface for Mammalian Animals</p>\n\n<p>Those class of Animals have different things in\ncommon - compared to other animal classes like\n<a href=\"#api.test.Fish\"><code>api.test.Fish</code></a>.</p>\n", 
-    "line": 8, 
-    "type": "core.Interface", 
     "name": "api.test.Mammalian", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>This is a generic Interface for Mammalian Animals</p>\n\n<p>Those class of Animals have different things in\ncommon - compared to other animal classes like\n<a href=\"#api.test.Fish\"><code>api.test.Fish</code></a>.</p>\n", 
+    "summary": "This is a generic Interface for Mammalian Animals  Those class of Animals have different things in common - compared to other animal classes like api.test.Fish.", 
+    "line": 8, 
+    "type": "core.Interface"
   }, 
   "properties": [
     {

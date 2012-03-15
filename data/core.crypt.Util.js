@@ -6,13 +6,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts input of big-endian words to a string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "input"
         }
@@ -28,13 +36,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts input of little-endian words to a string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Array"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Array"
+            }
           ], 
           "name": "input"
         }
@@ -50,13 +66,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts a input to an array of big-endian words.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "input"
         }
@@ -72,13 +96,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Convert input to an array of little-endian words.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "input"
         }
@@ -102,11 +134,12 @@ apibrowser.callback({
     "core.crypt.SHA256"
   ], 
   "main": {
-    "doc": "<p>Utility collection used by the different checksum/hashing implementations.</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.crypt.Util", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Utility collection used by the different checksum/hashing implementations.</p>\n", 
+    "summary": "Utility collection used by the different checksum/hashing implementations.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.crypt.Util", 
   "size": {

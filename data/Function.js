@@ -10,13 +10,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Binds the function to the specific context with optionally bound arbitrary number of varargs.", 
       "returns": [
-        "Function"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Function"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ], 
           "name": "context"
         }, 
@@ -26,7 +34,10 @@ apibrowser.callback({
           "name": "varargs", 
           "optional": true, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ]
         }
       ], 
@@ -43,13 +54,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Debounces the given method.", 
       "returns": [
-        "Function"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Function"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "threshold"
         }, 
@@ -59,7 +77,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "execAsap", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 

@@ -2,14 +2,17 @@ apibrowser.callback({
   "statics": [
     {
       "name": "scroll", 
-      "sourceLink": "source:core.bom.ScrollInto~205", 
+      "doc": "<p>The method scrolls the <code class=\"param\">element</code> into view with\noptionally configured enforced alignments using <code class=\"param\">alignX</code>\nand <code class=\"param\">alignY</code>.</p>\n", 
       "visibility": "public", 
       "summary": "The method scrolls the element into view with optionally configured enforced alignments using alignX and alignY.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }, 
@@ -18,7 +21,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "alignX", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }, 
         {
@@ -26,25 +33,32 @@ apibrowser.callback({
           "optional": true, 
           "name": "alignY", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }
       ], 
-      "doc": "<p>The method scrolls the <code class=\"param\">element</code> into view with\noptionally configured enforced alignments using <code class=\"param\">alignX</code>\nand <code class=\"param\">alignY</code>.</p>\n", 
+      "sourceLink": "source:core.bom.ScrollInto~205", 
       "line": 205, 
       "type": "Function", 
       "isFunction": true
     }, 
     {
       "name": "scrollX", 
-      "sourceLink": "source:core.bom.ScrollInto~21", 
+      "doc": "<p>Scrolls the <code class=\"param\">element</code> into view (x-axis only).\nThe optional <code class=\"param\">align</code> could be configured with\n<code>left</code> or <code>right</code> to enforce alignment. The default behavior\nis to scroll with the minimum effort to make the element visible.</p>\n", 
       "visibility": "public", 
       "summary": "Scrolls the element into view (x-axis only).", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }, 
@@ -53,25 +67,32 @@ apibrowser.callback({
           "optional": true, 
           "name": "align", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }
       ], 
-      "doc": "<p>Scrolls the <code class=\"param\">element</code> into view (x-axis only).\nThe optional <code class=\"param\">align</code> could be configured with\n<code>left</code> or <code>right</code> to enforce alignment. The default behavior\nis to scroll with the minimum effort to make the element visible.</p>\n", 
+      "sourceLink": "source:core.bom.ScrollInto~21", 
       "line": 21, 
       "type": "Function", 
       "isFunction": true
     }, 
     {
       "name": "scrollY", 
-      "sourceLink": "source:core.bom.ScrollInto~113", 
+      "doc": "<p>Scrolls the <code class=\"param\">element</code> into view (y-axis only).\nThe optional <code class=\"param\">align</code> could be configured with\n<code>top</code> or <code>bottom</code> to enforce alignment. The default behavior\nis to scroll with the minimum effort to make the element visible.</p>\n", 
       "visibility": "public", 
       "summary": "Scrolls the element into view (y-axis only).", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }, 
@@ -80,11 +101,15 @@ apibrowser.callback({
           "optional": true, 
           "name": "align", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }
       ], 
-      "doc": "<p>Scrolls the <code class=\"param\">element</code> into view (y-axis only).\nThe optional <code class=\"param\">align</code> could be configured with\n<code>top</code> or <code>bottom</code> to enforce alignment. The default behavior\nis to scroll with the minimum effort to make the element visible.</p>\n", 
+      "sourceLink": "source:core.bom.ScrollInto~113", 
       "line": 113, 
       "type": "Function", 
       "isFunction": true
@@ -104,11 +129,12 @@ apibrowser.callback({
     "api.Browser"
   ], 
   "main": {
-    "doc": "<p>Offers a cross browser solution for <code>scrollIntoView</code> with good support\nfor doing a minimum effort scrolling which is not supported by native\nmethods.</p>\n", 
-    "line": 13, 
-    "type": "core.Module", 
     "name": "core.bom.ScrollInto", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Offers a cross browser solution for <code>scrollIntoView</code> with good support\nfor doing a minimum effort scrolling which is not supported by native\nmethods.</p>\n", 
+    "summary": "Offers a cross browser solution for scrollIntoView with good support for doing a minimum effort scrolling which is not supported by native methods.", 
+    "line": 13, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.ScrollInto", 
   "size": {

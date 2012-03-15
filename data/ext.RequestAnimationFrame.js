@@ -2,19 +2,22 @@ apibrowser.callback({
   "statics": [
     {
       "name": "cancelRequestAnimationFrame", 
-      "sourceLink": "source:ext.RequestAnimationFrame~92", 
+      "doc": "<p>Stops the animation scheduled under the given <code class=\"param\">handle</code>.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/DOM/window.requestAnimationFrame\">https://developer.mozilla.org/en/DOM/window.requestAnimationFrame</a></p>\n", 
       "visibility": "public", 
       "summary": "Stops the animation scheduled under the given handle.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "handle"
         }
       ], 
-      "doc": "<p>Stops the animation scheduled under the given <code class=\"param\">handle</code>.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/DOM/window.requestAnimationFrame\">https://developer.mozilla.org/en/DOM/window.requestAnimationFrame</a></p>\n", 
+      "sourceLink": "source:ext.RequestAnimationFrame~92", 
       "line": 92, 
       "type": "Function", 
       "isFunction": true
@@ -25,13 +28,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tells the browser that you wish to perform an animation; this requests that the browser schedule a repaint of the window for the next animation frame.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -40,7 +50,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "root", 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ]
         }
       ], 
@@ -65,6 +78,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds new style <code>requestAnimationFrame</code> API to browser engines which are missing it.</p>\n", 
+    "summary": "Adds new style requestAnimationFrame API to browser engines which are missing it.", 
     "line": 47, 
     "type": "core.Main"
   }, 

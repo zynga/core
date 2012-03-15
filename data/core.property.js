@@ -4,7 +4,8 @@ apibrowser.callback({
   "content": [
     {
       "link": "core.property.Core", 
-      "name": "Core"
+      "name": "Core", 
+      "summary": "Shared data for property system."
     }, 
     {
       "link": "core.property.Debug", 

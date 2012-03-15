@@ -9,18 +9,21 @@ apibrowser.callback({
         "name": "main"
       }
     ], 
-    "sourceLink": "source:api.mdn.Array~12", 
+    "doc": "<p>Creates a JavaScript Array.</p>\n\n<p>If the only argument passed to the Array constructor is an integer between 0 and 232-1 (inclusive),\na new JavaScript array is created with <code class=\"param\">arrayLength</code> number of elements.\nIf the argument is any other number, a RangeError exception is thrown.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array\">MDN Documentation</a></p>\n", 
+    "summary": "Creates a JavaScript Array.", 
     "init": "Array", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "Integer"
+          {
+            "name": "Integer"
+          }
         ], 
         "name": "arrayLength"
       }
     ], 
-    "doc": "<p>Creates a JavaScript Array.</p>\n\n<p>If the only argument passed to the Array constructor is an integer between 0 and 232-1 (inclusive),\na new JavaScript array is created with <code class=\"param\">arrayLength</code> number of elements.\nIf the argument is any other number, a RangeError exception is thrown.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array\">MDN Documentation</a></p>\n", 
+    "sourceLink": "source:api.mdn.Array~12", 
     "line": 12, 
     "isFunction": true
   }, 
@@ -36,6 +39,7 @@ apibrowser.callback({
       }
     ], 
     "doc": "<p>Creates a JavaScript Array.</p>\n\n<p>If the only argument passed to the Array constructor is an integer between 0 and 232-1 (inclusive),\na new JavaScript array is created with <code class=\"param\">arrayLength</code> number of elements.\nIf the argument is any other number, a RangeError exception is thrown.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array\">MDN Documentation</a></p>\n", 
+    "summary": "Creates a JavaScript Array.", 
     "line": 12, 
     "type": "core.Main"
   }, 

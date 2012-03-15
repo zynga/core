@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts the given args into an array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "arguments"
+            {
+              "pseudo": true, 
+              "name": "arguments"
+            }
           ], 
           "name": "args"
         }
@@ -41,13 +48,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the value at the given position.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "position"
         }
@@ -63,7 +76,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Clones the whole array and returns it.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "sourceLink": "source:ext.sugar.Array~85", 
       "line": 85, 
@@ -76,7 +93,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Filters out sparse fields (including all null/undefined values if nulls is true) and returns a new compacted array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
@@ -95,13 +116,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the array contains the given value.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }
@@ -117,7 +144,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a flattened, one-dimensional copy of the array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "sourceLink": "source:ext.sugar.Array~105", 
       "line": 105, 
@@ -130,13 +161,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Inserts and returns the given value at the given position.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }, 
@@ -146,7 +183,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "position", 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ]
         }
       ], 
@@ -161,7 +201,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the maximum number in the array.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "sourceLink": "source:ext.sugar.Array~36", 
       "line": 36, 
@@ -174,7 +218,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the minimum number in the array.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "sourceLink": "source:ext.sugar.Array~44", 
       "line": 44, 
@@ -183,10 +231,10 @@ apibrowser.callback({
     }, 
     {
       "name": "randomize", 
-      "doc": "<p>Randomizes the array via Fisher-Yates algorithm.</p>\n", 
+      "sourceLink": "source:ext.sugar.Array~125", 
       "visibility": "public", 
       "summary": "Randomizes the array via Fisher-Yates algorithm.", 
-      "sourceLink": "source:ext.sugar.Array~125", 
+      "doc": "<p>Randomizes the array via Fisher-Yates algorithm.</p>\n", 
       "line": 125, 
       "type": "Function", 
       "isFunction": true
@@ -197,13 +245,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Removes the given value (first occourence only) from the array and returns it.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }
@@ -219,13 +273,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Removes and returns the value at the given position.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "position"
         }
@@ -237,26 +297,32 @@ apibrowser.callback({
     }, 
     {
       "name": "removeRange", 
-      "sourceLink": "source:ext.sugar.Array~186", 
+      "doc": "<p>Removes a specific range (<code class=\"param\">from</code> &lt;-&gt; <code class=\"param\">to</code>) from the array. Supports negative indexes, too.</p>\n", 
       "visibility": "public", 
       "summary": "Removes a specific range (from &lt;-&gt; to) from the array.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "from"
         }, 
         {
           "position": 1, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "to"
         }
       ], 
-      "doc": "<p>Removes a specific range (<code class=\"param\">from</code> &lt;-&gt; <code class=\"param\">to</code>) from the array. Supports negative indexes, too.</p>\n", 
+      "sourceLink": "source:ext.sugar.Array~186", 
       "line": 186, 
       "type": "Function", 
       "isFunction": true
@@ -267,7 +333,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the sum of all values in the array.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "sourceLink": "source:ext.sugar.Array~52", 
       "line": 52, 
@@ -280,7 +350,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a new array with all elements that are unique.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "sourceLink": "source:ext.sugar.Array~151", 
       "line": 151, 
@@ -293,6 +367,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds useful non-standard extensions to the <code>Array.prototype</code> like <a href=\"#~min\"><code>min</code></a>, <a href=\"#~contains\"><code>contains</code></a> and <a href=\"#~remove\"><code>remove</code></a>.</p>\n", 
+    "summary": "Adds useful non-standard extensions to the Array.prototype like min, contains and remove.", 
     "line": 20, 
     "type": "core.Main"
   }, 

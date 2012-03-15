@@ -13,7 +13,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.String~123", 
       "summary": "Camelizes this string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Camelizes this string.</p>\n", 
       "type": "Function"
@@ -28,7 +32,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.String~102", 
       "summary": "Removes double spaces and line breaks.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Removes double spaces and line breaks.</p>\n", 
       "type": "Function"
@@ -40,13 +48,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the string contains the given substring.", 
       "returns": [
-        "Boolean"
+        {
+          "auto": true, 
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "substring"
         }
@@ -70,7 +86,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Decodes the string from Base64.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~32", 
       "fromLink": "member:ext.sugar.String~decodeBase64", 
@@ -88,7 +108,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.String~70", 
       "summary": "Decodes the string from UTF-8.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Decodes the string from UTF-8.</p>\n\n<p>Via: <a href=\"http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html\">http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html</a></p>\n", 
       "type": "Function"
@@ -106,7 +130,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Encodes the string as Base64.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "sourceLink": "source:ext.sugar.String~22", 
       "fromLink": "member:ext.sugar.String~encodeBase64", 
@@ -124,33 +152,45 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.String~60", 
       "summary": "Encodes the string as UTF-8.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Encodes the string as UTF-8.</p>\n\n<p>Via: <a href=\"http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html\">http://ecmanaut.blogspot.com/2006/07/encoding-decoding-utf8-in-javascript.html</a></p>\n", 
       "type": "Function"
     }, 
     {
-      "visibility": "public", 
-      "fromLink": "member:ext.sugar.String~endsWith", 
-      "line": 152, 
-      "isFunction": true, 
       "from": "ext.sugar.String", 
       "name": "endsWith", 
-      "sourceLink": "source:ext.sugar.String~152", 
+      "doc": "<p>Returns <code>true</code> if this string ends with the given substring <code class=\"param\">end</code></p>\n", 
+      "visibility": "public", 
+      "summary": "Returns true if this string ends with the given substring end.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "end"
         }
       ], 
-      "doc": "<p>Returns <code>true</code> if this string ends with the given substring <code class=\"param\">end</code></p>\n", 
-      "type": "Function"
+      "sourceLink": "source:ext.sugar.String~152", 
+      "fromLink": "member:ext.sugar.String~endsWith", 
+      "line": 152, 
+      "type": "Function", 
+      "isFunction": true
     }, 
     {
       "visibility": "public", 
@@ -162,7 +202,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.String~113", 
       "summary": "Returns a hyphenated copy of the original string e.g.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Returns a hyphenated copy of the original string e.g.</p>\n\n<ul>\n<li>camelCase =&gt; camel-case</li>\n<li>HelloWorld =&gt; -hello-world</li>\n</ul>\n", 
       "type": "Function"
@@ -177,7 +221,10 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.String~86", 
       "summary": "Returns true if the string has a length of 0 or contains only whitespace.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "doc": "<p>Returns true if the string has a length of 0 or contains only whitespace.</p>\n", 
       "type": "Function"
@@ -189,13 +236,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a new string which is a nr repeated copy of the original one.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "nr"
         }
@@ -207,69 +261,92 @@ apibrowser.callback({
       "isFunction": true
     }, 
     {
-      "returns": [
-        "String"
-      ], 
+      "visibility": "public", 
+      "fromLink": "member:ext.sugar.String~reverse", 
+      "line": 94, 
+      "isFunction": true, 
       "from": "ext.sugar.String", 
       "name": "reverse", 
       "sourceLink": "source:ext.sugar.String~94", 
-      "fromLink": "member:ext.sugar.String~reverse", 
+      "summary": "Reverses the string.", 
+      "returns": [
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
+      ], 
       "doc": "<p>Reverses the string</p>\n", 
-      "line": 94, 
-      "type": "Function", 
-      "isFunction": true, 
-      "visibility": "public"
+      "type": "Function"
     }, 
     {
-      "visibility": "public", 
-      "fromLink": "member:ext.sugar.String~startsWith", 
-      "line": 144, 
-      "isFunction": true, 
       "from": "ext.sugar.String", 
       "name": "startsWith", 
-      "sourceLink": "source:ext.sugar.String~144", 
+      "doc": "<p>Returns <code>true</code> if this string starts with the given substring <code class=\"param\">begin</code></p>\n", 
+      "visibility": "public", 
+      "summary": "Returns true if this string starts with the given substring begin.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "begin"
         }
       ], 
-      "doc": "<p>Returns <code>true</code> if this string starts with the given substring <code class=\"param\">begin</code></p>\n", 
-      "type": "Function"
+      "sourceLink": "source:ext.sugar.String~144", 
+      "fromLink": "member:ext.sugar.String~startsWith", 
+      "line": 144, 
+      "type": "Function", 
+      "isFunction": true
     }, 
     {
-      "returns": [
-        "String"
-      ], 
+      "visibility": "public", 
+      "fromLink": "member:ext.sugar.String~toHex", 
+      "line": 40, 
+      "isFunction": true, 
       "from": "ext.sugar.String", 
       "name": "toHex", 
       "sourceLink": "source:ext.sugar.String~40", 
-      "fromLink": "member:ext.sugar.String~toHex", 
+      "summary": "Converts the string into a hex string.", 
+      "returns": [
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
+      ], 
       "doc": "<p>Converts the string into a hex string</p>\n", 
-      "line": 40, 
-      "type": "Function", 
-      "isFunction": true, 
-      "visibility": "public"
+      "type": "Function"
     }, 
     {
-      "returns": [
-        "String"
-      ], 
+      "visibility": "public", 
+      "fromLink": "member:ext.StringTrim~trim", 
+      "line": 30, 
+      "isFunction": true, 
       "from": "ext.StringTrim", 
       "name": "trim", 
       "sourceLink": "source:ext.StringTrim~30", 
-      "fromLink": "member:ext.StringTrim~trim", 
+      "summary": "Implements trim according to // ES5 15.5.4.20 (http://es5.github.com/#x15.5.4.20).", 
+      "returns": [
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
+      ], 
       "doc": "<p>Implements <code>trim</code> according to // ES5 15.5.4.20 (<a href=\"http://es5.github.com/#x15.5.4.20\">http://es5.github.com/#x15.5.4.20</a>)</p>\n", 
-      "line": 30, 
-      "type": "Function", 
-      "isFunction": true, 
-      "visibility": "public"
+      "type": "Function"
     }, 
     {
       "visibility": "public", 
@@ -281,7 +358,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.StringTrim~37", 
       "summary": "Trims whitespace from the left side of the string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Trims whitespace from the left side of the string. Non standard extension of JavaScript 1.8.1.</p>\n", 
       "type": "Function"
@@ -296,7 +377,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.StringTrim~44", 
       "summary": "Trims whitespace from the right side of the string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Trims whitespace from the right side of the string. Non standard extension of JavaScript 1.8.1.</p>\n", 
       "type": "Function"

@@ -29,7 +29,8 @@ apibrowser.callback({
     }, 
     {
       "link": "core.Module", 
-      "name": "Module"
+      "name": "Module", 
+      "summary": "Declarations of simple modules with static members."
     }, 
     {
       "link": "core.crypt", 

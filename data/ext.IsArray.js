@@ -6,13 +6,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Implements ES5 isArray method to verify whether value is an Array.", 
       "returns": [
-        "Boolean"
+        {
+          "auto": true, 
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }
@@ -38,6 +45,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds the pretty essential <code>Array.isArray()</code> method from ES5 if it is missing.</p>\n", 
+    "summary": "Adds the pretty essential Array.isArray() method from ES5 if it is missing.", 
     "line": 9, 
     "type": "core.Main"
   }, 

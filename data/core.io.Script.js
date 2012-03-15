@@ -3,29 +3,38 @@ apibrowser.callback({
     {
       "constant": true, 
       "name": "SUPPORTS_PARALLEL", 
-      "sourceLink": "source:core.io.Script~33", 
-      "visibility": "public", 
       "doc": "<p>Whether the loader supports parallel requests</p>\n", 
+      "visibility": "public", 
+      "summary": "Whether the loader supports parallel requests.", 
+      "sourceLink": "source:core.io.Script~33", 
       "line": 33, 
       "type": "Boolean"
     }, 
     {
       "name": "load", 
-      "sourceLink": "source:core.io.Script~40", 
+      "doc": "<p>Loads a JavaScript file from the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in <code class=\"param\">context</code>) when the script was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled..</p>\n", 
       "visibility": "public", 
       "summary": "Loads a JavaScript file from the given uri and fires a callback (in context) when the script was loaded.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "uri"
         }, 
         {
           "position": 1, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "callback"
         }, 
@@ -34,7 +43,11 @@ apibrowser.callback({
           "optional": true, 
           "name": "context", 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ]
         }, 
         {
@@ -43,11 +56,14 @@ apibrowser.callback({
           "optional": true, 
           "name": "nocache", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
-      "doc": "<p>Loads a JavaScript file from the given <code class=\"param\">uri</code> and fires a <code class=\"param\">callback</code> (in <code class=\"param\">context</code>) when the script was loaded.\nOptionally appends an random <code>GET</code> parameter to omit caching when <code class=\"param\">nocache</code> is enabled..</p>\n", 
+      "sourceLink": "source:core.io.Script~40", 
       "line": 40, 
       "type": "Function", 
       "isFunction": true
@@ -70,11 +86,12 @@ apibrowser.callback({
     "core.io.Queue"
   ], 
   "main": {
-    "doc": "<p>Generic script loader for features. Could be used for loading feature/class packages after initial load.</p>\n\n<p>(though limited feature set and file registration not useful for data transaction)</p>\n", 
-    "line": 30, 
-    "type": "core.Module", 
     "name": "core.io.Script", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Generic script loader for features. Could be used for loading feature/class packages after initial load.</p>\n\n<p>(though limited feature set and file registration not useful for data transaction)</p>\n", 
+    "summary": "Generic script loader for features.", 
+    "line": 30, 
+    "type": "core.Module"
   }, 
   "id": "core.io.Script", 
   "size": {

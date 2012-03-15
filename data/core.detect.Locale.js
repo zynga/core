@@ -3,10 +3,10 @@ apibrowser.callback({
     {
       "constant": true, 
       "name": "VALUE", 
-      "sourceLink": "source:core.detect.Locale~23", 
+      "doc": "<p>Locale string as configured by the user e.g. <code>de_AT</code>, <code>es_ES</code> or short like <code>de</code></p>\n", 
       "visibility": "public", 
       "summary": "Locale string as configured by the user e.g.", 
-      "doc": "<p>Locale string as configured by the user e.g. <code>de_AT</code>, <code>es_ES</code> or short like <code>de</code></p>\n", 
+      "sourceLink": "source:core.detect.Locale~23", 
       "line": 23, 
       "type": "String"
     }
@@ -19,11 +19,12 @@ apibrowser.callback({
     "core.Module"
   ], 
   "main": {
-    "doc": "<p>Detects browser language settings</p>\n", 
-    "line": 11, 
-    "type": "core.Module", 
     "name": "core.detect.Locale", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Detects browser language settings</p>\n", 
+    "summary": "Detects browser language settings.", 
+    "line": 11, 
+    "type": "core.Module"
   }, 
   "id": "core.detect.Locale", 
   "size": {

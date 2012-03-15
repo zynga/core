@@ -6,20 +6,31 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the value of the given property name on the given element.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
@@ -29,7 +40,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "computed", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
@@ -44,20 +58,30 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns an integer representation of the given style property name on the given element.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
@@ -67,7 +91,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "computed", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
@@ -78,10 +105,10 @@ apibrowser.callback({
     }, 
     {
       "name": "names", 
-      "doc": "<p>Caches CSS property names to browser specific names. Can be used as a fast lookup alternative to <a href=\"#~property\"><code>property</code></a>.</p>\n", 
+      "sourceLink": "source:core.bom.Style~11", 
       "visibility": "public", 
       "summary": "Caches CSS property names to browser specific names.", 
-      "sourceLink": "source:core.bom.Style~11", 
+      "doc": "<p>Caches CSS property names to browser specific names. Can be used as a fast lookup alternative to <a href=\"#~property\"><code>property</code></a>.</p>\n", 
       "line": 11, 
       "type": "Map"
     }, 
@@ -91,13 +118,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the supported property (e.g.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }
@@ -109,22 +144,32 @@ apibrowser.callback({
     }, 
     {
       "name": "set", 
-      "sourceLink": "source:core.bom.Style~109", 
+      "doc": "<p>Sets one or multiple style properties on the given <code class=\"param\">element</code>. If <code class=\"param\">name</code> is a <code>String</code>\nthe third parameter <code class=\"param\">value</code> defines the value to apply. Alternatively <code class=\"param\">name</code> can be a <code>Map</code> which defines\nall properties to set.</p>\n", 
       "visibility": "public", 
       "summary": "Sets one or multiple style properties on the given element.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Element"
+            {
+              "linkable": true, 
+              "name": "Element"
+            }
           ], 
           "name": "element"
         }, 
         {
           "position": 1, 
           "type": [
-            "String", 
-            "Map"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }, 
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "name"
         }, 
@@ -133,7 +178,7 @@ apibrowser.callback({
           "name": "value"
         }
       ], 
-      "doc": "<p>Sets one or multiple style properties on the given <code class=\"param\">element</code>. If <code class=\"param\">name</code> is a <code>String</code>\nthe third parameter <code class=\"param\">value</code> defines the value to apply. Alternatively <code class=\"param\">name</code> can be a <code>Map</code> which defines\nall properties to set.</p>\n", 
+      "sourceLink": "source:core.bom.Style~109", 
       "line": 109, 
       "type": "Function", 
       "isFunction": true
@@ -154,11 +199,12 @@ apibrowser.callback({
     "core.bom.ScrollInto"
   ], 
   "main": {
-    "doc": "<p>Utility class for working with HTML style properties (setting/getting). Automatically figures out the\ncorrect property name when the engine does not yet support the specified name, but a vendor prefixed one.</p>\n", 
-    "line": 55, 
-    "type": "core.Module", 
     "name": "core.bom.Style", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Utility class for working with HTML style properties (setting/getting). Automatically figures out the\ncorrect property name when the engine does not yet support the specified name, but a vendor prefixed one.</p>\n", 
+    "summary": "Utility class for working with HTML style properties (setting/getting).", 
+    "line": 55, 
+    "type": "core.Module"
   }, 
   "id": "core.bom.Style", 
   "size": {

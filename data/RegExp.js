@@ -2,20 +2,26 @@ apibrowser.callback({
   "package": "", 
   "basename": "RegExp", 
   "construct": {
+    "sourceLink": "source:api.mdn.RegExp~6", 
     "init": "RegExp", 
-    "doc": "<p>Creates a regular expression object for matching text with a <code class=\"param\">pattern</code> and optional <code class=\"param\">flags</code>.</p>\n", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "String"
+          {
+            "builtin": true, 
+            "name": "String"
+          }
         ], 
         "name": "pattern"
       }, 
       {
         "position": 1, 
         "type": [
-          "String"
+          {
+            "builtin": true, 
+            "name": "String"
+          }
         ], 
         "name": "flags"
       }
@@ -25,9 +31,10 @@ apibrowser.callback({
         "name": "main"
       }
     ], 
-    "sourceLink": "source:api.mdn.RegExp~6", 
+    "doc": "<p>Creates a regular expression object for matching text with a <code class=\"param\">pattern</code> and optional <code class=\"param\">flags</code>.</p>\n", 
     "line": 6, 
-    "isFunction": true
+    "isFunction": true, 
+    "summary": "Creates a regular expression object for matching text with a pattern and optional flags."
   }, 
   "uses": [], 
   "members": [
@@ -38,13 +45,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Executes a search for a match in its string parameter.", 
       "returns": [
-        "Object"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Object"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "string"
         }
@@ -58,9 +73,9 @@ apibrowser.callback({
     {
       "from": "api.mdn.RegExp", 
       "name": "global", 
-      "sourceLink": "source:api.mdn.RegExp~11", 
-      "fromLink": "member:api.mdn.RegExp~global", 
       "doc": "<p>Whether to test the regular expression against all possible matches in a string, or only against the first.</p>\n", 
+      "fromLink": "member:api.mdn.RegExp~global", 
+      "sourceLink": "source:api.mdn.RegExp~11", 
       "line": 11, 
       "type": "Boolean", 
       "visibility": "public", 
@@ -69,9 +84,9 @@ apibrowser.callback({
     {
       "from": "api.mdn.RegExp", 
       "name": "ignoreCase", 
-      "sourceLink": "source:api.mdn.RegExp~14", 
-      "fromLink": "member:api.mdn.RegExp~ignoreCase", 
       "doc": "<p>Whether to ignore case while attempting a match in a string.</p>\n", 
+      "fromLink": "member:api.mdn.RegExp~ignoreCase", 
+      "sourceLink": "source:api.mdn.RegExp~14", 
       "line": 14, 
       "type": "Boolean", 
       "visibility": "public", 
@@ -80,9 +95,9 @@ apibrowser.callback({
     {
       "from": "api.mdn.RegExp", 
       "name": "lastIndex", 
-      "sourceLink": "source:api.mdn.RegExp~17", 
-      "fromLink": "member:api.mdn.RegExp~lastIndex", 
       "doc": "<p>The index at which to start the next match.</p>\n", 
+      "fromLink": "member:api.mdn.RegExp~lastIndex", 
+      "sourceLink": "source:api.mdn.RegExp~17", 
       "line": 17, 
       "type": "Integer", 
       "visibility": "public", 
@@ -91,9 +106,9 @@ apibrowser.callback({
     {
       "from": "api.mdn.RegExp", 
       "name": "multiline", 
-      "sourceLink": "source:api.mdn.RegExp~20", 
-      "fromLink": "member:api.mdn.RegExp~multiline", 
       "doc": "<p>Whether or not to search in strings across multiple lines.</p>\n", 
+      "fromLink": "member:api.mdn.RegExp~multiline", 
+      "sourceLink": "source:api.mdn.RegExp~20", 
       "line": 20, 
       "type": "Boolean", 
       "visibility": "public", 
@@ -102,9 +117,9 @@ apibrowser.callback({
     {
       "from": "api.mdn.RegExp", 
       "name": "source", 
-      "sourceLink": "source:api.mdn.RegExp~23", 
-      "fromLink": "member:api.mdn.RegExp~source", 
       "doc": "<p>The text of the pattern.</p>\n", 
+      "fromLink": "member:api.mdn.RegExp~source", 
+      "sourceLink": "source:api.mdn.RegExp~23", 
       "line": 23, 
       "type": "String", 
       "visibility": "public", 
@@ -117,13 +132,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tests for a match in its string parameter.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "string"
         }
@@ -144,7 +166,10 @@ apibrowser.callback({
       "sourceLink": "source:api.mdn.RegExp~32", 
       "summary": "Returns an object literal representing the specified object; you can use this value to create a new object.", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "doc": "<p>Returns an object literal representing the specified object; you can use this value to create a new object.</p>\n", 
       "type": "Function"
@@ -159,7 +184,11 @@ apibrowser.callback({
       "sourceLink": "source:api.mdn.RegExp~35", 
       "summary": "Returns a string representing the specified object.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "doc": "<p>Returns a string representing the specified object.</p>\n", 
       "type": "Function"

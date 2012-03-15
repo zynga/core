@@ -3,29 +3,37 @@ apibrowser.callback({
     {
       "constant": true, 
       "name": "TYPES", 
-      "sourceLink": "source:core.Main~94", 
-      "visibility": "public", 
       "doc": "<p>Set of types which are supported</p>\n", 
+      "visibility": "public", 
+      "summary": "Set of types which are supported.", 
+      "sourceLink": "source:core.Main~94", 
       "line": 94, 
       "type": "Array"
     }, 
     {
       "name": "addMembers", 
-      "sourceLink": "source:core.Main~228", 
+      "doc": "<p>Add <code class=\"param\">members</code> to the prototype of the object found under the given <code class=\"param\">name</code>.\nIt is possible to control whether to <code class=\"param\">keep</code> existing members.</p>\n", 
       "visibility": "public", 
       "summary": "Add members to the prototype of the object found under the given name.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
         {
           "position": 1, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "members"
         }, 
@@ -35,32 +43,42 @@ apibrowser.callback({
           "optional": true, 
           "name": "keep", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
-      "doc": "<p>Add <code class=\"param\">members</code> to the prototype of the object found under the given <code class=\"param\">name</code>.\nIt is possible to control whether to <code class=\"param\">keep</code> existing members.</p>\n", 
+      "sourceLink": "source:core.Main~228", 
       "line": 228, 
       "type": "Function", 
       "isFunction": true
     }, 
     {
       "name": "addStatics", 
-      "sourceLink": "source:core.Main~205", 
+      "doc": "<p>Add <code class=\"param\">statics</code> to the object found under the given <code class=\"param\">name</code>.\nIt is possible to control whether to <code class=\"param\">keep</code> existing statics.</p>\n", 
       "visibility": "public", 
       "summary": "Add statics to the object found under the given name.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
         {
           "position": 1, 
           "type": [
-            "Map"
+            {
+              "linkable": true, 
+              "name": "Map"
+            }
           ], 
           "name": "statics"
         }, 
@@ -70,11 +88,14 @@ apibrowser.callback({
           "optional": true, 
           "name": "keep", 
           "type": [
-            "Boolean"
+            {
+              "builtin": true, 
+              "name": "Boolean"
+            }
           ]
         }
       ], 
-      "doc": "<p>Add <code class=\"param\">statics</code> to the object found under the given <code class=\"param\">name</code>.\nIt is possible to control whether to <code class=\"param\">keep</code> existing statics.</p>\n", 
+      "sourceLink": "source:core.Main~205", 
       "line": 205, 
       "type": "Function", 
       "isFunction": true
@@ -85,13 +106,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Clears the object under the given name (including name cache) and returns if that was successful.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }
@@ -107,21 +135,37 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Declares the given name and stores the given object onto it.", 
       "returns": [
-        "Object"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Object"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }, 
         {
           "position": 1, 
           "type": [
-            "Object", 
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }, 
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "object"
         }
@@ -137,20 +181,30 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the given value is of the given type.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "type"
         }
@@ -166,15 +220,31 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Resolves a given name into the item stored unter it.", 
       "returns": [
-        "Object", 
-        "Function", 
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Object"
+        }, 
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Function"
+        }, 
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "name"
         }
@@ -232,11 +302,12 @@ apibrowser.callback({
     "ext.sugar.String"
   ], 
   "main": {
-    "doc": "<p>Useful root methods to add members to objects</p>\n\n<p>Loading this class also adds a few essential fixes for different engines.</p>\n", 
-    "line": 88, 
-    "type": "core.Main", 
     "name": "core.Main", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Useful root methods to add members to objects</p>\n\n<p>Loading this class also adds a few essential fixes for different engines.</p>\n", 
+    "summary": "Useful root methods to add members to objects  Loading this class also adds a few essential fixes for different engines.", 
+    "line": 88, 
+    "type": "core.Main"
   }, 
   "id": "core.Main", 
   "size": {

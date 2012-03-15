@@ -2,14 +2,17 @@ apibrowser.callback({
   "statics": [
     {
       "name": "assertIsClass", 
-      "sourceLink": "source:core.Class~398", 
+      "doc": "<p>Throws an error with a custom <code class=\"param\">message</code> when the given <code class=\"param\">object</code> is not a class.</p>\n", 
       "visibility": "public", 
       "summary": "Throws an error with a custom message when the given object is not a class.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "object"
         }, 
@@ -18,11 +21,15 @@ apibrowser.callback({
           "optional": true, 
           "name": "message", 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ]
         }
       ], 
-      "doc": "<p>Throws an error with a custom <code class=\"param\">message</code> when the given <code class=\"param\">object</code> is not a class.</p>\n", 
+      "sourceLink": "source:core.Class~398", 
       "line": 398, 
       "type": "Function", 
       "isFunction": true
@@ -31,14 +38,22 @@ apibrowser.callback({
       "name": "getByName", 
       "doc": "<p>Resolves a given <code class=\"param\">className</code></p>\n", 
       "visibility": "public", 
+      "summary": "Resolves a given className.", 
       "returns": [
-        "core.Class"
+        {
+          "linkable": true, 
+          "name": "core.Class"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "className"
         }
@@ -54,13 +69,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a map of all events and their type of the given class (cls).", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "core.Class"
+            {
+              "linkable": true, 
+              "name": "core.Class"
+            }
           ], 
           "name": "cls"
         }
@@ -76,13 +97,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a map of all properties and their configuration supported by the given class (cls).", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "core.Class"
+            {
+              "linkable": true, 
+              "name": "core.Class"
+            }
           ], 
           "name": "cls"
         }
@@ -98,13 +125,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns all property features used in the given class (cls).", 
       "returns": [
-        "Map"
+        {
+          "linkable": true, 
+          "name": "Map"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "core.Class"
+            {
+              "linkable": true, 
+              "name": "core.Class"
+            }
           ], 
           "name": "cls"
         }
@@ -120,20 +153,29 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the first class includes the second one.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "core.Class"
+            {
+              "linkable": true, 
+              "name": "core.Class"
+            }
           ], 
           "name": "cls"
         }, 
         {
           "position": 1, 
           "type": [
-            "core.Class"
+            {
+              "linkable": true, 
+              "name": "core.Class"
+            }
           ], 
           "name": "inc"
         }
@@ -149,13 +191,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns whether the given object is a class.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Object"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Object"
+            }
           ], 
           "name": "object"
         }
@@ -174,25 +223,31 @@ apibrowser.callback({
     "es5"
   ], 
   "construct": {
-    "doc": "<p>Rich class system for declaring powerful classes in JavaScript. The declarations supports a lot of convenience\nfeatures and unifies all features under a simple declarative API which can be easily processed by 3rd party tools.</p>\n\n<p>Defines a new class with <code class=\"param\">name</code> using the given <code class=\"param\">config</code>.</p>\n", 
+    "sourceLink": "source:core.Class~144", 
+    "summary": "Rich class system for declaring powerful classes in JavaScript.", 
     "init": "core.Class", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "String"
+          {
+            "builtin": true, 
+            "name": "String"
+          }
         ], 
         "name": "name"
       }, 
       {
         "position": 1, 
         "type": [
-          "Map"
+          {
+            "name": "Map"
+          }
         ], 
         "name": "config"
       }
     ], 
-    "sourceLink": "source:core.Class~144", 
+    "doc": "<p>Rich class system for declaring powerful classes in JavaScript. The declarations supports a lot of convenience\nfeatures and unifies all features under a simple declarative API which can be easily processed by 3rd party tools.</p>\n\n<p>Defines a new class with <code class=\"param\">name</code> using the given <code class=\"param\">config</code>.</p>\n", 
     "line": 144, 
     "isFunction": true
   }, 
@@ -226,11 +281,12 @@ apibrowser.callback({
     "core.template.Template"
   ], 
   "main": {
-    "doc": "<p>Rich class system for declaring powerful classes in JavaScript. The declarations supports a lot of convenience\nfeatures and unifies all features under a simple declarative API which can be easily processed by 3rd party tools.</p>\n\n<p>Defines a new class with <code class=\"param\">name</code> using the given <code class=\"param\">config</code>.</p>\n", 
-    "line": 144, 
-    "type": "core.Main", 
     "name": "core.Class", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>Rich class system for declaring powerful classes in JavaScript. The declarations supports a lot of convenience\nfeatures and unifies all features under a simple declarative API which can be easily processed by 3rd party tools.</p>\n\n<p>Defines a new class with <code class=\"param\">name</code> using the given <code class=\"param\">config</code>.</p>\n", 
+    "summary": "Rich class system for declaring powerful classes in JavaScript.", 
+    "line": 144, 
+    "type": "core.Main"
   }, 
   "id": "core.Class", 
   "size": {

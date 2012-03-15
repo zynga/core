@@ -18,6 +18,7 @@ apibrowser.callback({
       }
     ], 
     "doc": "<p>A subset of <a href=\"#Number\"><code>Number</code></a> which only allows natural numbers (positive and negative).</p>\n", 
+    "summary": "A subset of Number which only allows natural numbers (positive and negative).", 
     "line": 6, 
     "type": "core.Main"
   }, 

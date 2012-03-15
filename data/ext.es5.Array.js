@@ -13,13 +13,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tests whether all elements in the array pass the test implemented by the provided function fun.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -35,13 +42,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a new array with all elements that pass the test implemented by the provided function fun.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -53,19 +68,23 @@ apibrowser.callback({
     }, 
     {
       "name": "forEach", 
-      "sourceLink": "source:ext.es5.Array~55", 
+      "doc": "<p>Executes a provided function <code class=\"param\">fun</code> once per array element.</p>\n\n<p>ES5 15.4.4.18: <a href=\"http://es5.github.com/#x15.4.4.18\">http://es5.github.com/#x15.4.4.18</a>\n<a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach\">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach</a></p>\n", 
       "visibility": "public", 
       "summary": "Executes a provided function fun once per array element.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
       ], 
-      "doc": "<p>Executes a provided function <code class=\"param\">fun</code> once per array element.</p>\n\n<p>ES5 15.4.4.18: <a href=\"http://es5.github.com/#x15.4.4.18\">http://es5.github.com/#x15.4.4.18</a>\n<a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach\">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach</a></p>\n", 
+      "sourceLink": "source:ext.es5.Array~55", 
       "line": 55, 
       "type": "Function", 
       "isFunction": true
@@ -76,13 +95,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the first index at which a given element sought can be found in the array, or -1 if it is not present.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "sought"
         }
@@ -98,13 +123,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the last index at which a given element sought can be found in the array, or -1 if it is not present.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "sought"
         }
@@ -120,13 +151,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a new array with the results of calling a provided function fun on every element in this array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -142,13 +181,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Apply a function fun against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -164,13 +210,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Apply a function fun simultaneously against two values of the array (from right-to-left) as to reduce it to a single value.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -186,13 +239,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tests whether some element in the array passes the test implemented by the provided function fun.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -212,6 +272,7 @@ apibrowser.callback({
     "extension": true, 
     "tags": [], 
     "doc": "<p>Adds ES5 Array methods if these are not implemented by the engine.</p>\n", 
+    "summary": "Adds ES5 Array methods if these are not implemented by the engine.", 
     "line": 47, 
     "type": "core.Main"
   }, 

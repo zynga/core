@@ -7,13 +7,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Converts the given args into an array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "arguments"
+            {
+              "pseudo": true, 
+              "name": "arguments"
+            }
           ], 
           "name": "args"
         }
@@ -31,13 +38,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Implements ES5 isArray method to verify whether value is an Array.", 
       "returns": [
-        "Boolean"
+        {
+          "auto": true, 
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }
@@ -52,13 +66,15 @@ apibrowser.callback({
   "package": "", 
   "basename": "Array", 
   "construct": {
+    "sourceLink": "source:api.mdn.Array~12", 
     "init": "Array", 
-    "doc": "<p>Creates a JavaScript Array.</p>\n\n<p>If the only argument passed to the Array constructor is an integer between 0 and 232-1 (inclusive),\na new JavaScript array is created with <code class=\"param\">arrayLength</code> number of elements.\nIf the argument is any other number, a RangeError exception is thrown.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array\">MDN Documentation</a></p>\n", 
     "params": [
       {
         "position": 0, 
         "type": [
-          "Integer"
+          {
+            "name": "Integer"
+          }
         ], 
         "name": "arrayLength"
       }
@@ -68,9 +84,10 @@ apibrowser.callback({
         "name": "main"
       }
     ], 
-    "sourceLink": "source:api.mdn.Array~12", 
+    "doc": "<p>Creates a JavaScript Array.</p>\n\n<p>If the only argument passed to the Array constructor is an integer between 0 and 232-1 (inclusive),\na new JavaScript array is created with <code class=\"param\">arrayLength</code> number of elements.\nIf the argument is any other number, a RangeError exception is thrown.</p>\n\n<p>See also: <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array\">MDN Documentation</a></p>\n", 
     "line": 12, 
-    "isFunction": true
+    "isFunction": true, 
+    "summary": "Creates a JavaScript Array."
   }, 
   "uses": [], 
   "members": [
@@ -81,13 +98,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the value at the given position.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "position"
         }
@@ -108,7 +131,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.Array~85", 
       "summary": "Clones the whole array and returns it.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "doc": "<p>Clones the whole array and returns it.</p>\n", 
       "type": "Function"
@@ -120,7 +147,11 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Filters out sparse fields (including all null/undefined values if nulls is true) and returns a new compacted array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
@@ -141,13 +172,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Whether the array contains the given value.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }
@@ -165,13 +202,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tests whether all elements in the array pass the test implemented by the provided function fun.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -189,13 +233,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a new array with all elements that pass the test implemented by the provided function fun.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -216,7 +268,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.Array~105", 
       "summary": "Returns a flattened, one-dimensional copy of the array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "doc": "<p>Returns a flattened, one-dimensional copy of the array.</p>\n", 
       "type": "Function"
@@ -228,18 +284,22 @@ apibrowser.callback({
       "isFunction": true, 
       "from": "ext.es5.Array", 
       "name": "forEach", 
-      "doc": "<p>Executes a provided function <code class=\"param\">fun</code> once per array element.</p>\n\n<p>ES5 15.4.4.18: <a href=\"http://es5.github.com/#x15.4.4.18\">http://es5.github.com/#x15.4.4.18</a>\n<a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach\">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach</a></p>\n", 
+      "sourceLink": "source:ext.es5.Array~55", 
       "summary": "Executes a provided function fun once per array element.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
       ], 
-      "sourceLink": "source:ext.es5.Array~55", 
+      "doc": "<p>Executes a provided function <code class=\"param\">fun</code> once per array element.</p>\n\n<p>ES5 15.4.4.18: <a href=\"http://es5.github.com/#x15.4.4.18\">http://es5.github.com/#x15.4.4.18</a>\n<a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach\">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach</a></p>\n", 
       "type": "Function"
     }, 
     {
@@ -249,13 +309,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the first index at which a given element sought can be found in the array, or -1 if it is not present.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "sought"
         }
@@ -273,13 +339,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Inserts and returns the given value at the given position.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }, 
@@ -289,7 +361,10 @@ apibrowser.callback({
           "optional": true, 
           "name": "position", 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ]
         }
       ], 
@@ -306,13 +381,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the last index at which a given element sought can be found in the array, or -1 if it is not present.", 
       "returns": [
-        "Integer"
+        {
+          "linkable": true, 
+          "name": "Integer"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "sought"
         }
@@ -330,13 +411,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Creates a new array with the results of calling a provided function fun on every element in this array.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -357,7 +446,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.Array~36", 
       "summary": "Returns the maximum number in the array.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "doc": "<p>Returns the maximum number in the array.</p>\n", 
       "type": "Function"
@@ -372,7 +465,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.Array~44", 
       "summary": "Returns the minimum number in the array.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "doc": "<p>Returns the minimum number in the array.</p>\n", 
       "type": "Function"
@@ -380,9 +477,9 @@ apibrowser.callback({
     {
       "from": "ext.sugar.Array", 
       "name": "randomize", 
-      "sourceLink": "source:ext.sugar.Array~125", 
-      "fromLink": "member:ext.sugar.Array~randomize", 
       "doc": "<p>Randomizes the array via Fisher-Yates algorithm.</p>\n", 
+      "fromLink": "member:ext.sugar.Array~randomize", 
+      "sourceLink": "source:ext.sugar.Array~125", 
       "line": 125, 
       "type": "Function", 
       "isFunction": true, 
@@ -396,13 +493,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Apply a function fun against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -420,13 +524,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Apply a function fun simultaneously against two values of the array (from right-to-left) as to reduce it to a single value.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -444,13 +555,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Removes the given value (first occourence only) from the array and returns it.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "var"
+            {
+              "pseudo": true, 
+              "name": "var"
+            }
           ], 
           "name": "value"
         }
@@ -468,13 +585,19 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Removes and returns the value at the given position.", 
       "returns": [
-        "var"
+        {
+          "pseudo": true, 
+          "name": "var"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "position"
         }
@@ -492,25 +615,31 @@ apibrowser.callback({
       "isFunction": true, 
       "from": "ext.sugar.Array", 
       "name": "removeRange", 
-      "doc": "<p>Removes a specific range (<code class=\"param\">from</code> &lt;-&gt; <code class=\"param\">to</code>) from the array. Supports negative indexes, too.</p>\n", 
+      "sourceLink": "source:ext.sugar.Array~186", 
       "summary": "Removes a specific range (from &lt;-&gt; to) from the array.", 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "from"
         }, 
         {
           "position": 1, 
           "type": [
-            "Integer"
+            {
+              "linkable": true, 
+              "name": "Integer"
+            }
           ], 
           "name": "to"
         }
       ], 
-      "sourceLink": "source:ext.sugar.Array~186", 
+      "doc": "<p>Removes a specific range (<code class=\"param\">from</code> &lt;-&gt; <code class=\"param\">to</code>) from the array. Supports negative indexes, too.</p>\n", 
       "type": "Function"
     }, 
     {
@@ -520,13 +649,20 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Tests whether some element in the array passes the test implemented by the provided function fun.", 
       "returns": [
-        "Boolean"
+        {
+          "builtin": true, 
+          "name": "Boolean"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "Function"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "Function"
+            }
           ], 
           "name": "fun"
         }
@@ -547,7 +683,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.Array~52", 
       "summary": "Returns the sum of all values in the array.", 
       "returns": [
-        "Number"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Number"
+        }
       ], 
       "doc": "<p>Returns the sum of all values in the array.</p>\n", 
       "type": "Function"
@@ -562,7 +702,11 @@ apibrowser.callback({
       "sourceLink": "source:ext.sugar.Array~151", 
       "summary": "Returns a new array with all elements that are unique.", 
       "returns": [
-        "Array"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "Array"
+        }
       ], 
       "doc": "<p>Returns a new array with all elements that are unique.</p>\n\n<p>Comparison happens based on the toString() value! So numbers\nand booleans might be unified with strings with the same &ldquo;value&rdquo;.\nThis is mainly because of performance reasons.</p>\n", 
       "type": "Function"

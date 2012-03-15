@@ -6,13 +6,21 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns the SHA256 checksum of the given str as a raw string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "str"
         }
@@ -28,20 +36,32 @@ apibrowser.callback({
       "visibility": "public", 
       "summary": "Returns a HMAC (Hash-based Message Authentication Code) using the SHA256 hash function as a raw string.", 
       "returns": [
-        "String"
+        {
+          "linkable": true, 
+          "builtin": true, 
+          "name": "String"
+        }
       ], 
       "params": [
         {
           "position": 0, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "key"
         }, 
         {
           "position": 1, 
           "type": [
-            "String"
+            {
+              "linkable": true, 
+              "builtin": true, 
+              "name": "String"
+            }
           ], 
           "name": "str"
         }
@@ -61,11 +81,12 @@ apibrowser.callback({
     "core.crypt.Util"
   ], 
   "main": {
-    "doc": "<p>A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined in FIPS 180-2.</p>\n", 
-    "line": 20, 
-    "type": "core.Module", 
     "name": "core.crypt.SHA256", 
-    "tags": []
+    "tags": [], 
+    "doc": "<p>A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined in FIPS 180-2.</p>\n", 
+    "summary": "A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined in FIPS 180-2.", 
+    "line": 20, 
+    "type": "core.Module"
   }, 
   "id": "core.crypt.SHA256", 
   "size": {
