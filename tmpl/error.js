@@ -1,0 +1,1 @@
+apibrowser.callback({"template": "\n<div class=\"heading\">\n<h1>\n\t{{name}}\n</h1>\n<div class=\"description doc\">\n\t{{description}}\n</div>\n \n"}, 'error.mustache')

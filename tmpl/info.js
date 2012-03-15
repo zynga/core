@@ -1,0 +1,1 @@
+apibrowser.callback({"template": "<div class=\"line\">\n\t<strong>Line: </strong>\n\t{{?sourceLink}}\n\t\t<a href=\"#{{sourceLink}}\">{{line}}</a>\n\t{{/sourceLink}}\n\t{{^sourceLink}}\n\t\t{{line}}\n\t{{/sourceLink}}\n\t{{?from}}\n\t\t<strong> in </strong><a class=\"from\" href=\"#{{fromLink}}\">{{from}}</a>\n\t{{/from}}\n</div>\n"}, 'info.mustache')

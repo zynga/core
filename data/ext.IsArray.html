@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=None">
+  <style type="text/css">
+td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+pre { line-height: 125%; }
+body .hll { background-color: #ffffcc }
+body  { background: #ffffff; }
+body .c { color: #aaaaaa; font-style: italic } /* Comment */
+body .err { color: #F00000; background-color: #F0A0A0 } /* Error */
+body .k { color: #0000aa } /* Keyword */
+body .cm { color: #aaaaaa; font-style: italic } /* Comment.Multiline */
+body .cp { color: #4c8317 } /* Comment.Preproc */
+body .c1 { color: #aaaaaa; font-style: italic } /* Comment.Single */
+body .cs { color: #0000aa; font-style: italic } /* Comment.Special */
+body .gd { color: #aa0000 } /* Generic.Deleted */
+body .ge { font-style: italic } /* Generic.Emph */
+body .gr { color: #aa0000 } /* Generic.Error */
+body .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+body .gi { color: #00aa00 } /* Generic.Inserted */
+body .go { color: #888888 } /* Generic.Output */
+body .gp { color: #555555 } /* Generic.Prompt */
+body .gs { font-weight: bold } /* Generic.Strong */
+body .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+body .gt { color: #aa0000 } /* Generic.Traceback */
+body .kc { color: #0000aa } /* Keyword.Constant */
+body .kd { color: #0000aa } /* Keyword.Declaration */
+body .kn { color: #0000aa } /* Keyword.Namespace */
+body .kp { color: #0000aa } /* Keyword.Pseudo */
+body .kr { color: #0000aa } /* Keyword.Reserved */
+body .kt { color: #00aaaa } /* Keyword.Type */
+body .m { color: #009999 } /* Literal.Number */
+body .s { color: #aa5500 } /* Literal.String */
+body .na { color: #1e90ff } /* Name.Attribute */
+body .nb { color: #00aaaa } /* Name.Builtin */
+body .nc { color: #00aa00; text-decoration: underline } /* Name.Class */
+body .no { color: #aa0000 } /* Name.Constant */
+body .nd { color: #888888 } /* Name.Decorator */
+body .ni { color: #800000; font-weight: bold } /* Name.Entity */
+body .nf { color: #00aa00 } /* Name.Function */
+body .nn { color: #00aaaa; text-decoration: underline } /* Name.Namespace */
+body .nt { color: #1e90ff; font-weight: bold } /* Name.Tag */
+body .nv { color: #aa0000 } /* Name.Variable */
+body .ow { color: #0000aa } /* Operator.Word */
+body .w { color: #bbbbbb } /* Text.Whitespace */
+body .mf { color: #009999 } /* Literal.Number.Float */
+body .mh { color: #009999 } /* Literal.Number.Hex */
+body .mi { color: #009999 } /* Literal.Number.Integer */
+body .mo { color: #009999 } /* Literal.Number.Oct */
+body .sb { color: #aa5500 } /* Literal.String.Backtick */
+body .sc { color: #aa5500 } /* Literal.String.Char */
+body .sd { color: #aa5500 } /* Literal.String.Doc */
+body .s2 { color: #aa5500 } /* Literal.String.Double */
+body .se { color: #aa5500 } /* Literal.String.Escape */
+body .sh { color: #aa5500 } /* Literal.String.Heredoc */
+body .si { color: #aa5500 } /* Literal.String.Interpol */
+body .sx { color: #aa5500 } /* Literal.String.Other */
+body .sr { color: #009999 } /* Literal.String.Regex */
+body .s1 { color: #aa5500 } /* Literal.String.Single */
+body .ss { color: #0000aa } /* Literal.String.Symbol */
+body .bp { color: #00aaaa } /* Name.Builtin.Pseudo */
+body .vc { color: #aa0000 } /* Name.Variable.Class */
+body .vg { color: #aa0000 } /* Name.Variable.Global */
+body .vi { color: #aa0000 } /* Name.Variable.Instance */
+body .il { color: #009999 } /* Literal.Number.Integer.Long */
+
+  </style>
+</head>
+<body>
+<h2></h2>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><a name="line-1"></a><span class="cm">/* </span>
+<a name="line-2"></a><span class="cm">==================================================================================================</span>
+<a name="line-3"></a><span class="cm">  Core - JavaScript Foundation</span>
+<a name="line-4"></a><span class="cm">  Copyright 2010-2012 Zynga Inc.</span>
+<a name="line-5"></a><span class="cm">==================================================================================================</span>
+<a name="line-6"></a><span class="cm">*/</span>
+<a name="line-7"></a>
+<a name="line-8"></a><span class="cm">/** Adds the pretty essential `Array.isArray()` method from ES5 if it is missing. */</span>
+<a name="line-9"></a><span class="nx">core</span><span class="p">.</span><span class="nx">Main</span><span class="p">.</span><span class="nx">addStatics</span><span class="p">(</span><span class="s2">&quot;Array&quot;</span><span class="p">,</span>
+<a name="line-10"></a><span class="p">{</span>
+<a name="line-11"></a>  <span class="cm">/**</span>
+<a name="line-12"></a><span class="cm">   * Implements ES5 `isArray` method to verify whether @value {var} is an `Array`.</span>
+<a name="line-13"></a><span class="cm">   * See also: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/isArray</span>
+<a name="line-14"></a><span class="cm">   */</span>
+<a name="line-15"></a>  <span class="nx">isArray</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+<a name="line-16"></a>    <span class="k">return</span> <span class="nx">value</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;[object Array]&quot;</span><span class="p">;</span>
+<a name="line-17"></a>  <span class="p">}</span>
+<a name="line-18"></a><span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></body>
+</html>
