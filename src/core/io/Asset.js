@@ -11,39 +11,47 @@
 	var assets = core.Env.getValue("assets");
 	
 	// Dynamically unpack compact structure for better runtime performance
-	if (assets && assets.dirs) 
+	if (assets)
 	{
-		var root = assets.root ? assets.root + "/" : "";
-		var dirs = assets.dirs;
-
-		var unpacked = {};
-
-		for (var dir in dirs) 
+		if (assets.dirs) 
 		{
-			var map = dirs[dir];
-			var dirslash = dir + "/";
+			var root = assets.root;
+			var dirs = assets.dirs;
 
-			for (var base in map) 
+			var unpacked = {};
+
+			for (var dir in dirs) 
 			{
-				var id = dirslash + base;
+				var map = dirs[dir];
+				var dirslash = dir + "/";
 
-				// if not an array we store just '1' for being short and truish
-				if (map[base] !== 1) 
+				for (var base in map) 
 				{
-					unpacked[id] = map[base];
-					map[base].unshift(root + id);
-				}
-				else
-				{
-					unpacked[id] = root + id;
+					var id = dirslash + base;
+
+					// if not an array we store just '1' for being short and truish
+					if (map[base] !== 1) 
+					{
+						unpacked[id] = map[base];
+						map[base].unshift(root + id);
+					}
+					else
+					{
+						unpacked[id] = root + id;
+					}
 				}
 			}
-		}
 
-		// Replace compiled in data with unpacked one
-		assets = unpacked;
+			// Replace compiled in data with unpacked one
+			assets = unpacked;
+		}
+		else
+		{
+			// Shorthand
+			assets = assets.files;
+		}
 	}
-	
+
 
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
