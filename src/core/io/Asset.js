@@ -9,46 +9,41 @@
 {
 	// Jasy is replacing this call via the kernel permutation
 	var assets = core.Env.getValue("assets");
-
-	var entryCache = {};
-	var spriteCache = {};
-
-	var getEntry = function(id)
+	
+	// Dynamically unpack compact structure for better runtime performance
+	if (assets && assets.dirs) 
 	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.isType(id, "String", "Invalid asset identifier: " + id);
-		}
+		var root = assets.root ? assets.root + "/" : "";
+		var dirs = assets.dirs;
 
-		var lastSlash = id.lastIndexOf("/");
-		if (lastSlash == -1)
-		{
-			var dirName = "";
-			var fileName = id;
-		}
-		else
-		{
-			var dirName = id.slice(0, lastSlash);
-			var fileName = id.slice(lastSlash+1);
-		}
+		var unpacked = {};
 
-		var images = assets.images;
-		if (images && dirName in images) {
-			var entry = images[dirName][fileName];
-		}
-
-		if (!entry)
+		for (var dir in dirs) 
 		{
-			var files = assets.files;
-			if (files && dirName in files) {
-				var entry = files[dirName][fileName];
+			var map = dirs[dir];
+			var dirslash = dir + "/";
+
+			for (var base in map) 
+			{
+				var id = dirslash + base;
+
+				// if not an array we store just '1' for being short and truish
+				if (map[base] !== 1) 
+				{
+					unpacked[id] = map[base];
+					map[base].unshift(root + id);
+				}
+				else
+				{
+					unpacked[id] = root + id;
+				}
 			}
 		}
 
-		if (entry != null) {
-			return entryCache[id] = entry;
-		}
-	};
-
+		// Replace compiled in data with unpacked one
+		assets = unpacked;
+	}
+	
 
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
@@ -60,7 +55,7 @@
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
 		 */
 		has : function(id) {
-			return id in entryCache || getEntry(id) != null;
+			return assets.hasOwnProperty(id);
 		},
 
 
@@ -105,8 +100,8 @@
 		 */
 		getImageSize : function(id)
 		{
-			var entry = entryCache[id] || getEntry(id);
-			if (core.Env.isSet("debug") && (!entry || entry.length < 3)) {
+			var entry = assets[id];
+			if (core.Env.isSet("debug") && entry == null) {
 				throw new Error("Unknown image: " + id);
 			}
 
@@ -118,60 +113,21 @@
 
 
 		/**
-		 * {Map} Returns sprite details for being used for the given image @id {String}.
-		 */
-		getImageSprite : function(id)
-		{
-			var result = spriteCache[id];
-			if (!result)
-			{
-				var entry = entryCache[id] || getEntry(id);
-				if (core.Env.isSet("debug") && (!entry || entry.length < 5)) {
-					throw new Error("Unknown image sprite: " + id);
-				}
-
-				var lastSlash = id.lastIndexOf("/");
-				var dirName = id.substring(0, lastSlash);
-				var spriteData = assets.sprites[dirName][entry[3]];
-				var needsPosX = spriteData[4] == 1;
-				var needsPosY = spriteData[5] == 1;
-
-				spriteCache[id] = result = {
-					uri : assets.roots[spriteData[1]] + "/" + dirName + "/" + spriteData[0],
-					left : needsPosX ? entry[4] : 0,
-					top : needsPosY ? needsPosX ? entry[5] : entry[4] : 0,
-					width : spriteData[2],
-					height : spriteData[3]
-				};
-			}
-
-			return result;
-		},
-
-
-		/**
 		 * {String} Converts the given asset @id {String} to a full qualified URI. 
 		 * The method throws an error whenever an asset ID is unknown.
 		 */
 		toUri : function(id)
 		{
-			if (id == null) {
-				return id;
-			}
-
-			var entry = entryCache[id] || getEntry(id);
+			var entry = assets[id];
 			if (core.Env.isSet("debug") && entry == null) {
-				throw new Error("Could not figure out URL for asset: " + id);
+				throw new Error("Unknown asset: " + id);
 			}
 
-			// Differ between files (first case) and images (second case)
-			var root = assets.roots[typeof entry == "number" ? entry : entry[0]];
-
-			// Merge to full qualified URI
-			var pos = id.indexOf("/");
-			var path = pos == -1 ? "/" + id : id.slice(pos);
-			
-			return root + path;
+			if (entry.push) {
+				return entry[0];
+			} else {
+				return entry;
+			}
 		}
 	});
 })(this);
