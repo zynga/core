@@ -23,7 +23,7 @@
 			for (var dir in dirs) 
 			{
 				var map = dirs[dir];
-				var dirslash = dir + "/";
+				var dirslash = dir ? dir + "/" : "";
 
 				for (var base in map) 
 				{
@@ -51,7 +51,7 @@
 			assets = assets.files;
 		}
 	}
-
+	
 
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
