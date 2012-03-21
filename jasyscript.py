@@ -1,25 +1,26 @@
-#!/usr/bin/env jasy
+# Core - JavaScript Foundation
+# Copyright 2010-2012 Zynga Inc.
 
 session.permutateField("es5")
 session.permutateField("debug")
+
 
 @task("Clear Cache")
 def clear():
     session.clearCache()
 
 
-@task("Building API Viewer")
-def api(prefix="api"):
-    setPrefix(prefix)
-    runTask("api", "build")
-    ApiWriter().write("data")
-    
-    
 @task("Fully cleaning up")
 def distclean():
     session.clearCache()
     removeDir("api")
     removeDir("dist")
+
+
+@task("Building API Viewer")
+def api():
+    runTask("api", "build")
+    ApiWriter().write("data")
 
 
 @task("Writing Module")
