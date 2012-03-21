@@ -26,19 +26,14 @@ def api():
 @task("Write module.js", prefix="dist")
 def module():
     for permutation in session.permutate():
-        resolver = Resolver()
-        resolver.addClassName("core.Module")
-
+        resolver = Resolver().addClassName("core.Module")
         storeCompressed("module-%s.js" % permutation.getChecksum(), Sorter(resolver).getSortedClasses())
 
 
 @task("Write oo.js", prefix="dist")
 def oo():
     for permutation in session.permutate():
-        resolver = Resolver()
-        resolver.addClassName("core.Module")
-        resolver.addClassName("core.Class")
-
+        resolver = Resolver().addClassName("core.Module").addClassName("core.Class")
         storeCompressed("oo-%s.js" % permutation.getChecksum(), Sorter(resolver).getSortedClasses())
         
         
