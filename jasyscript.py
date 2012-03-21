@@ -58,5 +58,5 @@ def sugar():
         resolver.addClassName("ext.sugar.String")
 
         storeCompressed("sugar-%s.js" % permutation.getChecksum(), Sorter(resolver).getSortedClasses())
-                
+
                 
