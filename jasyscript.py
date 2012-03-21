@@ -13,6 +13,13 @@ def api(prefix="api"):
     setPrefix(prefix)
     runTask("api", "build")
     ApiWriter().write("data")
+    
+    
+@task("Fully cleaning up")
+def distclean():
+    session.clearCache()
+    removeDir("api")
+    removeDir("dist")
 
 
 @task("Writing Module")
