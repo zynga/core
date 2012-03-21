@@ -27,12 +27,10 @@ def module():
     setPrefix("dist")
 
     for permutation in session.permutate():
-        resolver = Resolver(session.getProjects())
+        resolver = Resolver()
         resolver.addClassName("core.Module")
-        classes = Sorter(resolver).getSortedClasses()
 
-        print("Classes: %s" % classes)
-        storeCompressed("module-%s.js" % getPermutation().getChecksum(), classes)
+        storeCompressed("module-%s.js" % permutation.getChecksum(), Sorter(resolver).getSortedClasses())
 
 
 @task("Writing OO")
@@ -40,13 +38,11 @@ def oo():
     setPrefix("dist")
     
     for permutation in session.permutate():
-        resolver = Resolver(session.getProjects())
+        resolver = Resolver()
         resolver.addClassName("core.Module")
         resolver.addClassName("core.Class")
-        classes = Sorter(resolver).getSortedClasses()
 
-        print("Classes: %s" % classes)
-        storeCompressed("oo-%s.js" % getPermutation().getChecksum(), classes)
+        storeCompressed("oo-%s.js" % permutation.getChecksum(), Sorter(resolver).getSortedClasses())
         
         
 @task("Writing Sugar")
@@ -54,15 +50,13 @@ def sugar():
     setPrefix("dist")
 
     for permutation in session.permutate():
-        resolver = Resolver(session.getProjects())
+        resolver = Resolver()
         resolver.addClassName("ext.sugar.Array")
         resolver.addClassName("ext.sugar.Function")
         resolver.addClassName("ext.sugar.Number")
         resolver.addClassName("ext.sugar.Object")
         resolver.addClassName("ext.sugar.String")
-        classes = Sorter(resolver).getSortedClasses()
 
-        print("Classes: %s" % classes)
-        storeCompressed("sugar-%s.js" % getPermutation().getChecksum(), classes)
+        storeCompressed("sugar-%s.js" % permutation.getChecksum(), Sorter(resolver).getSortedClasses())
                 
                 
