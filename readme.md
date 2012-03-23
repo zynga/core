@@ -5,6 +5,14 @@ Core prepares the ground for JavaScript projects. It fills what is missing, fixe
 
 Core was designed to work together with the JavaScript tooling project [Jasy](https://github.com/zynga/jasy).
 
+## Roadmap
+
+* Merge with more classes from Zynga's internal repositories
+* Integrate JSON3 polyfill
+* Add ES6 fixes
+* Add event system for basic notifications
+* Add basic DOM level event system
+
 
 ## Authors
 
