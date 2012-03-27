@@ -9,7 +9,7 @@
  * #require(ext.RequestAnimationFrame)
  */
 
-(function() 
+(function()
 {
 	var time = Date.now;
 	var desiredFrames = 60;
@@ -28,6 +28,8 @@
 	 * based on the pure time difference.
 	 *
 	 * Requires {ext.RequestAnimationFrame} for cross browser support.
+	 *
+	 * #require(ext.RequestAnimationFrame)
 	 */
 	core.Module("core.effect.Animate", {
 
