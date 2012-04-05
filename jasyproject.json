@@ -2,8 +2,12 @@
 	"name" : "core",
 	"package" : "",
 
-	"requires": [
-		"git@github.com:zynga/apibrowser.git"
+	"requires": 
+	[
+		{
+			"source" : "git@github.com:zynga/apibrowser.git",
+			"version" : "refs/tags/0.5"
+		}
 	],
 
 	"fields" :
