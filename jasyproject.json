@@ -3,7 +3,7 @@
 	"package" : "",
 
 	"requires": [
-		"../apibrowser"
+		"git@github.com:zynga/apibrowser.git"
 	],
 
 	"fields" :
