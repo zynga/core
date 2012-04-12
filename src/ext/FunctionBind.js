@@ -38,16 +38,16 @@ core.Main.addMembers("Function",
 		if (varargs !== undef) 
 		{
 			// extra arguments to send by default
-			var args = arguments;
-			var extraargs = Array.prototype.slice.call(args, 1);
+			var extraargs = Array.prototype.slice.call(arguments, 1);
+			
 			return function()
 			{
 				return self.apply(
 					context,
 					// thanks @kangax for this suggestion
-					args.length ?
+					arguments.length ?
 						// concat arguments with those received
-						extraargs.concat(Array.prototype.slice.call(args)) :
+						extraargs.concat(Array.prototype.slice.call(arguments)) :
 						// send just arguments, no concat, no slice
 						extraargs
 				);
