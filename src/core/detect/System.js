@@ -13,10 +13,11 @@
 	
 	var agent = navigator.userAgent.replace(/_/g, ".");
 	var match, version, name;
+	var platform = core.detect.Platform.VALUE;
 
-	if (core.Env.isSet("platform", "win"))
+	if (platform == "win")
 	{
-		name = "win";
+		name = platform;
 		match = /((Windows NT|Windows|Win) ?([0-9\.]+))/.exec(agent);
 		if (match)
 		{
@@ -63,7 +64,7 @@
 			}
 		}
 	}
-	else if (core.Env.isSet("platform", "mac"))
+	else if (platform == "mac")
 	{
 		match = /(((Mac OS X)|(Mac OS)) ([0-9\.]+))/.exec(agent);
 		name = "macos";
@@ -73,41 +74,15 @@
 		}
 		else
 		{
-			var match = /((iPhone OS|iOS) ([0-9\.]+))/.exec(agent);
-			if (match)
+			var match = /OS ([0-9\._]+) like Mac OS/.exec(agent);
+			if (match) 
 			{
-				version = parseFloat(match[3]);
 				name = "ios";
-			}
-			else
-			{
-				// If detection of iOS with user string without version number, test for generic
-				// device names
-				if (/(iPad|iPhone|iPod)/.test(agent)) {
-					name = "ios";
-					var match=/OS (\d+\.\d+)(?:(?:\.\d+)+)? like/.exec(agent);
-					if(match){
-						version = parseFloat(match[1],10);
-					}
-				} else {
-					// Fallback
-					// Opera as of Version 10.01 has no information about the detailed
-					// Mac OS X version. Are other clients affected as well?
-
-					// The last option here is to simply base on the OS X string
-					// basically found on all new Macs - even in Opera
-					if (navigator.platform === "MacIntel") {
-						version = 10.4;
-					} else if (/Mac OS X/.exec(agent)) {
-						version = 10.0;
-					} else {
-						version = 9.0;
-					}
-				}
+				version = parseFloat(match[1].replace(/_/, "."), 10);
 			}
 		}
 	}
-	else if (core.Env.isSet("platform", "unix"))
+	else if (platform == "unix")
 	{
 		if (agent.indexOf("Linux") != -1)
 		{
@@ -139,7 +114,7 @@
 			name = "unix";
 		}
 	}
-	else if (core.Env.isSet("platform", "other"))
+	else if (platform == "other")
 	{
 		if (agent.indexOf("RIM Tablet OS") != -1) 
 		{
