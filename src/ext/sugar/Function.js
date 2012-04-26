@@ -49,6 +49,31 @@ core.Main.addMembers("Function",
 
 			timeout = setTimeout(delayed, threshold || 100);
 		};
+	},
+	
+	
+	/**
+	 * {Function} Returns a new function that when called multiple times will only call the 
+	 * original function after the specificed @time {Integer} in milliseconds has elapsed.
+	 */
+	throttle = function(time) 
+	{
+		var func = this;
+		var lastEventTimestamp = null;
+		var limit = time;
+
+		return function () 
+		{
+			var self = this;
+			var args = arguments;
+			var now = Date.now();
+
+			if (!lastEventTimestamp || now - lastEventTimestamp >= limit) 
+			{
+				lastEventTimestamp = now;
+				func.apply(self, args);
+			}
+		};
 	}
 });
 
