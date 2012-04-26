@@ -18,8 +18,6 @@ core.Main.addMembers("Function",
 	 * the events are occurring fast enough to happen at least once in every detection
 	 * period, the signal will not be sent!
 	 *
-	 * Via: 
-	 *
 	 * - @threshold {Integer} Number of milliseconds of distance required before reacting/resetting.
 	 * - @execAsap {Boolean?false} Whether the execution should happen at begin.
 	 */
