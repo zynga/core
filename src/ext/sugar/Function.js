@@ -56,7 +56,7 @@ core.Main.addMembers("Function",
 	 * {Function} Returns a new function that when called multiple times will only call the 
 	 * original function after the specificed @time {Integer} in milliseconds has elapsed.
 	 */
-	throttle = function(time) 
+	throttle : function(time) 
 	{
 		var func = this;
 		var lastEventTimestamp = null;
