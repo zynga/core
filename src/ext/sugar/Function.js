@@ -62,7 +62,7 @@ core.Main.addMembers("Function",
 		var lastEventTimestamp = null;
 		var limit = time;
 
-		return function () 
+		return function throttled() 
 		{
 			var self = this;
 			var args = arguments;
