@@ -8,54 +8,92 @@
 (function(global)
 {
 	// Jasy is replacing this call via the kernel permutation
-	var assets = core.Env.getValue("assets");
+	var data = core.Env.getValue("assets");
+
+	// Shorthands
+	var assets = data.assets;
+	var merged = data.merged;
+	var root = data.root;
 	
-	// Dynamically unpack compact structure for better runtime performance
-	if (assets)
+	/**
+	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
+	 */
+	var resolve = function(id) 
 	{
-		if (assets.dirs) 
+		if (id.constructor == Object) {
+			return id;
+		}
+		
+		var splits = id.split("/");
+		
+		var current = assets;
+		for (var i=0, l=splits.length; current&&i<l; i++) {
+			current = current[splits[i]];
+		}
+		
+		return current;
+	};
+	
+	
+	/**
+	 * {Map} Collects asset with the given asset @prefix {String} from the given @section {Map}. 
+	 * Optionally works recursively by enabling @recursive {Boolean?false} or only 
+	 * returns the data by enabling @data {Boolean?false}. Last parameter @all {Map?} 
+	 * is used to fill an existing object instead of a new one.
+	 */
+	var collect = function(prefix, cut, section, recursive, data, all) 
+	{
+		if (!all) {
+			all = {};
+		}
+		
+		if (section)
 		{
-			var root = assets.root;
-			var dirs = assets.dirs;
-
-			var unpacked = {};
-
-			for (var dir in dirs) 
+			for (var filename in section) 
 			{
-				var map = dirs[dir];
-				var dirslash = dir ? dir + "/" : "";
+				var entry = section[filename];
+				var id = prefix + "/" + filename;
 
-				for (var base in map) 
+				if (entry.constructor == Object) 
 				{
-					var id = dirslash + base;
-
-					// if not an array we store just '1' for being short and truish
-					if (map[base] !== 1) 
-					{
-						unpacked[id] = map[base];
-						map[base].unshift(root + id);
+					if (recursive) {
+						collect(id, cut, entry, recursive, data, all);
 					}
-					else
-					{
-						unpacked[id] = root + id;
+				}
+				else
+				{
+					var localId = !cut ? id : id.slice(cut);
+					
+					if (data) {
+						all[localId] = entry;
+					} else if (merged) {
+						all[localId] = root + id;
+					} else {
+						all[localId] = root + entry[0];
 					}
 				}
 			}
+		}
+		
+		return all;
+	};
+	
 
-			// Replace compiled in data with unpacked one
-			assets = unpacked;
-		}
-		else
-		{
-			// Shorthand
-			assets = assets.files;
-		}
-	}
+	/**
+	 * {String} Converts the given asset @id {String} to a full qualified URI. 
+	 * The method throws an error whenever an asset ID is unknown.
+	 */
+	var toUri = function(id) {
+		return root + (merged ? id : resolve(id)[0]);
+	};
 	
 
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
 	 * other assets like CSS files, local data, ...
+	 *
+	 * #require(ext.sugar.Array) 
+	 * #require(ext.sugar.Object)
 	 */
 	core.Module("core.io.Asset",
 	{
@@ -63,79 +101,60 @@
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
 		 */
 		has : function(id) {
-			return assets.hasOwnProperty(id);
+			return !!resolve(id);
 		},
 
 
-		/**
-		 * Loads the given asset @ids {String[]} and optionally executes the given 
-		 * @callback {Function?} (in the given @context {Object?global}) after all are completed.
-		 * The behavior is tweakable by enabling @nocache {Boolean?false} to append a dynamic 
-		 * `GET` parameter and @type {String?} to enforce a specific loader class.
-		 */
-		load: function(ids, callback, context, nocache, type) 
+		loadSection: function(section, recursive, callback, context, nocache) 
 		{
-			var id, uri;
-
-			var uris = [];
-			var uriToId = {};
-
-			for (var i=0, l=ids.length; i<l; i++) 
-			{
-				id = ids[i];
-				uri = this.toUri(id);
-
-				uris.push(uri);
-				uriToId[uri] = id;
+			if (section.slice(-1) == "/") {
+				section = section.slice(0, -1);
 			}
+			
+			// Collect assets
+			var all = collect(section, section.length + 1, resolve(section), recursive);
+			
+			var uris = Object.values(all);
 
-			var localCallback = function(uriData)
-			{
-				var idData = {};
-				for (var uri in uriData) {
-					idData[uriToId[uri]] = uriData[uri];
-				}
+			// Build back tables to translate uris back to local IDs
+			var urisToIds = uris.zip(Object.keys(all));
 
-				context ? callback.call(context, idData) : callback(idData);
-			}
-
-			return core.io.Queue.load(uris, localCallback, null, nocache, type);
+			var helper = !callback || function(data) {
+				callback.call(context||global, Object.translate(data, urisToIds));
+			};
+			core.io.Queue.load(uris, helper, this, nocache);
 		},
 
 
 		/**
-		 * {Map} Returns the dimensions of the given image @id {String} with the keys `width` and `height`.
+		 * Loads the given assets by their ID and executes @callback {Function?}
+		 * in the given @context {Object?global}. Optionally caching can be disabled
+		 * by attaching a random `GET` parameter.
+		 */
+		load: function(ids, callback, context, nocache) 
+		{
+			var uris = ids.map(toUri);
+			var urisToIds = uris.zip(ids);
+
+			var helper = !callback || function(data) {
+				callback.call(context||global, Object.translate(data, urisToIds));
+			};
+			core.io.Queue.load(uris, helper, this, nocache);
+		},
+
+
+		/**
+		 * {Array} Returns the dimensions of the given image @id {String} with as `width`, `height`.
 		 */
 		getImageSize : function(id)
 		{
-			var entry = assets[id];
-			if (core.Env.isSet("debug") && entry == null) {
-				throw new Error("Unknown image: " + id);
-			}
-
-			return {
-				width: entry[1],
-				height: entry[2]
-			};
+			var entry = resolve(id);
+			var start = merged ? 0 : 1;
+			
+			return entry.slice(start, start+2);
 		},
 
 
-		/**
-		 * {String} Converts the given asset @id {String} to a full qualified URI. 
-		 * The method throws an error whenever an asset ID is unknown.
-		 */
-		toUri : function(id)
-		{
-			var entry = assets[id];
-			if (core.Env.isSet("debug") && entry == null) {
-				throw new Error("Unknown asset: " + id);
-			}
-
-			if (entry.push) {
-				return entry[0];
-			} else {
-				return entry;
-			}
-		}
+		toUri : toUri
 	});
 })(this);

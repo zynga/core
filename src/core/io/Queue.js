@@ -139,7 +139,8 @@
 			{
 				var currentUri = uris[i];
 				
-				if (autoType) {
+				if (autoType) 
+				{
 					type = extractExtension(currentUri);
 					
 					if (core.Env.isSet("debug") && (!type || !typeLoader[type])) {
