@@ -7,10 +7,6 @@
 
 (function() 
 {
-	/** Keys are all URIs which are completely loaded */
-	var completed = {};
-
-	
 	/** Maps extensions to loader classes */
 	var typeLoader = 
 	{
@@ -65,30 +61,6 @@
 	core.Module("core.io.Queue",
 	{
 		/**
-		 * {Boolean} Returns whether the given @uris {String|String[]} were loaded before.
-		 */
-		isLoaded : function(uris) 
-		{
-			if (typeof uris == "string") {
-				return !!completed[uris];
-			}
-			
-			if (core.Env.isSet("debug")) {
-				core.Assert.isType(uris, "Array", "Invalid list of URIs!");
-			}
-
-			for (var i=0, l=uris.length; i<l; i++) 
-			{
-				if (!completed[uris[i]]) {
-					return false;
-				}
-			}
-
-			return true;
-		},
-		
-		
-		/**
 		 * Loads the given @uris {String[]} and optionally executes the given @callback {Function} with the @context {Object?null} after all are completed.
 		 * One can optionally disable the browser caching using enforced get parameters via the @nocache {Boolean?false} flag. Typically
 		 * the matching loader is figured out automatically based on the file extension but can be controlled using the @type {String?} parameter.
@@ -139,7 +111,6 @@
 				}
 
 				delete loading[uri];
-				completed[uri] = true;
 				
 				// Make data available for callback
 				if (data != null) {
@@ -168,41 +139,38 @@
 			{
 				var currentUri = uris[i];
 				
-				if (!completed[currentUri])
-				{
-					if (autoType) {
-						type = extractExtension(currentUri);
-						
-						if (core.Env.isSet("debug") && (!type || !typeLoader[type])) {
-							throw new Error("Could not figure out loader to use for URI: " + currentUri);
-						}
-					}
+				if (autoType) {
+					type = extractExtension(currentUri);
 					
-					var loader = typeLoader[type];
+					if (core.Env.isSet("debug") && (!type || !typeLoader[type])) {
+						throw new Error("Could not figure out loader to use for URI: " + currentUri);
+					}
+				}
+				
+				var loader = typeLoader[type];
 
-					// As we are waiting for things to load, we can't execute the callback directly anymore
-					executeDirectly = false;
+				// As we are waiting for things to load, we can't execute the callback directly anymore
+				executeDirectly = false;
 
-					// When script is not being loaded already, then start with it here
-					// (Otherwise we just added the callback to the queue and wait for it to be executed)
-					if (!loading[currentUri])
+				// When script is not being loaded already, then start with it here
+				// (Otherwise we just added the callback to the queue and wait for it to be executed)
+				if (!loading[currentUri])
+				{
+					// Register globally as loading
+					loading[currentUri] = true;
+					
+					// Differenciate between loader capabilities
+					if (loader.SUPPORTS_PARALLEL) 
 					{
-						// Register globally as loading
-						loading[currentUri] = true;
-						
-						// Differenciate between loader capabilities
-						if (loader.SUPPORTS_PARALLEL) 
-						{
-							loader.load(currentUri, onLoad, null, nocache);
-						}
-						else
-						{
-							// Sort in the URI into a type specific queue
-							if (sequential[type]) {
-								sequential[type].push(currentUri);
-							} else {
-								sequential[type] = [currentUri];
-							}
+						loader.load(currentUri, onLoad, null, nocache);
+					}
+					else
+					{
+						// Sort in the URI into a type specific queue
+						if (sequential[type]) {
+							sequential[type].push(currentUri);
+						} else {
+							sequential[type] = [currentUri];
 						}
 					}
 				}
