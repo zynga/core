@@ -92,6 +92,25 @@
 
 			return result;
 		},
+		
+		
+		/**
+		 * {Map} Translates the keys of @obj1 {Map} by using the mapping
+		 * table in @obj2 {Map}.
+		 *
+		 *     var obj1 = { a:1, b:2 };
+		 *     var obj2 = { a:"x", b:"y" };
+		 *     Object.translate(obj1, obj2) => {x:1, y:2}
+		 */
+		translate : function(obj1, obj2) 
+		{
+			var result = {};
+			for (var key in obj1) {
+				result[obj2[key]] = obj1[key];
+			}
+
+			return result;
+		},
 
 
 		/**

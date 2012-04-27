@@ -31,6 +31,21 @@ core.Main.addStatics("Array",
 core.Main.addMembers("Array", 
 {
 	/**
+	 * Merges both arrays into an object where values of this array are used
+	 * as keys and values of @values {Array} are used as values.
+	 */
+	zip : function(values) 
+	{
+		var result = {};
+		for (var i=0, l=this.length; i<l; i++) {
+			result[this[i]] = values[i];
+		}
+
+		return result;
+	},
+	
+	
+	/**
 	 * {Number} Returns the maximum number in the array.
 	 */
 	max : function() {
