@@ -94,6 +94,7 @@
 	 *
 	 * #require(ext.sugar.Array) 
 	 * #require(ext.sugar.Object)
+	 * #require(ext.sugar.String)
 	 */
 	core.Module("core.io.Asset",
 	{
@@ -104,11 +105,39 @@
 			return !!resolve(id);
 		},
 
-
+		/**
+		 * Loads the given section
+		 *
+		 */
 		loadSection: function(section, recursive, callback, context, nocache) 
 		{
-			if (section.slice(-1) == "/") {
-				section = section.slice(0, -1);
+			if (core.Env.isSet("debug"))
+			{
+				core.Assert.isType(section, "String");
+
+				if (section == "") {
+					throw new Error("Invalid section: " + section);
+				}
+				
+				if (section.endsWith("/")) {
+					throw new Error("Sections must not end with a slash!")
+				}
+
+				if (recursive != null) {
+					core.Assert.isType(recursive, "Boolean");
+				}
+
+				if (callback != null) {
+					core.Assert.isType(callback, "Function");
+				}
+
+				if (context != null) {
+					core.Assert.isType(context, "Object");
+				}
+
+				if (nocache != null) {
+					core.Assert.isType(nocache, "Boolean");
+				}
 			}
 			
 			// Collect assets
@@ -133,6 +162,23 @@
 		 */
 		load: function(ids, callback, context, nocache) 
 		{
+			if (core.Env.isSet("debug"))
+			{
+				core.Assert.isType(ids, "Array");
+
+				if (callback != null) {
+					core.Assert.isType(callback, "Function");
+				}
+
+				if (context != null) {
+					core.Assert.isType(context, "Object");
+				}
+
+				if (nocache != null) {
+					core.Assert.isType(nocache, "Boolean");
+				}
+			}
+			
 			var uris = ids.map(toUri);
 			var urisToIds = uris.zip(ids);
 
