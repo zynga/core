@@ -17,12 +17,6 @@ def distclean():
     removeDir("dist")
 
 
-@task("Build API browser")
-def api():
-    ApiWriter().write("data")
-    runTask("apibrowser", "build")
-
-
 @task("Build module.js", prefix="dist")
 def module():
     for permutation in session.permutate():
