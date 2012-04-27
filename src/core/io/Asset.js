@@ -113,7 +113,6 @@
 			
 			// Collect assets
 			var all = collect(section, section.length + 1, resolve(section), recursive);
-			
 			var uris = Object.values(all);
 
 			// Build back tables to translate uris back to local IDs
@@ -122,6 +121,7 @@
 			var helper = !callback || function(data) {
 				callback.call(context||global, Object.translate(data, urisToIds));
 			};
+			
 			core.io.Queue.load(uris, helper, this, nocache);
 		},
 
@@ -139,6 +139,7 @@
 			var helper = !callback || function(data) {
 				callback.call(context||global, Object.translate(data, urisToIds));
 			};
+			
 			core.io.Queue.load(uris, helper, this, nocache);
 		},
 
