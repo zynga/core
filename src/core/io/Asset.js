@@ -7,13 +7,21 @@
 
 (function(global)
 {
+	var merged = null;
+	var root = null;
+	var assets = {};
+
+	/*
 	// Jasy is replacing this call via the kernel permutation
-	var data = core.Env.getValue("assets");
+	
 
 	// Shorthands
 	var assets = data.assets;
 	var merged = data.merged;
 	var root = data.root;
+	*/
+	
+
 	
 
 	/**
@@ -111,6 +119,47 @@
 	 */
 	core.Module("core.io.Asset",
 	{
+		add : function(data) 
+		{
+			console.debug("Adding asset data...", data);
+			
+			// Validate input data
+			if (core.Env.isSet("debug")) 
+			{
+				core.Assert.isType(data, "Map");
+				core.Assert.isType(data.assets, "Map");
+				core.Assert.isType(data.root, "String");
+				core.Assert.isType(data.merged, "Boolean");
+			}
+
+			// Initial data
+			if (root == null) 
+			{
+				assets = data.assets;
+				merged = data.merged;
+				root = data.root;
+			}
+			
+			// Inject data
+			else
+			{
+				if (data.merged != merged) {
+					throw new Error("Cannot handle merged and unmerged assets into one data set!");
+				}
+				
+				if (data.root != root) {
+					throw new Error("Cannot handle two different roots in on data set!");
+				}
+				
+				// TODO: Merge assets
+				
+			}
+			
+			
+		},
+		
+		
+		
 		toUri : toUri,
 		
 		/**
@@ -350,4 +399,8 @@
 
 		
 	});
+	
+	core.io.Asset.add(core.Env.getValue("assets"));
+	
 })(this);
+
