@@ -1,11 +1,13 @@
-# Configure permutations
+# Configure
 session.permutateField("es5")
 session.setField("debug", True)
+formatting.enable("semicolon")
+formatting.enable("comma")
 
 
 @task("Source")
 def source():
-    # Include all game relevant assets
+    # Prepare assets
     resolver = Resolver().addClassName("tests")
     assets = AssetManager(resolver.getIncludedClasses()).exportSource()
 

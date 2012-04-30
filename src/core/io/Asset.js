@@ -31,6 +31,10 @@
 			current = current[splits[i]];
 		}
 		
+		if (current == null) {
+			console.warn("Could not resolve URI: " + id);
+		}
+		
 		return current;
 	};
 	
