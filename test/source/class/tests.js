@@ -497,6 +497,99 @@ $(function() {
 	});
 	
 	
+	test("Image Sprite - None", function() {
+		
+		// Deployed
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons" : {
+					"app.png" : [48, 48]
+				}
+			}, 
+			"deployed" : true,
+			"root" : "asset/"
+		});
+		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		
+		var imgData = core.io.Asset.getImage("icons/app.png");
+		strictEqual(imgData.left, 0);
+		strictEqual(imgData.top, 0);
+		strictEqual(imgData.src, "asset/icons/app.png");
+		
+		
+		// Source
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons" : {
+					"app.png" : ["asset/icons/app.png", 48, 48]
+				}
+			}, 
+			"deployed" : false,
+			"root" : ""
+		});
+		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+
+		var imgData = core.io.Asset.getImage("icons/app.png");
+		strictEqual(imgData.left, 0);
+		strictEqual(imgData.top, 0);
+		strictEqual(imgData.src, "asset/icons/app.png");
+		
+	});
+		
+		
+	test("Image Sprite", function() {
+		
+		// Deployed
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons" : {
+					"app.png" : [48, 48, "icons.png", 96, 240],
+					"icons.png" : [288, 288]
+				}
+			}, 
+			"deployed" : true,
+			"root" : "asset/"
+		});
+		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		
+		var imgData = core.io.Asset.getImage("icons/app.png");
+		strictEqual(imgData.width, 48);
+		strictEqual(imgData.height, 48);
+		strictEqual(imgData.left, 96);
+		strictEqual(imgData.top, 240);
+		strictEqual(imgData.src, "asset/icons/icons.png");
+		
+		
+		// Source
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons" : {
+					"app.png" : ["asset/icons/app.png", 48, 48, "icons.png", 96, 240],
+					"icons.png" : ["asset/icons/icons.png", 288, 288]
+				}
+			}, 
+			"deployed" : false,
+			"root" : ""
+		});
+		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+
+		var imgData = core.io.Asset.getImage("icons/app.png");
+		strictEqual(imgData.width, 48);
+		strictEqual(imgData.height, 48);
+		strictEqual(imgData.left, 96);
+		strictEqual(imgData.top, 240);
+		strictEqual(imgData.src, "asset/icons/icons.png");
+		
+	});
+	
 	
 	
 	

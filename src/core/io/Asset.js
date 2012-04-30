@@ -372,25 +372,31 @@
 		getImage : function(id) 
 		{
 			var entry = resolve(id);
+			var index = deployed ? 2 : 3;
+
+			var width = entry[deployed ? 0 : 1];
+			var height = entry[deployed ? 1 : 2];
 			
 			// Is part of image sprite?
-			if (typeof entry[2] == "string") 
+			if (typeof entry[index] == "string") 
 			{
-				var spriteId = entry[2];
+				var spriteId = entry[index];
 				
 				// Local path (same folder as requested image)
-				if (spriteId.indexOf("/") != -1) 
+				if (spriteId.indexOf("/") == -1) 
 				{
-					var pos = spriteId.lastIndexOf("/");
+					var pos = id.lastIndexOf("/");
 					if (pos != -1) {
-						src.slice(0, pos) + id;
+						spriteId = id.slice(0, pos+1) + spriteId;
 					}
 				}
 				
 				return {
-					src : resolve(spriteId),
-					left : entry[3],
-					top : entry[4]
+					src : toUri(spriteId),
+					left : entry[index+1],
+					top : entry[index+2],
+					width: width,
+					height: height
 				};
 			}
 			else
@@ -399,25 +405,15 @@
 				return {
 					src : root + (deployed ? id : entry[0]),
 					left : 0,
-					top: 0
+					top: 0,
+					width: width,
+					height: height
 				};
 			}
-		},
-		
-		
-		getFrame : function(id, frame) {
-			
-			
-			
-			
-		},
-		
-		
-		getFrames : function(id) {
-			
-
-			
 		}
+		
+		
+
 		
 
 
