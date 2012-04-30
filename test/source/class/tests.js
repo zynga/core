@@ -351,31 +351,131 @@ $(function() {
 	
 	module("Core :: Asset");
 	
-	test("Adding Data", function() {
-		
-		if (core.io.Asset.isMerged())
+	test("Adding Source Data", function() 
+	{
+		raises(function() {
+			core.io.Asset.reset();
+			core.io.Asset.toUri("my.png")
+		});
+
+
+		core.io.Asset.reset();
+		core.io.Asset.add(
 		{
+			"assets" : {
+				"my.png" : ["asset/my.png"]
+			}, 
+			"deployed" : false,
+			"root" : ""
+		});
+		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
 
-		}
-		else
+		
+		core.io.Asset.reset();
+		core.io.Asset.add(
 		{
-			core.io.Asset.add(
-			{
-				"assets" : {
-					"my.png" : ["asset/my.png"]
-				}, 
-				"merged" : false,
-				"root" : ""
-			});
+			"assets" : {
+				"my.png" : ["asset/my.png"]
+			}, 
+			"deployed" : false,
+			"root" : "xxx/yyy/"
+		});
+		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
 
-		}
 
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"my.png" : ["asset/my.png"]
+			}, 
+			"deployed" : false,
+			"root" : "http://mycdn.com/xxx/yyy/"
+		});
+		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
+		
+		
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"lib2" : {
+					"my.png" : ["../../lib2/asset/my.png"]
+				}
+			}, 
+			"deployed" : false,
+			"root" : "http://mycdn.com/app/source/"
+		});
+		equals(core.io.Asset.toUri("lib2/my.png"), "http://mycdn.com/app/source/../../lib2/asset/my.png");
+
+	});
+	
+	
+	test("Adding Deployed Data", function() 
+	{
+		raises(function() {
+			core.io.Asset.reset();
+			core.io.Asset.toUri("my.png")
+		});
+
+
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"my.png" : 1
+			}, 
+			"deployed" : true,
+			"root" : "asset/"
+		});
+		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
 
 		
-		alert(core.io.Asset.toUri("my.png"));
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"my.png" : 1
+			}, 
+			"deployed" : true,
+			"root" : "http://mycdn.com/asset/"
+		});
+		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/asset/my.png");
 		
+		
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"lib2" : {
+					"my.png" : 1
+				}
+			}, 
+			"deployed" : true,
+			"root" : "http://mycdn.com/asset/"
+		});
+		equals(core.io.Asset.toUri("lib2/my.png"), "http://mycdn.com/asset/lib2/my.png");
+
+	});
+	
+	
+	test("Image Sizes", function() {
+		
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons" : {
+					"app.png" : [48,48]
+				}
+			}, 
+			"deployed" : true,
+			"root" : "asset/"
+		});
+		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
 		
 	});
+	
 	
 	
 	

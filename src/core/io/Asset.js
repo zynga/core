@@ -7,11 +7,8 @@
 
 (function(global)
 {
-	// Internal data stores
-	var merged = null;
-	var root = null;
-	var assets = {};
-
+	// Internal data storage
+	var deployed, root, assets;
 
 	/**
 	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
@@ -32,9 +29,9 @@
 			current = current[splits[i]];
 		}
 		
-		if (current == null) {
-			console.warn("Could not resolve URI: " + id);
-		}
+		// if (current == null) {
+		//	console.warn("Could not resolve URI: " + id);
+		//}
 		
 		return current;
 	};
@@ -71,7 +68,7 @@
 					
 					if (data) {
 						all[localId] = entry;
-					} else if (merged) {
+					} else if (deployed) {
 						all[localId] = root + id;
 					} else {
 						all[localId] = root + entry[0];
@@ -94,7 +91,7 @@
 			core.Assert.isType(id, "String");
 		}
 		
-		return root + (merged ? id : resolve(id)[0]);
+		return root + (deployed ? id : resolve(id)[0]);
 	};
 	
 	
@@ -133,37 +130,42 @@
 	 */
 	core.Module("core.io.Asset",
 	{
-		isMerged: function(data) {
-			return merged;
+		reset : function() 
+		{
+			deployed = root = null;
+			assets = {};
+		},
+
+		
+		isDeployed: function(data) {
+			return deployed;
 		},
 		
 		
 		add : function(data) 
 		{
-			console.debug("Adding asset data...", data);
-			
 			// Validate input data
 			if (core.Env.isSet("debug")) 
 			{
 				core.Assert.isType(data, "Map");
 				core.Assert.isType(data.assets, "Map");
 				core.Assert.isType(data.root, "String");
-				core.Assert.isType(data.merged, "Boolean");
+				core.Assert.isType(data.deployed, "Boolean");
 			}
 
 			// Initial data
 			if (root == null) 
 			{
 				assets = data.assets;
-				merged = data.merged;
+				deployed = data.deployed;
 				root = data.root;
 			}
 			
 			// Inject data
 			else
 			{
-				if (data.merged != merged) {
-					throw new Error("Cannot handle merged and unmerged assets into one data set!");
+				if (data.deployed != deployed) {
+					throw new Error("Cannot handle deployed and undeployed assets into one data set!");
 				}
 				
 				if (data.root != root) {
@@ -314,7 +316,7 @@
 		getImageSize : function(id)
 		{
 			var entry = resolve(id);
-			var start = merged ? 0 : 1;
+			var start = deployed ? 0 : 1;
 			
 			return entry.slice(start, start+2);
 		},
@@ -326,8 +328,8 @@
 			var number = 1;
 			
 			// Create duplicate with remove first item
-			// Because in source (non merged) the first entry is the path
-			if (!merged) {
+			// Because in source (non deployed) the first entry is the path
+			if (!deployed) {
 				entry = entry.slice(1);
 			}
 			
@@ -390,7 +392,7 @@
 			{
 				// Return compatible data format in cases where no sprite sheet is used
 				return {
-					src : root + (merged ? id : entry[0]),
+					src : root + (deployed ? id : entry[0]),
 					left : 0,
 					top: 0
 				};
@@ -417,6 +419,7 @@
 		
 	});
 	
+	core.io.Asset.reset();
 	core.io.Asset.add(core.Env.getValue("assets"));
 	
 })(this);
