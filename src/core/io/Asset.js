@@ -180,6 +180,7 @@
 		
 		
 		toUri : toUri,
+		resolve: resolve,
 		
 		/**
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
@@ -316,13 +317,17 @@
 		getImageSize : function(id)
 		{
 			var entry = resolve(id);
-			var start = deployed ? 0 : 1;
 			
+			if (core.Env.isSet("debug") && !entry) {
+				throw new Error("Could not figure out size of unknown image: " + id);
+			}
+			
+			var start = deployed ? 0 : 1;
 			return entry.slice(start, start+2);
 		},
 		
 		
-		getFrameNumber: function(id) 
+		getNumberOfFrames: function(id) 
 		{
 			var entry = resolve(id);
 			var number = 1;

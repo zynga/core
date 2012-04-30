@@ -461,18 +461,38 @@ $(function() {
 	
 	test("Image Sizes", function() {
 		
+		// Deployed
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
 			"assets" : {
 				"icons" : {
-					"app.png" : [48,48]
+					"app.png" : [48, 48]
 				}
 			}, 
 			"deployed" : true,
 			"root" : "asset/"
 		});
 		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		equals(core.io.Asset.getImageSize("icons/app.png")+"", [48, 48]+"");
+		equals(core.io.Asset.getNumberOfFrames("icons/app.png"), 1);
+		
+		
+		// Source
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons" : {
+					"app.png" : ["asset/icons/app.png", 48, 48]
+				}
+			}, 
+			"deployed" : false,
+			"root" : ""
+		});
+		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		equals(core.io.Asset.getImageSize("icons/app.png")+"", [48, 48]+"");
+		equals(core.io.Asset.getNumberOfFrames("icons/app.png"), 1);
 		
 	});
 	
