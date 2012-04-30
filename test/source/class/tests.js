@@ -686,10 +686,10 @@ $(function() {
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons.png" : ["asset/icons/icons.png", 288, 288],
+				"icons.png" : ["asset/icons.png", 288, 288],
 				"myapp" : {
 					"icons" : {
-						"app.png" : ["asset/icons/app.png", 48, 48, "/icons.png", 96, 240]
+						"app.png" : ["asset/myapp/icons/app.png", 48, 48, "/icons.png", 96, 240]
 					}
 				}
 			}, 
