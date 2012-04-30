@@ -97,6 +97,31 @@
 		return root + (merged ? id : resolve(id)[0]);
 	};
 	
+	
+	/**
+	 * Merged two data maps @src {Map} and @dst {Map} recursively by using as much of 
+	 * the original data as possible (no copying). Will never override existing values!
+	 */
+	var mergeData = function(src, dst)
+	{
+		for (var key in src) 
+		{
+			var srcValue = src[key];
+			var dstValue = dst[key];
+			
+			// Just use value from source (works for folders and files)
+			if (dstValue == null) {
+				dst[key] = srcValue;
+			}
+			
+			// Deep merge
+			else if (srcValue.constructor === Object && dstValue.construtor === Object) {
+				mergeData(srcValue, dstValue);
+			}
+		}
+	};
+	
+	
 
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
@@ -108,6 +133,11 @@
 	 */
 	core.Module("core.io.Asset",
 	{
+		isMerged: function(data) {
+			return merged;
+		},
+		
+		
 		add : function(data) 
 		{
 			console.debug("Adding asset data...", data);
@@ -140,10 +170,8 @@
 					throw new Error("Cannot handle two different roots in on data set!");
 				}
 				
-				// TODO: Merge assets
-				
+				mergeData(data.assets, assets);
 			}
-			
 			
 		},
 		

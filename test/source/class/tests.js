@@ -353,6 +353,26 @@ $(function() {
 	
 	test("Adding Data", function() {
 		
+		if (core.io.Asset.isMerged())
+		{
+
+		}
+		else
+		{
+			core.io.Asset.add(
+			{
+				"assets" : {
+					"my.png" : ["asset/my.png"]
+				}, 
+				"merged" : false,
+				"root" : ""
+			});
+
+		}
+
+
+		
+		alert(core.io.Asset.toUri("my.png"));
 		
 		
 	});
