@@ -98,13 +98,16 @@
 	 */
 	core.Module("core.io.Asset",
 	{
+		toUri : toUri,
+		
 		/**
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
 		 */
 		has : function(id) {
 			return !!resolve(id);
 		},
-
+		
+		
 		/**
 		 * Loads the given @section {String}. Optionally @recursive {Boolean?false} it traverses
 		 * the whole tree starting at @section. The optional @callback {Function?} is executed
@@ -205,6 +208,133 @@
 		},
 
 
-		toUri : toUri
+
+		//
+		// Data formats for image sprites / images frames:
+		//
+		// [width, height]
+		// [400, 200]
+		//
+		// [width, height, cellNumber, rowNumber]
+		// [400, 200, 20, 10]
+		//
+		// [width, height, cellNumber, rowNumber, frameNumber]
+		// [400, 200, 20, 10, 183]
+		//
+		// [width, height, spriteId, left, top]
+		// [24, 24, "icons.png", 48, 0]
+		//
+		// [width, height, spriteId, left, top, cellNumber, rowNumber]
+		// [100, 100, "explode.png", 420, 245, 5, 5] 
+		// Image is part of sprite image explode.png with offsets 420x245. It contains 25 images with each being 20x20.
+		//
+		// [width, height, spriteId, left, top, cellNumber, rowNumber, frameNumber]
+		// [100, 100, "explode.png", 420, 245, 5, 5, 23] 
+		// Image is part of sprite image explode.png with offsets 420x245. It contains 23 images with each being 20x20.
+		//
+		// [width, height, spriteId, left, top, [[left,top,width,height], ...]]
+		// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
+		// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned images.
+		//
+		
+		getFrameNumber: function(id) 
+		{
+			var entry = resolve(id);
+			var number = 1;
+			
+			// Create duplicate with remove first item
+			// Because in source (non merged) the first entry is the path
+			if (!merged) {
+				entry = entry.slice(1);
+			}
+			
+			switch(entry.length)
+			{
+				case 4:
+					// auto calculated frame size
+					number = entry[2] * entry[3];
+					break;
+					
+				case 5:
+					// manually defined frame size
+					number = entry[4];
+					break;
+					
+				case 6:
+					// manually defined frames
+					number = entry[5].length;
+					
+				case 7:
+					// auto calculated frame size (image sprite)
+					number = entry[5] * entry[6];
+					break;
+				
+				case 8:
+					// manually defined frame size (image sprite)
+					number = entry[7];
+					break;
+			}
+			
+			return number;
+		},
+
+
+		getImage : function(id) 
+		{
+			
+			var entry = resolve(id);
+			
+			// Has image sprite
+			if (typeof entry[2] == "string") {
+				
+				var spriteId = entry[2];
+				
+				// Local path (same folder as requested image)
+				if (spriteId.indexOf("/") != -1) 
+				{
+					var pos = spriteId.lastIndexOf("/");
+					if (pos != -1) {
+						src.slice(0, pos) + id;
+					}
+				}
+				
+				return {
+					src : resolve(spriteId),
+					left : entry[3],
+					top : entry[4]
+				};
+				
+			} else {
+				
+				// Return compatible data format in cases where no sprite sheet is used
+				return {
+					src : root + (merged ? id : entry[0]),
+					left : 0,
+					top: 0
+				};
+				
+			}
+			
+			
+		},
+		
+		
+		getFrame : function(id, frame) {
+			
+			
+			
+			
+		},
+		
+		
+		getFrames : function(id) {
+			
+
+			
+		}
+		
+
+
+		
 	});
 })(this);
