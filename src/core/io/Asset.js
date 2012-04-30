@@ -298,12 +298,11 @@
 
 		getImage : function(id) 
 		{
-			
 			var entry = resolve(id);
 			
-			// Has image sprite
-			if (typeof entry[2] == "string") {
-				
+			// Is part of image sprite?
+			if (typeof entry[2] == "string") 
+			{
 				var spriteId = entry[2];
 				
 				// Local path (same folder as requested image)
@@ -320,19 +319,16 @@
 					left : entry[3],
 					top : entry[4]
 				};
-				
-			} else {
-				
+			}
+			else
+			{
 				// Return compatible data format in cases where no sprite sheet is used
 				return {
 					src : root + (merged ? id : entry[0]),
 					left : 0,
 					top: 0
 				};
-				
 			}
-			
-			
 		},
 		
 		
