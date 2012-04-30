@@ -7,22 +7,11 @@
 
 (function(global)
 {
+	// Internal data stores
 	var merged = null;
 	var root = null;
 	var assets = {};
 
-	/*
-	// Jasy is replacing this call via the kernel permutation
-	
-
-	// Shorthands
-	var assets = data.assets;
-	var merged = data.merged;
-	var root = data.root;
-	*/
-	
-
-	
 
 	/**
 	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
