@@ -25,6 +25,10 @@
 			return id;
 		}
 		
+		if (core.Env.isSet("debug")) {
+			core.Assert.isType(id, "String");
+		}
+		
 		var splits = id.split("/");
 		var current = assets;
 		for (var i=0, l=splits.length; current&&i<l; i++) {
@@ -87,7 +91,12 @@
 	 * {String} Converts the given asset @id {String} to a full qualified URI. 
 	 * The method throws an error whenever an asset ID is unknown.
 	 */
-	var toUri = function(id) {
+	var toUri = function(id) 
+	{
+		if (core.Env.isSet("debug")) {
+			core.Assert.isType(id, "String");
+		}
+		
 		return root + (merged ? id : resolve(id)[0]);
 	};
 	
@@ -107,7 +116,12 @@
 		/**
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
 		 */
-		has : function(id) {
+		has : function(id) 
+		{
+			if (core.Env.isSet("debug")) {
+				core.Assert.isType(id, "String");
+			}
+			
 			return !!resolve(id);
 		},
 		
@@ -200,19 +214,6 @@
 		},
 
 
-		/**
-		 * {Array} Returns the dimensions of the given image @id {String} with as `width`, `height`.
-		 */
-		getImageSize : function(id)
-		{
-			var entry = resolve(id);
-			var start = merged ? 0 : 1;
-			
-			return entry.slice(start, start+2);
-		},
-
-
-
 		//
 		// Data formats for image sprites / images frames:
 		//
@@ -240,6 +241,18 @@
 		// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
 		// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned images.
 		//
+		
+		/**
+		 * {Array} Returns the dimensions of the given image @id {String} with as `width`, `height`.
+		 */
+		getImageSize : function(id)
+		{
+			var entry = resolve(id);
+			var start = merged ? 0 : 1;
+			
+			return entry.slice(start, start+2);
+		},
+		
 		
 		getFrameNumber: function(id) 
 		{
