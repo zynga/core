@@ -10,7 +10,7 @@ def source():
     assets = AssetManager(resolver.getIncludedClasses()).exportSource()
 
     # Store kernel script
-    includedByKernel = storeKernel("source/script/kernel.js", assets=assets, debug=True)
+    includedByKernel = storeKernel("script/kernel.js", assets=assets, debug=True)
     
     # Process every possible permutation
     for permutation in session.permutate():
@@ -22,7 +22,7 @@ def source():
         
         # Writing source loader
         classes = Sorter(resolver).getSortedClasses()
-        storeLoader("source/script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
+        storeLoader("script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
 
 
 @task("Build")
@@ -32,10 +32,10 @@ def build():
     assets = AssetManager(resolver.getIncludedClasses()).exportBuild()
 
     # Write kernel script
-    includedByKernel = storeKernel("build/script/kernel.js", assets=assets, debug=True)
+    includedByKernel = storeKernel("script/kernel.js", assets=assets, debug=True)
 
     # Copy files from source
-    updateFile("source/index.html", "build/index.html")
+    updateFile("source/index.html", "index.html")
 
     # Process every possible permutation
     for permutation in session.permutate():
@@ -47,7 +47,7 @@ def build():
 
         # Compressing classes
         classes = Sorter(resolver).getSortedClasses()
-        storeCompressed("build/script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
+        storeCompressed("script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
     
     
 @task("Clear Cache")
