@@ -15,6 +15,7 @@
 	var merged = data.merged;
 	var root = data.root;
 	
+
 	/**
 	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
 	 */
@@ -25,7 +26,6 @@
 		}
 		
 		var splits = id.split("/");
-		
 		var current = assets;
 		for (var i=0, l=splits.length; current&&i<l; i++) {
 			current = current[splits[i]];
@@ -157,9 +157,9 @@
 			// Build back tables to translate uris back to local IDs
 			var urisToIds = uris.zip(Object.keys(all));
 
-			var helper = !callback || function(data) {
+			var helper = callback ? function(data) {
 				callback.call(context||global, Object.translate(data, urisToIds));
-			};
+			} : callback;
 			
 			core.io.Queue.load(uris, helper, this, nocache);
 		},
@@ -192,9 +192,9 @@
 			var uris = ids.map(toUri);
 			var urisToIds = uris.zip(ids);
 
-			var helper = !callback || function(data) {
+			var helper = callback ? function(data) {
 				callback.call(context||global, Object.translate(data, urisToIds));
-			};
+			} : callback;
 			
 			core.io.Queue.load(uris, helper, this, nocache);
 		},

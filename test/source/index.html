@@ -13,7 +13,7 @@
 
 		<script src="script/kernel.js"></script>
 		<script>
-			core.io.StyleSheet.load(core.io.Asset.toUri("qunit.css"));
+			core.io.Asset.load(["qunit.css"]);
 			core.io.Script.load("script/test-" + core.Env.CHECKSUM + ".js");
 		</script>
 	</body>
