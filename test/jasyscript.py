@@ -1,66 +1,54 @@
-session = Session()
-session.addProject(Project("../"))
-session.addProject(Project("."))
-
 # Configure permutations
 session.permutateField("es5")
 session.setField("debug", True)
-
-# Compiler configuration
-optimization = Optimization("variables", "declarations", "blocks")
-formatting = Formatting("semicolon", "comma")
 
 
 @task("Source")
 def source():
     # Include all game relevant assets
-    resolver = Resolver(session.getProjects())
-    resolver.addClassName("tests")
-    assets = Asset(session, resolver.getIncludedClasses()).exportSource()
+    resolver = Resolver().addClassName("tests")
+    assets = Asset(resolver.getIncludedClasses()).exportSource()
 
     # Store kernel script
-    includedByKernel = storeKernel("source/script/kernel.js", session, assets=assets, debug=True, formatting=formatting)
+    includedByKernel = storeKernel("source/script/kernel.js", assets=assets, debug=True)
     
     # Process every possible permutation
-    for permutation in session.getPermutations():
+    for permutation in session.permutate():
 
         # Resolving dependencies
-        resolver = Resolver(session.getProjects(), permutation)
+        resolver = Resolver()
         resolver.addClassName("tests")
         resolver.excludeClasses(includedByKernel)
         
         # Writing source loader
-        destination = "source/script/test-%s.js" % permutation.getChecksum()
         classes = Sorter(resolver, permutation).getSortedClasses()
-        storeSourceLoader(destination, classes, session, bootCode="QUnit.load();")
+        storeSourceLoader("source/script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
     
 
 
 @task("Build")
 def build():
     # Prepare assets
-    resolver = Resolver(session.getProjects())
-    resolver.addClassName("tests")
-    assets = Asset(session, resolver.getIncludedClasses()).exportBuild()
+    resolver = Resolver().addClassName("tests")
+    assets = Asset(resolver.getIncludedClasses()).exportBuild()
 
     # Write kernel script
-    includedByKernel = storeKernel("build/script/kernel.js", session, assets=assets, debug=True, formatting=formatting)
+    includedByKernel = storeKernel("build/script/kernel.js", assets=assets, debug=True)
 
     # Copy files from source
     updateFile("source/index.html", "build/index.html")
 
     # Process every possible permutation
-    for permutation in session.getPermutations():
+    for permutation in session.permutate():
 
         # Resolving dependencies
-        resolver = Resolver(session.getProjects(), permutation)
+        resolver = Resolver()
         resolver.addClassName("tests")
         resolver.excludeClasses(includedByKernel)
 
         # Compressing classes
         classes = Sorter(resolver, permutation).getSortedClasses()
-        compressedCode = storeCompressed("build/script/test-%s.js" % permutation.getChecksum(), classes, 
-            permutation=permutation, optimization=optimization, formatting=formatting, bootCode="QUnit.load();")
+        compressedCode = storeCompressed("build/script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
 
     
     

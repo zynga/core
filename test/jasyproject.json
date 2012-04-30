@@ -1,4 +1,10 @@
 {
 	"name": "test",
-	"package": ""
+	"package": "",
+	
+	"requires" : [
+	
+		"../"
+	
+	]
 }
