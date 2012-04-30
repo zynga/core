@@ -466,16 +466,18 @@ $(function() {
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons" : {
-					"app.png" : [48, 48]
+				"myapp" : {
+					"icons" : {
+						"app.png" : [48, 48]
+					}
 				}
 			}, 
 			"deployed" : true,
 			"root" : "asset/"
 		});
-		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
-		equals(core.io.Asset.getImageSize("icons/app.png")+"", [48, 48]+"");
-		equals(core.io.Asset.getNumberOfFrames("icons/app.png"), 1);
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		equals(core.io.Asset.getImageSize("myapp/icons/app.png")+"", [48, 48]+"");
+		equals(core.io.Asset.getNumberOfFrames("myapp/icons/app.png"), 1);
 		
 		
 		// Source
@@ -483,16 +485,18 @@ $(function() {
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons" : {
-					"app.png" : ["asset/icons/app.png", 48, 48]
+				"myapp" : {
+					"icons" : {
+						"app.png" : ["asset/myapp/icons/app.png", 48, 48]
+					}
 				}
 			}, 
 			"deployed" : false,
 			"root" : ""
 		});
-		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
-		equals(core.io.Asset.getImageSize("icons/app.png")+"", [48, 48]+"");
-		equals(core.io.Asset.getNumberOfFrames("icons/app.png"), 1);
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		equals(core.io.Asset.getImageSize("myapp/icons/app.png")+"", [48, 48]+"");
+		equals(core.io.Asset.getNumberOfFrames("myapp/icons/app.png"), 1);
 		
 	});
 	
@@ -504,19 +508,21 @@ $(function() {
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons" : {
-					"app.png" : [48, 48]
+				"myapp" : {
+					"icons" : {
+						"app.png" : [48, 48]
+					}
 				}
 			}, 
 			"deployed" : true,
 			"root" : "asset/"
 		});
-		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		
-		var imgData = core.io.Asset.getImage("icons/app.png");
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.left, 0);
 		strictEqual(imgData.top, 0);
-		strictEqual(imgData.src, "asset/icons/app.png");
+		strictEqual(imgData.src, "asset/myapp/icons/app.png");
 		
 		
 		// Source
@@ -524,46 +530,50 @@ $(function() {
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons" : {
-					"app.png" : ["asset/icons/app.png", 48, 48]
+				"myapp" : {
+					"icons" : {
+						"app.png" : ["asset/myapp/icons/app.png", 48, 48]
+					}
 				}
 			}, 
 			"deployed" : false,
 			"root" : ""
 		});
-		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
-		var imgData = core.io.Asset.getImage("icons/app.png");
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.left, 0);
 		strictEqual(imgData.top, 0);
-		strictEqual(imgData.src, "asset/icons/app.png");
+		strictEqual(imgData.src, "asset/myapp/icons/app.png");
 		
 	});
 		
 		
-	test("Image Sprite", function() {
-		
+	test("Image Sprite - Same Folder", function() 
+	{
 		// Deployed
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons" : {
-					"app.png" : [48, 48, "icons.png", 96, 240],
-					"icons.png" : [288, 288]
+				"myapp" : {
+					"icons" : {
+						"app.png" : [48, 48, "icons.png", 96, 240],
+						"icons.png" : [288, 288]
+					}
 				}
 			}, 
 			"deployed" : true,
 			"root" : "asset/"
 		});
-		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		
-		var imgData = core.io.Asset.getImage("icons/app.png");
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
 		strictEqual(imgData.height, 48);
 		strictEqual(imgData.left, 96);
 		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "asset/icons/icons.png");
+		strictEqual(imgData.src, "asset/myapp/icons/icons.png");
 		
 		
 		// Source
@@ -571,23 +581,130 @@ $(function() {
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons" : {
-					"app.png" : ["asset/icons/app.png", 48, 48, "icons.png", 96, 240],
-					"icons.png" : ["asset/icons/icons.png", 288, 288]
+				"myapp" : {
+					"icons" : {
+						"app.png" : ["asset/myapp/icons/app.png", 48, 48, "icons.png", 96, 240],
+						"icons.png" : ["asset/myapp/icons/icons.png", 288, 288]
+					}
 				}
 			}, 
 			"deployed" : false,
 			"root" : ""
 		});
-		equals(core.io.Asset.toUri("icons/app.png"), "asset/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
-		var imgData = core.io.Asset.getImage("icons/app.png");
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
 		strictEqual(imgData.height, 48);
 		strictEqual(imgData.left, 96);
 		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "asset/icons/icons.png");
+		strictEqual(imgData.src, "asset/myapp/icons/icons.png");
+	});
+	
+	
+	test("Image Sprite - Absolute ID", function() 
+	{
+		// Deployed
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"myapp" : {
+					"icons.png" : [288, 288],
+					"icons" : {
+						"app.png" : [48, 48, "myapp/icons.png", 96, 240]
+					}
+				}
+			}, 
+			"deployed" : true,
+			"root" : "asset/"
+		});
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
+		strictEqual(imgData.width, 48);
+		strictEqual(imgData.height, 48);
+		strictEqual(imgData.left, 96);
+		strictEqual(imgData.top, 240);
+		strictEqual(imgData.src, "asset/myapp/icons.png");
+		
+		
+		// Source
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"myapp" : {
+					"icons.png" : ["asset/icons.png", 288, 288],
+					"icons" : {
+						"app.png" : ["asset/icons/app.png", 48, 48, "myapp/icons.png", 96, 240]
+					}
+				}
+			}, 
+			"deployed" : false,
+			"root" : ""
+		});
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/icons/app.png");
+
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
+		strictEqual(imgData.width, 48);
+		strictEqual(imgData.height, 48);
+		strictEqual(imgData.left, 96);
+		strictEqual(imgData.top, 240);
+		strictEqual(imgData.src, "asset/icons.png");
+	});	
+	
+	
+	test("Image Sprite - Root ID", function() 
+	{
+		// Deployed
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons.png" : [288, 288],
+				"myapp" : {
+					"icons" : {
+						"app.png" : [48, 48, "/icons.png", 96, 240]
+					}
+				}
+			}, 
+			"deployed" : true,
+			"root" : "asset/"
+		});
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
+		strictEqual(imgData.width, 48);
+		strictEqual(imgData.height, 48);
+		strictEqual(imgData.left, 96);
+		strictEqual(imgData.top, 240);
+		strictEqual(imgData.src, "asset/icons.png");
+		
+		// Source
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : {
+				"icons.png" : ["asset/icons/icons.png", 288, 288],
+				"myapp" : {
+					"icons" : {
+						"app.png" : ["asset/icons/app.png", 48, 48, "/icons.png", 96, 240]
+					}
+				}
+			}, 
+			"deployed" : false,
+			"root" : ""
+		});
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+
+		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
+		strictEqual(imgData.width, 48);
+		strictEqual(imgData.height, 48);
+		strictEqual(imgData.left, 96);
+		strictEqual(imgData.top, 240);
+		strictEqual(imgData.src, "asset/icons.png");
+
 	});
 	
 	

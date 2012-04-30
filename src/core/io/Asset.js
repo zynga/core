@@ -29,9 +29,9 @@
 			current = current[splits[i]];
 		}
 		
-		// if (current == null) {
-		//	console.warn("Could not resolve URI: " + id);
-		//}
+		if (current == null) {
+			console.warn("Could not resolve URI: " + id);
+		}
 		
 		return current;
 	};
@@ -91,7 +91,23 @@
 			core.Assert.isType(id, "String");
 		}
 		
-		return root + (deployed ? id : resolve(id)[0]);
+		if (id.charAt("0") == "/" || id.startsWith("http:") || id.startsWith("https:")) {
+			return id;
+		}
+		
+		if (deployed) 
+		{
+			return root + id;
+		} 
+		else 
+		{
+			var entry = resolve(id);
+			if (!entry) {
+				throw new Error("Can't resolve URL for asset: " + id);
+			}
+			
+			return root + entry[0];
+		}
 	};
 	
 	
@@ -372,6 +388,11 @@
 		getImage : function(id) 
 		{
 			var entry = resolve(id);
+			
+			if (!entry) {
+				throw new Error("Unknown image: " + id);
+			}
+			
 			var index = deployed ? 2 : 3;
 
 			var width = entry[deployed ? 0 : 1];
@@ -381,9 +402,14 @@
 			if (typeof entry[index] == "string") 
 			{
 				var spriteId = entry[index];
-				
+
+				// Explicit root path
+				if (spriteId.charAt(0) == "/") {
+					spriteId = spriteId.slice(1);
+				}
+
 				// Local path (same folder as requested image)
-				if (spriteId.indexOf("/") == -1) 
+				else if (spriteId.indexOf("/") == -1) 
 				{
 					var pos = id.lastIndexOf("/");
 					if (pos != -1) {
