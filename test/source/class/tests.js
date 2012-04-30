@@ -6,11 +6,11 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		FIX
+		EXT :: FIX
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Fix");
+	module("Ext :: Fixes");
 	
 	asyncTest("setTimeout with arguments", 1, function() 
 	{
@@ -58,11 +58,11 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		EXT
+		EXT :: SUGAR
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Ext");
+	module("Ext :: Sugar");
 
 	/** #require(ext.sugar.Object) */
 
@@ -346,11 +346,11 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		UTIL
+		CORE :: UTIL
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Util");
+	module("Core :: Util");
 	
 	test("Id", function() {
 		
@@ -378,11 +378,11 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		TEMPLATE
+		CORE :: TEMPLATE
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Template");
+	module("Core :: Template");
 	
 	test("Basic", function() {
 		
@@ -635,11 +635,11 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		CRYPT
+		CORE :: CRYPT
 	---------------------------------------------------------------------------
 	*/	
 	
-	module("Crypt");
+	module("Core :: Crypt");
 	
 	test("Adler32", function() {
 		
@@ -704,11 +704,11 @@ $(function() {
 
 	/*
 	---------------------------------------------------------------------------
-		COLLECTION :: LINKED LIST
+		CORE :: COLLECTION :: LINKED LIST
 	---------------------------------------------------------------------------
 	*/
 	
-	module("LinkedList");
+	module("Core :: Collection :: LinkedList");
 	
 	test("Create", function() 
 	{
@@ -833,11 +833,11 @@ $(function() {
 
 	/*
 	---------------------------------------------------------------------------
-		NAMES
+		CORE :: NAMESPACES
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Names", {
+	module("Core :: Namespaces", {
 		teardown : function() {
 			delete global.foo;
 			delete global.abc;
@@ -859,11 +859,11 @@ $(function() {
 
 	/*
 	---------------------------------------------------------------------------
-		MODULES
+		CORE :: MODULES
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Modules", {
+	module("Core :: Modules", {
 		teardown : function() {
 			delete global.abc;
 			delete global.x;
@@ -930,11 +930,11 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		CLASSES :: CORE
+		CORE :: CLASSES :: BASICS
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Classes Core", {
+	module("Core :: Classes :: Basics", {
 		teardown : function() {
 			core.Main.clearNamespace("abc.Class1");
 			core.Main.clearNamespace("abc.Class2");
@@ -974,11 +974,11 @@ $(function() {
 	
 	/*
 	---------------------------------------------------------------------------
-		CLASSES :: MEMBERS
+		CORE :: CLASSES :: MEMBERS
 	---------------------------------------------------------------------------
 	*/	
 	
-	module("Classes Members", {
+	module("Core :: Classes :: Members", {
 		teardown : function() {
 			core.Main.clearNamespace("members.Class1");
 			core.Main.clearNamespace("members.Include1");
@@ -1140,11 +1140,11 @@ $(function() {
 
 	/*
 	---------------------------------------------------------------------------
-		CLASSES :: EVENTS
+		CORE :: CLASSES :: EVENTS
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Classes Events", {
+	module("Core :: Classes :: Events", {
 		teardown : function() {
 			core.Main.clearNamespace("events.Keyboard");
 			core.Main.clearNamespace("events.Mouse");
@@ -1291,7 +1291,7 @@ $(function() {
 	---------------------------------------------------------------------------
 	*/
 	
-	module("Classes Properties", {
+	module("Core :: Classes :: Properties", {
 		teardown : function() {
 			core.Main.clearNamespace("properties.Text");
 			core.Main.clearNamespace("properties.Dimension");
