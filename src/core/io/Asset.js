@@ -346,6 +346,9 @@
 		},
 		
 		
+		/**
+		 * {Integer} Returns the number of frames (for animations) for the given image @id {String}.
+		 */
 		getNumberOfFrames: function(id) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -361,34 +364,35 @@
 			
 			// Create duplicate with remove first item
 			// Because in source (non deployed) the first entry is the path
+			var offset = deployed ? 0 : 1;
 			if (!deployed) {
 				entry = entry.slice(1);
 			}
 			
-			switch(entry.length)
+			switch(entry.length-offset)
 			{
 				case 4:
 					// auto calculated frame size
-					number = entry[2] * entry[3];
+					number = entry[offset+2] * entry[offset+3];
 					break;
 					
 				case 5:
 					// manually defined frame size
-					number = entry[4];
+					number = entry[offset+4];
 					break;
 					
 				case 6:
 					// manually defined frames
-					number = entry[5].length;
+					number = entry[offset+5].length;
 					
 				case 7:
 					// auto calculated frame size (image sprite)
-					number = entry[5] * entry[6];
+					number = entry[offset+5] * entry[offset+6];
 					break;
 				
 				case 8:
 					// manually defined frame size (image sprite)
-					number = entry[7];
+					number = entry[offset+7];
 					break;
 			}
 			
@@ -396,10 +400,14 @@
 		},
 
 
+		/**
+		 * {Map} Returns the image data for the given asset @id {String} with the keys:
+		 * `src`, `left`, `top`, `width` and `height` to being used in a sprite compatible
+		 * image rendering mechanism (e.g. CSS background image + position, Canvas `dragImage`, etc.)
+		 */
 		getImage : function(id) 
 		{
 			var entry = resolve(id);
-			
 			if (!entry) {
 				throw new Error("Unknown image: " + id);
 			}
@@ -447,13 +455,32 @@
 					height: height
 				};
 			}
+		},
+		
+		
+		getFrame : function(id, frame) 
+		{
+			var entry = resolve(id);
+			if (!entry) {
+				throw new Error("Unknown image: " + id);
+			}
+			
+			var src, left=0, top=0, width, height, offsetLeft=0, offsetTop=0;
+			
+			
+			
+			
+			return {
+				src : src,
+				left : left,
+				top : top,
+				width : width,
+				height : height,
+				offsetLeft : offsetLeft,
+				offsetTop : offsetTop
+			};
+			
 		}
-		
-		
-
-		
-
-
 		
 	});
 	
