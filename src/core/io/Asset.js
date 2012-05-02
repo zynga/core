@@ -365,9 +365,6 @@
 			// Create duplicate with remove first item
 			// Because in source (non deployed) the first entry is the path
 			var offset = deployed ? 0 : 1;
-			if (!deployed) {
-				entry = entry.slice(1);
-			}
 			
 			switch(entry.length-offset)
 			{
