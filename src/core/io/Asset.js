@@ -102,7 +102,7 @@
 		else 
 		{
 			var entry = resolve(id);
-			if (!entry) {
+			if (core.Env.isSet("debug") && !entry) {
 				throw new Error("Can't resolve URL for asset: " + id);
 			}
 			
@@ -180,12 +180,15 @@
 			// Inject data
 			else
 			{
-				if (data.deployed != deployed) {
-					throw new Error("Cannot handle deployed and undeployed assets into one data set!");
-				}
-				
-				if (data.root != root) {
-					throw new Error("Cannot handle two different roots in on data set!");
+				if (core.Env.isSet("debug"))
+				{
+					if (data.deployed != deployed) {
+						throw new Error("Cannot handle deployed and undeployed assets into one data set!");
+					}
+
+					if (data.root != root) {
+						throw new Error("Cannot handle two different roots in on data set!");
+					}
 				}
 				
 				mergeData(data.assets, assets);
