@@ -332,8 +332,11 @@
 		 */
 		getImageSize : function(id)
 		{
+			if (core.Env.isSet("debug")) {
+				core.Assert.isType(id, "String", "Invalid asset ID!");
+			}
+
 			var entry = resolve(id);
-			
 			if (core.Env.isSet("debug") && !entry) {
 				throw new Error("Could not figure out size of unknown image: " + id);
 			}
@@ -345,7 +348,15 @@
 		
 		getNumberOfFrames: function(id) 
 		{
+			if (core.Env.isSet("debug")) {
+				core.Assert.isType(id, "String", "Invalid asset ID!");
+			}
+			
 			var entry = resolve(id);
+			if (core.Env.isSet("debug") && !entry) {
+				throw new Error("Could not figure out frame number of unknown image: " + id);
+			}
+
 			var number = 1;
 			
 			// Create duplicate with remove first item
