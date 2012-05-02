@@ -487,7 +487,7 @@ $(function() {
 			"assets" : {
 				"myapp" : {
 					"icons" : {
-						"app.png" : ["asset/myapp/icons/app.png", 48, 48]
+						"app.png" : [48, 48, "asset/myapp/icons/app.png"]
 					}
 				}
 			}, 
@@ -532,7 +532,7 @@ $(function() {
 			"assets" : {
 				"myapp" : {
 					"icons" : {
-						"app.png" : ["asset/myapp/icons/app.png", 48, 48]
+						"app.png" : [48, 48, "asset/myapp/icons/app.png"]
 					}
 				}
 			}, 
@@ -583,8 +583,8 @@ $(function() {
 			"assets" : {
 				"myapp" : {
 					"icons" : {
-						"app.png" : ["asset/myapp/icons/app.png", 48, 48, "icons.png", 96, 240],
-						"icons.png" : ["asset/myapp/icons/icons.png", 288, 288]
+						"app.png" : [48, 48, "icons.png", 96, 240, "asset/myapp/icons/app.png"],
+						"icons.png" : [288, 288, "asset/myapp/icons/icons.png"]
 					}
 				}
 			}, 
@@ -635,9 +635,9 @@ $(function() {
 		{
 			"assets" : {
 				"myapp" : {
-					"icons.png" : ["asset/icons.png", 288, 288],
+					"icons.png" : [288, 288, "asset/icons.png"],
 					"icons" : {
-						"app.png" : ["asset/icons/app.png", 48, 48, "myapp/icons.png", 96, 240]
+						"app.png" : [48, 48, "myapp/icons.png", 96, 240, "asset/icons/app.png"]
 					}
 				}
 			}, 
@@ -686,10 +686,10 @@ $(function() {
 		core.io.Asset.add(
 		{
 			"assets" : {
-				"icons.png" : ["asset/icons.png", 288, 288],
+				"icons.png" : [288, 288, "asset/icons.png"],
 				"myapp" : {
 					"icons" : {
-						"app.png" : ["asset/myapp/icons/app.png", 48, 48, "/icons.png", 96, 240]
+						"app.png" : [48, 48, "/icons.png", 96, 240, "asset/myapp/icons/app.png"]
 					}
 				}
 			}, 
@@ -739,9 +739,9 @@ $(function() {
 				"myapp" : {
 					"anim" : 
 					{
-						"loading.png" : ["asset/myapp/anim/loading.png", 48, 48, 1, 16],
-						"explode.png" : ["asset/myapp/anim/explode.png", 120, 120, 3, 30],
-						"collapse.png" : ["asset/myapp/anim/collapse.png", 120, 120, 3, 30, 86],
+						"loading.png" : [48, 48, 1, 16, "asset/myapp/anim/loading.png"],
+						"explode.png" : [120, 120, 3, 30, "asset/myapp/anim/explode.png"],
+						"collapse.png" : [120, 120, 3, 30, 86, "asset/myapp/anim/collapse.png"],
 					}
 				}
 			}, 

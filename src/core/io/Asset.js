@@ -106,7 +106,7 @@
 				throw new Error("Can't resolve URL for asset: " + id);
 			}
 			
-			return root + entry[0];
+			return root + entry[entry.length-1];
 		}
 	};
 	
@@ -344,8 +344,7 @@
 				throw new Error("Could not figure out size of unknown image: " + id);
 			}
 			
-			var start = deployed ? 0 : 1;
-			return entry.slice(start, start+2);
+			return entry.slice(0, 2);
 		},
 		
 		
@@ -364,35 +363,38 @@
 			}
 
 			var number = 1;
+			var length = entry.length;
+			
+			if (!deployed) {
+				length--;
+			}
 			
 			// Create duplicate with remove first item
 			// Because in source (non deployed) the first entry is the path
-			var offset = deployed ? 0 : 1;
-			
-			switch(entry.length-offset)
+			switch(length)
 			{
 				case 4:
 					// auto calculated frame size
-					number = entry[offset+2] * entry[offset+3];
+					number = entry[2] * entry[3];
 					break;
 					
 				case 5:
 					// manually defined frame size
-					number = entry[offset+4];
+					number = entry[4];
 					break;
 					
 				case 6:
 					// manually defined frames
-					number = entry[offset+5].length;
+					number = entry[5].length;
 					
 				case 7:
 					// auto calculated frame size (image sprite)
-					number = entry[offset+5] * entry[offset+6];
+					number = entry[5] * entry[6];
 					break;
 				
 				case 8:
 					// manually defined frame size (image sprite)
-					number = entry[offset+7];
+					number = entry[7];
 					break;
 			}
 			
@@ -412,16 +414,15 @@
 				throw new Error("Unknown image: " + id);
 			}
 			
-			var index = deployed ? 2 : 3;
-
-			var width = entry[deployed ? 0 : 1];
-			var height = entry[deployed ? 1 : 2];
+			var width = entry[0];
+			var height = entry[1];
+			
+			// We need more data than just the image sprite ID
+			var spriteId = entry.length > 3 ? entry[2] : null;
 			
 			// Is part of image sprite?
-			if (typeof entry[index] == "string") 
+			if (typeof spriteId == "string") 
 			{
-				var spriteId = entry[index];
-
 				// Explicit root path
 				if (spriteId.charAt(0) == "/") {
 					spriteId = spriteId.slice(1);
@@ -438,8 +439,8 @@
 				
 				return {
 					src : toUri(spriteId),
-					left : entry[index+1],
-					top : entry[index+2],
+					left : entry[3],
+					top : entry[4],
 					width: width,
 					height: height
 				};
@@ -448,7 +449,7 @@
 			{
 				// Return compatible data format in cases where no sprite sheet is used
 				return {
-					src : root + (deployed ? id : entry[0]),
+					src : root + (deployed ? id : entry[entry.length-1]),
 					left : 0,
 					top: 0,
 					width: width,
