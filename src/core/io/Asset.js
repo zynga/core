@@ -408,7 +408,7 @@
 		getImage : function(id) 
 		{
 			var entry = resolve(id);
-			if (!entry) {
+			if (core.Env.isSet("debug") && !entry) {
 				throw new Error("Unknown image: " + id);
 			}
 			
@@ -461,7 +461,7 @@
 		getFrame : function(id, frame) 
 		{
 			var entry = resolve(id);
-			if (!entry) {
+			if (core.Env.isSet("debug") && !entry) {
 				throw new Error("Unknown image: " + id);
 			}
 			
