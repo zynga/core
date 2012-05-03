@@ -722,7 +722,7 @@ $(function() {
 					{
 						"loading.png" : [16*16, 16, 16, 1],
 						"explode.png" : [32*30, 32*3, 30, 3],
-						"collapse.png" : [12*2, 12*20, 2, 20, 86],
+						"collapse.png" : [12*2, 12*20, 2, 20, 86]
 					}
 				}
 			}, 
@@ -764,7 +764,7 @@ $(function() {
 					{
 						"loading.png" : [16*16, 16, 16, 1, "asset/myapp/anim/loading.png"],
 						"explode.png" : [32*30, 32*3, 30, 3, "asset/myapp/anim/explode.png"],
-						"collapse.png" : [12*2, 12*20, 2, 20, 86, "asset/myapp/anim/collapse.png"],
+						"collapse.png" : [12*2, 12*20, 2, 20, 86, "asset/myapp/anim/collapse.png"]
 					}
 				}
 			}, 
