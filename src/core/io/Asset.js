@@ -475,8 +475,6 @@
 			var length = entry.length;
 			var spriteId = getSpriteId(entry, id);
 			
-			console.debug("SPRITE-ID:", spriteId)
-			
 			var src = root + (spriteId ? spriteId : deployed ? id : entry[--length]);
 			var left=0, top=0, width=entry[0], height=entry[1], offsetLeft=0, offsetTop=0;
 			
