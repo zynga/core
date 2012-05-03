@@ -362,43 +362,7 @@
 				throw new Error("Could not figure out frame number of unknown image: " + id);
 			}
 
-			var number = 1;
-			var length = entry.length;
-			
-			if (!deployed) {
-				length--;
-			}
-			
-			// Create duplicate with remove first item
-			// Because in source (non deployed) the first entry is the path
-			switch(length)
-			{
-				case 4:
-					// auto calculated frame size
-					number = entry[2] * entry[3];
-					break;
-					
-				case 5:
-					// manually defined frame size
-					number = entry[4];
-					break;
-					
-				case 6:
-					// manually defined frames
-					number = entry[5].length;
-					
-				case 7:
-					// auto calculated frame size (image sprite)
-					number = entry[5] * entry[6];
-					break;
-				
-				case 8:
-					// manually defined frame size (image sprite)
-					number = entry[7];
-					break;
-			}
-			
-			return number;
+			return this.__getFrameNumber(entry);
 		},
 
 
@@ -459,6 +423,41 @@
 		},
 		
 		
+		__getFrameNumber : function(entry) 
+		{
+			// Correct entry length for format detection
+			var length = entry.length;
+			if (!deployed) {
+				length--;
+			}
+			
+			switch(length)
+			{
+				case 4:
+					// auto calculated frame size
+					return entry[2] * entry[3];
+
+				case 5:
+					// manually defined frame size
+					return entry[4];
+
+				case 6:
+					// manually defined frames
+					return entry[5].length;
+
+				case 7:
+					// auto calculated frame size (image sprite)
+					return entry[5] * entry[6];
+
+				case 8:
+					// manually defined frame size (image sprite)
+					return entry[7];
+			}
+			
+			return 1;
+		},
+		
+		
 		getFrame : function(id, frame) 
 		{
 			var entry = resolve(id);
@@ -466,10 +465,61 @@
 				throw new Error("Unknown image: " + id);
 			}
 			
-			var src, left=0, top=0, width, height, offsetLeft=0, offsetTop=0;
+			// Correct entry length for format detection
+			var length = entry.length;
+			if (!deployed) {
+				length--;
+			}
+			
+			var src, left=0, top=0, width=entry[0], height=entry[1], offsetLeft=0, offsetTop=0;
+			
+			// Detect whether a frame is available
+			if (length > 3 || length < 9) 
+			{
+				
+				console.debug("FRAME-REL-LENGTH: ", length)
+				var number = this.__getFrameNumber(entry);
+
+				if (frame >= number) {
+					throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
+				}
+				
+				
+				
+				
+				// Manual frames
+				if (length == 6)
+				{
+					
+					
+				}
+
+				// Automatic frames
+				else
+				{
+					// Correctly work when using sprite images
+					var cols = length > 6 ? entry[5] : entry[2];
+					var rows = length > 6 ? entry[6] : entry[3];
+					
+					// Correct image dimensions
+					width /= cols;
+					height /= rows;
+					
+					// Calculate position inside sprite image
+					left = (frame % cols) * width;
+					top = Math.floor(frame / cols) * height;
+				}
+			}
+			else if (frame != 0 && core.Env.isSet("debug"))
+			{
+				throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
+			}
+
 			
 			
 			
+			
+			console.debug("SRC:", src)
 			
 			return {
 				src : src,

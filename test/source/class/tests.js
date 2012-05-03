@@ -712,14 +712,16 @@ $(function() {
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
-			"assets" : {
+			"assets" : 
+			{
 				"icons.png" : [288, 288],
-				"myapp" : {
+				"myapp" : 
+				{
 					"anim" : 
 					{
-						"loading.png" : [48, 48, 1, 16],
-						"explode.png" : [120, 120, 3, 30],
-						"collapse.png" : [120, 120, 3, 30, 86],
+						"loading.png" : [16*16, 16, 16, 1],
+						"explode.png" : [32*30, 32*3, 30, 3],
+						"collapse.png" : [12*2, 12*20, 2, 20, 86],
 					}
 				}
 			}, 
@@ -736,12 +738,13 @@ $(function() {
 		{
 			"assets" : {
 				"icons.png" : [288, 288],
-				"myapp" : {
+				"myapp" : 
+				{
 					"anim" : 
 					{
-						"loading.png" : [48, 48, 1, 16, "asset/myapp/anim/loading.png"],
-						"explode.png" : [120, 120, 3, 30, "asset/myapp/anim/explode.png"],
-						"collapse.png" : [120, 120, 3, 30, 86, "asset/myapp/anim/collapse.png"],
+						"loading.png" : [16*16, 16, 16, 1, "asset/myapp/anim/loading.png"],
+						"explode.png" : [32*30, 32*3, 30, 3, "asset/myapp/anim/explode.png"],
+						"collapse.png" : [12*2, 12*20, 2, 20, 86, "asset/myapp/anim/collapse.png"],
 					}
 				}
 			}, 
@@ -752,7 +755,11 @@ $(function() {
 		equals(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90);
 		equals(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86);
 		
-		console.debug(core.io.Asset.getFrame("myapp/anim/loading.png", 13))
+		console.debug(JSON.stringify(core.io.Asset.getFrame("myapp/anim/loading.png", 0)))
+		console.debug(JSON.stringify(core.io.Asset.getFrame("myapp/anim/loading.png", 1)))
+		console.debug(JSON.stringify(core.io.Asset.getFrame("myapp/anim/loading.png", 13)))
+		console.debug(JSON.stringify(core.io.Asset.getFrame("myapp/anim/loading.png", 15)))
+
 
 	});
 	
