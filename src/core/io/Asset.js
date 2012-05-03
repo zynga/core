@@ -408,7 +408,7 @@
 		getImage : function(id) 
 		{
 			var entry = resolve(id);
-			if (core.Env.isSet("debug") && !entry) {
+			if (!entry && core.Env.isSet("debug")) {
 				throw new Error("Unknown image: " + id);
 			}
 			
@@ -460,7 +460,7 @@
 		getFrame : function(id, frame) 
 		{
 			var entry = resolve(id);
-			if (core.Env.isSet("debug") && !entry) {
+			if (!entry && core.Env.isSet("debug")) {
 				throw new Error("Unknown image: " + id);
 			}
 			
@@ -482,7 +482,7 @@
 				//console.debug("FRAME-REL-LENGTH: ", length)
 				var number = getFrameNumber(entry);
 
-				if (frame >= number) {
+				if (frame >= number && core.Env.isSet("debug")) {
 					throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 				}
 				
