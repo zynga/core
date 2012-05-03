@@ -7,6 +7,34 @@
 
 (function(global)
 {
+	//
+	// Data formats for image sprites / images frames:
+	//
+	// [width, height]
+	// [400, 200]
+	//
+	// [width, height, cellNumber, rowNumber]
+	// [400, 200, 20, 10]
+	//
+	// [width, height, cellNumber, rowNumber, frameNumber]
+	// [400, 200, 20, 10, 183]
+	//
+	// [width, height, spriteId, left, top]
+	// [24, 24, "icons.png", 48, 0]
+	//
+	// [width, height, spriteId, left, top, cellNumber, rowNumber]
+	// [100, 100, "explode.png", 420, 245, 5, 5] 
+	// Image is part of sprite image explode.png with offsets 420x245. It contains 25 images with each being 20x20.
+	//
+	// [width, height, spriteId, left, top, cellNumber, rowNumber, frameNumber]
+	// [100, 100, "explode.png", 420, 245, 5, 5, 23] 
+	// Image is part of sprite image explode.png with offsets 420x245. It contains 23 images with each being 20x20.
+	//
+	// [width, height, spriteId, left, top, [[left,top,width,height], ...]]
+	// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
+	// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned images.
+	//
+	
 	// Internal data storage
 	var deployed, root, assets;
 	var Object = global.Object;
@@ -164,6 +192,33 @@
 		}
 		
 		return 1;
+	};
+	
+	
+	var getSpriteId = function(entry, id)
+	{
+		// We need more data than just the image sprite ID
+		var spriteId = entry.length > 3 ? entry[2] : null;
+		
+		// Is part of image sprite?
+		if (typeof spriteId == "string") 
+		{
+			// Explicit root path
+			if (spriteId.charAt(0) == "/") {
+				spriteId = spriteId.slice(1);
+			}
+
+			// Local path (same folder as requested image)
+			else if (spriteId.indexOf("/") == -1) 
+			{
+				var pos = id.lastIndexOf("/");
+				if (pos != -1) {
+					spriteId = id.slice(0, pos+1) + spriteId;
+				}
+			}
+			
+			return spriteId;
+		}
 	};
 	
 
@@ -333,34 +388,6 @@
 		},
 
 
-		//
-		// Data formats for image sprites / images frames:
-		//
-		// [width, height]
-		// [400, 200]
-		//
-		// [width, height, cellNumber, rowNumber]
-		// [400, 200, 20, 10]
-		//
-		// [width, height, cellNumber, rowNumber, frameNumber]
-		// [400, 200, 20, 10, 183]
-		//
-		// [width, height, spriteId, left, top]
-		// [24, 24, "icons.png", 48, 0]
-		//
-		// [width, height, spriteId, left, top, cellNumber, rowNumber]
-		// [100, 100, "explode.png", 420, 245, 5, 5] 
-		// Image is part of sprite image explode.png with offsets 420x245. It contains 25 images with each being 20x20.
-		//
-		// [width, height, spriteId, left, top, cellNumber, rowNumber, frameNumber]
-		// [100, 100, "explode.png", 420, 245, 5, 5, 23] 
-		// Image is part of sprite image explode.png with offsets 420x245. It contains 23 images with each being 20x20.
-		//
-		// [width, height, spriteId, left, top, [[left,top,width,height], ...]]
-		// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
-		// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned images.
-		//
-		
 		/**
 		 * {Array} Returns the dimensions of the given image @id {String} with as `width`, `height`.
 		 */
@@ -412,26 +439,9 @@
 			var width = entry[0];
 			var height = entry[1];
 			
-			// We need more data than just the image sprite ID
-			var spriteId = entry.length > 3 ? entry[2] : null;
-			
-			// Is part of image sprite?
-			if (typeof spriteId == "string") 
+			var spriteId = getSpriteId(entry, id);
+			if (spriteId) 
 			{
-				// Explicit root path
-				if (spriteId.charAt(0) == "/") {
-					spriteId = spriteId.slice(1);
-				}
-
-				// Local path (same folder as requested image)
-				else if (spriteId.indexOf("/") == -1) 
-				{
-					var pos = id.lastIndexOf("/");
-					if (pos != -1) {
-						spriteId = id.slice(0, pos+1) + spriteId;
-					}
-				}
-				
 				return {
 					src : toUri(spriteId),
 					left : entry[3],
@@ -463,13 +473,11 @@
 			
 			// Correct entry length for format detection
 			var length = entry.length;
+			var spriteId = getSpriteId(entry, id);
 			
-			if (deployed) {
-				var src = root + id;
-			} else {
-				var src = root + entry[--length];
-			}
+			console.debug("SPRITE-ID:", spriteId)
 			
+			var src = root + (spriteId ? spriteId : deployed ? id : entry[--length]);
 			var left=0, top=0, width=entry[0], height=entry[1], offsetLeft=0, offsetTop=0;
 			
 			// Detect whether a frame is available

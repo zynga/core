@@ -707,9 +707,8 @@ $(function() {
 
 	});
 	
-	test("Frames - Rows/Columns", function() {
+	test("Frames - Rows/Columns - Source", function() {
 		
-		// Source
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
@@ -729,29 +728,31 @@ $(function() {
 			"root" : "asset/"
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86);
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
 		
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0, "left position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16, "left position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208, "left position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240, "left position last");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0, "top position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0, "top position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0, "top position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0, "top position last");
 
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/anim/loading.png");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16, "corrected width");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16, "corrected height");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/anim/loading.png", "normal source handling I");
 		
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/anim/loading.png");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256, "full image width");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16, "full image height");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/anim/loading.png", "normal source handling II");
+	
+	});
 		
+	test("Frames - Rows/Columns - Deployed", function() {
 		
-		// Deployed
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
@@ -771,33 +772,32 @@ $(function() {
 			"root" : ""
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86);
-
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0);
-
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/anim/loading.png");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
 		
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/anim/loading.png");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0, "left position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16, "left position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208, "left position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240, "left position last");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0, "top position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0, "top position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0, "top position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0, "top position last");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16, "corrected width");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16, "corrected height");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/anim/loading.png", "normal source handling I");
+		
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256, "full image width");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16, "full image height");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/anim/loading.png", "normal source handling II");
 
 
 	});
 	
-	test("Frames - Rows/Columns in Image Sprite", function() {
+	test("Frames - Rows/Columns in Image Sprite - Source", function() {
 		
-		// Source
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
@@ -818,29 +818,32 @@ $(function() {
 			"root" : "asset/"
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86);
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
 		
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0, "left position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16, "left position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208, "left position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240, "left position last");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0, "top position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0, "top position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0, "top position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0, "top position last");
 
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/sprite.png");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16, "corrected width");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16, "corrected height");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/sprite.png", "normal source sprite handling I");
 		
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/sprite.png");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256, "full image width");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16, "full image height");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/sprite.png", "normal source sprite handling II");
+
+
+	});
 		
+	test("Frames - Rows/Columns in Image Sprite - Deployed", function() {
 		
-		// Deployed
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
@@ -861,26 +864,27 @@ $(function() {
 			"root" : ""
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90);
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86);
-
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0);
-
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16);
-		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/sprite.png");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
 		
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
-		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/sprite.png");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0, "left position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16, "left position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208, "left position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240, "left position last");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0, "top position first");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0, "top position second");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0, "top position inner");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0, "top position last");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16, "corrected width");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16, "corrected height");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/sprite.png", "normal source sprite handling I");
+		
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256, "full image width");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16, "full image height");
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/sprite.png", "normal source sprite handling II");
+
 
 
 	});	
