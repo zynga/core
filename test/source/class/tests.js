@@ -749,6 +749,7 @@ $(function() {
 		
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256);
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/anim/loading.png");
 		
 		
 		// Deployed
@@ -790,6 +791,7 @@ $(function() {
 		
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256);
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/anim/loading.png");
 
 
 	});
