@@ -732,6 +732,23 @@ $(function() {
 		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90);
 		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86);
 		
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).left, 208);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).left, 240);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).top, 0);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).top, 0);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).top, 0);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 15).top, 0);
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).width, 16);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).height, 16);
+		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 13).src, "asset/myapp/anim/loading.png");
+		
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").width, 256);
+		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
+		
+		
 		
 		core.io.Asset.reset();
 		core.io.Asset.add(
