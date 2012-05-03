@@ -897,9 +897,7 @@ $(function() {
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16, "full image height");
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/sprite.png", "normal source sprite handling II");
 
-
-
-	});	
+	});
 	
 	
 	
