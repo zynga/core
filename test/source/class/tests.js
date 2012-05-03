@@ -707,7 +707,7 @@ $(function() {
 
 	});
 	
-	test("Frames - Rows/Columns - Source", function() {
+	test("Frames - Rows/Columns - Deployed", function() {
 		
 		core.io.Asset.reset();
 		core.io.Asset.add(
@@ -751,7 +751,7 @@ $(function() {
 	
 	});
 		
-	test("Frames - Rows/Columns - Deployed", function() {
+	test("Frames - Rows/Columns - Source", function() {
 		
 		core.io.Asset.reset();
 		core.io.Asset.add(
@@ -796,7 +796,7 @@ $(function() {
 
 	});
 	
-	test("Frames - Rows/Columns in Image Sprite - Source", function() {
+	test("Frames - Rows/Columns in Image Sprite - Deployed", function() {
 		
 		core.io.Asset.reset();
 		core.io.Asset.add(
@@ -842,7 +842,7 @@ $(function() {
 
 	});
 		
-	test("Frames - Rows/Columns in Image Sprite - Deployed", function() {
+	test("Frames - Rows/Columns in Image Sprite - Source", function() {
 		
 		core.io.Asset.reset();
 		core.io.Asset.add(
@@ -851,7 +851,7 @@ $(function() {
 			{
 				"myapp" : 
 				{
-					"sprite.png" : [960, 352],
+					"sprite.png" : [960, 352, "asset/myapp/sprite.png"],
 					"anim" : 
 					{
 						"loading.png" : [16*16, 16, "myapp/sprite.png", 20, 0, 16, 1, "asset/myapp/anim/loading.png"],

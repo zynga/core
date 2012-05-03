@@ -469,15 +469,17 @@
 			
 			// Correct entry length for format detection
 			var length = entry.length;
-			var spriteId = getSpriteId(entry, id);
+			if (!deployed) {
+				length--;
+			}
 			
-			var src = root + (spriteId ? spriteId : deployed ? id : entry[--length]);
+			var spriteId = getSpriteId(entry, id);
+			var src = toUri(spriteId||id);
 			var left=0, top=0, width=entry[0], height=entry[1], offsetLeft=0, offsetTop=0;
 			
 			// Detect whether a frame is available
 			if (length > 3 || length < 9) 
 			{
-				
 				//console.debug("FRAME-REL-LENGTH: ", length)
 				var number = getFrameNumber(entry);
 
