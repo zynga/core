@@ -474,8 +474,16 @@
 			}
 			
 			var spriteId = getSpriteId(entry, id);
-			var src = toUri(spriteId||id);
-			var left=0, top=0, width=entry[0], height=entry[1], offsetLeft=0, offsetTop=0;
+			var src = toUri(spriteId || id);
+			
+			var left= spriteId ? entry[3] : 0; 
+			var top = spriteId ? entry[4] : 0;
+			
+			var width = entry[0];
+			var height = entry[1];
+			
+			var offsetLeft=0;
+			var offsetTop=0;
 			
 			// Detect whether a frame is available
 			if (length > 3 || length < 9) 
@@ -509,8 +517,8 @@
 					height /= rows;
 					
 					// Calculate position inside sprite image
-					left = (frame % cols) * width;
-					top = Math.floor(frame / cols) * height;
+					left += (frame % cols) * width;
+					top += Math.floor(frame / cols) * height;
 				}
 			}
 			else if (frame != 0 && core.Env.isSet("debug"))
