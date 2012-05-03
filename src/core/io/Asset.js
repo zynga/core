@@ -9,6 +9,7 @@
 {
 	// Internal data storage
 	var deployed, root, assets;
+	var Object = global.Object;
 
 	/**
 	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
