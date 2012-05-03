@@ -709,6 +709,7 @@ $(function() {
 	
 	test("Frames - Rows/Columns", function() {
 		
+		// Source
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
@@ -728,6 +729,7 @@ $(function() {
 			"deployed" : true,
 			"root" : "asset/"
 		});
+		
 		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16);
 		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90);
 		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86);
@@ -749,7 +751,7 @@ $(function() {
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16);
 		
 		
-		
+		// Deployed
 		core.io.Asset.reset();
 		core.io.Asset.add(
 		{
