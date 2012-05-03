@@ -808,9 +808,9 @@ $(function() {
 					"sprite.png" : [960, 352],
 					"anim" : 
 					{
-						"loading.png" : [16*16, 16, "myapp/sprite.png", 0, 0, 16, 1],
-						"explode.png" : [32*30, 32*3, "myapp/sprite.png", 0, 16, 30, 3],
-						"collapse.png" : [12*2, 12*20, "myapp/sprite.png", 0, 112, 2, 20, 86]
+						"loading.png" : [16*16, 16, "myapp/sprite.png", 20, 0, 16, 1],
+						"explode.png" : [32*30, 32*3, "myapp/sprite.png", 40, 16, 30, 3],
+						"collapse.png" : [12*2, 12*20, "myapp/sprite.png", 60, 112, 2, 20, 86]
 					}
 				}
 			}, 
@@ -854,9 +854,9 @@ $(function() {
 					"sprite.png" : [960, 352],
 					"anim" : 
 					{
-						"loading.png" : [16*16, 16, "myapp/sprite.png", 0, 0, 16, 1, "asset/myapp/anim/loading.png"],
-						"explode.png" : [32*30, 32*3, "myapp/sprite.png", 0, 16, 30, 3, "asset/myapp/anim/explode.png"],
-						"collapse.png" : [12*2, 12*20, "myapp/sprite.png", 0, 112, 2, 20, 86, "asset/myapp/anim/collapse.png"]
+						"loading.png" : [16*16, 16, "myapp/sprite.png", 20, 0, 16, 1, "asset/myapp/anim/loading.png"],
+						"explode.png" : [32*30, 32*3, "myapp/sprite.png", 40, 16, 30, 3, "asset/myapp/anim/explode.png"],
+						"collapse.png" : [12*2, 12*20, "myapp/sprite.png", 60, 112, 2, 20, 86, "asset/myapp/anim/collapse.png"]
 					}
 				}
 			}, 
