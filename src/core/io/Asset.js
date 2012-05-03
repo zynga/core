@@ -135,6 +135,40 @@
 	};
 	
 	
+	var getFrameNumber = function(entry) 
+	{
+		// Correct entry length for format detection
+		var length = entry.length;
+		if (!deployed) {
+			length--;
+		}
+		
+		switch(length)
+		{
+			case 4:
+				// auto calculated frame size
+				return entry[2] * entry[3];
+
+			case 5:
+				// manually defined frame size
+				return entry[4];
+
+			case 6:
+				// manually defined frames
+				return entry[5].length;
+
+			case 7:
+				// auto calculated frame size (image sprite)
+				return entry[5] * entry[6];
+
+			case 8:
+				// manually defined frame size (image sprite)
+				return entry[7];
+		}
+		
+		return 1;
+	};
+	
 
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
@@ -362,7 +396,7 @@
 				throw new Error("Could not figure out frame number of unknown image: " + id);
 			}
 
-			return this.__getFrameNumber(entry);
+			return getFrameNumber(entry);
 		},
 
 
@@ -423,41 +457,6 @@
 		},
 		
 		
-		__getFrameNumber : function(entry) 
-		{
-			// Correct entry length for format detection
-			var length = entry.length;
-			if (!deployed) {
-				length--;
-			}
-			
-			switch(length)
-			{
-				case 4:
-					// auto calculated frame size
-					return entry[2] * entry[3];
-
-				case 5:
-					// manually defined frame size
-					return entry[4];
-
-				case 6:
-					// manually defined frames
-					return entry[5].length;
-
-				case 7:
-					// auto calculated frame size (image sprite)
-					return entry[5] * entry[6];
-
-				case 8:
-					// manually defined frame size (image sprite)
-					return entry[7];
-			}
-			
-			return 1;
-		},
-		
-		
 		getFrame : function(id, frame) 
 		{
 			var entry = resolve(id);
@@ -467,18 +466,21 @@
 			
 			// Correct entry length for format detection
 			var length = entry.length;
-			if (!deployed) {
-				length--;
+			
+			if (deployed) {
+				var src = root + id;
+			} else {
+				var src = root + entry[--length];
 			}
 			
-			var src, left=0, top=0, width=entry[0], height=entry[1], offsetLeft=0, offsetTop=0;
+			var left=0, top=0, width=entry[0], height=entry[1], offsetLeft=0, offsetTop=0;
 			
 			// Detect whether a frame is available
 			if (length > 3 || length < 9) 
 			{
 				
-				console.debug("FRAME-REL-LENGTH: ", length)
-				var number = this.__getFrameNumber(entry);
+				//console.debug("FRAME-REL-LENGTH: ", length)
+				var number = getFrameNumber(entry);
 
 				if (frame >= number) {
 					throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
@@ -515,12 +517,6 @@
 				throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 			}
 
-			
-			
-			
-			
-			console.debug("SRC:", src)
-			
 			return {
 				src : src,
 				left : left,
