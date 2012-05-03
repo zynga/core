@@ -116,10 +116,6 @@
 			core.Assert.isType(id, "String");
 		}
 		
-		if (id.charAt("0") == "/" || id.startsWith("http:") || id.startsWith("https:")) {
-			return id;
-		}
-		
 		if (deployed) 
 		{
 			return root + id;
