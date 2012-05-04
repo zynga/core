@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-(function(global)
+(function(global, Object)
 {
 	//
 	// Data formats for image sprites / images frames:
@@ -41,7 +41,6 @@
 	
 	// Internal data storage
 	var deployed, root, assets;
-	var Object = global.Object;
 
 	/**
 	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
@@ -153,7 +152,7 @@
 			}
 			
 			// Deep merge
-			else if (srcValue.constructor === Object && dstValue.construtor === Object) {
+			else if (srcValue.constructor === Object && dstValue.constructor === Object) {
 				mergeData(srcValue, dstValue);
 			}
 		}
@@ -236,6 +235,12 @@
 	 */
 	core.Module("core.io.Asset",
 	{
+		toUri : toUri,
+		resolve: resolve,
+
+		/**
+		 * Resets the state of the asset manager.
+		 */
 		reset : function() 
 		{
 			deployed = root = null;
@@ -243,11 +248,21 @@
 		},
 
 		
+		/**
+		 * {Boolean} Whether the assets are managed for a deployed build of the application.
+		 */
 		isDeployed: function(data) {
 			return deployed;
 		},
 		
 		
+		/**
+		 * Adds the given asset @data {Map}. Must contain these top level keys:
+		 *
+		 * * root: The root directory to prepend to all generated URLs
+		 * * deployed: Whether the data comes from a deployed build
+		 * * assets: The real asset structure representing the client side asset IDs
+		 */
 		add : function(data) 
 		{
 			// Validate input data
@@ -283,13 +298,8 @@
 				
 				mergeData(data.assets, assets);
 			}
-			
 		},
 		
-		
-		
-		toUri : toUri,
-		resolve: resolve,
 		
 		/**
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
@@ -468,6 +478,10 @@
 		},
 		
 		
+		/**
+		 * {Map} Collects and returns data about the given image @id {String} on the given @frame {Ñumber}.
+		 * The following fields are available `src`, `left`, `top`, `width`, `height`, `offsetLeft, `offsetTop` and `rotation`.
+		 */
 		getFrame : function(id, frame) 
 		{
 			var entry = resolve(id);
@@ -572,5 +586,5 @@
 	core.io.Asset.reset();
 	core.io.Asset.add(core.Env.getValue("assets"));
 	
-})(this);
+})(this, Object);
 
