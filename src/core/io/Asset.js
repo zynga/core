@@ -376,7 +376,7 @@
 
 
 		/**
-		 * Loads the given assets by their ID and executes @callback {Function?}
+		 * Loads the given assets by their @ids {String[]} and executes @callback {Function?}
 		 * in the given @context {Object?global}. * Optionally caching can be disabled 
 		 * by attaching a random `GET` parameter via setting @nocache {Boolean} to `true`.
 		 */
@@ -487,7 +487,7 @@
 		
 		
 		/**
-		 * {Map} Collects and returns data about the given image @id {String} on the given @frame {Ñumber}.
+		 * {Map} Collects and returns data about the given image @id {String} on the given @frame {Number}.
 		 * The following fields are available `src`, `left`, `top`, `width`, `height`, `offsetLeft, `offsetTop` and `rotation`.
 		 */
 		getFrame : function(id, frame) 
