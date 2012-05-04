@@ -962,6 +962,61 @@ $(function() {
 	
 	
 	
+	test("Frames - Custom - Source", function()
+	{
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : 
+			{
+				"myapp" : 
+				{
+					"anim" : 
+					{
+						"guy.png" : [200, 16, [
+							// Format: left, top, width, height, offsetLeft?, offsetTop?, rotation?
+							[ 0,  0, 20, 20],
+							[30, 50, 10, 30, 20, 50],
+							[70, 20, 14, 40, 0, 30, 90]
+						], "asset/myapp/anim/guy.png"]
+					}
+				},
+			},
+			"deployed" : false,
+			"root" : ""
+		});
+		
+		
+		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/guy.png"), 3, "number of frames");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).left, 0, "left position I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).top, 0, "top position I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).width, 20, "width I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).height, 20, "height I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).offsetLeft, 0, "offsetLeft I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).offsetTop, 0, "offsetTop I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).rotation, 0, "rotation I");
+		
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).left, 30, "left position II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).top, 50, "top position II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).width, 10, "width II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).height, 30, "height II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).offsetLeft, 20, "offsetLeft II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).offsetTop, 50, "offsetTop II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).rotation, 0, "rotation II");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).left, 70, "left position III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).top, 20, "top position III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).width, 14, "width III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).height, 40, "height III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).offsetLeft, 0, "offsetLeft III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).offsetTop, 30, "offsetTop III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).rotation, 90, "rotation III");
+		
+	});	
+	
+	
+	
 	
 	/*
 	---------------------------------------------------------------------------

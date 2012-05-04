@@ -522,8 +522,6 @@
 					// Optional fields
 					if (frameData.length > 4) 
 					{
-						console.debug(id, frameData)
-						
 						offsetLeft = frameData[4] || 0;
 						offsetTop = frameData[5] || 0;
 						rotation = frameData[6] || 0;
@@ -561,9 +559,7 @@
 				offsetTop : offsetTop,
 				rotation : rotation
 			};
-			
 		}
-		
 	});
 	
 	core.io.Asset.reset();
