@@ -541,7 +541,7 @@
 					
 					// Calculate position inside sprite image
 					left += (frame % cols) * width;
-					top += Math.floor(frame / cols) * height;
+					top += (~~(frame / cols)) * height;
 				}
 			}
 			else if (frame != 0 && core.Env.isSet("debug"))
@@ -549,7 +549,7 @@
 				throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 			}
 
-			return {
+			var result = {
 				src : src,
 				left : left,
 				top : top,
@@ -559,6 +559,13 @@
 				offsetTop : offsetTop,
 				rotation : rotation
 			};
+			
+			// Prevent changes in object
+			if (core.Env.isSet("debug") && Object.freeze) {
+				Object.freeze(result);
+			}
+			
+			return result;
 		}
 	});
 	
