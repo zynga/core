@@ -354,13 +354,13 @@ $(function() {
 	test("Adding Source Data", function() 
 	{
 		raises(function() {
-			core.io.Asset.reset();
+			core.io.Asset.resetData();
 			core.io.Asset.toUri("my.png")
 		});
 
 
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : ["asset/my.png"]
@@ -371,8 +371,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
 
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : ["asset/my.png"]
@@ -383,8 +383,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
 
 
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : ["asset/my.png"]
@@ -395,8 +395,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
 		
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"lib2" : {
@@ -414,13 +414,13 @@ $(function() {
 	test("Adding Deployed Data", function() 
 	{
 		raises(function() {
-			core.io.Asset.reset();
+			core.io.Asset.resetData();
 			core.io.Asset.toUri("my.png")
 		});
 
 
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : 1
@@ -431,8 +431,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
 
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : 1
@@ -443,8 +443,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/asset/my.png");
 		
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"lib2" : {
@@ -461,8 +461,8 @@ $(function() {
 	
 	test("Image Sizes - Deployed", function() {
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -483,8 +483,8 @@ $(function() {
 		
 	test("Image Sizes - Source", function() {
 
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -505,8 +505,8 @@ $(function() {
 	
 	test("Image Sprite - None - Deployed", function() {
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -529,8 +529,8 @@ $(function() {
 		
 	test("Image Sprite - None - Source", function() {
 
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -554,8 +554,8 @@ $(function() {
 		
 	test("Image Sprite - Same Folder - Deployed", function() 
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -581,8 +581,8 @@ $(function() {
 	test("Image Sprite - Same Folder - Source", function() 
 	{
 
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -608,8 +608,8 @@ $(function() {
 	
 	test("Image Sprite - Absolute ID - Deployed", function() 
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -636,8 +636,8 @@ $(function() {
 	test("Image Sprite - Absolute ID - Source", function() 
 	{
 
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -663,8 +663,8 @@ $(function() {
 	
 	test("Image Sprite - Root ID - Deployed", function() 
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"icons.png" : [288, 288],
@@ -689,8 +689,8 @@ $(function() {
 		
 	test("Image Sprite - Root ID - Deployed", function() 
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : {
 				"icons.png" : [288, 288, "asset/icons.png"],
@@ -716,8 +716,8 @@ $(function() {
 	
 	test("Frames - Rows/Columns - Deployed", function() {
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -763,8 +763,8 @@ $(function() {
 		
 	test("Frames - Rows/Columns - Source", function() {
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -811,8 +811,8 @@ $(function() {
 	
 	test("Frames - Rows/Columns in Image Sprite - Deployed", function() {
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -860,8 +860,8 @@ $(function() {
 		
 	test("Frames - Rows/Columns in Image Sprite - Source", function() {
 		
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -909,8 +909,8 @@ $(function() {
 	
 	test("Frames - Custom - Deployed", function()
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -964,8 +964,8 @@ $(function() {
 	
 	test("Frames - Custom - Source", function()
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -1018,8 +1018,8 @@ $(function() {
 	
 	test("Frames - Custom in Image Sprite - Deployed", function()
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -1076,8 +1076,8 @@ $(function() {
 	
 	test("Frames - Custom in Image Sprite - Source", function()
 	{
-		core.io.Asset.reset();
-		core.io.Asset.add(
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
 		{
 			"assets" : 
 			{

@@ -242,27 +242,6 @@
 	 */
 	core.Module("core.io.Asset",
 	{
-		toUri : toUri,
-		resolve: resolve,
-
-		/**
-		 * Resets the state of the asset manager.
-		 */
-		reset : function() 
-		{
-			deployed = root = null;
-			assets = {};
-		},
-
-		
-		/**
-		 * {Boolean} Whether the assets are managed for a deployed build of the application.
-		 */
-		isDeployed: function() {
-			return deployed;
-		},
-		
-		
 		/**
 		 * Adds the given asset @data {Map}. Must contain these top level keys:
 		 *
@@ -270,7 +249,7 @@
 		 * * `deployed`: Whether the data comes from a deployed build
 		 * * `assets`: The real asset structure representing the client side asset IDs
 		 */
-		add : function(data) 
+		addData : function(data) 
 		{
 			// Validate input data
 			if (core.Env.isSet("debug")) 
@@ -306,6 +285,29 @@
 				mergeData(data.assets, assets);
 			}
 		},
+		
+		
+		/**
+		 * Resets the state of the asset manager.
+		 */
+		resetData : function() 
+		{
+			deployed = root = null;
+			assets = {};
+		},
+		
+		
+		
+		/**
+		 * {Boolean} Whether the assets are managed for a deployed build of the application.
+		 */
+		isDeployed: function() {
+			return deployed;
+		},
+		
+		
+		toUri : toUri,
+		//resolve: resolve,
 		
 		
 		/**
@@ -591,8 +593,8 @@
 		}
 	});
 	
-	core.io.Asset.reset();
-	core.io.Asset.add(core.Env.getValue("assets"));
+	core.io.Asset.resetData();
+	core.io.Asset.addData(core.Env.getValue("assets"));
 	
 })(this, Object);
 
