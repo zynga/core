@@ -476,7 +476,7 @@ $(function() {
 		});
 		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		equals(core.io.Asset.getImageSize("myapp/icons/app.png")+"", [48, 48]+"");
-		equals(core.io.Asset.getNumberOfFrames("myapp/icons/app.png"), 1);
+		equals(core.io.Asset.getFrameNumber("myapp/icons/app.png"), 1);
 		
 	});
 		
@@ -498,7 +498,7 @@ $(function() {
 		});
 		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		equals(core.io.Asset.getImageSize("myapp/icons/app.png")+"", [48, 48]+"");
-		equals(core.io.Asset.getNumberOfFrames("myapp/icons/app.png"), 1);
+		equals(core.io.Asset.getFrameNumber("myapp/icons/app.png"), 1);
 		
 	});
 	
@@ -735,9 +735,9 @@ $(function() {
 			"root" : "asset/"
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/collapse.png"), 86, "number of frames III");
 		
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0, "left position first");
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16, "left position second");
@@ -782,9 +782,9 @@ $(function() {
 			"root" : ""
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/collapse.png"), 86, "number of frames III");
 		
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 0, "left position first");
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 16, "left position second");
@@ -831,9 +831,9 @@ $(function() {
 			"root" : "asset/"
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/collapse.png"), 86, "number of frames III");
 		
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 20, "left position first");
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 36, "left position second");
@@ -880,9 +880,9 @@ $(function() {
 			"root" : ""
 		});
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/loading.png"), 16, "number of frames I");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/explode.png"), 90, "number of frames II");
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/collapse.png"), 86, "number of frames III");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/loading.png"), 16, "number of frames I");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/explode.png"), 90, "number of frames II");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/collapse.png"), 86, "number of frames III");
 		
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 0).left, 20, "left position first");
 		strictEqual(core.io.Asset.getFrame("myapp/anim/loading.png", 1).left, 36, "left position second");
@@ -932,7 +932,7 @@ $(function() {
 		});
 		
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/guy.png"), 3, "number of frames");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/guy.png"), 3, "number of frames");
 
 		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).left, 0, "left position I");
 		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).top, 0, "top position I");
@@ -987,7 +987,7 @@ $(function() {
 		});
 		
 		
-		strictEqual(core.io.Asset.getNumberOfFrames("myapp/anim/guy.png"), 3, "number of frames");
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/guy.png"), 3, "number of frames");
 
 		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).left, 0, "left position I");
 		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).top, 0, "top position I");

@@ -266,9 +266,9 @@
 		/**
 		 * Adds the given asset @data {Map}. Must contain these top level keys:
 		 *
-		 * * root: The root directory to prepend to all generated URLs
-		 * * deployed: Whether the data comes from a deployed build
-		 * * assets: The real asset structure representing the client side asset IDs
+		 * * `root`: The root directory to prepend to all generated URLs
+		 * * `deployed`: Whether the data comes from a deployed build
+		 * * `assets`: The real asset structure representing the client side asset IDs
 		 */
 		add : function(data) 
 		{
@@ -431,7 +431,7 @@
 		/**
 		 * {Integer} Returns the number of frames (for animations) for the given image @id {String}.
 		 */
-		getNumberOfFrames: function(id) 
+		getFrameNumber: function(id) 
 		{
 			if (core.Env.isSet("debug")) {
 				core.Assert.isType(id, "String", "Invalid asset ID!");
