@@ -1013,8 +1013,123 @@ $(function() {
 		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).offsetTop, 30, "offsetTop III");
 		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).rotation, 90, "rotation III");
 		
-	});	
+	});
 	
+	
+	test("Frames - Custom in Image Sprite - Deployed", function()
+	{
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : 
+			{
+				"myapp" : 
+				{
+					"sprite.png" : [960, 352],
+					"anim" : 
+					{
+						"guy.png" : [200, 16, "myapp/sprite.png", 20, 40, [
+							// Format: left, top, width, height, offsetLeft?, offsetTop?, rotation?
+							[ 0,  0, 20, 20],
+							[30, 50, 10, 30, 20, 50],
+							[70, 20, 14, 40, 0, 30, 90]
+						]]
+					}
+				},
+			},
+			"deployed" : true,
+			"root" : "asset/"
+		});
+		
+		
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/guy.png"), 3, "number of frames");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).left, 20, "left position I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).top, 40, "top position I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).width, 20, "width I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).height, 20, "height I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).offsetLeft, 0, "offsetLeft I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).offsetTop, 0, "offsetTop I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).rotation, 0, "rotation I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).src, "asset/myapp/sprite.png", "source I");
+		
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).left, 50, "left position II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).top, 90, "top position II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).width, 10, "width II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).height, 30, "height II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).offsetLeft, 20, "offsetLeft II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).offsetTop, 50, "offsetTop II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).rotation, 0, "rotation II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).src, "asset/myapp/sprite.png", "source II");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).left, 90, "left position III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).top, 60, "top position III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).width, 14, "width III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).height, 40, "height III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).offsetLeft, 0, "offsetLeft III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).offsetTop, 30, "offsetTop III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).rotation, 90, "rotation III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).src, "asset/myapp/sprite.png", "source III");
+		
+	});
+	
+	
+	test("Frames - Custom in Image Sprite - Source", function()
+	{
+		core.io.Asset.reset();
+		core.io.Asset.add(
+		{
+			"assets" : 
+			{
+				"myapp" : 
+				{
+					"sprite.png" : [960, 352, "asset/myapp/sprite.png"],
+					"anim" : 
+					{
+						"guy.png" : [200, 16, "myapp/sprite.png", 20, 40, [
+							// Format: left, top, width, height, offsetLeft?, offsetTop?, rotation?
+							[ 0,  0, 20, 20],
+							[30, 50, 10, 30, 20, 50],
+							[70, 20, 14, 40, 0, 30, 90]
+						], "asset/myapp/anim/guy.png"]
+					}
+				},
+			},
+			"deployed" : false,
+			"root" : ""
+		});
+		
+		
+		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/guy.png"), 3, "number of frames");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).left, 20, "left position I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).top, 40, "top position I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).width, 20, "width I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).height, 20, "height I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).offsetLeft, 0, "offsetLeft I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).offsetTop, 0, "offsetTop I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).rotation, 0, "rotation I");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 0).src, "asset/myapp/sprite.png", "source I");
+		
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).left, 50, "left position II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).top, 90, "top position II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).width, 10, "width II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).height, 30, "height II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).offsetLeft, 20, "offsetLeft II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).offsetTop, 50, "offsetTop II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).rotation, 0, "rotation II");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 1).src, "asset/myapp/sprite.png", "source II");
+
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).left, 90, "left position III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).top, 60, "top position III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).width, 14, "width III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).height, 40, "height III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).offsetLeft, 0, "offsetLeft III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).offsetTop, 30, "offsetTop III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).rotation, 90, "rotation III");
+		strictEqual(core.io.Asset.getFrame("myapp/anim/guy.png", 2).src, "asset/myapp/sprite.png", "source III");
+		
+	});
 	
 	
 	
