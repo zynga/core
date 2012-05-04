@@ -307,7 +307,6 @@
 		
 		
 		toUri : toUri,
-		//resolve: resolve,
 		
 		
 		/**
@@ -324,8 +323,8 @@
 		
 		
 		/**
-		 * Loads the given @section {String}. Optionally @recursive {Boolean?false} it traverses
-		 * the whole tree starting at @section. The optional @callback {Function?} is executed
+		 * Loads the given @section {String}. Optionally @recursive {Boolean?false} where it traverses
+		 * the whole tree. The optional @callback {Function?} is executed
 		 * in the given @context {Object?} when all files are loaded. It is called with one
 		 * parameter which contains are `Map` of all data (relative asset ID to loaded item).
 		 * Optionally caching can be disabled by attaching a random `GET` parameter via
