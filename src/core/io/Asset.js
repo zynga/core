@@ -30,9 +30,13 @@
 	// [100, 100, "explode.png", 420, 245, 5, 5, 23] 
 	// Image is part of sprite image explode.png with offsets 420x245. It contains 23 images with each being 20x20.
 	//
+	// [width, height, [[left,top,width,height], ...]]
+	// [60, 40, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
+	// Image contains 3 manually positioned frames.
+	//
 	// [width, height, spriteId, left, top, [[left,top,width,height], ...]]
 	// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
-	// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned images.
+	// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned frames.
 	//
 	
 	// Internal data storage
@@ -166,6 +170,10 @@
 		
 		switch(length)
 		{
+			case 3:
+				// manually defined frames
+				return entry[2].length;
+				
 			case 4:
 				// auto calculated frame size
 				return entry[2] * entry[3];
@@ -175,7 +183,7 @@
 				return entry[4];
 
 			case 6:
-				// manually defined frames
+				// manually defined frames (image sprite)
 				return entry[5].length;
 
 			case 7:
@@ -476,14 +484,16 @@
 			var spriteId = getSpriteId(entry, id);
 			var src = toUri(spriteId || id);
 			
-			var left= spriteId ? entry[3] : 0; 
+			var left = spriteId ? entry[3] : 0; 
 			var top = spriteId ? entry[4] : 0;
 			
 			var width = entry[0];
 			var height = entry[1];
 			
-			var offsetLeft=0;
-			var offsetTop=0;
+			var offsetLeft = 0;
+			var offsetTop = 0;
+			
+			var rotation = 0;
 			
 			// Detect whether a frame is available
 			if (length > 3 || length < 9) 
@@ -495,14 +505,29 @@
 					throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 				}
 				
-				
-				
-				
 				// Manual frames
-				if (length == 6)
+				if (length == 3 || length == 6)
 				{
+					var frames = entry[length == 3 ? 2 : 5];
+					var frameData = frames[frame];
 					
+					// Format: left, top, width, height, offsetX?, offsetY?, rotation?
 					
+					// Required fields
+					left += frameData[0];
+					top += frameData[1];
+					width = frameData[2];
+					height = frameData[3];
+					
+					// Optional fields
+					if (frameData.length > 4) 
+					{
+						console.debug(id, frameData)
+						
+						offsetLeft = frameData[4] || 0;
+						offsetTop = frameData[5] || 0;
+						rotation = frameData[6] || 0;
+					}
 				}
 
 				// Automatic frames
@@ -533,7 +558,8 @@
 				width : width,
 				height : height,
 				offsetLeft : offsetLeft,
-				offsetTop : offsetTop
+				offsetTop : offsetTop,
+				rotation : rotation
 			};
 			
 		}
