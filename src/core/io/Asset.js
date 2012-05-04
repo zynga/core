@@ -159,6 +159,9 @@
 	};
 	
 	
+	/**
+	 * {Integer} Returns the number of frames for the given data @entry {Array}.
+	 */
 	var getFrameNumber = function(entry) 
 	{
 		// Correct entry length for format detection
@@ -198,6 +201,10 @@
 	};
 	
 	
+	/**
+	 * {String} Returns the sprite ID for the given data @entry {Array} and image 
+	 * @id {String}. Returns `null` when image is not available in any sprite image.
+	 */
 	var getSpriteId = function(entry, id)
 	{
 		// We need more data than just the image sprite ID
