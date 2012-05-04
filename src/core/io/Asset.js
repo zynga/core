@@ -258,7 +258,7 @@
 		/**
 		 * {Boolean} Whether the assets are managed for a deployed build of the application.
 		 */
-		isDeployed: function(data) {
+		isDeployed: function() {
 			return deployed;
 		},
 		
@@ -326,7 +326,8 @@
 		 * the whole tree starting at @section. The optional @callback {Function?} is executed
 		 * in the given @context {Object?} when all files are loaded. It is called with one
 		 * parameter which contains are `Map` of all data (relative asset ID to loaded item).
-		 * Optionally caching can be disabled by attaching a random `GET` parameter.
+		 * Optionally caching can be disabled by attaching a random `GET` parameter via
+		 * setting @nocache {Boolean} to `true`.
 		 */
 		loadSection: function(section, recursive, callback, context, nocache) 
 		{
@@ -376,8 +377,8 @@
 
 		/**
 		 * Loads the given assets by their ID and executes @callback {Function?}
-		 * in the given @context {Object?global}. Optionally caching can be disabled
-		 * by attaching a random `GET` parameter.
+		 * in the given @context {Object?global}. * Optionally caching can be disabled 
+		 * by attaching a random `GET` parameter via setting @nocache {Boolean} to `true`.
 		 */
 		load: function(ids, callback, context, nocache) 
 		{
