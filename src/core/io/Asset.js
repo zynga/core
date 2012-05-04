@@ -488,7 +488,7 @@
 		
 		/**
 		 * {Map} Collects and returns data about the given image @id {String} on the given @frame {Number}.
-		 * The following fields are available `src`, `left`, `top`, `width`, `height`, `offsetLeft, `offsetTop` and `rotation`.
+		 * The following fields are available `src`, `left`, `top`, `width`, `height`, `offsetLeft`, `offsetTop` and `rotation`.
 		 */
 		getFrame : function(id, frame) 
 		{
