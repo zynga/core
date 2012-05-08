@@ -38,7 +38,7 @@
 	// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
 	// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned frames.
 	//
-	
+
 	// Internal data storage
 	var deployed, root, assets;
 
@@ -99,7 +99,7 @@
 					} else if (deployed) {
 						all[localId] = root + id;
 					} else {
-						all[localId] = root + entry[0];
+						all[localId] = root + entry[entry.length-1];
 					}
 				}
 			}
