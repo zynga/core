@@ -43,7 +43,7 @@
 			var keys = [];
 			for (var name in object) 
 			{
-				if (Object.hasOwnProperty(object, name)) {
+				if (Object.prototype.hasOwnProperty.call(object, name)) {
 					keys.push(name);
 				}
 			}
@@ -53,7 +53,7 @@
 				for (var i=0; i<dontEnumsLength; i++) 
 				{
 					var dontEnum = dontEnums[i];
-					if (Object.hasOwnProperty(object, dontEnum)) {
+					if (Object.prototype.hasOwnProperty.call(object, dontEnum)) {
 						keys.push(dontEnum);
 					}
 				}
