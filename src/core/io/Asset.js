@@ -89,7 +89,7 @@
 				if (entry.constructor == Object) 
 				{
 					if (recursive) {
-						collect(id, entry, recursive, data, entries);
+						collect(id, entry, recursive, entries);
 					}
 				}
 				else
