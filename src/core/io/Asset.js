@@ -459,6 +459,11 @@
 		},
 		
 		
+		getCache: function() {
+			return cache;
+		},
+		
+		
 		/**
 		 * {Integer} Returns the number of frames (for animations) for the given image @id {String}.
 		 */
