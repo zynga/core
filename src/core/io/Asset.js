@@ -389,6 +389,8 @@
 				}
 			}
 			
+			console.debug("URI-2-ID:", uriToId);
+			
 			// Start loading of assets
 			core.io.Queue.load(uris, function(data) 
 			{
