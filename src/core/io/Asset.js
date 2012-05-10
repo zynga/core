@@ -38,6 +38,9 @@
 	// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
 	// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned frames.
 	//
+	
+	/** {Map} Internal cache for holding preloaded data */
+	var cache = {};
 
 	// Internal data storage
 	var deployed, root, assets;
@@ -67,14 +70,13 @@
 	
 	/**
 	 * {Map} Collects asset with the given asset @prefix {String} from the given @section {Map}. 
-	 * Optionally works recursively by enabling @recursive {Boolean?false} or only 
-	 * returns the data by enabling @data {Boolean?false}. Last parameter @all {Map?} 
+	 * Optionally works recursively by enabling @recursive {Boolean?false}. Last parameter @entries {Map?} 
 	 * is used to fill an existing object instead of a new one.
 	 */
-	var collect = function(prefix, cut, section, recursive, data, all) 
+	var collect = function(prefix, section, recursive, entries) 
 	{
-		if (!all) {
-			all = {};
+		if (!entries) {
+			entries = {};
 		}
 		
 		if (section)
@@ -87,25 +89,17 @@
 				if (entry.constructor == Object) 
 				{
 					if (recursive) {
-						collect(id, cut, entry, recursive, data, all);
+						collect(id, entry, recursive, data, entries);
 					}
 				}
 				else
 				{
-					var localId = !cut ? id : id.slice(cut);
-					
-					if (data) {
-						all[localId] = entry;
-					} else if (deployed) {
-						all[localId] = root + id;
-					} else {
-						all[localId] = root + entry[entry.length-1];
-					}
+					entries[id] = entry;
 				}
 			}
 		}
 		
-		return all;
+		return entries;
 	};
 	
 
@@ -328,9 +322,9 @@
 		 * in the given @context {Object?} when all files are loaded. It is called with one
 		 * parameter which contains are `Map` of all data (relative asset ID to loaded item).
 		 * Optionally caching can be disabled by attaching a random `GET` parameter via
-		 * setting @nocache {Boolean} to `true`.
+		 * setting @random {Boolean} to `true`.
 		 */
-		loadSection: function(section, recursive, callback, context, nocache) 
+		preloadSection: function(section, recursive, callback, context, random) 
 		{
 			if (core.Env.isSet("debug"))
 			{
@@ -356,8 +350,8 @@
 					core.Assert.isType(context, "Object");
 				}
 
-				if (nocache != null) {
-					core.Assert.isType(nocache, "Boolean");
+				if (random != null) {
+					core.Assert.isType(random, "Boolean");
 				}
 			}
 			
@@ -372,16 +366,16 @@
 				callback.call(context||global, Object.translate(data, urisToIds));
 			} : callback;
 			
-			core.io.Queue.load(uris, helper, this, nocache);
+			core.io.Queue.load(uris, helper, this, random);
 		},
 
 
 		/**
 		 * Loads the given assets by their @ids {String[]} and executes @callback {Function?}
 		 * in the given @context {Object?global}. * Optionally caching can be disabled 
-		 * by attaching a random `GET` parameter via setting @nocache {Boolean} to `true`.
+		 * by attaching a random `GET` parameter via setting @random {Boolean} to `true`.
 		 */
-		load: function(ids, callback, context, nocache) 
+		load: function(ids, callback, context, random) 
 		{
 			if (core.Env.isSet("debug"))
 			{
@@ -395,8 +389,8 @@
 					core.Assert.isType(context, "Object");
 				}
 
-				if (nocache != null) {
-					core.Assert.isType(nocache, "Boolean");
+				if (random != null) {
+					core.Assert.isType(random, "Boolean");
 				}
 			}
 			
@@ -407,7 +401,7 @@
 				callback.call(context||global, Object.translate(data, urisToIds));
 			} : callback;
 			
-			core.io.Queue.load(uris, helper, this, nocache);
+			core.io.Queue.load(uris, helper, this, random);
 		},
 
 
