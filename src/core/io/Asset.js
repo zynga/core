@@ -226,6 +226,17 @@
 	};
 	
 
+	var getFromCache = function(id, key)
+	{
+		var cached = cache[id];
+		if (cached && key in cached) {
+			return cached[key];
+		} else {
+			return null;
+		}
+	};
+
+
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
 	 * other assets like CSS files, local data, ...
@@ -485,6 +496,7 @@
 			if (spriteId) 
 			{
 				return {
+					node: getFromCache(spriteId, "node"),
 					src : toUri(spriteId),
 					left : entry[3],
 					top : entry[4],
@@ -496,6 +508,7 @@
 			{
 				// Return compatible data format in cases where no sprite sheet is used
 				return {
+					node: getFromCache(id, "node"),
 					src : root + (deployed ? id : entry[entry.length-1]),
 					left : 0,
 					top: 0,
@@ -529,6 +542,8 @@
 			var left = spriteId ? entry[3] : 0; 
 			var top = spriteId ? entry[4] : 0;
 			
+			var node = getFromCache(spriteId || id, "node");
+			
 			var width = entry[0];
 			var height = entry[1];
 			
@@ -536,6 +551,7 @@
 			var offsetTop = 0;
 			
 			var rotation = 0;
+			var fps = 0;
 			
 			// Detect whether a frame is available
 			if (length > 3 || length < 9) 
@@ -591,7 +607,9 @@
 				throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 			}
 
-			var result = {
+			var result = 
+			{
+				node : node,
 				src : src,
 				left : left,
 				top : top,
@@ -599,7 +617,8 @@
 				height : height,
 				offsetLeft : offsetLeft,
 				offsetTop : offsetTop,
-				rotation : rotation
+				rotation : rotation,
+				fps : fps
 			};
 			
 			// Prevent changes in object
