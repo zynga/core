@@ -355,18 +355,45 @@
 				}
 			}
 			
-			// Collect assets
-			var all = collect(section, section.length + 1, resolve(section), recursive);
-			var uris = Object.values(all);
 
-			// Build back tables to translate uris back to local IDs
-			var urisToIds = uris.zip(Object.keys(all));
+			// Collect asset entries
+			var entries = collect(section, resolve(section), recursive);
 
-			var helper = callback ? function(data) {
-				callback.call(context||global, Object.translate(data, urisToIds));
-			} : callback;
+			// Resolve URIs for assets
+			var uris = [];
+			var uriToId = {};
 			
-			core.io.Queue.load(uris, helper, this, random);
+			for (var id in entries) 
+			{
+				// Filter loaded assets
+				if (!(id in cache))
+				{
+					var uri = root + (deployed ? id : entries[id].last());
+					
+					uris.push(uri);
+					uriToId[uri] = id;
+					
+					// Pre-fill cache to mark as blocked for further calls
+					cache[id] = true;
+				}
+			}
+			
+			// Start loading of assets
+			core.io.Queue.load(uris, function(data) 
+			{
+				// Fill cache with actual data
+				for (var uri in data)
+				{
+					var id = uriToData[uri];
+					cache[id] = data[uri];
+				}
+
+				// Execute user defined callback method
+				if (callback) {
+					callback.call(context||global);
+				}
+				
+			}, this, random);
 		},
 
 

@@ -182,6 +182,14 @@ core.Main.addMembers("Array",
 		return this[position < 0 ? this.length + position : position];
 	},
 	
+	
+	/**
+	 * {var} Returns the last item in the array.
+	 */
+	last: function() {
+		return this[this.length-1];
+	},
+	
 
 	/** 
 	 * {var} Removes and returns the value at the given @position {Integer}.
