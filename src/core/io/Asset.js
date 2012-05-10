@@ -382,10 +382,8 @@
 			core.io.Queue.load(uris, function(data) 
 			{
 				// Fill cache with actual data
-				for (var uri in data)
-				{
-					var id = uriToData[uri];
-					cache[id] = data[uri];
+				for (var uri in data) {
+					cache[uriToId[uri]] = data[uri];
 				}
 
 				// Execute user defined callback method
