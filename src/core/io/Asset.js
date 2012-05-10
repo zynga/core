@@ -201,6 +201,8 @@
 	 */
 	var getSpriteId = function(entry, id)
 	{
+		return null;
+		
 		// We need more data than just the image sprite ID
 		var spriteId = entry.length > 3 ? entry[2] : null;
 		
