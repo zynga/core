@@ -544,7 +544,7 @@
 			if (core.Env.isSet("debug")) 
 			{
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
-				core.Assert.isType(frame, "Integer", "Invalid frame number (no integer): " + frame + " while accessing asset ID: " + id + "!");
+				core.Assert.isType(frame, "Integer", "Invalid frame number (no integer): " + frame + " for asset " + id + "!");
 			}
 			
 			var entry = resolve(id);
