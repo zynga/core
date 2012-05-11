@@ -452,7 +452,7 @@
 		getImageSize : function(id)
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.isType(id, "String", "Invalid asset ID!");
+				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 
 			var entry = resolve(id);
@@ -477,7 +477,7 @@
 		getFrameNumber: function(id) 
 		{
 			if (core.Env.isSet("debug")) {
-				core.Assert.isType(id, "String", "Invalid asset ID!");
+				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 			
 			var entry = resolve(id);
@@ -496,6 +496,10 @@
 		 */
 		getImage : function(id) 
 		{
+			if (core.Env.isSet("debug")) {
+				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
+			}
+			
 			var entry = resolve(id);
 			if (!entry && core.Env.isSet("debug")) {
 				throw new Error("Unknown image: " + id);
@@ -537,6 +541,12 @@
 		 */
 		getFrame : function(id, frame) 
 		{
+			if (core.Env.isSet("debug")) 
+			{
+				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
+				core.Assert.isType(id, "Integer", "Invalid frame number (no integer): " + frame + "!");
+			}
+			
 			var entry = resolve(id);
 			if (!entry && core.Env.isSet("debug")) {
 				throw new Error("Unknown image: " + id);
