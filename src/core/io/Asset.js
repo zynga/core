@@ -225,6 +225,11 @@
 		}
 	};
 	
+	
+	var hasSprite = function(entry) {
+		return entry.length > 3 && typeof entry[2] == "string";
+	};
+	
 
 	/**
 	 * {var} Returns a @key {String} from the given asset @id {String} when its available in cache.
@@ -382,6 +387,15 @@
 				// Filter loaded assets
 				if (!(id in cache))
 				{
+					var entry = entries[id];
+					var spriteId = getSpriteId(entry, id);
+					
+					if (spriteId != null) {
+						console.debug("USE sprite image for: " + id + " => " + spriteId);
+						id = spriteId;
+					}
+					
+					
 					var uri = root + (deployed ? id : entries[id].last());
 					
 					uris.push(uri);
@@ -392,20 +406,30 @@
 				}
 			}
 			
-			// Start loading of assets
-			core.io.Queue.load(uris, function(data) 
+			if (uris.length == 0) 
 			{
-				// Fill cache with actual data
-				for (var uri in data) {
-					cache[uriToId[uri]] = data[uri];
-				}
-
 				// Execute user defined callback method
 				if (callback) {
 					callback.call(context||global);
 				}
-				
-			}, this, random);
+			}
+			else
+			{
+				// Start loading of assets
+				core.io.Queue.load(uris, function(data) 
+				{
+					// Fill cache with actual data
+					for (var uri in data) {
+						cache[uriToId[uri]] = data[uri];
+					}
+
+					// Execute user defined callback method
+					if (callback) {
+						callback.call(context||global);
+					}
+
+				}, this, random);
+			}
 		},
 
 
