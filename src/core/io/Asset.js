@@ -390,11 +390,15 @@
 					var entry = entries[id];
 					var spriteId = getSpriteId(entry, id);
 					
-					if (spriteId != null) {
-						console.debug("USE sprite image for: " + id + " => " + spriteId);
+					if (spriteId != null) 
+					{
 						id = spriteId;
+						
+						// Omit loading sprite multiple times
+						if (cache[id]) {
+							continue;
+						}
 					}
-					
 					
 					var uri = root + (deployed ? id : entries[id].last());
 					
