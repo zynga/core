@@ -678,8 +678,5 @@
 		}
 	});
 	
-	core.io.Asset.resetData();
-	core.io.Asset.addData(core.Env.getValue("assets"));
-	
 })(this, Object);
 
