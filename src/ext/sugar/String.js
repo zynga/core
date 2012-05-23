@@ -133,8 +133,24 @@
 		 */
 		repeat : function(nr)
 		{
-			// empty array magic
-			return Array(nr+1).join(this);
+			// Optimized by: http://jsperf.com/repeat-vs-repeat/3
+			if (nr < 1) {
+				return '';
+			}
+			
+			var pattern = this;
+			var result = "";
+			while (nr > 0) 
+			{
+				if (nr & 1) {
+					result += pattern;
+				}
+				
+				nr >>= 1;
+				pattern += pattern;
+			}
+
+			return result;
 		},
 
 
