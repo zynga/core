@@ -18,6 +18,11 @@
 	 */
 	core.Main.addStatics("Object", 
 	{
+		getLength : function(object) {
+			return Object.keys(object).length;
+		},
+		
+		
 		/**
 		 * {Map} Creates a new object with prefilled content from the @keys {Array} list.
 		 * The @value {var ? true} is always the same, defaults to true, but is also configurable.
