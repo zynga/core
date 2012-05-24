@@ -43,7 +43,7 @@
 	var cache = {};
 
 	// Internal data storage
-	var deployed, root, assets;
+	var profiles, assets, sprites;
 
 	/**
 	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
@@ -86,15 +86,11 @@
 				var entry = section[filename];
 				var id = prefix + "/" + filename;
 
-				if (entry.constructor == Object) 
-				{
-					if (recursive) {
-						collect(id, entry, recursive, entries);
-					}
-				}
-				else
-				{
+				// Quite lightweight check: When there is a profile key, we handle it as an entry
+				if (typeof entry.p == "number") {
 					entries[id] = entry;
+				} else if (recursive) {
+					collect(id, entry, recursive, entries);
 				}
 			}
 		}
@@ -113,19 +109,11 @@
 			core.Assert.isType(id, "String");
 		}
 		
-		if (deployed) 
-		{
-			return root + id;
-		} 
-		else 
-		{
-			var entry = resolve(id);
-			if (core.Env.isSet("debug") && !entry) {
-				throw new Error("Can't resolve URL for asset: " + id);
-			}
-			
-			return root + entry[entry.length-1];
-		}
+		var entry = resolve(id);
+		var profile = profiles[entry.p];
+		var url = (profile.root || "") + (entry.u || id);
+
+		return url;
 	};
 	
 	
@@ -160,9 +148,6 @@
 	{
 		// Correct entry length for format detection
 		var length = entry.length;
-		if (!deployed) {
-			length--;
-		}
 		
 		switch(length)
 		{
@@ -258,8 +243,6 @@
 		/**
 		 * Adds the given asset @data {Map}. Must contain these top level keys:
 		 *
-		 * * `root`: The root directory to prepend to all generated URLs
-		 * * `deployed`: Whether the data comes from a deployed build
 		 * * `assets`: The real asset structure representing the client side asset IDs
 		 */
 		addData : function(data) 
@@ -268,34 +251,28 @@
 			if (core.Env.isSet("debug")) 
 			{
 				core.Assert.isType(data, "Map");
+				core.Assert.isType(data.profiles, "Array");
 				core.Assert.isType(data.assets, "Map");
-				core.Assert.isType(data.root, "String");
-				core.Assert.isType(data.deployed, "Boolean");
+				
+				if ("sprites" in data) {
+					core.Assert.isType(data.sprites, "Array");
+				}
 			}
 
 			// Initial data
-			if (root == null) 
+			if (!profiles)
 			{
+				profiles = data.profiles;
 				assets = data.assets;
-				deployed = data.deployed;
-				root = data.root;
+				sprites = data.sprites;
 			}
 			
 			// Inject data
 			else
 			{
-				if (core.Env.isSet("debug"))
-				{
-					if (data.deployed != deployed) {
-						throw new Error("Cannot handle deployed and undeployed assets into one data set!");
-					}
-
-					if (data.root != root) {
-						throw new Error("Cannot handle two different roots in on data set!");
-					}
-				}
-				
 				mergeData(data.assets, assets);
+				
+				// TODO: Merge sprites and profiles
 			}
 		},
 		
@@ -303,20 +280,10 @@
 		/**
 		 * Resets the state of the asset manager.
 		 */
-		resetData : function() 
-		{
-			deployed = root = null;
-			assets = {};
+		resetData : function() {
+			profiles = assets = sprites = null;
 		},
 		
-		
-		
-		/**
-		 * {Boolean} Whether the assets are managed for a deployed build of the application.
-		 */
-		isDeployed: function() {
-			return deployed;
-		},
 		
 		
 		toUri : toUri,
@@ -400,7 +367,7 @@
 						}
 					}
 					
-					var uri = root + (deployed ? id : entries[id].last());
+					var uri = toUri(id);
 					
 					uris.push(uri);
 					uriToId[uri] = id;
@@ -551,7 +518,7 @@
 				// Return compatible data format in cases where no sprite sheet is used
 				return {
 					node: getFromCache(id, "node"),
-					src : root + (deployed ? id : entry[entry.length-1]),
+					src : toUri(id),
 					left : 0,
 					top: 0,
 					width: width,
@@ -580,9 +547,6 @@
 			
 			// Correct entry length for format detection
 			var length = entry.length;
-			if (!deployed) {
-				length--;
-			}
 			
 			var spriteId = getSpriteId(entry, id);
 			var src = toUri(spriteId || id);
