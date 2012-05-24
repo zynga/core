@@ -7,38 +7,6 @@
 
 (function(global, Object)
 {
-	//
-	// Data formats for image sprites / images frames:
-	//
-	// [width, height]
-	// [400, 200]
-	//
-	// [width, height, cellNumber, rowNumber]
-	// [400, 200, 20, 10]
-	//
-	// [width, height, cellNumber, rowNumber, frameNumber]
-	// [400, 200, 20, 10, 183]
-	//
-	// [width, height, spriteId, left, top]
-	// [24, 24, "icons.png", 48, 0]
-	//
-	// [width, height, spriteId, left, top, cellNumber, rowNumber]
-	// [100, 100, "explode.png", 420, 245, 5, 5] 
-	// Image is part of sprite image explode.png with offsets 420x245. It contains 25 images with each being 20x20.
-	//
-	// [width, height, spriteId, left, top, cellNumber, rowNumber, frameNumber]
-	// [100, 100, "explode.png", 420, 245, 5, 5, 23] 
-	// Image is part of sprite image explode.png with offsets 420x245. It contains 23 images with each being 20x20.
-	//
-	// [width, height, [[left,top,width,height], ...]]
-	// [60, 40, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
-	// Image contains 3 manually positioned frames.
-	//
-	// [width, height, spriteId, left, top, [[left,top,width,height], ...]]
-	// [60, 40, "explode.png", 420, 245, [[0,0,20,20],[20,0,40,40],[0,20,20,20]]]
-	// Image is part of sprite image with offsets 420x245. It contains 3 manually positioned frames.
-	//
-	
 	/** {Map} Internal cache for holding preloaded data */
 	var cache = {};
 
@@ -60,7 +28,7 @@
 		
 		var splits = id.split("/");
 		var current = assets;
-		for (var i=0, l=splits.length; current&&i<l; i++) {
+		for (var i=0, l=splits.length; current && i<l; i++) {
 			current = current[splits[i]];
 		}
 		
@@ -170,44 +138,38 @@
 	
 	
 	/**
-	 * {String} Returns the sprite ID for the given data @entry {Array} and image 
-	 * @id {String}. Returns `null` when image is not available in any sprite image.
+	 * {String} Returns the sprite ID for the given data @spriteNumber {Integer} and image 
+	 * @id {String}.
 	 */
-	var getSpriteId = function(entry, id)
+	var resolveSprite = function(spriteNumber, assetId)
 	{
-		var data = entry.d;
-
-		var spriteData = data[2];
-		if (spriteData) 
+		if (core.Env.isSet("debug")) 
 		{
-			// Sprite data format: index, left, top
-			var spriteId = sprites[spriteData[0]];
-			
-			// Explicit root path
-			if (spriteId.charAt(0) == "/") {
-				spriteId = spriteId.slice(1);
-			}
-
-			// Local path (same folder as requested image)
-			else if (spriteId.indexOf("/") == -1) 
-			{
-				var pos = id.lastIndexOf("/");
-				if (pos != -1) {
-					spriteId = id.slice(0, pos+1) + spriteId;
-				}
-			}
-			
-			return spriteId;
-			
+			core.Assert.isType(spriteNumber, "Number");
+			core.Assert.isType(assetId, "String");
 		}
-	};
-	
-	
-	var hasSprite = function(entry) {
-		return entry.d[2] != null;
-	};
-	
+		
+		// Sprite data format: index, left, top
+		var spriteId = sprites[spriteNumber];
+		
+		// Explicit root path
+		if (spriteId.charAt(0) == "/") {
+			spriteId = spriteId.slice(1);
+		}
 
+		// Local path (same folder as requested image)
+		else if (spriteId.indexOf("/") == -1) 
+		{
+			var pos = assetId.lastIndexOf("/");
+			if (pos != -1) {
+				spriteId = assetId.slice(0, pos+1) + spriteId;
+			}
+		}
+		
+		return spriteId;
+	};
+	
+	
 	/**
 	 * {var} Returns a @key {String} from the given asset @id {String} when its available in cache.
 	 */
@@ -346,14 +308,14 @@
 				if (!(id in cache))
 				{
 					var entry = entries[id];
-					var spriteId = getSpriteId(entry, id);
-					
-					if (spriteId != null) 
+
+					var spriteData = entry.d[2];
+					if (spriteData) 
 					{
-						id = spriteId;
+						id = resolveSprite(spriteData[0], id);
 						
 						// Omit loading sprite multiple times
-						if (cache[id]) {
+						if (id in cache) {
 							continue;
 						}
 					}
@@ -499,14 +461,15 @@
 			var width = data[0];
 			var height = data[1];
 			
-			var spriteId = getSpriteId(entry, id);
-			if (spriteId) 
+			var spriteData = data[2];
+			if (spriteData)
 			{
+				var spriteId = resolveSprite(spriteData[0], id);
 				return {
 					node: getFromCache(spriteId, "node"),
 					src : toUri(spriteId),
-					left : entry[3],
-					top : entry[4],
+					left : spriteData[1],
+					top : spriteData[2],
 					width: width,
 					height: height
 				};
@@ -543,19 +506,29 @@
 				throw new Error("Unknown image: " + id);
 			}
 			
-			// Correct entry length for format detection
-			var length = entry.length;
+			var data = entry.d;
 			
-			var spriteId = getSpriteId(entry, id);
-			var src = toUri(spriteId || id);
+			var width = data[0];
+			var height = data[1];
 			
-			var left = spriteId ? entry[3] : 0; 
-			var top = spriteId ? entry[4] : 0;
-			
-			var node = getFromCache(spriteId || id, "node");
-			
-			var width = entry[0];
-			var height = entry[1];
+			var spriteData = data[2];
+			if (spriteData) 
+			{
+				var spriteId = resolveSprite(spriteData[0], id);
+				var src = toUri(spriteId);
+				var node = getFromCache(spriteId, "node");
+
+				var left = spriteData[1];
+				var top = spriteData[2];
+			}
+			else
+			{
+				var src = toUri(id);
+				var node = getFromCache(id, "node");
+
+				var left = 0;
+				var top = 0;
+			}
 			
 			var offsetLeft = 0;
 			var offsetTop = 0;
@@ -563,36 +536,35 @@
 			var rotation = 0;
 			var fps = 0;
 			
-			// Detect whether a frame is available
-			if (length > 3 || length < 9) 
+			// Detect whether a frame config is available
+			var frameData = data[3];
+			if (frameData) 
 			{
-				//console.debug("FRAME-REL-LENGTH: ", length)
 				var number = getFrameNumber(entry.d);
-
 				if (frame >= number && core.Env.isSet("debug")) {
 					throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 				}
 				
 				// Manual frames
-				if (length == 3 || length == 6)
+				// Just one sub array with all frames configured manually
+				if (frameData.length == 1)
 				{
-					var frames = entry[length == 3 ? 2 : 5];
-					var frameData = frames[frame];
+					var frameConfig = frameData[0][frame];
 					
 					// Format: left, top, width, height, offsetX?, offsetY?, rotation?
 					
 					// Required fields
-					left += frameData[0];
-					top += frameData[1];
-					width = frameData[2];
-					height = frameData[3];
+					left += frameConfig[0];
+					top += frameConfig[1];
+					width = frameConfig[2];
+					height = frameConfig[3];
 					
 					// Optional fields
-					if (frameData.length > 4) 
+					if (frameConfig.length > 4) 
 					{
-						offsetLeft = frameData[4] || 0;
-						offsetTop = frameData[5] || 0;
-						rotation = frameData[6] || 0;
+						offsetLeft = frameConfig[4] || 0;
+						offsetTop = frameConfig[5] || 0;
+						rotation = frameConfig[6] || 0;
 					}
 				}
 
@@ -600,8 +572,8 @@
 				else
 				{
 					// Correctly work when using sprite images
-					var cols = length > 6 ? entry[5] : entry[2];
-					var rows = length > 6 ? entry[6] : entry[3];
+					var cols = frameData[0];
+					var rows = frameData[1];
 					
 					// Correct image dimensions
 					width /= cols;
