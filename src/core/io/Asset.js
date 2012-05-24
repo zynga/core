@@ -142,38 +142,27 @@
 	
 	
 	/**
-	 * {Integer} Returns the number of frames for the given data @entry {Array}.
+	 * {Integer} Returns the number of frames for the given @data {Array}.
 	 */
-	var getFrameNumber = function(entry) 
+	var getFrameNumber = function(data) 
 	{
-		// Correct entry length for format detection
-		var length = entry.length;
+		// Data format is [width, height, spriteData, animationData]
+		var animationData = data[3];
 		
-		switch(length)
+		// Correct entry length for format detection
+		switch(animationData.length)
 		{
-			case 3:
+			case 1:
 				// manually defined frames
-				return entry[2].length;
+				return animationData[0].length;
 				
-			case 4:
+			case 2:
 				// auto calculated frame size
-				return entry[2] * entry[3];
+				return animationData[0] * animationData[1];
 
-			case 5:
+			case 3:
 				// manually defined frame size
-				return entry[4];
-
-			case 6:
-				// manually defined frames (image sprite)
-				return entry[5].length;
-
-			case 7:
-				// auto calculated frame size (image sprite)
-				return entry[5] * entry[6];
-
-			case 8:
-				// manually defined frame size (image sprite)
-				return entry[7];
+				return animationData[2];
 		}
 		
 		return 1;
@@ -186,12 +175,14 @@
 	 */
 	var getSpriteId = function(entry, id)
 	{
-		// We need more data than just the image sprite ID
-		var spriteId = entry.length > 3 ? entry[2] : null;
-		
-		// Is part of image sprite?
-		if (typeof spriteId == "string") 
+		var data = entry.d;
+
+		var spriteData = data[2];
+		if (spriteData) 
 		{
+			// Sprite data format: index, left, top
+			var spriteId = sprites[spriteData[0]];
+			
 			// Explicit root path
 			if (spriteId.charAt(0) == "/") {
 				spriteId = spriteId.slice(1);
@@ -207,12 +198,13 @@
 			}
 			
 			return spriteId;
+			
 		}
 	};
 	
 	
 	var hasSprite = function(entry) {
-		return entry.length > 3 && typeof entry[2] == "string";
+		return entry.d[2] != null;
 	};
 	
 
@@ -341,7 +333,6 @@
 				}
 			}
 			
-
 			// Collect asset entries
 			var entries = collect(section, resolve(section), recursive);
 
@@ -386,6 +377,10 @@
 			}
 			else
 			{
+				if (core.Env.isSet("debug")) {
+					console.debug("Preloading " + section + " (" + uris.length + " assets)...");	
+				}
+				
 				// Start loading of assets
 				core.io.Queue.load(uris, function(data) 
 				{
@@ -452,8 +447,9 @@
 			if (core.Env.isSet("debug") && !entry) {
 				throw new Error("Could not figure out size of unknown image: " + id);
 			}
-			
-			return entry.slice(0, 2);
+
+			// First two values in data are the size of the image
+			return entry.d.slice(0, 2);
 		},
 		
 		
@@ -478,7 +474,7 @@
 				throw new Error("Could not figure out frame number of unknown image: " + id);
 			}
 
-			return getFrameNumber(entry);
+			return getFrameNumber(entry.d);
 		},
 
 
@@ -498,8 +494,10 @@
 				throw new Error("Unknown image: " + id);
 			}
 			
-			var width = entry[0];
-			var height = entry[1];
+			var data = entry.d;
+			
+			var width = data[0];
+			var height = data[1];
 			
 			var spriteId = getSpriteId(entry, id);
 			if (spriteId) 
@@ -569,7 +567,7 @@
 			if (length > 3 || length < 9) 
 			{
 				//console.debug("FRAME-REL-LENGTH: ", length)
-				var number = getFrameNumber(entry);
+				var number = getFrameNumber(entry.d);
 
 				if (frame >= number && core.Env.isSet("debug")) {
 					throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
