@@ -67,21 +67,36 @@
 	};
 	
 
-	/**
-	 * {String} Converts the given asset @id {String} to a full qualified URI. 
-	 * The method throws an error whenever an asset ID is unknown.
+	/** 
+	 * Returns the URLs for the given entry
 	 */
-	var toUri = function(id) 
+	var entryToUri = function(entry, id) 
+	{
+		if (core.Env.isSet("debug")) 
+		{
+			core.Assert.isType(entry, "Map");
+			core.Assert.isType(id, "String");
+		}
+		
+		var profile = profiles[entry.p];
+		var url = (profile.root || "") + (entry.u || id);
+
+		return url;
+	};
+	
+	
+	var idToUri = function(id) 
 	{
 		if (core.Env.isSet("debug")) {
 			core.Assert.isType(id, "String");
 		}
 		
-		var entry = resolve(id);
-		var profile = profiles[entry.p];
-		var url = (profile.root || "") + (entry.u || id);
-
-		return url;
+		var resolved = resolve(id);
+		if (core.Env.isSet("debug")) {
+			core.Assert.isNotNull(resolved);
+		}
+		
+		return entryToUri(resolved, id);
 	};
 	
 	
@@ -232,15 +247,18 @@
 		
 		
 		/**
-		 * Resets the state of the asset manager.
+		 * Resets the internal state of the asset class.
 		 */
 		resetData : function() {
 			profiles = assets = sprites = null;
 		},
 		
 		
-		
-		toUri : toUri,
+		/**
+		 * {String} Converts the given asset @id {String} to a fully qualified URI. 
+		 * The method throws an error whenever an asset ID is unknown.
+		 */
+		toUri : idToUri,
 		
 		
 		/**
@@ -318,9 +336,13 @@
 						if (id in cache) {
 							continue;
 						}
+						
+						var uri = idToUri(id);
 					}
-					
-					var uri = toUri(id);
+					else
+					{
+						var uri = entryToUri(entry, id);
+					}
 					
 					uris.push(uri);
 					uriToId[uri] = id;
@@ -385,7 +407,7 @@
 				}
 			}
 			
-			var uris = ids.map(toUri);
+			var uris = ids.map(idToUri);
 			var urisToIds = uris.zip(ids);
 
 			var helper = callback ? function(data) {
@@ -414,12 +436,13 @@
 			return entry.d.slice(0, 2);
 		},
 		
-		
+
+		/**
+		 * {Map} Returns the internal cache object. Be careful with this!
+		 */
 		getCache: function() {
 			return cache;
 		},
-		
-		getFromCache: getFromCache,
 		
 		
 		/**
@@ -467,7 +490,7 @@
 				var spriteId = resolveSprite(spriteData[0], id);
 				return {
 					node: getFromCache(spriteId, "node"),
-					src : toUri(spriteId),
+					src : idToUri(spriteId),
 					left : spriteData[1],
 					top : spriteData[2],
 					width: width,
@@ -479,7 +502,7 @@
 				// Return compatible data format in cases where no sprite sheet is used
 				return {
 					node: getFromCache(id, "node"),
-					src : toUri(id),
+					src : entryToUri(entry, id),
 					left : 0,
 					top: 0,
 					width: width,
@@ -515,7 +538,7 @@
 			if (spriteData) 
 			{
 				var spriteId = resolveSprite(spriteData[0], id);
-				var src = toUri(spriteId);
+				var src = idToUri(spriteId);
 				var node = getFromCache(spriteId, "node");
 
 				var left = spriteData[1];
@@ -523,7 +546,7 @@
 			}
 			else
 			{
-				var src = toUri(id);
+				var src = entryToUri(entry, id);
 				var node = getFromCache(id, "node");
 
 				var left = 0;
