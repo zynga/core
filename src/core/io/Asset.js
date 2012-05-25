@@ -68,7 +68,8 @@
 	
 
 	/** 
-	 * Returns the URLs for the given entry
+	 * Returns the URI for the given @entry {Map} and @id {String}. This method
+	 * is faster than using #idToUri.
 	 */
 	var entryToUri = function(entry, id) 
 	{
@@ -85,6 +86,9 @@
 	};
 	
 	
+	/**
+	 * Returns the URI for the given asset @id {String}
+	 */
 	var idToUri = function(id) 
 	{
 		if (core.Env.isSet("debug")) {
@@ -136,11 +140,11 @@
 		switch(animationData.length)
 		{
 			case 1:
-				// manually defined frames
+				// manually defined layout/frames
 				return animationData[0].length;
 				
 			case 2:
-				// auto calculated frame size
+				// auto calculated frame size (based on columns and rows)
 				return animationData[0] * animationData[1];
 
 			case 3:
@@ -209,6 +213,9 @@
 	 */
 	core.Module("core.io.Asset",
 	{
+		toUri : idToUri,
+		
+		
 		/**
 		 * Adds the given asset @data {Map}. Must contain these top level keys:
 		 *
@@ -255,13 +262,6 @@
 		
 		
 		/**
-		 * {String} Converts the given asset @id {String} to a fully qualified URI. 
-		 * The method throws an error whenever an asset ID is unknown.
-		 */
-		toUri : idToUri,
-		
-		
-		/**
 		 * {Boolean} Whether the registry has information about the given asset @id {String}.
 		 */
 		has : function(id) 
@@ -270,7 +270,7 @@
 				core.Assert.isType(id, "String");
 			}
 			
-			return !!resolve(id);
+			return !!(cache[id] || resolve(id));
 		},
 		
 		
