@@ -78,19 +78,20 @@
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.isType(entry, "Map");
-			core.Assert.isType(id, "String");
+			core.Assert.isType(id, "String", "Invalid asset ID: " + id);
+			core.Assert.isType(entry, "Map", "Invalid entry: " + entry + " for asset ID: " + id);
+			core.Assert.isType(entry.p, "Integer", "Invalid profile in entry: " + entry.p + ". Asset ID is: " + id);
 		}
 		
 		var profile = profiles[entry.p];
-		
+
 		var delegate = delegates[profile.name];
 		if (delegate) {
 			var url = delegate(profile, id, entry);
 		} else {
 			var url = (profile.root || "") + (entry.u || id);
 		}
-
+		
 		return url;
 	};
 	
