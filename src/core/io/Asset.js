@@ -9,6 +9,9 @@
 {
 	/** {Map} Internal cache for holding preloaded data */
 	var cache = {};
+	
+	/** {Map} Internal map of delegates for building URLs based on profiles */
+	var delegates = {};
 
 	// Internal data storage
 	var profiles, assets, sprites;
@@ -80,7 +83,13 @@
 		}
 		
 		var profile = profiles[entry.p];
-		var url = (profile.root || "") + (entry.u || id);
+		
+		var delegate = delegates[profile.name];
+		if (delegate) {
+			var url = delegate(profile, id, entry);
+		} else {
+			var url = (profile.root || "") + (entry.u || id);
+		}
 
 		return url;
 	};
@@ -214,6 +223,18 @@
 	core.Module("core.io.Asset",
 	{
 		toUri : idToUri,
+		
+		registerDelegate : function(profile, delegate) 
+		{
+			// Validate input data
+			if (core.Env.isSet("debug")) 
+			{
+				core.Assert.isType(profile, "String");
+				core.Assert.isType(delegate, "Function");
+			}
+			
+			delegates[profile] = delegate;
+		},
 		
 		
 		/**
