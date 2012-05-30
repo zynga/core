@@ -576,7 +576,7 @@ $(function() {
 
 	});
 		
-	test("Frames - Rows/Columns", function() {
+	test("Image Animation - Rows/Columns", function() {
 		
 		core.io.Asset.resetData();
 		core.io.Asset.addData(
@@ -623,7 +623,7 @@ $(function() {
 	});
 	
 		
-	test("Frames - Rows/Columns in Image Sprite", function() {
+	test("Image Animation - Rows/Columns in Image Sprite", function() {
 		
 		core.io.Asset.resetData();
 		core.io.Asset.addData(
@@ -673,7 +673,7 @@ $(function() {
 	
 	
 	
-	test("Frames - Custom", function()
+	test("Image Animation - Custom", function()
 	{
 		core.io.Asset.resetData();
 		core.io.Asset.addData(
@@ -728,7 +728,7 @@ $(function() {
 	});
 	
 	
-	test("Frames - Custom in Image Sprite", function()
+	test("Image Animation - Custom in Image Sprite", function()
 	{
 		core.io.Asset.resetData();
 		core.io.Asset.addData(
