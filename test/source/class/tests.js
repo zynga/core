@@ -358,15 +358,13 @@ $(function() {
 			core.io.Asset.toUri("my.png")
 		});
 
-
 		core.io.Asset.resetData();
 		core.io.Asset.addData(
 		{
 			"assets" : {
-				"my.png" : ["asset/my.png"]
+				"my.png" : {"u":"asset/my.png","p":0}
 			}, 
-			"deployed" : false,
-			"root" : ""
+			"profiles" : [{name:"source"}]
 		});
 		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
 
@@ -375,10 +373,9 @@ $(function() {
 		core.io.Asset.addData(
 		{
 			"assets" : {
-				"my.png" : ["asset/my.png"]
+				"my.png" : {"u":"asset/my.png","p":0}
 			}, 
-			"deployed" : false,
-			"root" : "xxx/yyy/"
+			"profiles" : [{name:"source", "root":"xxx/yyy/"}]
 		});
 		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
 
@@ -387,10 +384,9 @@ $(function() {
 		core.io.Asset.addData(
 		{
 			"assets" : {
-				"my.png" : ["asset/my.png"]
+				"my.png" : {"u":"asset/my.png","p":0}
 			}, 
-			"deployed" : false,
-			"root" : "http://mycdn.com/xxx/yyy/"
+			"profiles" : [{name:"source", "root":"http://mycdn.com/xxx/yyy/"}]
 		});
 		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
 		
@@ -400,88 +396,16 @@ $(function() {
 		{
 			"assets" : {
 				"lib2" : {
-					"my.png" : ["../../lib2/asset/my.png"]
+					"my.png" : {"u":"../../lib2/asset/my.png","p":0}
 				}
 			}, 
-			"deployed" : false,
-			"root" : "http://mycdn.com/app/source/"
+			"profiles" : [{name:"source", "root":"http://mycdn.com/app/source/"}]
 		});
 		equals(core.io.Asset.toUri("lib2/my.png"), "http://mycdn.com/app/source/../../lib2/asset/my.png");
 
 	});
-	
-	
-	test("Adding Deployed Data", function() 
-	{
-		raises(function() {
-			core.io.Asset.resetData();
-			core.io.Asset.toUri("my.png")
-		});
 
-
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"my.png" : 1
-			}, 
-			"deployed" : true,
-			"root" : "asset/"
-		});
-		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
-
-		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"my.png" : 1
-			}, 
-			"deployed" : true,
-			"root" : "http://mycdn.com/asset/"
-		});
-		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/asset/my.png");
-		
-		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"lib2" : {
-					"my.png" : 1
-				}
-			}, 
-			"deployed" : true,
-			"root" : "http://mycdn.com/asset/"
-		});
-		equals(core.io.Asset.toUri("lib2/my.png"), "http://mycdn.com/asset/lib2/my.png");
-
-	});
-	
-	
-	test("Image Sizes - Deployed", function() {
-		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"myapp" : {
-					"icons" : {
-						"app.png" : [48, 48]
-					}
-				}
-			}, 
-			"deployed" : true,
-			"root" : "asset/"
-		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
-		equals(core.io.Asset.getImageSize("myapp/icons/app.png")+"", [48, 48]+"");
-		equals(core.io.Asset.getFrameNumber("myapp/icons/app.png"), 1);
-		
-	});
-		
-		
-	test("Image Sizes - Source", function() {
+	test("Image Sizes", function() {
 
 		core.io.Asset.resetData();
 		core.io.Asset.addData(
@@ -501,33 +425,9 @@ $(function() {
 		equals(core.io.Asset.getFrameNumber("myapp/icons/app.png"), 1);
 		
 	});
-	
-	
-	test("Image Sprite - None - Deployed", function() {
+
 		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"myapp" : {
-					"icons" : {
-						"app.png" : [48, 48]
-					}
-				}
-			}, 
-			"deployed" : true,
-			"root" : "asset/"
-		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
-		
-		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
-		strictEqual(imgData.left, 0);
-		strictEqual(imgData.top, 0);
-		strictEqual(imgData.src, "asset/myapp/icons/app.png");
-		
-	});
-		
-	test("Image Sprite - None - Source", function() {
+	test("Image Sprite - None", function() {
 
 		core.io.Asset.resetData();
 		core.io.Asset.addData(
@@ -552,33 +452,7 @@ $(function() {
 	});
 		
 		
-	test("Image Sprite - Same Folder - Deployed", function() 
-	{
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"myapp" : {
-					"icons" : {
-						"app.png" : [48, 48, "icons.png", 96, 240],
-						"icons.png" : [288, 288]
-					}
-				}
-			}, 
-			"deployed" : true,
-			"root" : "asset/"
-		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
-		
-		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
-		strictEqual(imgData.width, 48);
-		strictEqual(imgData.height, 48);
-		strictEqual(imgData.left, 96);
-		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "asset/myapp/icons/icons.png");
-	});
-		
-	test("Image Sprite - Same Folder - Source", function() 
+	test("Image Sprite - Same Folder", function() 
 	{
 
 		core.io.Asset.resetData();
@@ -605,35 +479,8 @@ $(function() {
 		strictEqual(imgData.src, "asset/myapp/icons/icons.png");
 	});
 	
-	
-	test("Image Sprite - Absolute ID - Deployed", function() 
-	{
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"myapp" : {
-					"icons.png" : [288, 288],
-					"icons" : {
-						"app.png" : [48, 48, "myapp/icons.png", 96, 240]
-					}
-				}
-			}, 
-			"deployed" : true,
-			"root" : "asset/"
-		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		
-		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
-		strictEqual(imgData.width, 48);
-		strictEqual(imgData.height, 48);
-		strictEqual(imgData.left, 96);
-		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "asset/myapp/icons.png");
-		
-	});
-		
-	test("Image Sprite - Absolute ID - Source", function() 
+	test("Image Sprite - Absolute ID", function() 
 	{
 
 		core.io.Asset.resetData();
@@ -661,33 +508,7 @@ $(function() {
 	});	
 	
 	
-	test("Image Sprite - Root ID - Deployed", function() 
-	{
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
-		{
-			"assets" : {
-				"icons.png" : [288, 288],
-				"myapp" : {
-					"icons" : {
-						"app.png" : [48, 48, "/icons.png", 96, 240]
-					}
-				}
-			}, 
-			"deployed" : true,
-			"root" : "asset/"
-		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
-		
-		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
-		strictEqual(imgData.width, 48);
-		strictEqual(imgData.height, 48);
-		strictEqual(imgData.left, 96);
-		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "asset/icons.png");
-	});
-		
-	test("Image Sprite - Root ID - Deployed", function() 
+	test("Image Sprite - Root ID", function() 
 	{
 		core.io.Asset.resetData();
 		core.io.Asset.addData(

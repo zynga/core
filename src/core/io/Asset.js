@@ -248,12 +248,12 @@
 			// Validate input data
 			if (core.Env.isSet("debug")) 
 			{
-				core.Assert.isType(data, "Map");
-				core.Assert.isType(data.profiles, "Array");
-				core.Assert.isType(data.assets, "Map");
+				core.Assert.isType(data, "Map", "Asset data must be a map with the keys assets and profiles.");
+				core.Assert.isType(data.profiles, "Array", "Asset data must have an array of profiles under the profiles key.");
+				core.Assert.isType(data.assets, "Map", "Asset data must define a structure of assets under the assets keys.");
 				
 				if ("sprites" in data) {
-					core.Assert.isType(data.sprites, "Array");
+					core.Assert.isType(data.sprites, "Array", "Sprite data inside assets must be delivered as an Array.");
 				}
 			}
 
