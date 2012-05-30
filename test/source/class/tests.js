@@ -404,6 +404,49 @@ $(function() {
 		equals(core.io.Asset.toUri("lib2/my.png"), "http://mycdn.com/app/source/../../lib2/asset/my.png");
 
 	});
+	
+	
+	test("Adding Build Data", function() 
+	{
+		raises(function() {
+			core.io.Asset.resetData();
+			core.io.Asset.toUri("my.png")
+		});
+
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
+		{
+			"assets" : {
+				"my.png" : {"p":0}
+			}, 
+			"profiles" : [{name:"build", "root":"asset/"}]
+		});
+		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
+
+		
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
+		{
+			"assets" : {
+				"my.png" : {"p":0}
+			}, 
+			"profiles" : [{name:"build", "root":"xxx/yyy/asset/"}]
+		});
+		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
+
+
+		core.io.Asset.resetData();
+		core.io.Asset.addData(
+		{
+			"assets" : {
+				"my.png" : {"p":0}
+			}, 
+			"profiles" : [{name:"build", "root":"http://mycdn.com/xxx/yyy/asset/"}]
+		});
+		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
+		
+	});
+		
 
 	test("Image Sizes", function() {
 
@@ -417,9 +460,9 @@ $(function() {
 					}
 				}
 			}, 
-			"profiles" : [{name:"build"}]
+			"profiles" : [{name:"build", "root":"asset/"}]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "myapp/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		equals(core.io.Asset.getImageSize("myapp/icons/app.png")+"", [48, 48]+"");
 		equals(core.io.Asset.getFrameNumber("myapp/icons/app.png"), 1);
 		
@@ -438,14 +481,14 @@ $(function() {
 					}
 				}
 			}, 
-			"profiles" : [{name:"build"}]
+			"profiles" : [{name:"build", "root":"asset/"}]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "myapp/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.left, 0);
 		strictEqual(imgData.top, 0);
-		strictEqual(imgData.src, "myapp/icons/app.png");
+		strictEqual(imgData.src, "asset/myapp/icons/app.png");
 		
 	});
 		
@@ -464,17 +507,17 @@ $(function() {
 					}
 				}
 			}, 
-			"profiles" : [{name:"build"}],
+			"profiles" : [{name:"build", "root":"asset/"}],
 			"sprites" : ["icons.png"]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "myapp/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
 		strictEqual(imgData.height, 48);
 		strictEqual(imgData.left, 96);
 		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "myapp/icons/icons.png");
+		strictEqual(imgData.src, "asset/myapp/icons/icons.png");
 	});
 	
 		
@@ -492,17 +535,17 @@ $(function() {
 					}
 				}
 			}, 
-			"profiles" : [{name:"build"}],
+			"profiles" : [{name:"build", "root":"asset/"}],
 			"sprites" : ["myapp/icons.png"]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "myapp/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
 		strictEqual(imgData.height, 48);
 		strictEqual(imgData.left, 96);
 		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "myapp/icons.png");
+		strictEqual(imgData.src, "asset/myapp/icons.png");
 	});	
 	
 	
@@ -519,17 +562,17 @@ $(function() {
 					}
 				}
 			}, 
-			"profiles" : [{name:"build"}],
+			"profiles" : [{name:"build", "root":"asset/"}],
 			"sprites" : ["/icons.png"]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "myapp/icons/app.png");
+		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
 		strictEqual(imgData.height, 48);
 		strictEqual(imgData.left, 96);
 		strictEqual(imgData.top, 240);
-		strictEqual(imgData.src, "icons.png");
+		strictEqual(imgData.src, "asset/icons.png");
 
 	});
 		
@@ -550,7 +593,7 @@ $(function() {
 					}
 				}
 			}, 
-			"profiles" : [{name:"build"}]
+			"profiles" : [{name:"build", "root":"asset/"}]
 		});
 		
 		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/loading.png"), 16, "number of frames I");
@@ -599,7 +642,7 @@ $(function() {
 					}
 				}
 			}, 
-			"profiles" : [{name:"build"}]
+			"profiles" : [{name:"build", "root":"asset/"}]
 		});
 		
 		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/loading.png"), 16, "number of frames I");
@@ -650,7 +693,7 @@ $(function() {
 					}
 				},
 			},
-			"profiles" : [{name:"build"}]
+			"profiles" : [{name:"build", "root":"asset/"}]
 		});
 		
 		
@@ -704,7 +747,7 @@ $(function() {
 					}
 				},
 			},
-			"profiles" : [{name:"build"}]
+			"profiles" : [{name:"build", "root":"asset/"}]
 		});
 		
 		
