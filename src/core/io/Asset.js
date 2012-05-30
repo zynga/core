@@ -147,19 +147,22 @@
 		var animationData = data[3];
 		
 		// Correct entry length for format detection
-		switch(animationData.length)
+		if (animationData)
 		{
-			case 1:
-				// manually defined layout/frames
-				return animationData[0].length;
-				
-			case 2:
-				// auto calculated frame size (based on columns and rows)
-				return animationData[0] * animationData[1];
+			switch(animationData.length)
+			{
+				case 1:
+					// manually defined layout/frames
+					return animationData[0].length;
 
-			case 3:
-				// manually defined frame size
-				return animationData[2];
+				case 2:
+					// auto calculated frame size (based on columns and rows)
+					return animationData[0] * animationData[1];
+
+				case 3:
+					// manually defined frame size
+					return animationData[2];
+			}
 		}
 		
 		return 1;
