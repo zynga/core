@@ -587,9 +587,9 @@ $(function() {
 				{
 					"anim" : 
 					{
-						"loading.png" : [16*16, 16, 16, 1],
-						"explode.png" : [32*30, 32*3, 30, 3],
-						"collapse.png" : [12*2, 12*20, 2, 20, 86]
+						"loading.png" : {"d":[16*16, 16, 0, [16, 1]], "p":0},
+						"explode.png" : {"d":[32*30, 32*3, 0, [30, 3]], "p":0},
+						"collapse.png" : {"d":[12*2, 12*20, 0, [2, 20, 86]], "p":0},
 					}
 				}
 			}, 
@@ -620,7 +620,6 @@ $(function() {
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").height, 16, "full image height");
 		strictEqual(core.io.Asset.getImage("myapp/anim/loading.png").src, "asset/myapp/anim/loading.png", "normal source handling II");
 
-
 	});
 	
 		
@@ -633,16 +632,17 @@ $(function() {
 			{
 				"myapp" : 
 				{
-					"sprite.png" : [960, 352, "asset/myapp/sprite.png"],
+					"sprite.png" : {"d":[960, 352], "p":0},
 					"anim" : 
 					{
-						"loading.png" : [16*16, 16, "myapp/sprite.png", 20, 0, 16, 1],
-						"explode.png" : [32*30, 32*3, "myapp/sprite.png", 40, 16, 30, 3],
-						"collapse.png" : [12*2, 12*20, "myapp/sprite.png", 60, 112, 2, 20, 86]
+						"loading.png" : {"d":[16*16, 16, [0, 20, 0], [16, 1]], "p":0},
+						"explode.png" : {"d":[32*30, 32*3, [0, 40, 16], [30, 3]], "p":0},
+						"collapse.png" : {"d":[12*2, 12*20, [0, 60, 112], [2, 20, 86]], "p":0}
 					}
 				}
 			}, 
-			"profiles" : [{name:"build", "root":"asset/"}]
+			"profiles" : [{name:"build", "root":"asset/"}],
+			"sprites" : ["myapp/sprite.png"]
 		});
 		
 		strictEqual(core.io.Asset.getFrameNumber("myapp/anim/loading.png"), 16, "number of frames I");
@@ -684,12 +684,14 @@ $(function() {
 				{
 					"anim" : 
 					{
-						"guy.png" : [200, 16, [
-							// Format: left, top, width, height, offsetLeft?, offsetTop?, rotation?
-							[ 0,  0, 20, 20],
-							[30, 50, 10, 30, 20, 50],
-							[70, 20, 14, 40, 0, 30, 90]
-						]]
+						"guy.png" : {"d":[200, 16, 0, [
+							[
+								// Format: left, top, width, height, offsetLeft?, offsetTop?, rotation?
+								[ 0,  0, 20, 20],
+								[30, 50, 10, 30, 20, 50],
+								[70, 20, 14, 40, 0, 30, 90]
+							]
+						]], "p":0}
 					}
 				},
 			},
@@ -735,18 +737,21 @@ $(function() {
 			{
 				"myapp" : 
 				{
-					"sprite.png" : [960, 352],
+					"sprite.png" : {"d":[960, 352], "p":0},
 					"anim" : 
 					{
-						"guy.png" : [200, 16, "myapp/sprite.png", 20, 40, [
-							// Format: left, top, width, height, offsetLeft?, offsetTop?, rotation?
-							[ 0,  0, 20, 20],
-							[30, 50, 10, 30, 20, 50],
-							[70, 20, 14, 40, 0, 30, 90]
-						]]
+						"guy.png" : {"d":[200, 16, [0, 20, 40], [
+							[
+								// Format: left, top, width, height, offsetLeft?, offsetTop?, rotation?
+								[ 0,  0, 20, 20],
+								[30, 50, 10, 30, 20, 50],
+								[70, 20, 14, 40, 0, 30, 90]
+							]
+						]], "p":0},
 					}
 				},
 			},
+			"sprites" : ["myapp/sprite.png"],
 			"profiles" : [{name:"build", "root":"asset/"}]
 		});
 		
