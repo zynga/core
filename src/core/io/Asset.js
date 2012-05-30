@@ -378,7 +378,7 @@
 			{
 				// Execute user defined callback method
 				if (callback) {
-					callback.call(context||global);
+					callback.call(context||global, Object.keys(entries));
 				}
 			}
 			else
@@ -397,7 +397,7 @@
 
 					// Execute user defined callback method
 					if (callback) {
-						callback.call(context||global);
+						callback.call(context||global, Object.keys(entries));
 					}
 
 				}, this, random);
@@ -579,7 +579,6 @@
 			var offsetTop = 0;
 			
 			var rotation = 0;
-			var fps = 0;
 			
 			// Detect whether a frame config is available
 			var frameData = data[3];
@@ -644,8 +643,7 @@
 				height : height,
 				offsetLeft : offsetLeft,
 				offsetTop : offsetTop,
-				rotation : rotation,
-				fps : fps
+				rotation : rotation
 			};
 			
 			// Prevent changes in object
