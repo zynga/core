@@ -7,12 +7,11 @@ formatting.enable("comma")
 
 @task("Source")
 def source():
-    # Prepare assets
-    resolver = Resolver().addClassName("tests")
-    assets = AssetManager(resolver.getIncludedClasses()).exportSource()
-
+    # Adding source asset profile
+    session.getAssetManager().addSourceProfile()
+    
     # Store kernel script
-    includedByKernel = storeKernel("script/kernel.js", assets=assets, debug=True)
+    includedByKernel = storeKernel("script/kernel.js", debug=True)
     
     # Process every possible permutation
     for permutation in session.permutate():
@@ -23,18 +22,16 @@ def source():
         resolver.excludeClasses(includedByKernel)
         
         # Writing source loader
-        classes = Sorter(resolver).getSortedClasses()
-        storeLoader("script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
+        storeLoader(resolver, "script/test-%s.js" % permutation.getChecksum(), "QUnit.load();")
 
 
 @task("Build")
 def build():
-    # Prepare assets
-    resolver = Resolver().addClassName("tests")
-    assets = AssetManager(resolver.getIncludedClasses()).exportBuild()
-
+    # Adding build asset profile
+    session.getAssetManager().addBuildProfile()
+    
     # Write kernel script
-    includedByKernel = storeKernel("script/kernel.js", assets=assets, debug=True)
+    includedByKernel = storeKernel("script/kernel.js", debug=True)
 
     # Copy files from source
     updateFile("source/index.html", "index.html")
@@ -48,10 +45,9 @@ def build():
         resolver.excludeClasses(includedByKernel)
 
         # Compressing classes
-        classes = Sorter(resolver).getSortedClasses()
-        storeCompressed("script/test-%s.js" % permutation.getChecksum(), classes, bootCode="QUnit.load();")
+        storeCompressed(resolver, "script/test-%s.js" % permutation.getChecksum(), "QUnit.load();")
     
     
 @task("Clear Cache")
 def clear():
-    session.clearCache()
+    session.clean()

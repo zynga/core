@@ -13,8 +13,9 @@
 
 		<script src="script/kernel.js"></script>
 		<script>
-			core.io.Asset.load(["qunit.css"]);
-			core.io.Script.load("script/test-" + core.Env.CHECKSUM + ".js");
+			core.io.Script.load("script/test-" + core.Env.CHECKSUM + ".js", function() {
+				core.io.Asset.load(["qunit.css"]);
+			});
 		</script>
 	</body>
 </html>

@@ -35,7 +35,7 @@
 			current = current[splits[i]];
 		}
 		
-		return current;
+		return current || null;
 	};
 	
 	
@@ -107,7 +107,7 @@
 		
 		var resolved = resolve(id);
 		if (core.Env.isSet("debug")) {
-			core.Assert.isNotNull(resolved);
+			core.Assert.isNotNull(resolved, "Failed to resolve asset ID: " + id);
 		}
 		
 		return entryToUri(resolved, id);
