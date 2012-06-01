@@ -1,14 +1,15 @@
 # Configure
 session.permutateField("es5")
 session.setField("debug", True)
-formatting.enable("semicolon")
-formatting.enable("comma")
+
+jsFormatting.enable("semicolon")
+jsFormatting.enable("comma")
 
 
 @task("Source")
 def source():
     # Adding source asset profile
-    session.getAssetManager().addSourceProfile()
+    assetManager.addSourceProfile()
     
     # Store kernel script
     includedByKernel = storeKernel("script/kernel.js", debug=True)
@@ -22,13 +23,13 @@ def source():
         resolver.excludeClasses(includedByKernel)
         
         # Writing source loader
-        storeLoader(resolver, "script/test-%s.js" % permutation.getChecksum(), "QUnit.load();")
+        storeLoader(resolver.getSortedClasses(), "script/test-%s.js" % permutation.getChecksum(), "QUnit.load();")
 
 
 @task("Build")
 def build():
     # Adding build asset profile
-    session.getAssetManager().addBuildProfile()
+    assetManager.addBuildProfile()
     
     # Write kernel script
     includedByKernel = storeKernel("script/kernel.js", debug=True)
@@ -45,7 +46,7 @@ def build():
         resolver.excludeClasses(includedByKernel)
 
         # Compressing classes
-        storeCompressed(resolver, "script/test-%s.js" % permutation.getChecksum(), "QUnit.load();")
+        storeCompressed(resolver.getSortedClasses(), "script/test-%s.js" % permutation.getChecksum(), "QUnit.load();")
     
     
 @task("Clear Cache")
