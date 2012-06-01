@@ -78,9 +78,9 @@
 	{
 		if (core.Env.isSet("debug")) 
 		{
-			core.Assert.isType(id, "String", "Invalid asset ID: " + id);
+			core.Assert.isType(id, "String", "Unknown asset ID: " + id);
 			core.Assert.isType(entry, "Map", "Invalid entry: " + entry + " for asset ID: " + id);
-			core.Assert.isType(entry.p, "Integer", "Invalid profile in entry: " + entry.p + ". Asset ID is: " + id);
+			core.Assert.isType(entry.p, "Integer", "Invalid profile in entry: " + entry.p + "for asset " + id + ". Do not now how to construct an URI for that entry!");
 		}
 		
 		var profile = profiles[entry.p];
