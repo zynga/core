@@ -28,6 +28,9 @@
 	// Support new classList interface
 	if ("classList" in document.createElement("div")) 
 	{
+		/**
+		 * Adds the @className {CSSClassName} to the given @elem {Element}.
+		 */
 		var addClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -37,6 +40,9 @@
 			elem.classList.add(className);
 		};
 
+		/**
+		 * Removes the @className {CSSClassName} from the given @elem {Element}.
+		 */
 		var removeClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -46,6 +52,9 @@
 			elem.classList.remove(className);
 		};
 
+		/**
+		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {Element}.
+		 */
 		var containsClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -55,6 +64,9 @@
 			return elem.classList.contains(className);
 		};
 
+		/**
+		 * Toggles the @className {CSSClassName} for the given @elem {Element}.
+		 */
 		var toggleClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -69,9 +81,6 @@
 		
 		var space = " ";
 		
-		/**
-		 * Adds the @className {CSSClassName} to the given @elem {Element}.
-		 */
 		var addClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -83,9 +92,6 @@
 			}
 		};
 
-		/**
-		 * Removes the @className {CSSClassName} from the given @elem {Element}.
-		 */
 		var removeClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -95,9 +101,6 @@
 			elem.className = (space + elem.className + space).replace(className, "")
 		};
 
-		/**
-		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {Element}.
-		 */
 		var containsClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {
@@ -107,9 +110,6 @@
 		  return elem.className && (elem.className == className || (space + elem.className + space).indexOf(space + className + space) !== -1);
 		};
 
-		/**
-		 * Toggles the @className {CSSClassName} for the given @elem {Element}.
-		 */
 		var toggleClass = function(elem, className) 
 		{
 			if (core.Env.isSet("debug")) {

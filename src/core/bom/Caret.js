@@ -10,35 +10,41 @@
  */
 core.Module("core.bom.Caret",
 {
-	getPosition : function(el) 
+	/**
+	 * {Integer} Returns the caret position on the given @element {Element}.
+	 */
+	getPosition : function(element) 
 	{
 		if (document.selection) 
 		{
-			el.focus();
+			element.focus();
 			var sel = document.selection.createRange();
-			sel.moveStart('character', -el.value.length);
+			sel.moveStart('character', -element.value.length);
 			return sel.text.length;
 		}
-		else if (typeof el.selectionStart == "number") 
+		else if (typeof element.selectionStart == "number") 
 		{
-			return el.selectionStart;
+			return element.selectionStart;
 		}
 	},
 
-	setPosition : function(el, position)
+	/**
+	 * Sets the caret @position {Integer} on the given @element {Element}.
+	 */
+	setPosition : function(element, position)
 	{
 		if (document.selection) 
 		{
-			var range = el.createTextRange();
+			var range = element.createTextRange();
 			range.collapse(true);
 			range.moveEnd('character', position);
 			range.moveStart('character', position);
 			range.select();
 		}
-		else if (typeof el.selectionStart == "number") 
+		else if (typeof element.selectionStart == "number") 
 		{
-			el.selectionStart = position;
-			el.selectionEnd = position;
+			element.selectionStart = position;
+			element.selectionEnd = position;
 		}
 	}
 });

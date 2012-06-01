@@ -18,6 +18,9 @@
 	 */
 	core.Main.addStatics("Object", 
 	{
+		/**
+		 * {Integer} Returns the number of keys the given @object {Object} has.
+		 */
 		getLength : function(object) {
 			return Object.keys(object).length;
 		},
