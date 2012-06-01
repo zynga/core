@@ -283,8 +283,9 @@
 			else
 			{
 				mergeData(data.assets, assets);
-				
-				// TODO: Merge sprites and profiles
+
+				// Hint: Profiles and Sprites should be identical in every set of assets 
+				// (aka only the first one is relevant for keeping)
 			}
 		},
 		
