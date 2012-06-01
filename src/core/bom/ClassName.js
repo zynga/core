@@ -29,7 +29,7 @@
 	if ("classList" in document.createElement("div")) 
 	{
 		/**
-		 * Adds the @className {CSSClassName} to the given @elem {Element}.
+		 * Adds the @className {String} to the given @elem {Element}.
 		 */
 		var addClass = function(elem, className) 
 		{
@@ -41,7 +41,7 @@
 		};
 
 		/**
-		 * Removes the @className {CSSClassName} from the given @elem {Element}.
+		 * Removes the @className {String} from the given @elem {Element}.
 		 */
 		var removeClass = function(elem, className) 
 		{
@@ -53,7 +53,7 @@
 		};
 
 		/**
-		 * {Boolean} Returns whether @className {CSSClassName} is applied to the given @elem {Element}.
+		 * {Boolean} Returns whether @className {String} is applied to the given @elem {Element}.
 		 */
 		var containsClass = function(elem, className) 
 		{
@@ -65,7 +65,7 @@
 		};
 
 		/**
-		 * Toggles the @className {CSSClassName} for the given @elem {Element}.
+		 * Toggles the @className {String} for the given @elem {Element}.
 		 */
 		var toggleClass = function(elem, className) 
 		{
