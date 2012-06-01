@@ -29,8 +29,14 @@
 			if (!core.Module.isModuleName(name)) {
 				throw new Error("Invalid interface name " + name + "!");
 			}
-
+			
 			core.Assert.isType(config, "Map", "Invalid interface configuration in " + name);
+
+			/** #require(ext.sugar.Object) */
+			var invalidKeys = Object.validateKeys(config, "properties,events,members".split(","));
+			if (invalidKeys.length > 0) {
+				throw new Error("Interface declaration of " + name + " contains invalid configuration keys: " + invalidKeys.join(", ") + "!");
+			}
 		}
 
 		var iface =
