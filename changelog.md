@@ -1,3 +1,10 @@
+0.7
+===
+
+- Use type data in assets delivered by Jasy-0.7 final
+- Check possible keys in core.Interface
+- Minor fixes
+
 0.7-beta2
 =========
 
