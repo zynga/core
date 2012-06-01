@@ -15,6 +15,17 @@
 
 	// Internal data storage
 	var profiles, assets, sprites;
+	
+	/** {Map} Expands internal type names to user readable ones */
+	var typeExpansion = {
+		i: "image",
+		a: "audio",
+		v: "video",
+		f: "font",
+		t: "text",
+		b: "binary",
+		o: "other"
+	};
 
 	/**
 	 * {Array} Resolves the given @id {String} into the stored entry of the asset data base.
@@ -440,6 +451,25 @@
 			} : callback;
 			
 			core.io.Queue.load(uris, helper, this, random);
+		},
+		
+
+		/**
+		 * {String} Returns the type of the given asset @id {String}. One of
+		 * `image`, `audio`, `video`, `font`, `text`, `binary`, `other`.
+		 */
+		getType : function(id) 
+		{
+			if (core.Env.isSet("debug")) {
+				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
+			}
+
+			var entry = resolve(id);
+			if (core.Env.isSet("debug") && !entry) {
+				throw new Error("Could not figure out size of unknown image: " + id);
+			}
+
+			return typeExpansion[entry.t] || "other";
 		},
 
 
