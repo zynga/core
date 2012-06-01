@@ -351,17 +351,17 @@
 				if (!(id in cache))
 				{
 					var entry = entries[id];
-
-					var spriteData = entry.d[2];
-					if (spriteData) 
+					
+					// Check whether entry is type of image and is part of a sprite image
+					if (entry.t == "i" && entry.d[2]) 
 					{
-						id = resolveSprite(spriteData[0], id);
-						
+						id = resolveSprite(entry.d[2][0], id);
+
 						// Omit loading sprite multiple times
 						if (id in cache) {
 							continue;
 						}
-						
+
 						var uri = idToUri(id);
 					}
 					else
@@ -453,10 +453,17 @@
 			}
 
 			var entry = resolve(id);
-			if (core.Env.isSet("debug") && !entry) {
-				throw new Error("Could not figure out size of unknown image: " + id);
-			}
+			if (core.Env.isSet("debug")) 
+			{
+				if (!entry) {
+					throw new Error("Could not figure out size of unknown image: " + id);
+				}
 
+				if (entry.t != "i") {
+					throw new Error("Could not figure out size of non image asset: " + id);
+				}
+			}
+			
 			// First two values in data are the size of the image
 			return entry.d.slice(0, 2);
 		},
@@ -480,8 +487,15 @@
 			}
 			
 			var entry = resolve(id);
-			if (core.Env.isSet("debug") && !entry) {
-				throw new Error("Could not figure out frame number of unknown image: " + id);
+			if (core.Env.isSet("debug")) 
+			{
+				if (!entry) {
+					throw new Error("Could not figure out frame number of unknown image: " + id);
+				}
+				
+				if (entry.t != "i") {
+					throw new Error("Could not figure out number of frames of non image asset: " + id);
+				}
 			}
 
 			return getFrameNumber(entry.d);
@@ -500,8 +514,15 @@
 			}
 			
 			var entry = resolve(id);
-			if (!entry && core.Env.isSet("debug")) {
-				throw new Error("Unknown image: " + id);
+			if (core.Env.isSet("debug")) 
+			{
+				if (!entry) {
+					throw new Error("Unknown image: " + id);	
+				}
+				
+				if (entry.t != "i") {
+					throw new Error("Could not figure out image data of non image asset: " + id);
+				}
 			}
 			
 			var data = entry.d;
@@ -550,9 +571,16 @@
 			}
 			
 			var entry = resolve(id);
-			if (!entry && core.Env.isSet("debug")) {
-				throw new Error("Unknown image: " + id);
-			}
+			if (core.Env.isSet("debug")) 
+			{
+				if (!entry) {
+					throw new Error("Unknown image: " + id);	
+				}
+				
+				if (entry.t != "i") {
+					throw new Error("Could not figure out image data of non image asset: " + id);
+				}
+			}			
 			
 			var data = entry.d;
 			
