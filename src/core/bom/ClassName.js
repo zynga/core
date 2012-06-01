@@ -8,7 +8,7 @@
 (function() 
 {
 	/**
-	 * {Boolean} Returns whether the given @string {String} is a valid {CSSClassName}.
+	 * {Boolean} Returns whether the given @string {String} is a valid CSS class name.
 	 */
 	var isValid = function(string) {
 		return typeof string == "string" && string.length != 0 && !(/\s/.test(string));

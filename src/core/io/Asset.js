@@ -239,6 +239,11 @@
 	{
 		toUri : idToUri,
 		
+		
+		/**
+		 * Registers a @delegate {Function} for URL construction of the given @profile {String}.
+		 * The @delegate is called with the parameters `profile`, `id` and `entry` and should return a fully qualified URL.
+		 */
 		registerDelegate : function(profile, delegate) 
 		{
 			// Validate input data
