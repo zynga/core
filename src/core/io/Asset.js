@@ -369,6 +369,13 @@
 				{
 					var entry = entries[id];
 					
+					// Don't preload audio/fonts/video
+					// - The formats for video/audio is typcially streamed.
+					// - Mostly offered files are alternative e.g. aac/mp3, ttf/woff, m4v/webm, etc.
+					if (entry.t == "a" || entry.t == "f" || entry.t == "v") {
+						continue;
+					}
+					
 					// Check whether entry is type of image and is part of a sprite image
 					if (entry.t == "i" && entry.d[2]) 
 					{
