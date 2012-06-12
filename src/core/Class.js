@@ -72,7 +72,7 @@
 					{
 						// Private members conflict between included classes (must fail, always)
 						if (key.substring(0,2) == "__") {
-							throw new Error("Included class " + includedClass.className + " overwrites private member of other included class " + allIncludeMembers[key].className + " in class " + name);
+							throw new Error("Included class " + includedClass.className + " overwrites private member " + key + " of other included class " + allIncludeMembers[key].className + " in class " + name);
 						}
 
 						// If both included classes define this key as a function check whether 
