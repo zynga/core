@@ -116,7 +116,15 @@
 				// Find real name, apply if supported
 				supported = name in helperStyle && name || nameCache[name] || getProperty(name);
 				if (supported) {
-					style[supported] = value == null ? '' : value;
+					if (core.Env.getValue("engine") == "trident") {
+						try {
+							style[supported] = value == null ? '' : value;
+						} catch (e) {
+							console.error("Style " + supported + " don't allow value " + value);
+						}
+					} else {
+						style[supported] = value == null ? '' : value;
+					}
 				}
 			}
 			else
@@ -127,7 +135,15 @@
 					value = name[key];
 					supported = key in helperStyle && key || nameCache[key] || getProperty(key);
 					if (supported) {
-						style[supported] = value == null ? '' : value;
+						if (core.Env.getValue("engine") == "trident") {
+							try {
+								style[supported] = value == null ? '' : value;
+							} catch (e) {
+								console.error("Style " + supported + " don't allow value " + value);
+							}
+						} else {
+							style[supported] = value == null ? '' : value;
+						}
 					}
 				}
 			}
