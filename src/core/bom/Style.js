@@ -108,6 +108,9 @@
 		 */
 		set: function(element, name, value) 
 		{
+			if (!element) {
+				return;
+			}
 			var style = element.style;
 			var supported;
 
