@@ -8,7 +8,7 @@
 (function(global)
 {
 	// Jasy is replacing this call via the kernel permutation
-	var translations = core.Env.getValue("translations");
+	var translations = core.Env.getValue("translations") || {};
 	
 	var plural;
 	if (global.locale) {
