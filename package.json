@@ -1,0 +1,14 @@
+{
+	"name": "core",
+	"version": "0.0.1",
+	"scripts": {
+		"test": "nodeunit ./test/nodeunit.js"
+	},
+	"dependencies": {
+		"nodeunit": "*"
+	},
+	"engine": {
+		"node": ">=0.6.x"
+	},
+	"private": "true"
+}
