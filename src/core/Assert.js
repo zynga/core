@@ -8,7 +8,10 @@
 (function() {
 	
 	function raise(message) {
-		throw new Error(message);
+		if(typeof window === 'undefined')
+			console.log(message);
+		else
+			throw new Error(message);
 	}
 	
 	/** 

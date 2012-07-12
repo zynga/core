@@ -56,6 +56,25 @@
 		var length = splits.length-1;
 		var segment;
 		var i = 0;
+		var c = 1;
+
+		if(typeof window === 'undefined')
+		{
+			var currentNode = core;
+
+			while(c<length)
+			{
+				segment = splits[c++];
+				if (current[segment] == null) {
+					current = current[segment] = {};
+					currentNode = currentNode[segment] = {};
+				} else {
+					current = current[segment];
+					currentNode = currentNode[segment];
+				}
+			}
+			currentNode[splits[c]] = object;
+		}
 
 		while(i<length)
 		{
@@ -76,10 +95,11 @@
 	classes.replace(/\w+/g, function(cls) {
 		toStringMap[cls] = "[object " + cls + "]";
 	});
-	
+
 	// Temporary hack to make next statement workable
 	declareNamespace("core.Main.declareNamespace", declareNamespace);
-	
+	core.Main.declareNamespace = declareNamespace;
+
 	/**
 	 * Useful root methods to add members to objects
 	 *
@@ -204,7 +224,7 @@
 		 */
 		addStatics : function(name, statics, keep) 
 		{
-			var object = global[name] || cache[name];
+			var object = global[name] || cache[name] || name.prototype;
 			var prefix = name + ".";
 			for (var staticName in statics) 
 			{
