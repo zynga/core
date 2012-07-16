@@ -1,1 +1,1 @@
-Essential features for developing with JavaScript
+Essential features for developing with JavaScript 
