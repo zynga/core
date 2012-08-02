@@ -15,8 +15,10 @@
  * #load(ext.StringTrim)
  * #load(ext.TimeoutArgs)
  */
-(function(global, toString, undef) 
+(function(toString, undef) 
 {
+	var global = (function(){ return this || (1,eval)('this') })();
+
 	// defineProperty exists in IE8 but will error when trying to define a property on
 	// native objects. IE8 does not have defineProperies, however, so this check saves a try/catch block.
 	if(Object.defineProperty && Object.defineProperties)
@@ -244,4 +246,4 @@
 			}
 		}
 	});
-})(this, Object.prototype.toString);
+})(Object.prototype.toString);

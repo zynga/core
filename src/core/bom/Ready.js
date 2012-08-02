@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-(function(global, doc, re) 
+(function(doc, re) 
 {
 	/**
 	 * Easy wrapper on content loaded event registration
@@ -29,4 +29,4 @@
 			}
 		}
 	});
-})(this, document, /complete|loaded|interactive/);
+})(document, /complete|loaded|interactive/);

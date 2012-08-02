@@ -8,7 +8,7 @@
 /**
  * Declarations of simple modules with static members
  */
-(function(global, undef)
+(function(undef)
 {
 	var genericToString = function() {
 		return "[module " + this.moduleName + "]";
@@ -93,4 +93,4 @@
 		isModule : isModule,
 	});
 
-})(this);
+})();

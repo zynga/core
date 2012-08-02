@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-(function(global, undef)
+(function(undef)
 {
 	// Jasy is replacing this call via the kernel permutation
 	// Catch this as it produce an error (missing API) when not being replaced.
@@ -149,5 +149,5 @@
 			return map[selected[name]];
 		}
 	});
-})(this);
+})();
 

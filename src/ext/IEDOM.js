@@ -21,7 +21,7 @@
  *
  * #custom(HTMLElement)
  */
-(function(global, document, proto, map, indexOf) 
+(function(document, proto, map, indexOf) 
 {
 	if(typeof document.documentElement.sourceIndex == "undefined") 
 	{
@@ -115,5 +115,5 @@
 			this.insertAdjacentElement(where, this.ownerDocument.createTextNode(innerText));
 		};
 	}
-})(this, document, HTMLElement.prototype, Array.prototype.map, Array.prototype.indexOf);
+})(document, HTMLElement.prototype, Array.prototype.map, Array.prototype.indexOf);
 

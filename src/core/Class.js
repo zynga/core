@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-(function(global, undef) 
+(function(undef) 
 {
 	var genericToString = function() {
 		return "[class " + this.className + "]";
@@ -493,4 +493,4 @@
 		
 	});
 
-})(this);
+})();

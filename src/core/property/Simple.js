@@ -5,7 +5,7 @@
 ==================================================================================================
 */
 
-(function(global, undef)
+(function(undef)
 {
 	/** {Map} Maps simple property names to global property IDs */
 	var propertyNameToId = {};
@@ -270,4 +270,4 @@
 			return members;
 		}
 	});
-})(this)
+})()
