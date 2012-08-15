@@ -1,5 +1,7 @@
 /**
- * Main class of application ${name}.
+ * Main class of application ${name} based on ${origin}.
+ *
+ * Auto created by ${jasy}.
  *
  * #asset(${name}/*)
  */
