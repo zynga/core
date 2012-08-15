@@ -18,8 +18,13 @@ def distclean():
 
 @task("Build API viewer")
 def api():
-    build(prefix="api")
+    runTask("apibrowser", "build")
     ApiWriter().write("data")
+    
+    
+@task("Start HTTP server")
+def server():
+    serve()
 
 
 @task("Build self-contained deploy ready version")
