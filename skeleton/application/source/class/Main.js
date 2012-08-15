@@ -1,11 +1,15 @@
 /**
- * Main class of application {{name}}.
+ * Main class of application ${name}.
+ *
+ * #asset(${name}/*)
  */
-core.Class("{{name}}.Main", {
+core.Class("${name}.Main", {
 	
-	construct: {
+	construct: function() {
 		
-		alert("Hello from {{name}}!");
+		core.io.StyleSheet.load(core.io.Asset.toUri("${name}/main.css"));
+		
+		alert("Hello from ${name}!");
 		
 	},
 	

@@ -1,8 +1,8 @@
 {
-	"name" : "{{name}}",
+	"name" : "${name}",
 	
 	"requires" : 
-	{
+	[
 		{
 			"source" : "https://github.com/zynga/core.git",
 			"version" : "0.8-beta1"
@@ -12,5 +12,5 @@
 			"source" : "https://github.com/zynga/apibrowser.git",
 			"version" : "0.5.4"
 		}
-	}
+	]
 }
