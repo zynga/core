@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{{name}}</title>
+		<script src="script/kernel.js"></script>
+	</head>
+	<body>
+		<script>core.io.Stylesheet.load(core.io.Asset.toUri("{{name}}/main.css"));</script>
+		<script>core.io.Script.load("script/browser-" + core.Env.CHECKSUM + ".js");</script>
+	</body>
+</html>
