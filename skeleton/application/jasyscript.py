@@ -29,6 +29,10 @@ def server():
 
 @task("Build self-contained deploy ready version")
 def build():
+    
+    # Configure permutations
+    session.permutateField("es5")
+    session.permutateField("debug")
 
     # Configure assets for being loaded from local asset folder
     assetManager.deploy(Resolver().addClassName("${name}.Main").getIncludedClasses())
@@ -52,6 +56,10 @@ def build():
 
 @task("Generate source version for development")
 def source():
+
+    # Configure permutations
+    session.permutateField("es5")
+    session.setField("debug", True)
 
     # Configure assets for being loaded from source folders
     assetManager.addSourceProfile()
