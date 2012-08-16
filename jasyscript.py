@@ -7,12 +7,12 @@ session.permutateField("debug")
 
 @task("Clear build cache")
 def clean():
-    session.clearCache()
+    session.clean()
 
 
 @task("Clear caches and build results")
 def distclean():
-    session.clearCache()
+    session.clean()
     removeDir("api")
     removeDir("dist")
 
