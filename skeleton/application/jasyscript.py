@@ -1,6 +1,6 @@
 #
-# This is the jasyscript.py of ${name} file. 
-# This file defines tasks for the Jasy build tool we use for development and deployment of ${name}.
+# This is the jasyscript.py of $${name} file. 
+# This file defines tasks for the Jasy build tool we use for development and deployment of $${name}.
 #
 
 @task("Clear build cache")
@@ -35,7 +35,7 @@ def build():
     session.permutateField("debug")
 
     # Configure assets for being loaded from local asset folder
-    assetManager.deploy(Resolver().addClassName("${name}.Main").getIncludedClasses())
+    assetManager.deploy(Resolver().addClassName("$${name}.Main").getIncludedClasses())
     assetManager.addBuildProfile()
     
     # Write kernel script
@@ -48,10 +48,10 @@ def build():
     for permutation in session.permutate():
         
         # Resolving dependencies
-        resolver = Resolver().addClassName("${name}.Main").excludeClasses(includedByKernel)
+        resolver = Resolver().addClassName("$${name}.Main").excludeClasses(includedByKernel)
 
         # Compressing classes
-        storeCompressed(resolver.getSortedClasses(), "script/${name}-%s.js" % permutation.getChecksum(), "new ${name}.Main;")
+        storeCompressed(resolver.getSortedClasses(), "script/$${name}-%s.js" % permutation.getChecksum(), "new $${name}.Main;")
 
 
 @task("Generate source version for development")
@@ -71,8 +71,8 @@ def source():
     for permutation in session.permutate():
 
         # Resolving dependencies
-        resolver = Resolver().addClassName("${name}.Main").excludeClasses(includedByKernel)
+        resolver = Resolver().addClassName("$${name}.Main").excludeClasses(includedByKernel)
 
         # Building class loader
-        storeLoader(resolver.getSortedClasses(), "script/${name}-%s.js" % permutation.getChecksum(), "new ${name}.Main;")
+        storeLoader(resolver.getSortedClasses(), "script/$${name}-%s.js" % permutation.getChecksum(), "new $${name}.Main;")
 

@@ -1,17 +1,17 @@
 /**
- * Main class of application ${name} based on ${origin}.
+ * Main class of application $${name} based on $${origin}.
  *
- * Auto created by ${jasy}.
+ * Auto created by $${jasy}.
  *
- * #asset(${name}/*)
+ * #asset($${name}/*)
  */
-core.Class("${name}.Main", {
+core.Class("$${name}.Main", {
 	
 	construct: function() {
 		
-		core.io.StyleSheet.load(core.io.Asset.toUri("${name}/main.css"));
+		core.io.StyleSheet.load(core.io.Asset.toUri("$${name}/main.css"));
 		
-		alert("Hello from ${name}!");
+		alert("Hello from $${name}!");
 		
 	},
 	
