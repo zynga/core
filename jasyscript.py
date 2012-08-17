@@ -5,34 +5,44 @@ session.permutateField("es5")
 session.permutateField("debug")
 
 
-@task("Clear build cache")
+@task
 def clean():
+    "Clear build cache"
+
     session.clean()
 
 
-@task("Clear caches and build results")
+@task
 def distclean():
+    """Clears caches and build results"""
+
     session.clean()
     removeDir("api")
     removeDir("dist")
 
 
-@task("Build module.js", prefix="dist")
+@task(prefix="dist")
 def module():
+    """Build module.js"""
+
     for permutation in session.permutate():
         resolver = Resolver().addClassName("core.Module")
         storeCompressed(resolver.getSortedClasses(), "module-%s.js" % permutation.getChecksum())
 
 
-@task("Build oo.js", prefix="dist")
+@task(prefix="dist")
 def oo():
+    """Build oo.js"""
+
     for permutation in session.permutate():
         resolver = Resolver().addClassName("core.Module").addClassName("core.Class")
         storeCompressed(resolver.getSortedClasses(), "oo-%s.js" % permutation.getChecksum())
         
         
-@task("Build sugar.js", prefix="dist")
+@task(prefix="dist")
 def sugar():
+    """Build sugar.js"""
+
     for permutation in session.permutate():
         resolver = Resolver()
         resolver.addClassName("ext.sugar.Array")
