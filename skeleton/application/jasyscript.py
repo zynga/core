@@ -3,32 +3,42 @@
 # This file defines tasks for the Jasy build tool we use for development and deployment of $${name}.
 #
 
-@task("Clear build cache")
+@task
 def clean():
+    """Clear build cache"""
+    
     session.clean()
 
 
-@task("Clear caches and build results")
+@task
 def distclean():
+    """Clear caches and build results"""
+    
     session.clean()
+
     removeDir("build")
     removeDir("external")
     removeDir("source/script")
 
 
-@task("Build API viewer")
+@task
 def api():
+    """Build API viewer"""
+    
     runTask("apibrowser", "build")
     ApiWriter().write("data")
     
     
-@task("Start HTTP server")
+@task
 def server():
+    """Start HTTP server"""
+    
     serve()
 
 
-@task("Build self-contained deploy ready version")
+@task
 def build():
+    """Build self-contained deploy ready version"""
     
     # Configure permutations
     session.permutateField("es5")
@@ -54,8 +64,9 @@ def build():
         storeCompressed(resolver.getSortedClasses(), "script/$${name}-%s.js" % permutation.getChecksum(), "new $${name}.Main;")
 
 
-@task("Generate source version for development")
+@task
 def source():
+    """Generate source version for development"""
 
     # Configure permutations
     session.permutateField("es5")
