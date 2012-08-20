@@ -4,6 +4,10 @@
 session.permutateField("es5")
 session.permutateField("debug")
 
+@task
+def fun():
+    core.dosome()
+
 
 @task
 def clean():

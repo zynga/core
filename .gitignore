@@ -2,3 +2,4 @@ jasycache*
 api
 dist
 external
+.DS_Store
