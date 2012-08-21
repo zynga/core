@@ -10,4 +10,4 @@ config.set("custom", [1,2,3])
 # config.ask("Increment from 1..3", "incr", "List")
 
 # Test for io features
-# io.mv("jasyscript.py", "foobarbaz.py")
+# file.mv("jasyscript.py", "foobarbaz.py")
