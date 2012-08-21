@@ -2,9 +2,9 @@
 
 # This script is executed by Jasy during creating new applications
 
-# ask("What's your name", "user.name", "String")
-# ask("How old are you", "user.age", "Integer")
-# ask("What's PI", "pi", "Float", default=3.14, required=False)
-# ask("Increment from 1..3", "incr", "List")
+# config.ask("What's your name", "user.name", "String")
+# config.ask("How old are you", "user.age", "Integer")
+# config.ask("What's PI", "pi", "Float", default=3.14, required=False)
+# config.ask("Increment from 1..3", "incr", "List")
 
-set("custom", [1,2,3])
+config.set("custom", [1,2,3])
