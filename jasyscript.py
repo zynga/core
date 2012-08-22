@@ -16,7 +16,7 @@ def fun():
 
 @task
 def clean():
-    "Clear build cache"
+    """Clear build cache"""
 
     session.clean()
 
