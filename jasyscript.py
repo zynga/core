@@ -5,6 +5,11 @@ session.permutateField("es5")
 session.permutateField("debug")
 
 @task
+def hello():
+    core.hello()
+
+
+@task
 def fun():
     core.dosome()
 
