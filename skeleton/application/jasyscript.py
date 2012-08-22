@@ -4,11 +4,6 @@
 #
 
 @task
-def user():
-    print("User: %s @ %s" % (config.get("user.name"), config.get("user.age")))
-
-
-@task
 def clean():
     """Clear build cache"""
     
