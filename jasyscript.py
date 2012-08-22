@@ -5,16 +5,6 @@ session.permutateField("es5")
 session.permutateField("debug")
 
 @task
-def hello():
-    core.hello()
-
-
-@task
-def fun():
-    core.dosome()
-
-
-@task
 def clean():
     """Clear build cache"""
 
@@ -26,6 +16,7 @@ def distclean():
     """Clears caches and build results"""
 
     session.clean()
+
     removeDir("api")
     removeDir("dist")
 
