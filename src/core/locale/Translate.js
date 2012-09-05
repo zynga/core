@@ -11,7 +11,8 @@
 	var translations = {};
 	
 	var plural;
-	if (global.locale) {
+	if (global.locale) 
+	{
 		
 		plural = (function(fields, Plural)
 		{
