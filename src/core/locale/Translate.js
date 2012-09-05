@@ -7,8 +7,8 @@
 
 (function(global)
 {
-	// Jasy is replacing this call via the kernel permutation
-	var translations = core.Env.getValue("translations") || {};
+	/** {=Map} Translation table */
+	var translations = {};
 	
 	var plural;
 	if (global.locale) {
@@ -34,6 +34,8 @@
 	}
 	else 
 	{
+		console.debug("Using locale fallback support (no detailed plural rules!)")
+
 		/**
 		 * {Integer} Applies the plural rule to the given @n {Number} of the current locale and returns the
 		 * field index on the translation data (0-6). This is the data used
@@ -41,7 +43,7 @@
 		 * http://www.gnu.org/software/hello/manual/gettext/Plural-forms.html
 		 */
 		plural = function(n) {
-			return 0;
+			return n == 1 ? 0 : 1;
 		}
 	}
 	
@@ -70,25 +72,39 @@
 
 
 		/**
+		 * Imports translation @data {Map} into internal translation table.
+		 */
+		addData : function(data)
+		{
+			// Merge in new translations
+			for (var id in data) {
+				translations[id] = data[id];
+			}
+		},
+
+
+		/**
 		 * {String} Translates the given @message {String} and replaces any numeric placeholders 
 		 * (`%[0-9]`) with the corresponding number arguments passed via @varargs {var...?}.
 		 */
 		tr : function(message, varargs)
 		{
+			var args = arguments;
 			var replacement = translations[message] || message;
-			return arguments.length <= 1 ? replacement : template(replacement, arguments, 1);
+			return args.length <= 1 ? replacement : template(replacement, args, 1);
 		},
 
 
 		/**
 		 * {String} Translates the given @message {String} und while choosing the one which matches the 
-		 * given @hint {String} and replaces any numeric placeholders (`%[0-9]`) with the corresponding 
+		 * given @context {String} and replaces any numeric placeholders (`%[0-9]`) with the corresponding 
 		 * number arguments passed via @varargs {var...?}.
 		 */
-		trc : function(hint, message, varargs)
+		trc : function(context, message, varargs)
 		{
+			var args = arguments;
 			var replacement = translations[message] || message;
-			return arguments.length <= 2 ? replacement : template(replacement, arguments, 2);
+			return args.length <= 2 ? replacement : template(replacement, args, 2);
 		},
 
 
@@ -98,8 +114,10 @@
 		 * Like the other methods it also supports replacing any numeric placeholders 
 		 * (`%[0-9]`) with the corresponding number arguments passed via @varargs {var...?}.
 		 */
-		trn : global.locale && function(messageSingular, messagePlural, number, varargs)
+		trn : function(messageSingular, messagePlural, number, varargs)
 		{
+			var args = arguments;
+
 			// Matching is based on singular "messageid"
 			var replacement = translations[messageSingular];
 
@@ -113,7 +131,24 @@
 				result = number == 1 ? messageSingular : messagePlural;
 			}
 
-			return arguments.length <= 3 ? result : template(result, arguments, 3);
+			return args.length <= 3 ? result : template(result, args, 3);
+		},
+
+
+		/**
+		 * Optimized method being used by Jasy-replaced `trn()` method
+		 */
+		trnc : function(messages, number, varargs)
+		{
+			var args = arguments;
+			var result = messages[plural(number)];
+
+			// Fallback to first message if matching plural was not found
+			if (!result) {
+				result = messages[0];
+			}
+
+			return args.length <= 2 ? result : template(result, args, 2);			
 		}
 	});
 })(this);
