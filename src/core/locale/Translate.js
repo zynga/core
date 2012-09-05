@@ -60,6 +60,23 @@
 			return data[start+parseInt(pos)];
 		});
 	};
+
+
+	/**
+	 * Returns a unique message ID based on info typically stored in the code: id, plural, context
+	 */   
+	var generateId = function(basic, plural, context) 
+	{
+		var result = basic
+
+		if (context != null) {
+			result += "[C:" + context + "]";
+		} else if (plural != null) {
+			result += "[N:" + plural + "]";
+		}
+				
+		return result   
+	};
 	
 	
 	/**
@@ -91,6 +108,7 @@
 		{
 			var args = arguments;
 			var replacement = translations[message] || message;
+
 			return args.length <= 1 ? replacement : template(replacement, args, 1);
 		},
 
@@ -102,8 +120,10 @@
 		 */
 		trc : function(context, message, varargs)
 		{
+			var id = generateId(message, null, context);
 			var args = arguments;
-			var replacement = translations[message] || message;
+			var replacement = translations[id] || message;
+
 			return args.length <= 2 ? replacement : template(replacement, args, 2);
 		},
 
@@ -116,12 +136,11 @@
 		 */
 		trn : function(messageSingular, messagePlural, number, varargs)
 		{
+			var id = generateId(messageSingular, messagePlural);
 			var args = arguments;
+			var replacement = translations[id];
 
-			// Matching is based on singular "messageid"
-			var replacement = translations[messageSingular];
-
-			// Do numeric lookup
+			// Do numeric lookup for correct plural case
 			if (typeof replacement == "object") {
 				var result = replacement[plural(number)];
 			}
@@ -148,7 +167,7 @@
 				result = messages[0];
 			}
 
-			return args.length <= 2 ? result : template(result, args, 2);			
+			return args.length <= 2 ? result : template(result, args, 2);     
 		}
 	});
 })(this);
