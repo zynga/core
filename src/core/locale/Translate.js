@@ -7,9 +7,6 @@
 
 (function(global)
 {
-	/** {=Map} Translation table */
-	var translations = {};
-	
 	var plural;
 	if (global.locale) 
 	{
@@ -35,7 +32,7 @@
 	}
 	else 
 	{
-		console.debug("Using locale fallback support (no detailed plural rules!)")
+		console.warn("Using locale fallback support (no detailed plural rules!)")
 
 		/**
 		 * {Integer} Applies the plural rule to the given @n {Number} of the current locale and returns the
@@ -62,23 +59,6 @@
 		});
 	};
 
-
-	/**
-	 * Returns a unique message ID based on info typically stored in the code: id, plural, context
-	 */   
-	var generateId = function(basic, plural, context) 
-	{
-		var result = basic
-
-		if (context != null) {
-			result += "[C:" + context + "]";
-		} else if (plural != null) {
-			result += "[N:" + plural + "]";
-		}
-				
-		return result   
-	};
-	
 	
 	/**
 	 * Developer interface to translation API of Core Library.
@@ -90,25 +70,13 @@
 
 
 		/**
-		 * Imports translation @data {Map} into internal translation table.
-		 */
-		addData : function(data)
-		{
-			// Merge in new translations
-			for (var id in data) {
-				translations[id] = data[id];
-			}
-		},
-
-
-		/**
 		 * {String} Translates the given @message {String} and replaces any numeric placeholders 
 		 * (`%[0-9]`) with the corresponding number arguments passed via @varargs {var...?}.
 		 */
 		tr : function(message, varargs)
 		{
 			var args = arguments;
-			var replacement = translations[message] || message;
+			var replacement = jasy.Translate.getData(message) || message;
 
 			return args.length <= 1 ? replacement : template(replacement, args, 1);
 		},
@@ -121,9 +89,8 @@
 		 */
 		trc : function(context, message, varargs)
 		{
-			var id = generateId(message, null, context);
 			var args = arguments;
-			var replacement = translations[id] || message;
+			var replacement = jasy.Translate.getData(message, null, context) || message;
 
 			return args.length <= 2 ? replacement : template(replacement, args, 2);
 		},
@@ -137,9 +104,8 @@
 		 */
 		trn : function(messageSingular, messagePlural, number, varargs)
 		{
-			var id = generateId(messageSingular, messagePlural);
 			var args = arguments;
-			var replacement = translations[id];
+			var replacement = jasy.Translate.getData(messageSingular, messagePlural);
 
 			// Do numeric lookup for correct plural case
 			if (typeof replacement == "object") {
