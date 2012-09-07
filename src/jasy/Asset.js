@@ -89,7 +89,7 @@
 				mergeData(srcValue, dstValue);
 			}
 		}
-	};	
+	};  
 
 
 	/**
@@ -193,8 +193,8 @@
 
 	
 		/**
-	 	 * {String} Returns the URI for the given asset @id {String}
-	 	 */
+		 * {String} Returns the URI for the given asset @id {String}
+		 */
 		toUri : function(id) 
 		{
 			if (core.Env.isSet("debug")) {
