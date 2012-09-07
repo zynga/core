@@ -69,24 +69,6 @@
 	
 	
 	/**
-	 * Returns the URI for the given asset @id {String}
-	 */
-	var idToUri = function(id) 
-	{
-		if (core.Env.isSet("debug")) {
-			core.Assert.isType(id, "String");
-		}
-		
-		var resolved = resolve(id);
-		if (core.Env.isSet("debug")) {
-			core.Assert.isNotNull(resolved, "Failed to resolve asset ID: " + id);
-		}
-		
-		return entryToUri(resolved, id);
-	};
-
-
-	/**
 	 * Merged two data maps @src {Map} and @dst {Map} recursively by using as much of 
 	 * the original data as possible (no copying). Will never override existing values!
 	 */
@@ -162,6 +144,36 @@
 		
 
 		/**
+		 * Registers a @delegate {Function} for URL construction of the given @profile {String}.
+		 * The @delegate is called with the parameters `profile`, `id` and `entry` and should return a fully qualified URL.
+		 */
+		registerDelegate : function(profile, delegate) 
+		{
+			// Validate input data
+			if (core.Env.isSet("debug")) 
+			{
+				core.Assert.isType(profile, "String");
+				core.Assert.isType(delegate, "Function");
+			}
+			
+			delegates[profile] = delegate;
+		},
+
+
+		/**
+		 * {Boolean} Whether the registry has information about the given asset @id {String}.
+		 */
+		has : function(id) 
+		{
+			if (core.Env.isSet("debug")) {
+				core.Assert.isType(id, "String");
+			}
+			
+			return !!(cache[id] || resolve(id));
+		},
+
+
+		/**
 		 * {String} Returns the type of the given asset @id {String}. One of
 		 * `image`, `audio`, `video`, `font`, `text`, `binary`, `other`.
 		 */
@@ -179,37 +191,22 @@
 			return typeExpansion[entry.t] || "other";
 		},
 
-
-		toUri : idToUri,
-		
-		
+	
 		/**
-		 * Registers a @delegate {Function} for URL construction of the given @profile {String}.
-		 * The @delegate is called with the parameters `profile`, `id` and `entry` and should return a fully qualified URL.
-		 */
-		registerDelegate : function(profile, delegate) 
-		{
-			// Validate input data
-			if (core.Env.isSet("debug")) 
-			{
-				core.Assert.isType(profile, "String");
-				core.Assert.isType(delegate, "Function");
-			}
-			
-			delegates[profile] = delegate;
-		},
-		
-		
-		/**
-		 * {Boolean} Whether the registry has information about the given asset @id {String}.
-		 */
-		has : function(id) 
+	 	 * {String} Returns the URI for the given asset @id {String}
+	 	 */
+		toUri : function(id) 
 		{
 			if (core.Env.isSet("debug")) {
 				core.Assert.isType(id, "String");
 			}
 			
-			return !!(cache[id] || resolve(id));
+			var resolved = resolve(id);
+			if (core.Env.isSet("debug")) {
+				core.Assert.isNotNull(resolved, "Failed to resolve asset ID: " + id);
+			}
+			
+			return entryToUri(resolved, id);
 		}
 	});
 

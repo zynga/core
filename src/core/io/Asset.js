@@ -129,7 +129,7 @@
 	 */
 	core.Module("core.io.Asset",
 	{
-		// compatibility to previous releases
+		// For compatibility to previous releases
 		toUri: jasy.Asset.toUri,
 		has : jasy.Asset.has,
 		getType : jasy.Asset.getType,
