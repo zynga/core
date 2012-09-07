@@ -70,13 +70,21 @@
 
 
 		/**
+		 * {String} Mark @message {String} for tranlsation, but always return the original text.
+		 */
+		marktr : function(message) {
+			return message;
+		},
+
+
+		/**
 		 * {String} Translates the given @message {String} and replaces any numeric placeholders 
 		 * (`%[0-9]`) with the corresponding number arguments passed via @varargs {var...?}.
 		 */
 		tr : function(message, varargs)
 		{
 			var args = arguments;
-			var replacement = jasy.Translate.getData(message) || message;
+			var replacement = jasy.Translate.getEntry(message) || message;
 
 			return args.length <= 1 ? replacement : template(replacement, args, 1);
 		},
@@ -90,7 +98,7 @@
 		trc : function(context, message, varargs)
 		{
 			var args = arguments;
-			var replacement = jasy.Translate.getData(message, null, context) || message;
+			var replacement = jasy.Translate.getEntry(message, null, context) || message;
 
 			return args.length <= 2 ? replacement : template(replacement, args, 2);
 		},
@@ -105,7 +113,7 @@
 		trn : function(messageSingular, messagePlural, number, varargs)
 		{
 			var args = arguments;
-			var replacement = jasy.Translate.getData(messageSingular, messagePlural);
+			var replacement = jasy.Translate.getEntry(messageSingular, messagePlural);
 
 			// Do numeric lookup for correct plural case
 			if (typeof replacement == "object") {

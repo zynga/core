@@ -22,7 +22,7 @@
 		/**
 		 * {String|Map} Returns translation data for the given message ID data.
 		 */
-		getData : function(basic, plural, context) 
+		getEntry : function(basic, plural, context) 
 		{
 			var id = basic
 

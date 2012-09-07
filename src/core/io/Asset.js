@@ -175,7 +175,7 @@
 			}
 			
 			// Collect asset entries
-			var entries = collect(section, resolve(section), recursive);
+			var entries = collect(section, jasy.Asset.resolve(section), recursive);
 
 			// Resolve URIs for assets
 			var uris = [];
@@ -295,7 +295,7 @@
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 
-			var entry = resolve(id);
+			var entry = jasy.Asset.resolve(id);
 			if (core.Env.isSet("debug")) 
 			{
 				if (!entry) {
@@ -321,7 +321,7 @@
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 			
-			var entry = resolve(id);
+			var entry = jasy.Asset.resolve(id);
 			if (core.Env.isSet("debug")) 
 			{
 				if (!entry) {
@@ -348,7 +348,7 @@
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 			
-			var entry = resolve(id);
+			var entry = jasy.Asset.resolve(id);
 			if (core.Env.isSet("debug")) 
 			{
 				if (!entry) {

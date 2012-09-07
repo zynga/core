@@ -97,6 +97,8 @@
 	 */
 	core.Module("jasy.Asset",
 	{
+		resolve : resolve,
+
 		/**
 		 * Adds the given asset @data {Map}. Must contain these top level keys:
 		 *
