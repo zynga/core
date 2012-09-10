@@ -45,8 +45,8 @@ def build():
     session.permutateField("debug")
 
     # Configure assets for being loaded from local asset folder
-    assetManager.deploy(Resolver().addClassName("$${name}.Main").getIncludedClasses())
-    assetManager.addBuildProfile()
+    session.getAssetManager().deploy(Resolver().addClassName("$${name}.Main").getIncludedClasses())
+    session.getAssetManager().addBuildProfile()
     
     # Write kernel script
     includedByKernel = storeKernel("script/kernel.js")
@@ -73,7 +73,7 @@ def source():
     session.setField("debug", True)
 
     # Configure assets for being loaded from source folders
-    assetManager.addSourceProfile()
+    session.getAssetManager().addSourceProfile()
 
     # Write kernel script
     includedByKernel = storeKernel("script/kernel.js", debug=True)
