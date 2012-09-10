@@ -171,7 +171,7 @@
 				core.Assert.isType(id, "String");
 			}
 			
-			return !!(cache[id] || resolve(id));
+			return !!(resolve(id));
 		},
 
 
