@@ -7,13 +7,6 @@
 
 (function(undef)
 {
-	// Jasy is replacing this call via the kernel permutation
-	// Catch this as it produce an error (missing API) when not being replaced.
-	var fields;
-	try{
-		fields = core.Env.getValue("fields");
-	} catch (ex) {}
-	
 	// At this level Array.prototype.indexOf might not be support, so we implement a custom logic for a contains check
 	var contains = function(array, value) 
 	{
@@ -24,78 +17,61 @@
 			}
 		}
 	}
-	
-	if (fields)
-	{
-		/** Currently selected fields from Env data */
-		var selected = {};
 
-		/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
-		var checksum = (function()
+	// Updates map of selected fields and computes a SHA1 checksum
+	var compute = function(fields, selected)
+	{
+		// Process entries
+		var key = [];
+		for (var i=0, l=fields.length; i<l; i++)
 		{
-			// Process entries
-			var key = [];
-			for (var i=0, l=fields.length; i<l; i++)
+			// possible variants
+			// 1: name, 1, test, [val1, val2]
+			// 2: name, 2, value
+			// 3: name, 3, test, default (not permutated)
+
+			var entry = fields[i];
+			var name = entry[0];
+			var type = entry[1]
+			if (type == 1 || type == 3)
 			{
-				// possible variants
-				// 1: name, 1, test, [val1, val2]
-				// 2: name, 2, value
-				// 3: name, 3, test, default (not permutated)
+				var test = entry[2];
+				var value = "VALUE" in test ? test.VALUE : test.get(name);
+				var third = entry[3];
 
-				var entry = fields[i];
-				var name = entry[0];
-				var type = entry[1]
-				if (type == 1 || type == 3)
-				{
-					var test = entry[2];
-					var value = "VALUE" in test ? test.VALUE : test.get(name);
-					var third = entry[3];
-
-					// Fallback to first value if test results in unsupported value
-					if (type == 1 && !contains(third, value)) {
-						value = third[0];
-					}
-
-					// Fill in missing value with default
-					else if (type == 3 && value == null) {
-						value = third;
-					}
-				}
-				else
-				{
-					// In cases with no test, we don't have an array of fields but just a value
-					value = entry[2];
+				// Fallback to first value if test results in unsupported value
+				if (type == 1 && !contains(third, value)) {
+					value = third[0];
 				}
 
-				selected[name] = value;
-
-				if (type != 3) {
-					key.push(name + ":" + value);
+				// Fill in missing value with default
+				else if (type == 3 && value == null) {
+					value = third;
 				}
 			}
-
-			if (selected.debug) {
-				console.info("core.Env: " + key.join(", "));
+			else
+			{
+				// In cases with no test, we don't have an array of fields but just a value
+				value = entry[2];
 			}
 
-			/**
-			 * #require(ext.sugar.String)
-			 */
-			return core.crypt.SHA1.checksum(key.join(";")).toHex();
-		})();
-	}
-	else
-	{
-		// Enable debug by default
-		// All other data might be configured using {#define} later.
-		var selected = {
-			debug : true
-		};
+			selected[name] = value;
 
-		// No checksum available
-		var checksum = null;
-	}
+			if (type != 3) {
+				key.push(name + ":" + value);
+			}
+		}
 
+		if (selected.debug) {
+			console.info("core.Env: " + key.join(", "));
+		}
+
+		/**
+		 * #require(ext.sugar.String)
+		 */
+		return core.crypt.SHA1.checksum(key.join(";")).toHex();
+	};
+	
 
 	/**
 	 * This class is the client-side representation for the permutation features of
@@ -103,8 +79,11 @@
 	 */
 	core.Module("core.Env",
 	{
-		SELECTED : selected,
-		CHECKSUM : checksum,
+		SELECTED : {
+			debug : true
+		},
+
+		CHECKSUM : null,
 
 
 		/**
@@ -112,6 +91,22 @@
 		 */
 		define : function(name, value) {
 			selected[name] = value;
+		},
+
+
+		/**
+		 * Used by Jasy to inject field data
+		 */
+		setFields : function(fields) 
+		{
+			/** Currently selected fields from Env data */
+			var selected = {};
+
+			/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
+			var checksum = compute(fields, selected);
+
+			this.SELECTED = selected;
+			this.CHECKSUM = checksum;
 		},
 
 
