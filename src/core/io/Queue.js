@@ -7,23 +7,6 @@
 
 (function() 
 {
-	/** Maps extensions to loader classes */
-	var typeLoader = 
-	{
-		js : core.io.Script,
-		css : core.io.StyleSheet,
-		jsonp : core.io.Jsonp,
-		json : core.io.Text,
-		txt : core.io.Text,
-		md : core.io.Text,
-		html : core.io.Text,
-		png : core.io.Image,
-		jpeg : core.io.Image,
-		jpg : core.io.Image,
-		gif : core.io.Image
-	};
-
-
 	/**
 	 * {String} Returns the extension of the given @filename {String}
 	 */
@@ -93,7 +76,30 @@
 
 			// Data cache for callback return
 			var cache = {};
-			
+
+			/** 
+			 * Maps extensions to loader classes 
+			 *
+			 * #optional(core.io.Script)
+			 * #optional(core.io.StyleSheet)
+			 * #optional(core.io.Jsonp)
+			 * #optional(core.io.Text)
+			 * #optional(core.io.Image)
+			 */
+			var typeLoader = 
+			{
+				js : core.io.Script,
+				css : core.io.StyleSheet,
+				jsonp : core.io.Jsonp,
+				json : core.io.Text,
+				txt : core.io.Text,
+				md : core.io.Text,
+				html : core.io.Text,
+				png : core.io.Image,
+				jpeg : core.io.Image,
+				jpg : core.io.Image,
+				gif : core.io.Image
+			};			
 			
 			/**
 			 * Registers the given @uri {String} as being loaded and deals with error reports (@errornous {Boolean?false}) 
