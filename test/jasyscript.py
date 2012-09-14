@@ -6,8 +6,7 @@ session.setField("debug", True)
 @task("Source")
 def source():
     # Initialize shared objects
-    assetManager = AssetManager(session)
-    assetManager.addSourceProfile()
+    assetManager = AssetManager(session).addSourceProfile()
     outputManager = OutputManager(session, assetManager, compressionLevel=0, formattingLevel=1)
     fileManager = FileManager(session)
     
@@ -27,11 +26,12 @@ def source():
 @task("Build")
 def build():
     # Initialize shared objects
-    assetManager = AssetManager(session)
-    assetManager.addBuildProfile()
-    assetManager.deploy(Resolver(session).addClassName("tests").getIncludedClasses())
+    assetManager = AssetManager(session).addBuildProfile()
     outputManager = OutputManager(session, assetManager, compressionLevel=2)
     fileManager = FileManager(session)
+
+    # Deploy assets
+    outputManager.deployAssets(["tests"])
 
     # Write kernel script
     outputManager.storeKernel("$prefix/script/kernel.js", debug=True, classes=["core.io.Asset", "core.io.StyleSheet"])
