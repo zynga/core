@@ -1,5 +1,3 @@
-core.io.Asset.load(["qunit.css"]);
-
 /** 
  * #require(jquery) #require(qunit) #asset(qunit.css)
  */
