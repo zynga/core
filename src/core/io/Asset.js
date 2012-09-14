@@ -205,7 +205,7 @@
 							continue;
 						}
 
-						var uri = idToUri(id);
+						var uri = jasy.Asset.toUri(id);
 					}
 					else
 					{
@@ -275,7 +275,7 @@
 				}
 			}
 			
-			var uris = ids.map(idToUri);
+			var uris = ids.map(jasy.Asset.toUri);
 			var urisToIds = uris.zip(ids);
 
 			var helper = callback ? function(data) {
@@ -371,7 +371,7 @@
 				var spriteId = resolveSprite(spriteData[0], id);
 				return {
 					node: getFromCache(spriteId, "node"),
-					src : idToUri(spriteId),
+					src : jasy.Asset.toUri(spriteId),
 					left : spriteData[1],
 					top : spriteData[2],
 					width: width,
@@ -426,7 +426,7 @@
 			if (spriteData) 
 			{
 				var spriteId = resolveSprite(spriteData[0], id);
-				var src = idToUri(spriteId);
+				var src = jasy.Asset.toUri(spriteId);
 				var node = getFromCache(spriteId, "node");
 
 				var left = spriteData[1];
