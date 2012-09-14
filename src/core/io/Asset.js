@@ -73,39 +73,6 @@
 	
 	
 	/**
-	 * {String} Returns the sprite ID for the given data @spriteNumber {Integer} and image 
-	 * @id {String}.
-	 */
-	var resolveSprite = function(spriteNumber, assetId)
-	{
-		if (jasy.Env.isSet("debug")) 
-		{
-			core.Assert.isType(spriteNumber, "Number");
-			core.Assert.isType(assetId, "String");
-		}
-		
-		// Sprite data format: index, left, top
-		var spriteId = sprites[spriteNumber];
-		
-		// Explicit root path
-		if (spriteId.charAt(0) == "/") {
-			spriteId = spriteId.slice(1);
-		}
-
-		// Local path (same folder as requested image)
-		else if (spriteId.indexOf("/") == -1) 
-		{
-			var pos = assetId.lastIndexOf("/");
-			if (pos != -1) {
-				spriteId = assetId.slice(0, pos+1) + spriteId;
-			}
-		}
-		
-		return spriteId;
-	};
-	
-	
-	/**
 	 * {var} Returns a @key {String} from the given asset @id {String} when its available in cache.
 	 */
 	var getFromCache = function(id, key)
@@ -198,7 +165,7 @@
 					// Check whether entry is type of image and is part of a sprite image
 					if (entry.t == "i" && entry.d[2]) 
 					{
-						id = resolveSprite(entry.d[2][0], id);
+						id = jasy.Asset.resolveSprite(entry.d[2][0], id);
 
 						// Omit loading sprite multiple times
 						if (id in cache) {
@@ -209,7 +176,7 @@
 					}
 					else
 					{
-						var uri = entryToUri(entry, id);
+						var uri = jasy.Asset.entryToUri(entry, id);
 					}
 					
 					uris.push(uri);
@@ -368,7 +335,7 @@
 			var spriteData = data[2];
 			if (spriteData)
 			{
-				var spriteId = resolveSprite(spriteData[0], id);
+				var spriteId = jasy.Asset.resolveSprite(spriteData[0], id);
 				return {
 					node: getFromCache(spriteId, "node"),
 					src : jasy.Asset.toUri(spriteId),
@@ -383,7 +350,7 @@
 				// Return compatible data format in cases where no sprite sheet is used
 				return {
 					node: getFromCache(id, "node"),
-					src : entryToUri(entry, id),
+					src : jasy.Asset.entryToUri(entry, id),
 					left : 0,
 					top: 0,
 					width: width,
@@ -405,7 +372,7 @@
 				core.Assert.isType(frame, "Integer", "Invalid frame number (no integer): " + frame + " for asset " + id + "!");
 			}
 			
-			var entry = resolve(id);
+			var entry = jasy.Asset.resolve(id);
 			if (jasy.Env.isSet("debug")) 
 			{
 				if (!entry) {
@@ -425,7 +392,7 @@
 			var spriteData = data[2];
 			if (spriteData) 
 			{
-				var spriteId = resolveSprite(spriteData[0], id);
+				var spriteId = jasy.Asset.resolveSprite(spriteData[0], id);
 				var src = jasy.Asset.toUri(spriteId);
 				var node = getFromCache(spriteId, "node");
 
@@ -434,7 +401,7 @@
 			}
 			else
 			{
-				var src = entryToUri(entry, id);
+				var src = jasy.Asset.entryToUri(entry, id);
 				var node = getFromCache(id, "node");
 
 				var left = 0;

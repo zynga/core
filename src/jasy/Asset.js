@@ -98,6 +98,40 @@
 	core.Module("jasy.Asset",
 	{
 		resolve : resolve,
+		entryToUri : entryToUri,
+
+		/**
+		 * {String} Returns the sprite ID for the given data @spriteNumber {Integer} and image 
+		 * @id {String}.
+		 */
+		resolveSprite : function(spriteNumber, assetId)
+		{
+			if (jasy.Env.isSet("debug")) 
+			{
+				core.Assert.isType(spriteNumber, "Number");
+				core.Assert.isType(assetId, "String");
+			}
+			
+			// Sprite data format: index, left, top
+			var spriteId = sprites[spriteNumber];
+			
+			// Explicit root path
+			if (spriteId.charAt(0) == "/") {
+				spriteId = spriteId.slice(1);
+			}
+
+			// Local path (same folder as requested image)
+			else if (spriteId.indexOf("/") == -1) 
+			{
+				var pos = assetId.lastIndexOf("/");
+				if (pos != -1) {
+					spriteId = assetId.slice(0, pos+1) + spriteId;
+				}
+			}
+			
+			return spriteId;
+		},
+
 
 		/**
 		 * Adds the given asset @data {Map}. Must contain these top level keys:
