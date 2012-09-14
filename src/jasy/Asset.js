@@ -43,8 +43,7 @@
 
 
 	/** 
-	 * Returns the URI for the given @entry {Map} and @id {String}. This method
-	 * is faster than using #idToUri.
+	 * {String} Returns the URI for the given @entry {Map} (as returned by #resolve) and @id {String}.
 	 */
 	var entryToUri = function(entry, id) 
 	{
@@ -134,9 +133,7 @@
 
 
 		/**
-		 * Adds the given asset @data {Map}. Must contain these top level keys:
-		 *
-		 * * `assets`: The real asset structure representing the client side asset IDs
+		 * Adds the given asset @data {Map}. This is typically generated and called by Jasy.
 		 */
 		addData : function(data) 
 		{

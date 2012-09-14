@@ -1,7 +1,7 @@
 /*
 ==================================================================================================
-  Core - JavaScript Foundation
-  Copyright 2010-2012 Zynga Inc.
+	Core - JavaScript Foundation
+	Copyright 2010-2012 Zynga Inc.
 ==================================================================================================
 */
 
@@ -89,6 +89,9 @@
 	/**
 	 * Contains information about images (size, format, clipping, ...) and
 	 * other assets like CSS files, local data, ...
+	 *
+	 * Works with data delivered by {jasy.Asset} and extends it with useful
+	 * tools to make features like animations and sprites easier to use.
 	 *
 	 * #require(ext.sugar.Array) 
 	 * #require(ext.sugar.Object)
