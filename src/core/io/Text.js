@@ -72,7 +72,7 @@
 			};
 			
 			// Fixes for IE memory leaks
-			if (core.Env.isSet("engine", "trident") && global.attachEvent) 
+			if (jasy.Env.isSet("engine", "trident") && global.attachEvent) 
 			{
 				var onUnload = function() 
 				{

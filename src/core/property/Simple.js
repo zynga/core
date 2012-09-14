@@ -57,7 +57,7 @@
 			var propertyApply = config.apply;
 
 			// Validation
-			if (core.Env.isSet("debug"))
+			if (jasy.Env.isSet("debug"))
 			{
 				/** #require(ext.sugar.Object) */
 				var invalidKeys = Object.validateKeys(config, "name,nullable,init,type,fire,apply".split(","));
@@ -108,7 +108,7 @@
 				var context, data, value;
 				context = this;
 
-				if (core.Env.isSet("debug")) {
+				if (jasy.Env.isSet("debug")) {
 					core.property.Debug.checkGetter(context, config, arguments);
 				}
 
@@ -123,7 +123,7 @@
 						return propertyInit;
 					}
 
-					if (core.Env.isSet("debug"))
+					if (jasy.Env.isSet("debug"))
 					{
 						if (!propertyNullable) {
 							context.error("Missing value for: " + propertyName + " (during get())");
@@ -178,7 +178,7 @@
 			{
 				var context=this, data, old;
 
-				if (core.Env.isSet("debug")) {
+				if (jasy.Env.isSet("debug")) {
 					core.property.Debug.checkSetter(context, config, arguments);
 				}
 
@@ -222,7 +222,7 @@
 				var context, data, old, value;
 				context = this;
 
-				if (core.Env.isSet("debug")) {
+				if (jasy.Env.isSet("debug")) {
 					core.property.Debug.checkResetter(context, config, arguments);
 				}
 
@@ -241,7 +241,7 @@
 					if (propertyInit !== undef) {
 						value = propertyInit;
 					}
-					else if (core.Env.isSet("debug"))
+					else if (jasy.Env.isSet("debug"))
 					{
 						// Still no value. We warn about that the property is not nullable.
 						if (!propertyNullable) {

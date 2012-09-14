@@ -74,7 +74,7 @@
 		 */
 		construct: function(render) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(render, "Function", "Missing valid render method!");
 			}
 			
@@ -89,7 +89,7 @@
 			 */
 			render: function(data, partials) 
 			{
-				if (core.Env.isSet("debug")) 
+				if (jasy.Env.isSet("debug")) 
 				{
 					core.Assert.isType(data, "Map", "Invalid data to render");
 					

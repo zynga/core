@@ -15,7 +15,7 @@ core.Module("core.bom.FormItem",
 	 */
 	isSuccessful: function(item)
 	{
-		if (core.Env.isSet("debug")) 
+		if (jasy.Env.isSet("debug")) 
 		{
 			core.Assert.equal(args.length, 1);
 			core.dom.Node.assertIsNode(item);
@@ -49,7 +49,7 @@ core.Module("core.bom.FormItem",
 	 */
 	serialize: function(item) 
 	{
-		if (core.Env.isSet("debug")) 
+		if (jasy.Env.isSet("debug")) 
 		{
 			core.Assert.equal(args.length, 1);
 			core.dom.Node.assertIsNode(item);

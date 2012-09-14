@@ -39,7 +39,7 @@
 	};
 	
 	
-	if (core.Env.isSet("debug"))
+	if (jasy.Env.isSet("debug"))
 	{
 		var checkMixinMemberConflicts = function(include, members, name) 
 		{
@@ -143,7 +143,7 @@
 	 */
 	core.Main.declareNamespace("core.Class", function(name, config) 
 	{
-		if (core.Env.isSet("debug")) 
+		if (jasy.Env.isSet("debug")) 
 		{
 			if (!core.Module.isModuleName(name)) {
 				throw new Error("Invalid class name " + name + "!");
@@ -216,7 +216,7 @@
 		var include = config.include;
 		if (include) 
 		{
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				for (var i=0, l=include.length; i<l; i++) {
 					core.Class.assertIsClass(include[i], "Class " + name + " includes invalid class " + include[i] + " at position: " + i + "!");
@@ -332,7 +332,7 @@
 		//	 INTERFACES
 		// ------------------------------------
 	
-		if (core.Env.isSet("debug")) 
+		if (jasy.Env.isSet("debug")) 
 		{
 			var implement = config.implement;
 			if (implement) 
@@ -404,7 +404,7 @@
 
 
 	// Enforce loading of ES5 array fixes if required
-	if (!core.Env.isSet("es5")) 
+	if (!jasy.Env.isSet("es5")) 
 	{
 		/** #require(ext.es5.Array) #require(ext.es5.Date) #require(ext.es5.JSON) #require(ext.es5.Object) */
 		0;
@@ -421,7 +421,7 @@
 		 */
 		getByName : function(className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(className, "String");
 			}
 
@@ -435,7 +435,7 @@
 		 */
 		getEvents : function(cls) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Class.assertIsClass(cls);
 			}
 
@@ -448,7 +448,7 @@
 		 */
 		getProperties : function(cls) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Class.assertIsClass(cls);
 			}
 
@@ -483,7 +483,7 @@
 		 */
 		includesClass : function(cls, inc) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Class.assertIsClass(cls, "Class to check for including class is itself not a class!");
 				core.Class.assertIsClass(inc, "Class to check for being included is not a class!");
 			}

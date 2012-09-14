@@ -15,7 +15,7 @@
 	};
 	
 	// Verify incoming parameters
-	if (core.Env.isSet("debug")) 
+	if (jasy.Env.isSet("debug")) 
 	{
 		var validate = function(args) 
 		{
@@ -33,7 +33,7 @@
 		 */
 		var addClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 			
@@ -45,7 +45,7 @@
 		 */
 		var removeClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 
@@ -57,7 +57,7 @@
 		 */
 		var containsClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 		
@@ -69,7 +69,7 @@
 		 */
 		var toggleClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 
@@ -83,7 +83,7 @@
 		
 		var addClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 			
@@ -94,7 +94,7 @@
 
 		var removeClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 
@@ -103,7 +103,7 @@
 
 		var containsClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 
@@ -112,7 +112,7 @@
 
 		var toggleClass = function(elem, className) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 			

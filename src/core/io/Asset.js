@@ -78,7 +78,7 @@
 	 */
 	var resolveSprite = function(spriteNumber, assetId)
 	{
-		if (core.Env.isSet("debug")) 
+		if (jasy.Env.isSet("debug")) 
 		{
 			core.Assert.isType(spriteNumber, "Number");
 			core.Assert.isType(assetId, "String");
@@ -145,7 +145,7 @@
 		 */
 		preloadSection: function(section, recursive, callback, context, random) 
 		{
-			if (core.Env.isSet("debug"))
+			if (jasy.Env.isSet("debug"))
 			{
 				core.Assert.isType(section, "String");
 
@@ -229,7 +229,7 @@
 			}
 			else
 			{
-				if (core.Env.isSet("debug")) {
+				if (jasy.Env.isSet("debug")) {
 					console.debug("Preloading " + section + " (" + uris.length + " assets)...");	
 				}
 				
@@ -258,7 +258,7 @@
 		 */
 		load: function(ids, callback, context, random) 
 		{
-			if (core.Env.isSet("debug"))
+			if (jasy.Env.isSet("debug"))
 			{
 				core.Assert.isType(ids, "Array");
 
@@ -291,12 +291,12 @@
 		 */
 		getImageSize : function(id)
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 
 			var entry = jasy.Asset.resolve(id);
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				if (!entry) {
 					throw new Error("Could not figure out size of unknown image: " + id);
@@ -317,12 +317,12 @@
 		 */
 		getFrameNumber: function(id) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 			
 			var entry = jasy.Asset.resolve(id);
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				if (!entry) {
 					throw new Error("Could not figure out frame number of unknown image: " + id);
@@ -344,12 +344,12 @@
 		 */
 		getImage : function(id) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 			
 			var entry = jasy.Asset.resolve(id);
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				if (!entry) {
 					throw new Error("Unknown image: " + id);	
@@ -399,14 +399,14 @@
 		 */
 		getFrame : function(id, frame) 
 		{
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 				core.Assert.isType(frame, "Integer", "Invalid frame number (no integer): " + frame + " for asset " + id + "!");
 			}
 			
 			var entry = resolve(id);
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				if (!entry) {
 					throw new Error("Unknown image: " + id);	
@@ -451,7 +451,7 @@
 			if (frameData) 
 			{
 				var number = getFrameNumber(entry.d);
-				if (frame >= number && core.Env.isSet("debug")) {
+				if (frame >= number && jasy.Env.isSet("debug")) {
 					throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 				}
 				
@@ -494,7 +494,7 @@
 					top += (~~(frame / cols)) * height;
 				}
 			}
-			else if (frame != 0 && core.Env.isSet("debug"))
+			else if (frame != 0 && jasy.Env.isSet("debug"))
 			{
 				throw new Error("Invalid frame number " + frame + " for asset " + id + "!");
 			}
@@ -513,7 +513,7 @@
 			};
 			
 			// Prevent changes in object
-			if (core.Env.isSet("debug") && Object.freeze) {
+			if (jasy.Env.isSet("debug") && Object.freeze) {
 				Object.freeze(result);
 			}
 			

@@ -40,7 +40,7 @@
 			{
 				if (arguments.length == 2)
 				{
-					if (core.Env.isSet("debug")) {
+					if (jasy.Env.isSet("debug")) {
 						core.Assert.isType(property, "String");
 					}
 
@@ -49,7 +49,7 @@
 						method = setters[property] = "set" + up(property);
 					}
 
-					if (core.Env.isSet("debug")) {
+					if (jasy.Env.isSet("debug")) {
 						core.Assert.isType(this[method], "Function", "Invalid property to set(): " + property);
 					}
 
@@ -57,7 +57,7 @@
 				}
 				else
 				{
-					if (core.Env.isSet("debug")) {
+					if (jasy.Env.isSet("debug")) {
 						core.Assert.isType(property, "Map");
 					}
 
@@ -68,7 +68,7 @@
 							method = setters[name] = "set" + up(name);
 						}
 
-						if (core.Env.isSet("debug")) {
+						if (jasy.Env.isSet("debug")) {
 							core.Assert.isType(this[method], "Function", "Invalid property to set(): " + name);
 						}
 
@@ -88,7 +88,7 @@
 			{
 				if (typeof property == "string")
 				{
-					if (core.Env.isSet("debug")) {
+					if (jasy.Env.isSet("debug")) {
 						core.Assert.isType(property, "String");
 					}
 
@@ -97,7 +97,7 @@
 						method = getters[property] = "get" + up(property);
 					}
 
-					if (core.Env.isSet("debug")) {
+					if (jasy.Env.isSet("debug")) {
 						core.Assert.isType(this[method], "Function", "Invalid property to get(): " + property);
 					}
 
@@ -105,7 +105,7 @@
 				}
 				else
 				{
-					if (core.Env.isSet("debug")) {
+					if (jasy.Env.isSet("debug")) {
 						core.Assert.isType(property, "Array");
 					}
 
@@ -119,7 +119,7 @@
 							method = getters[name] = "get" + up(name);
 						}
 
-						if (core.Env.isSet("debug")) {
+						if (jasy.Env.isSet("debug")) {
 							core.Assert.isType(this[method], "Function", "Invalid property to get(): " + name);
 						}
 

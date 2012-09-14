@@ -67,7 +67,7 @@
 		 */
 		load : function(uris, callback, context, nocache, type) 
 		{
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				core.Assert.isType(uris, "Array");
 
@@ -101,7 +101,7 @@
 			 */
 			var onLoad = function(uri, errornous, data) 
 			{
-				if (core.Env.isSet("debug")) 
+				if (jasy.Env.isSet("debug")) 
 				{
 					core.Assert.isType(uri, "String", "Got invalid URI from loader!");
 					
@@ -143,7 +143,7 @@
 				{
 					type = extractExtension(currentUri);
 					
-					if (core.Env.isSet("debug") && (!type || !typeLoader[type])) {
+					if (jasy.Env.isSet("debug") && (!type || !typeLoader[type])) {
 						throw new Error("Could not figure out loader to use for URI: " + currentUri);
 					}
 				}

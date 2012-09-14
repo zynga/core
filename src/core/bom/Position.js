@@ -25,7 +25,7 @@
 	}
 	
 	// Verify incoming parameters
-	if (core.Env.isSet("debug")) 
+	if (jasy.Env.isSet("debug")) 
 	{
 		var validate = function(args) 
 		{
@@ -51,7 +51,7 @@
 	{
 		var set = function(element, x, y, z, zoom) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 
@@ -71,7 +71,7 @@
 		
 		var reset = function(element) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.dom.Node.assertIsNode(element);
 			}
 			
@@ -82,7 +82,7 @@
 	{
 		var set = function(element, x, y, z, zoom) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 			
@@ -102,7 +102,7 @@
 
 		var reset = function(element) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.dom.Node.assertIsNode(element);
 			}
 			
@@ -119,7 +119,7 @@
 		 */
 		var set = function(element, x, y, z, zoom) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				validate(arguments);
 			}
 			
@@ -141,7 +141,7 @@
 		 */
 		var reset = function(element) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.dom.Node.assertIsNode(element);
 			}
 			

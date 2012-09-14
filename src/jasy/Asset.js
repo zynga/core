@@ -28,7 +28,7 @@
 			return id;
 		}
 		
-		if (core.Env.isSet("debug")) {
+		if (jasy.Env.isSet("debug")) {
 			core.Assert.isType(id, "String");
 		}
 		
@@ -48,7 +48,7 @@
 	 */
 	var entryToUri = function(entry, id) 
 	{
-		if (core.Env.isSet("debug")) 
+		if (jasy.Env.isSet("debug")) 
 		{
 			core.Assert.isType(id, "String", "Unknown asset ID: " + id);
 			core.Assert.isType(entry, "Map", "Invalid entry: " + entry + " for asset ID: " + id);
@@ -107,7 +107,7 @@
 		addData : function(data) 
 		{
 			// Validate input data
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				core.Assert.isType(data, "Map", "Asset data must be a map with the keys assets and profiles.");
 				core.Assert.isType(data.profiles, "Array", "Asset data must have an array of profiles under the profiles key.");
@@ -152,7 +152,7 @@
 		registerDelegate : function(profile, delegate) 
 		{
 			// Validate input data
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				core.Assert.isType(profile, "String");
 				core.Assert.isType(delegate, "Function");
@@ -167,7 +167,7 @@
 		 */
 		has : function(id) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(id, "String");
 			}
 			
@@ -181,12 +181,12 @@
 		 */
 		getType : function(id) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(id, "String", "Invalid asset ID (no string): " + id + "!");
 			}
 
 			var entry = resolve(id);
-			if (core.Env.isSet("debug") && !entry) {
+			if (jasy.Env.isSet("debug") && !entry) {
 				throw new Error("Could not figure out size of unknown image: " + id);
 			}
 
@@ -199,12 +199,12 @@
 		 */
 		toUri : function(id) 
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(id, "String");
 			}
 			
 			var resolved = resolve(id);
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isNotNull(resolved, "Failed to resolve asset ID: " + id);
 			}
 			

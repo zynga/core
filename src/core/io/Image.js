@@ -24,7 +24,7 @@
 		 */
 		load : function(uri, callback, context, nocache) 
 		{
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				core.Assert.isType(uri, "String");
 
@@ -48,7 +48,7 @@
 				img.onload = img.onerror = null;
 
 				var errornous = (e||global.event).type === "error";
-				if (core.Env.isSet("debug") && errornous) {
+				if (jasy.Env.isSet("debug") && errornous) {
 					console.warn("Could not load image: " + uri);
 				}
 

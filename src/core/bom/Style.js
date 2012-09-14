@@ -14,7 +14,7 @@
 	var helperStyle = helperElem.style;
 	var undef;
 
-	var vendorPrefix = core.Env.select("engine", {
+	var vendorPrefix = jasy.Env.select("engine", {
 		trident: 'ms',
 		gecko: 'Moz',
 		webkit: 'Webkit',

@@ -15,7 +15,7 @@ core.Module("core.bom.Form",
 	 */
 	serialize: function(form) 
 	{
-		if (core.Env.isSet("debug")) 
+		if (jasy.Env.isSet("debug")) 
 		{
 			core.Assert.equal(args.length, 1);
 			core.dom.Node.assertIsNode(form);

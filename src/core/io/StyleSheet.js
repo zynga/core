@@ -28,7 +28,7 @@
 		 */
 		load: function(uri, callback, context, nocache) 
 		{
-			if (core.Env.isSet("debug")) 
+			if (jasy.Env.isSet("debug")) 
 			{
 				core.Assert.isType(uri, "String");
 
@@ -46,7 +46,7 @@
 			}
 			
 			// Default nocache to true when debugging is enabled
-			if (core.Env.isSet("debug") && nocache == null) {
+			if (jasy.Env.isSet("debug") && nocache == null) {
 				nocache = true;
 			}
 
@@ -57,7 +57,7 @@
 			}
 
 			// Use listener to stylesheet list and compare elements
-			if (core.Env.isSet("engine", "webkit")) 
+			if (jasy.Env.isSet("engine", "webkit")) 
 			{
 				var link = doc.createElement('link');
 				var sheets = doc.styleSheets;
@@ -86,7 +86,7 @@
 			}
 
 			// Use style import fallback for buggy GECKO 
-			else if (core.Env.isSet("engine", "gecko")) 
+			else if (jasy.Env.isSet("engine", "gecko")) 
 			{
 				var style = doc.createElement("style");
 				style.textContent = "@import '" + uri + (nocache ? dynamicExtension : "") + "'";

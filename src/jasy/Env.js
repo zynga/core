@@ -63,7 +63,7 @@
 		}
 
 		if (selected.debug) {
-			console.info("core.Env: " + key.join(", "));
+			console.info("jasy.Env: " + key.join(", "));
 		}
 
 		/**
@@ -77,7 +77,7 @@
 	 * This class is the client-side representation for the permutation features of
 	 * Jasy and supports features like auto-selecting builds based on specific feature sets.
 	 */
-	core.Module("core.Env",
+	core.Module("jasy.Env",
 	{
 		SELECTED : {
 			debug : true

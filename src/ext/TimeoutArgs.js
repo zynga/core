@@ -13,7 +13,7 @@
 /**
  * Adds support for extra parameters for setInterval/setTimeout for browsers (IE, ...) missing it
  */
-if (core.Env.isSet("engine", "trident"))
+if (jasy.Env.isSet("engine", "trident"))
 {
 	(function(global, undef) 
 	{

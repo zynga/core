@@ -30,7 +30,7 @@
 		 */
 		get: function(object) {
 			
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 
 				var type = typeof object;
 				if (object == null || (type != "object" && type != "function") || object.constructor == Object) {

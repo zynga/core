@@ -27,13 +27,13 @@
 			}
 			else if (token.tag == "/") 
 			{
-				if (core.Env.isSet("debug") && stack.length === 0) {
+				if (jasy.Env.isSet("debug") && stack.length === 0) {
 					throw new Error("Closing tag without opener: /" + token.name);
 				}
 				
 				opener = stack.pop();
 				
-				if (core.Env.isSet("debug") && token.name != opener.name) {
+				if (jasy.Env.isSet("debug") && token.name != opener.name) {
 					throw new Error("Nesting error: " + opener.name + " vs. " + token.name);
 				}
 				
@@ -47,7 +47,7 @@
 			}
 		}
 
-		if (core.Env.isSet("debug") && stack.length > 0) {
+		if (jasy.Env.isSet("debug") && stack.length > 0) {
 			throw new Error("Missing closing tag: " + stack.pop().name);
 		}
 

@@ -8,7 +8,7 @@
 */
 
 // Enforce loading of ES5 array fixes if required
-if (!core.Env.isSet("es5")) 
+if (!jasy.Env.isSet("es5")) 
 {
 	/** #require(ext.es5.Array) */
 	0;

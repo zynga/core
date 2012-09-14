@@ -53,7 +53,7 @@
 			// Import array
 			if (array) {
 				
-				if (core.Env.isSet("debug")) {
+				if (jasy.Env.isSet("debug")) {
 					core.Assert.isType(array, "Array");
 				}
 				

@@ -30,7 +30,7 @@
 	core.Module("core.io.Script",
 	{
 		/** Whether the loader supports parallel requests */
-		SUPPORTS_PARALLEL : supportsScriptAsync || core.Env.isSet("engine", "gecko") || core.Env.isSet("engine", "opera"),
+		SUPPORTS_PARALLEL : supportsScriptAsync || jasy.Env.isSet("engine", "gecko") || jasy.Env.isSet("engine", "opera"),
 
 
 		/**
@@ -39,7 +39,7 @@
 		 */
 		load : function(uri, callback, context, nocache)
 		{
-			if (core.Env.isSet("debug"))
+			if (jasy.Env.isSet("debug"))
 			{
 				core.Assert.isType(uri, "String");
 
@@ -56,7 +56,7 @@
 				}
 			}
 
-			if (core.Env.isSet("debug") && nocache == null) {
+			if (jasy.Env.isSet("debug") && nocache == null) {
 				nocache = true;
 			}
 

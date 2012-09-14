@@ -36,7 +36,7 @@
 	}
 	else
 	{
-		var prefix = core.Env.select("engine", {
+		var prefix = jasy.Env.select("engine", {
 			trident: 'ms',
 			gecko: 'moz',
 			webkit: 'webkit',

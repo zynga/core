@@ -24,7 +24,7 @@
 	 */
 	core.Main.declareNamespace("core.Interface", function(name, config)
 	{
-		if (core.Env.isSet("debug"))
+		if (jasy.Env.isSet("debug"))
 		{
 			if (!core.Module.isModuleName(name)) {
 				throw new Error("Invalid interface name " + name + "!");
@@ -65,7 +65,7 @@
 		 */
 		getByName : function(interfaceName)
 		{
-			if (core.Env.isSet("debug")) {
+			if (jasy.Env.isSet("debug")) {
 				core.Assert.isType(interfaceName, "String");
 			}
 
