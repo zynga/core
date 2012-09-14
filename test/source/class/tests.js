@@ -1,5 +1,7 @@
+core.io.Asset.load(["qunit.css"]);
+
 /** 
- * #require(jquery) #require(qunit) #asset(qunit.css) 
+ * #require(jquery) #require(qunit) #asset(qunit.css)
  */
 var global = this;
 $(function() {
@@ -354,12 +356,12 @@ $(function() {
 	test("Adding Source Data", function() 
 	{
 		raises(function() {
-			core.io.Asset.resetData();
+			jasy.Asset.resetData();
 			core.io.Asset.toUri("my.png")
 		});
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : {"u":"asset/my.png","p":0}
@@ -369,8 +371,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
 
 		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : {"u":"asset/my.png","p":0}
@@ -380,8 +382,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
 
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : {"u":"asset/my.png","p":0}
@@ -391,8 +393,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
 		
 		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"lib2" : {
@@ -409,12 +411,12 @@ $(function() {
 	test("Adding Build Data", function() 
 	{
 		raises(function() {
-			core.io.Asset.resetData();
+			jasy.Asset.resetData();
 			core.io.Asset.toUri("my.png")
 		});
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : {"p":0}
@@ -424,8 +426,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
 
 		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : {"p":0}
@@ -435,8 +437,8 @@ $(function() {
 		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
 
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"my.png" : {"p":0}
@@ -450,8 +452,8 @@ $(function() {
 
 	test("Image Sizes", function() {
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -471,8 +473,8 @@ $(function() {
 		
 	test("Image Sprite - None", function() {
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -496,8 +498,8 @@ $(function() {
 	test("Image Sprite - Same Folder", function() 
 	{
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -524,8 +526,8 @@ $(function() {
 	test("Image Sprite - Absolute ID", function() 
 	{
 
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"myapp" : {
@@ -551,8 +553,8 @@ $(function() {
 	
 	test("Image Sprite - Root ID", function() 
 	{
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : {
 				"icons.png" : {"d":[288, 288], "p":0, "t":"i"},
@@ -578,8 +580,8 @@ $(function() {
 		
 	test("Image Animation - Rows/Columns", function() {
 		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -625,8 +627,8 @@ $(function() {
 		
 	test("Image Animation - Rows/Columns in Image Sprite", function() {
 		
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -675,8 +677,8 @@ $(function() {
 	
 	test("Image Animation - Custom", function()
 	{
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : 
 			{
@@ -730,8 +732,8 @@ $(function() {
 	
 	test("Image Animation - Custom in Image Sprite", function()
 	{
-		core.io.Asset.resetData();
-		core.io.Asset.addData(
+		jasy.Asset.resetData();
+		jasy.Asset.addData(
 		{
 			"assets" : 
 			{
