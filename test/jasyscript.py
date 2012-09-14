@@ -30,7 +30,7 @@ def build():
     assetManager = AssetManager(session)
     assetManager.addBuildProfile()
     assetManager.deploy(Resolver(session).addClassName("tests").getIncludedClasses())
-    outputManager = OutputManager(session, assetManager, compressionLevel=0, formattingLevel=1)
+    outputManager = OutputManager(session, assetManager, compressionLevel=2)
     fileManager = FileManager(session)
 
     # Write kernel script
