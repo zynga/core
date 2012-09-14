@@ -7,6 +7,9 @@
 
 (function(undef)
 {
+	/** {=Map} Internal database of available fields with their current values */
+	var selected = {};
+
 	// At this level Array.prototype.indexOf might not be support, so we implement a custom logic for a contains check
 	var contains = function(array, value) 
 	{
@@ -18,71 +21,15 @@
 		}
 	}
 
-	// Updates map of selected fields and computes a SHA1 checksum
-	var compute = function(fields, selected)
-	{
-		// Process entries
-		var key = [];
-		for (var i=0, l=fields.length; i<l; i++)
-		{
-			// possible variants
-			// 1: name, 1, test, [val1, val2]
-			// 2: name, 2, value
-			// 3: name, 3, test, default (not permutated)
-
-			var entry = fields[i];
-			var name = entry[0];
-			var type = entry[1]
-			if (type == 1 || type == 3)
-			{
-				var test = entry[2];
-				var value = "VALUE" in test ? test.VALUE : test.get(name);
-				var third = entry[3];
-
-				// Fallback to first value if test results in unsupported value
-				if (type == 1 && !contains(third, value)) {
-					value = third[0];
-				}
-
-				// Fill in missing value with default
-				else if (type == 3 && value == null) {
-					value = third;
-				}
-			}
-			else
-			{
-				// In cases with no test, we don't have an array of fields but just a value
-				value = entry[2];
-			}
-
-			selected[name] = value;
-
-			if (type != 3) {
-				key.push(name + ":" + value);
-			}
-		}
-
-		if (selected.debug) {
-			console.info("jasy.Env: " + key.join(", "));
-		}
-
-		/**
-		 * #require(ext.sugar.String)
-		 */
-		return core.crypt.SHA1.checksum(key.join(";")).toHex();
-	};
-	
-
 	/**
 	 * This class is the client-side representation for the permutation features of
 	 * Jasy and supports features like auto-selecting builds based on specific feature sets.
 	 */
 	core.Module("jasy.Env",
 	{
-		SELECTED : {
-			debug : true
-		},
+		SELECTED : selected,
 
+		/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
 		CHECKSUM : null,
 
 
@@ -97,16 +44,57 @@
 		/**
 		 * Used by Jasy to inject field data
 		 */
-		setFields : function(fields) 
+		setFields : function(fields)
 		{
-			/** Currently selected fields from Env data */
-			var selected = {};
+			// Process entries
+			var key = [];
+			for (var i=0, l=fields.length; i<l; i++)
+			{
+				// possible variants
+				// 1: name, 1, test, [val1, val2]
+				// 2: name, 2, value
+				// 3: name, 3, test, default (not permutated)
 
-			/** {=Number} Holds the checksum for the current permutation which is auto detected by features or by compiled-in data */
-			var checksum = compute(fields, selected);
+				var entry = fields[i];
+				var name = entry[0];
+				var type = entry[1]
+				if (type == 1 || type == 3)
+				{
+					var test = entry[2];
+					var value = "VALUE" in test ? test.VALUE : test.get(name);
+					var third = entry[3];
 
-			this.SELECTED = selected;
-			this.CHECKSUM = checksum;
+					// Fallback to first value if test results in unsupported value
+					if (type == 1 && !contains(third, value)) {
+						value = third[0];
+					}
+
+					// Fill in missing value with default
+					else if (type == 3 && value == null) {
+						value = third;
+					}
+				}
+				else
+				{
+					// In cases with no test, we don't have an array of fields but just a value
+					value = entry[2];
+				}
+
+				selected[name] = value;
+
+				if (type != 3) {
+					key.push(name + ":" + value);
+				}
+			}
+
+			if (selected.debug) {
+				console.info("jasy.Env: " + key.join(", "));
+			}
+
+			/**
+			 * #require(ext.sugar.String)
+			 */
+			this.CHECKSUM = core.crypt.SHA1.checksum(key.join(";")).toHex();
 		},
 
 
