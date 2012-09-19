@@ -53,7 +53,7 @@ def source():
         classes = Resolver(session).addClassName("$${name}.Main").getSortedClasses()
         
         # Writing source loader
-        outputManager.storeLoader(classes, "$prefix/script/$${name}-$permutation.js", "$${name}.Main;")
+        outputManager.storeLoader(classes, "$prefix/script/$${name}-$permutation.js", "new $${name}.Main;")
 
 
 @task
@@ -81,5 +81,5 @@ def build():
         classes = Resolver(session).addClassName("$${name}.Main").getSortedClasses()
 
         # Compressing classes
-        outputManager.storeCompressed(classes, "$prefix/script/$${name}-$permutation.js", "$${name}.Main;")
+        outputManager.storeCompressed(classes, "$prefix/script/$${name}-$permutation.js", "new $${name}.Main;")
 
