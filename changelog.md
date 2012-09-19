@@ -1,6 +1,11 @@
 0.8
 ===
 
+- Added Jasy 0.8 ready skeleton to easily start new projects 
+- Updated jasyscript.py for Jasy 0.8
+- Converted jasyproject.json into jasyproject.yaml
+- Cleaned up roadmap in readme.md which has actually no validity for the upcoming releases.
+- 
 
 
 0.7

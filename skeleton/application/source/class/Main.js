@@ -9,7 +9,7 @@ core.Class("$${name}.Main", {
 	
 	construct: function() {
 		
-		core.io.StyleSheet.load(core.io.Asset.toUri("$${name}/main.css"));
+		core.io.StyleSheet.load(jasy.Asset.toUri("$${name}/main.css"));
 		
 		alert("Hello from $${name}!");
 		
