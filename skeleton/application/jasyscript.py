@@ -8,6 +8,7 @@ def clean():
     """Clear build cache"""
     
     session.clean()
+    Repository.clean()
 
 
 @task
@@ -15,75 +16,70 @@ def distclean():
     """Clear caches and build results"""
     
     session.clean()
-
-    removeDir("build")
-    removeDir("external")
-    removeDir("source/script")
+    Repository.distclean()
 
 
 @task
 def api():
     """Build API viewer"""
     
-    runTask("apibrowser", "build")
-    ApiWriter().write("data")
+    Task.runTask("apibrowser", "build")
+    ApiWriter(session).write("data")
     
     
 @task
 def server():
     """Start HTTP server"""
     
-    serve()
-
-
-@task
-def build():
-    """Build self-contained deploy ready version"""
-    
-    # Configure permutations
-    session.permutateField("es5")
-    session.permutateField("debug")
-
-    # Configure assets for being loaded from local asset folder
-    session.getAssetManager().deploy(Resolver().addClassName("$${name}.Main").getIncludedClasses())
-    session.getAssetManager().addBuildProfile()
-    
-    # Write kernel script
-    includedByKernel = storeKernel("script/kernel.js")
-
-    # Copy files from source
-    updateFile("source/index.html", "index.html")
-    
-    # Process every possible permutation
-    for permutation in session.permutate():
-        
-        # Resolving dependencies
-        resolver = Resolver().addClassName("$${name}.Main").excludeClasses(includedByKernel)
-
-        # Compressing classes
-        storeCompressed(resolver.getSortedClasses(), "script/$${name}-%s.js" % permutation.getChecksum(), "new $${name}.Main;")
+    Server().start()
 
 
 @task
 def source():
-    """Generate source version for development"""
+    """Generate source (development) version"""
 
-    # Configure permutations
-    session.permutateField("es5")
-    session.setField("debug", True)
+    # Initialize shared objects
+    assetManager = AssetManager(session).addSourceProfile()
+    outputManager = OutputManager(session, assetManager, compressionLevel=0, formattingLevel=1)
+    fileManager = FileManager(session)
+    
+    # Store kernel script
+    outputManager.storeKernel("$prefix/script/kernel.js", debug=True)
+    
+    # Process every possible permutation
+    for permutation in session.permutate():
 
-    # Configure assets for being loaded from source folders
-    session.getAssetManager().addSourceProfile()
+        # Resolving dependencies
+        classes = Resolver(session).addClassName("$${name}.Main").getSortedClasses()
+        
+        # Writing source loader
+        outputManager.storeLoader(classes, "$prefix/script/$${name}-$permutation.js", "$${name}.Main;")
+
+
+@task
+def build():
+    """Generate deployable and combined build version"""
+
+    # Initialize shared objects
+    assetManager = AssetManager(session).addBuildProfile()
+    outputManager = OutputManager(session, assetManager, compressionLevel=2)
+    fileManager = FileManager(session)
+
+    # Deploy assets
+    outputManager.deployAssets(["$${name}.Main"])
 
     # Write kernel script
-    includedByKernel = storeKernel("script/kernel.js", debug=True)
+    outputManager.storeKernel("$prefix/script/kernel.js", debug=True)
+
+    # Copy files from source
+    fileManager.updateFile("source/index.html", "$prefix/index.html")
 
     # Process every possible permutation
     for permutation in session.permutate():
 
         # Resolving dependencies
-        resolver = Resolver().addClassName("$${name}.Main").excludeClasses(includedByKernel)
+        classes = Resolver(session).addClassName("$${name}.Main").getSortedClasses()
 
-        # Building class loader
-        storeLoader(resolver.getSortedClasses(), "script/$${name}-%s.js" % permutation.getChecksum(), "new $${name}.Main;")
+        # Compressing classes
+        outputManager.storeCompressed(classes, "$prefix/script/$${name}-$permutation.js", "$${name}.Main;")
 
