@@ -1,11 +1,18 @@
 0.8
 ===
 
-- Added Jasy 0.8 ready skeleton to easily start new projects 
+- Added Jasy 0.8 ready skeleton to easily start new projects based on Jasy/Core/ApiBrowser
 - Updated jasyscript.py for Jasy 0.8
 - Converted jasyproject.json into jasyproject.yaml
 - Cleaned up roadmap in readme.md which has actually no validity for the upcoming releases.
-- 
+- Jasy relevant client side APIs were moved to new top-level "jasy" namespace.
+  - `core.io.Asset.toUri()` => `jasy.Asset.toUri()`
+  - `core.io.Asset.has()` => `jasy.Asset.has()`
+  - `core.io.Asset.getType()` => `jasy.Asset.getType()`
+  - `core.Env.isSet()` => `jasy.Env.isSet()`
+  - `core.Env.getValue()` => `jasy.Env.getValue()`
+- `core.io.Queue` has now marked all loader classes as optional which basically means that using the class means less bloat when only a few types are actually loaded. 
+- Added new translation APIs for Jasy 0.8 in `jasy.Translate`
 
 
 0.7
