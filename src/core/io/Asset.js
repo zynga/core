@@ -99,12 +99,6 @@
 	 */
 	core.Module("core.io.Asset",
 	{
-		// For compatibility to previous releases
-		toUri: jasy.Asset.toUri,
-		has : jasy.Asset.has,
-		getType : jasy.Asset.getType,
-
-
 		/**
 		 * Loads the given @section {String}. Optionally @recursive {Boolean?false} where it traverses
 		 * the whole tree. The optional @callback {Function?} is executed
