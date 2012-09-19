@@ -24,7 +24,7 @@ def api():
     """Build API viewer"""
     
     Task.runTask("apibrowser", "build")
-    ApiWriter(session).write("data")
+    ApiWriter(session).write("$prefix/data")
     
     
 @task
