@@ -23,8 +23,8 @@ core.Main.addStatics("Array",
 	 * {Array} Converts the given @args {arguments} into an array.
 	 */
 	fromArguments : function(args) {
-		// See also: http://jsperf.com/arrayifying-arguments/4
-		return Array.apply(null, args);
+		// See also: http://jsperf.com/arrayifying-arguments/7
+		return args.length === 1 ? [ args[0] ] : Array.apply(null, args);
 	}
 });
 
