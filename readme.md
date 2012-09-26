@@ -11,6 +11,16 @@ Core was initially developed by [Sebastian Werner](mailto:info@sebastian-werner.
 and is now continued as an official Zynga OpenSource project.
 
 
+## Jasy Compatibility
+
+This project is kept compatible with newest development of the [Jasy](http://github.com/zynga/jasy) tooling framework. This means that the newest GitHub versions typically require a recent Jasy version  as well. Take a look at this list to understand what version to choose from:
+
+* **0.8**: Jasy = 0.8.x
+* **0.7**: Jasy = 0.7.x
+* **0.6**: Jasy = 0.6.x
+* **0.5**: Jasy = 0.5.x
+
+
 ## License
 
 Copyright (c) 2011-2012 Zynga Inc. http://zynga.com/
