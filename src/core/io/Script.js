@@ -18,9 +18,20 @@
 
 	// Used for shorten calls
 	var assignCallback = function(elem, value) {
-		elem.onload = elem.onerror = elem.onreadystatechange = value;
+		
+		if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
+		{
+			var ieversion = parseInt(RegExp.$1)
+			if (ieversion>=10)
+			{
+				elem.onload = elem.onerror = value;
+			}
+		}
+		else
+		{
+			elem.onload = elem.onerror = elem.onreadystatechange = value;
+		}
 	};
-
 
 	/**
 	 * Generic script loader for features. Could be used for loading feature/class packages after initial load.
