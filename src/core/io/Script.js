@@ -17,19 +17,13 @@
 	var dynamicExtension = "?r=" + Date.now();
 
 	// Used for shorten calls
-	var assignCallback = function(elem, value) {
-		
-		if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
-		{
-			var ieversion = parseInt(RegExp.$1)
-			if (ieversion>=10)
-			{
-				elem.onload = elem.onerror = value;
-			}
-		}
-		else
-		{
-			elem.onload = elem.onerror = elem.onreadystatechange = value;
+	var assignCallback = function(elem, value) 
+	{
+		// Prefer onload when supported e.g. >=IE9, Firefox, Chrome, Safari, ...
+		if ("onload" in elem) {
+			elem.onload = elem.onerror = value;
+		} else {
+			elem.onreadystatechange = value;
 		}
 	};
 
