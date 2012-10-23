@@ -1,3 +1,10 @@
+0.8.1
+=====
+
+- IE10 fixes in core.io.Script
+- Fixed some broken unit tests
+
+
 0.8
 ===
 
