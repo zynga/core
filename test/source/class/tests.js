@@ -355,7 +355,7 @@ $(function() {
 	{
 		raises(function() {
 			jasy.Asset.resetData();
-			core.io.Asset.toUri("my.png")
+			jasy.Asset.toUri("my.png")
 		});
 
 		jasy.Asset.resetData();
@@ -366,7 +366,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"source"}]
 		});
-		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
+		equals(jasy.Asset.toUri("my.png"), "asset/my.png");
 
 		
 		jasy.Asset.resetData();
@@ -377,7 +377,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"source", "root":"xxx/yyy/"}]
 		});
-		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
+		equals(jasy.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
 
 
 		jasy.Asset.resetData();
@@ -388,7 +388,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"source", "root":"http://mycdn.com/xxx/yyy/"}]
 		});
-		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
+		equals(jasy.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
 		
 		
 		jasy.Asset.resetData();
@@ -401,7 +401,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"source", "root":"http://mycdn.com/app/source/"}]
 		});
-		equals(core.io.Asset.toUri("lib2/my.png"), "http://mycdn.com/app/source/../../lib2/asset/my.png");
+		equals(jasy.Asset.toUri("lib2/my.png"), "http://mycdn.com/app/source/../../lib2/asset/my.png");
 
 	});
 	
@@ -410,7 +410,7 @@ $(function() {
 	{
 		raises(function() {
 			jasy.Asset.resetData();
-			core.io.Asset.toUri("my.png")
+			jasy.Asset.toUri("my.png")
 		});
 
 		jasy.Asset.resetData();
@@ -421,7 +421,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"build", "root":"asset/"}]
 		});
-		equals(core.io.Asset.toUri("my.png"), "asset/my.png");
+		equals(jasy.Asset.toUri("my.png"), "asset/my.png");
 
 		
 		jasy.Asset.resetData();
@@ -432,7 +432,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"build", "root":"xxx/yyy/asset/"}]
 		});
-		equals(core.io.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
+		equals(jasy.Asset.toUri("my.png"), "xxx/yyy/asset/my.png");
 
 
 		jasy.Asset.resetData();
@@ -443,7 +443,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"build", "root":"http://mycdn.com/xxx/yyy/asset/"}]
 		});
-		equals(core.io.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
+		equals(jasy.Asset.toUri("my.png"), "http://mycdn.com/xxx/yyy/asset/my.png");
 		
 	});
 		
@@ -462,7 +462,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"build", "root":"asset/"}]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		equals(jasy.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 		equals(core.io.Asset.getImageSize("myapp/icons/app.png")+"", [48, 48]+"");
 		equals(core.io.Asset.getFrameNumber("myapp/icons/app.png"), 1);
 		
@@ -483,7 +483,7 @@ $(function() {
 			}, 
 			"profiles" : [{name:"build", "root":"asset/"}]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		equals(jasy.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.left, 0);
@@ -510,7 +510,7 @@ $(function() {
 			"profiles" : [{name:"build", "root":"asset/"}],
 			"sprites" : ["icons.png"]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		equals(jasy.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
@@ -538,7 +538,7 @@ $(function() {
 			"profiles" : [{name:"build", "root":"asset/"}],
 			"sprites" : ["myapp/icons.png"]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		equals(jasy.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
@@ -565,7 +565,7 @@ $(function() {
 			"profiles" : [{name:"build", "root":"asset/"}],
 			"sprites" : ["/icons.png"]
 		});
-		equals(core.io.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
+		equals(jasy.Asset.toUri("myapp/icons/app.png"), "asset/myapp/icons/app.png");
 
 		var imgData = core.io.Asset.getImage("myapp/icons/app.png");
 		strictEqual(imgData.width, 48);
