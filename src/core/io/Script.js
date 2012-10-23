@@ -20,9 +20,11 @@
 	var assignCallback = function(elem, value) 
 	{
 		// Prefer onload when supported e.g. >=IE9, Firefox, Chrome, Safari, ...
-		if ("onload" in elem) {
-			elem.onload = elem.onerror = value;
-		} else {
+		elem.onload = elem.onerror = value;
+
+		// Add onreadystatechange listener if onload is not found being 
+		// supported by our simple feature testing approach.
+		if (!("onload" in elem)) {
 			elem.onreadystatechange = value;
 		}
 	};
