@@ -1,3 +1,7 @@
+**Please note:** This project is deprecated at Zynga and is no longer maintained.
+
+---
+
 Core - A Fine Foundation for JavaScript Projects
 ================================================
 
